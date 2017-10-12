@@ -1,0 +1,33 @@
+-----------------------------------------------
+Needed Functionality
+-----------------------------------------------
++ verify user/password
++ verify certificate? for login
++ fetch user data from DB
++ push changes to DB
++ generate key pairs and corresponding certificate
++ revoke certificate and fetch revocation list
++ fetch CA state
++ ssh and ftps connections for administration
+
+
+-----------------------------------------------
+BACKEND
+-----------------------------------------------
+## Technology ##
++ Openssl (see Chapter 7 of the Book)
++ MySQL
+
+
+-----------------------------------------------
+REST API
+-----------------------------------------------
+## Possible Technologies ##
++ Django (Python)
++ Flask (Python)
++ Spark (Java)
++ Spring (Java)
++ Rails (Ruby)
+
+## Calls ##
+TODO

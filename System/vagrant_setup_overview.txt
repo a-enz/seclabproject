@@ -1,0 +1,13 @@
+-----------------------------------------------
+Needed Functionality
+-----------------------------------------------
++ at least 4 virtual machines:
+	- Client: gui interface
+	- Web Server
+	- Core CA
+	- Backup
++ some linux distribution (E.g. CentOs, Fedora, Ubuntu, ...)
++ proper network connections
++ software installation
++ relevant project's part deployment
++ tests
