@@ -21,7 +21,7 @@
 
 
 \title{\huge\sffamily\bfseries System Description and Risk Analysis}
-\author{w \and x \and y \and z}
+\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
 \date{\dots}
 
 
@@ -100,7 +100,7 @@ List all system components and their interfaces, subdivided, for example, into
 
 \subsection{Backdoors}
 
-Describe the implemented backdoors. 
+TODO: Describe the implemented backdoors. 
 
 \bigskip\noindent
 \textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
@@ -120,49 +120,91 @@ You may have additional sections according to your needs.
 
 \subsection{Assets}
 
-Describe the relevant assets and their required security
+TODO: Describe the relevant assets and their required security
   properties. For example, data objects, access restrictions,
   configurations, etc.
+ 
+\textbf{Physical Assets}
+\begin{itemize}
+\item Web Server Machine
+\item Core CA Machine
+\item Backup Machine
+\end{itemize}
+
+\textbf{Logical Assets}
+\begin{itemize}
+\item Software
+\item Certificates
+\item Keys
+\item User data
+\item Configuration files
+\item Logs
+\end{itemize}
+
+\textbf{Persons}
+\begin{itemize}
+\item System Administrator
+\item CA Administrator
+\item Users (Employees and Informants)
+\end{itemize}
+
+\textbf{Intangible Goods}
+\begin{itemize}
+\item Company Reputation
+\end{itemize}
 
 \subsection{Threat Sources}
 
-Name and describe potential threat sources (\emph{not} threats!) including their motivation.
+TODO: Name and describe potential threat sources (\emph{not} threats!) including their motivation.
+
+\begin{itemize}
+\item Nature: probably not relevant since it targets availability
+\item Users: Employees (includes also cleaning personnel etc.) and Informants can act maliciously or be careless/poorly trained
+\item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
+\item "Victims": subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
+\item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
+\item Malware: TODO
+\item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
+\item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
+\item Organizatorial Deficiencies (from SecEng slides): lack in employee training, poor/non-existing/non-enforced security measures (E.g. TODO) can weaken the overall security of the system.
+\item Hardware Failures (from SecEng slides): TODO
+\end{itemize}
 
 \subsection{Risks Definitions}
 
 Define likelihood, impact and risk level using the following three
-  tables.
+  tables. TODO: source from book.
 
 %\subsubsection{Tools}
 
 \begin{center}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|p{0.8\textwidth}|}
 \hline
-\multicolumn{2}{|c|}{\bf Likelihood} \\
-\hline
+%\multicolumn{2}{|c|}{\bf Likelihood} \\
+%\hline
 Likelihood & Description \\
 \hline
 \hline
-High   & \hspace*{20pt}\ldots \\
+High   & The threat source is highly motivated and sufficiently capable of exploiting a given vulnerability in order to change the asset?s state. The controls to prevent the vulnerability from being exploited are ineffective. \\
 \hline
-Medium & \hspace*{20pt}\ldots \\
+Medium & The threat source is motivated and capable of exploiting a given vulnerability in order to change the asset?s state, but controls are in place that may impede a successful exploit of the vulnerability. \\
 \hline
-Low   & \hspace*{20pt}\ldots \\
+Low   & The threat source lacks motivation or capabilities to exploit a given vulnerability in order to change the asset?s state. Another possibility that results in a low likelihood is the case where controls are in place that prevent (or at least significantly impede) the vulnerability from being exercised. \\
 \hline
 \end{tabular}
 \hspace{3em}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|p{0.8\textwidth}|}
 \hline
 \multicolumn{2}{|c|}{\bf Impact} \\
 \hline
 Impact & Description \\
 \hline
 \hline
-High   & \hspace*{20pt}\ldots \\
+High   & The event (1) may result in a highly costly loss of major tangible assets or resources; (2) may significantly violate, harm, or impede an organization?s mission, reputation, or interest; or (3) may result in human death or serious injury. \\
 \hline
-Medium & \hspace*{20pt}\ldots \\
+Medium & The event (1) may result in a costly loss of tangible assets or resources; (2) may violate, harm, or impede an organization?s mission, reputation, or interest, or (3) may result in human injury. \\
 \hline
-Low   & \hspace*{20pt}\ldots \\
+Low   & The event (1) may result in a loss of some tangible assets or resources or (2) may noticeably affect an organization?s mission, reputation, or inter- est. \\
 \hline
 \end{tabular}
 \end{center}
