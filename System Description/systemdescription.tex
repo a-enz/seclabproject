@@ -22,7 +22,7 @@
 
 \title{\huge\sffamily\bfseries System Description and Risk Analysis}
 \author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
-\date{\dots}
+\date{\today}
 
 
 \begin{document}
@@ -31,89 +31,33 @@
 %% **** please observe the page limit **** 
 %% (it is not allowed to change the font size or page geometry to gain more space)
 %% comment or remove lines below before hand-in
-\begin{center}
-{\large\textcolor{red}{Page limit: 30 pages.}}
-\end{center}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \tableofcontents
 \pagebreak
-
-\begin{framed}
-\noindent
-{\it
-Recall the following guidelines when writing your reports:
-\begin{itemize}
-\item Adhere to the given templates.
-
-\item Refer to the security principles in the book for justification.
-
-\item Use clear terminology: 
-\begin{itemize}
-\item secure = confidential + authentic. Be clear about
-which properties you are writing.
-\item Are pairwise distinct: certificate, private key, public key, archive to of certificate with private key. Please avoid mixing these up.
-\end{itemize}
-
-\item Refer to the source document of your risk definitions if appropriate.
-
-\item For the risk evaluation, formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
-
-\item Use a spell checker before hand-in!
-
-\end{itemize}
-}
-\end{framed}
 
 
 \section{System Characterization}
 
 \subsection{System Overview}
 
-Describe the system's mission,  the system boundaries,
-and the overall system architecture, including the main subsystems and
-their relationships.   This description should provide a high-level
-overview of the system, e.g., suitable for managers, that complements
-the more technical description that follows.
 
+%%% Describe the system's mission,  the system boundaries,
+%%% and the overall system architecture, including the main subsystems and
+%%% their relationships.   This description should provide a high-level
+%%% overview of the system, e.g., suitable for managers, that complements
+%%% the more technical description that follows.
 
-\subsection{System Functionality}
-
-Describe the system's functions.
-
-
-\subsection{Security Design}
-
-Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
+\centerline{\includegraphics[width=1\textwidth]{res/system_arch.eps}}
 
 
 \subsection{Components}
 
-List all system components and their interfaces, subdivided, for example, into
-  categories such as platforms, applications, data records, etc. For
-  each component, state its relevant properties.
+%%% List all system components and their interfaces, subdivided, for example, into
+%%%   categories such as platforms, applications, data records, etc. For
+%%%   each component, state its relevant properties.
 
-
-\ifthenelse{\boolean{showbackdoors}}{
-% show for handed-in version
-
-\subsection{Backdoors}
-
-TODO: Describe the implemented backdoors. 
-
-\bigskip\noindent
-\textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
-
-
-%% do not delete the three lines below
-}{ 
-% empty for reviewing group's version
-} 
-
-\subsection{Additional Material}
-
-You may have additional sections according to your needs.
 
 
 \section{Risk Analysis and Security Measures}
