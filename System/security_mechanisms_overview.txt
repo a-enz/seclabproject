@@ -1,0 +1,20 @@
+-----------------------------------------------
+Firewall
+-----------------------------------------------
++ ifconfig
++ NetFilter/IPTables
++ many others at http://www.techradar.com/news/6-best-free-linux-firewalls-of-2017
+
+
+-----------------------------------------------
+Intrusion Detection/Prevention System
+-----------------------------------------------
+## Possible Technologies ##
++ snort
++ tiger
++ AIDE
+
+
+-----------------------------------------------
+Others
+-----------------------------------------------
