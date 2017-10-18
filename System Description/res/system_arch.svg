@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="system_arch.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -36,8 +36,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="424.6761"
-     inkscape:cy="775.3087"
+     inkscape:cx="422.20123"
+     inkscape:cy="803.59297"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -299,14 +299,32 @@
            height="115.96552"
            x="275.06454"
            y="669.11035" /></flowRegion><flowPara
-         id="flowPara4791"></flowPara></flowRoot>  </g>
+         id="flowPara4791" /></flowRoot>    <path
+       style="fill:none;fill-rule:evenodd;stroke:#616161;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:23.99999944, 11.99999972000000170;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 12.020815,17.864999 715.592045,0 0,233.915661 -355.6747,281.56517 -360.624451,0 z"
+       id="path4198"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:125%;font-family:'TeX Gyre Termes Math';-inkscape-font-specification:'TeX Gyre Termes Math, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="20.839502"
+       y="34.206291"
+       id="text4426-6-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="20.839502"
+         y="34.206291"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:'TeX Gyre Termes Math';-inkscape-font-specification:'TeX Gyre Termes Math, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan4218">Company Network</tspan></text>
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2">
     <g
        id="g4367"
-       transform="translate(200.9737,-171.97518)">
+       transform="translate(202.9737,-169.97518)">
       <ellipse
          ry="8.1317282"
          rx="28.991377"
@@ -460,5 +478,11 @@
        id="path4698-6-3"
        d="m 333.4882,482.08058 197.10807,-0.70711"
        style="fill:none;fill-rule:evenodd;stroke:#c2c2c2;stroke-width:3.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4698-7"
+       d="m 235.40624,150.44753 65.17447,-0.70711"
+       style="fill:none;fill-rule:evenodd;stroke:#c2c2c2;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

@@ -49,7 +49,20 @@
 %%% overview of the system, e.g., suitable for managers, that complements
 %%% the more technical description that follows.
 
-\centerline{\includegraphics[width=1\textwidth]{res/system_arch.eps}}
+
+The System consists of three machines in a company network and a external client machine. Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. Machine 2 contains the web server with a firewall to shield it because any traffic from outside the company network will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the backup service, with backup daemons connecting to the other two machines.
+
+
+
+\begin{figure}[htb!]
+\centering{\includegraphics[width=\textwidth]{res/system_arch.eps}}
+\caption{System Architecture of the company network including an external client machien.}
+\centering
+\label{fig:system_arch}
+\end{figure}
+
+
+
 
 
 \subsection{Components}
@@ -58,15 +71,33 @@
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
 
+A short description of the components in Figure \ref{fig:system_arch}.
+
+\begin{itemize}
+    \item \textbf{Certification Manager}: Manages certificate state (creation, revocation, deletion, ...). Interfaces with the web server over the REST API and directly with the legacy MySQL database. It has two main subcomponents: 
+    \begin{itemize}
+        \item Certification Store: A directory where keys and certificates are stored.
+        \item Certification Generator: Built with OpenSSL
+    \end{itemize}
+    \item \textbf{MySQL DB}: As provided. Interfaces with the web server over a REST AP and with the Certification Manager.
+    \item \textbf{REST API}: Interface between Core CA machine and WebServer machine.
+    \item \textbf{Web Server}: Accepts web traffic filtered through a Firewall. Does Authorization by checking legacy database and can request certificate state changes from the Certification Manager.
+    \item \textbf{Firewall}: Filters traffic.
+    \item \textbf{Backup Manager}: Periodically stores specified data in the backup database. Interfaces with Core CA and WebServer machine.
+    \begin{itemize}
+        \item Backup Daemon: Sends Data to Backup machine
+    \end{itemize}
+\end{itemize}
+
 
 
 \section{Risk Analysis and Security Measures}
 
 \subsection{Assets}
 
-TODO: Describe the relevant assets and their required security
-  properties. For example, data objects, access restrictions,
-  configurations, etc.
+%% TODO: Describe the relevant assets and their required security
+%%  properties. For example, data objects, access restrictions,
+%%  configurations, etc.
  
 \textbf{Physical Assets}
 \begin{itemize}
