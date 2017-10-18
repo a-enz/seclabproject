@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  12 OCT 2017 09:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  18 OCT 2017 18:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,57 +250,83 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
+Package epstopdf Info: Source file: <res/system_arch.eps>
+(epstopdf)                    date: 2017-10-18 17:15:20
+(epstopdf)                    size: 21966 bytes
+(epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-10-18 17:21:40
+(epstopdf)                    size: 8952 bytes
+(epstopdf)             Command: <repstopdf --outfile=res/system_arch-eps-conver
+ted-to.pdf res/system_arch.eps>
+(epstopdf)             \includegraphics on input line 58.
+Package epstopdf Info: Output file is already uptodate.
+
+<res/system_arch-eps-converted-to.pdf, id=12, 579.16376pt x 417.56pt>
+File: res/system_arch-eps-converted-to.pdf Graphic file (type pdf)
+
+<use res/system_arch-eps-converted-to.pdf>
+Package pdftex.def Info: res/system_arch-eps-converted-to.pdf used on input lin
+e 58.
+(pdftex.def)             Requested size: 345.0pt x 248.7348pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 77.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
- [2]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 112.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
- [3]
-Overfull \hbox (1.89563pt too wide) in paragraph at lines 181--210
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
+
+Overfull \hbox (0.44382pt too wide) in paragraph at lines 79--80
+[]\OT1/cmr/m/n/10 Certification Store: A di-rec-tory where keys and cer-tifi-ca
+tes are stored. 
+ []
+
+[2 <./res/system_arch-eps-converted-to.pdf>]
+Overfull \hbox (14.06943pt too wide) in paragraph at lines 86--87
+[]\OT1/cmr/bx/n/10 Backup Man-ager\OT1/cmr/m/n/10 : Pe-ri-od-i-cally stores spe
+c-i-fied data in the backup database.
+ []
+
+[3] [4]
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 165--194
  [] 
  []
 
-[4] [5]
-Overfull \hbox (2.02571pt too wide) in alignment at lines 249--249
+[5]
+Overfull \hbox (2.02571pt too wide) in alignment at lines 233--233
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--251
+Underfull \hbox (badness 10000) in paragraph at lines 226--235
 
  []
 
 
-Overfull \hbox (2.02571pt too wide) in alignment at lines 264--264
+Overfull \hbox (2.02571pt too wide) in alignment at lines 248--248
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--266
+Underfull \hbox (badness 10000) in paragraph at lines 241--250
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--287
+Underfull \hbox (badness 10000) in paragraph at lines 262--271
 
  []
 
+Missing character: There is no ä in font cmr10!
 [6] (./systemdescription.aux) ) 
 Here is how much of TeX's memory you used:
- 2503 strings out of 492995
- 35040 string characters out of 6132704
- 107899 words of memory out of 5000000
- 6005 multiletter control sequences out of 15000+600000
- 9660 words of font info for 34 fonts, out of 8000000 for 9000
+ 2507 strings out of 492995
+ 35185 string characters out of 6132704
+ 105911 words of memory out of 5000000
+ 6007 multiletter control sequences out of 15000+600000
+ 9492 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,9n,25p,367b,226s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,9n,25p,524b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
@@ -310,12 +336,11 @@ ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
 sfonts/cm/cmssbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb>
-Output written on systemdescription.pdf (6 pages, 143713 bytes).
+fonts/cm/cmti8.pfb>
+Output written on systemdescription.pdf (6 pages, 136717 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

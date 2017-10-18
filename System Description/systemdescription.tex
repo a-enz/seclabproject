@@ -50,7 +50,7 @@
 %%% the more technical description that follows.
 
 
-The System consists of three machines in a company network and a external client machine. Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. Machine 2 contains the web server with a firewall to shield it because any traffic from outside the company network will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the backup service, with backup daemons connecting to the other two machines.
+The System consists of three machines in a company network and external client machines that connect over the Internet. Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. Machine 2 contains the web server with a firewall to shield it because any traffic from outside the company network will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the backup service, with backup daemons connecting to the other two machines.
 
 
 
@@ -60,9 +60,6 @@ The System consists of three machines in a company network and a external client
 \centering
 \label{fig:system_arch}
 \end{figure}
-
-
-
 
 
 \subsection{Components}
@@ -101,26 +98,39 @@ A short description of the components in Figure \ref{fig:system_arch}.
  
 \textbf{Physical Assets}
 \begin{itemize}
-\item Web Server Machine
-\item Core CA Machine
-\item Backup Machine
+\item Web Server: physical machine hosting the Web Server Application
+\item Core CA: physical machine hosting the CA Application and the legacy database
+\item Backup: physical machine hosting the backup data
 \end{itemize}
 
 \textbf{Logical Assets}
 \begin{itemize}
 \item Software
+\begin{itemize}
+\item Web Server Application
+\item Core CA Application
+\item legacy MySQL database/application/driver?
+\item REST API
+\item Backup Daemon
+\item Backup Manager
+\item Firewall
+\end{itemize}
+\item Information
+\begin{itemize}
 \item Certificates
 \item Keys
 \item User data
 \item Configuration files
 \item Logs
 \end{itemize}
+\end{itemize}
 
 \textbf{Persons}
 \begin{itemize}
-\item System Administrator
-\item CA Administrator
-\item Users (Employees and Informants)
+\item System Administrator: maintains the system by applying software updates, controlling system's logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the system's components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as to physical access to all components.
+\item CA Administrators: are able to verify the current state of the CA 
+\item Users: Employees and Informants: both use the system to obtain certificates that allows them to communicate securely.
+\item Management
 \end{itemize}
 
 \textbf{Intangible Goods}
@@ -148,7 +158,7 @@ TODO: Name and describe potential threat sources (\emph{not} threats!) including
 \subsection{Risks Definitions}
 
 Define likelihood, impact and risk level using the following three
-  tables. TODO: source from book.
+  tables \cite{ASL_book}.
 
 %\subsubsection{Tools}
 
@@ -160,11 +170,11 @@ Define likelihood, impact and risk level using the following three
 Likelihood & Description \\
 \hline
 \hline
-High   & The threat source is highly motivated and sufficiently capable of exploiting a given vulnerability in order to change the asset?s state. The controls to prevent the vulnerability from being exploited are ineffective. \\
+High   & The threat source is highly motivated and sufficiently capable of exploiting a given vulnerability in order to change the asset's state. The controls to prevent the vulnerability from being exploited are ineffective. \\
 \hline
-Medium & The threat source is motivated and capable of exploiting a given vulnerability in order to change the asset?s state, but controls are in place that may impede a successful exploit of the vulnerability. \\
+Medium & The threat source is motivated and capable of exploiting a given vulnerability in order to change the asset's state, but controls are in place that may impede a successful exploit of the vulnerability. \\
 \hline
-Low   & The threat source lacks motivation or capabilities to exploit a given vulnerability in order to change the asset?s state. Another possibility that results in a low likelihood is the case where controls are in place that prevent (or at least significantly impede) the vulnerability from being exercised. \\
+Low   & The threat source lacks motivation or capabilities to exploit a given vulnerability in order to change the asset's state. Another possibility that results in a low likelihood is the case where controls are in place that prevent (or at least significantly impede) the vulnerability from being exercised. \\
 \hline
 \end{tabular}
 \hspace{3em}
@@ -175,11 +185,11 @@ Low   & The threat source lacks motivation or capabilities to exploit a given vu
 Impact & Description \\
 \hline
 \hline
-High   & The event (1) may result in a highly costly loss of major tangible assets or resources; (2) may significantly violate, harm, or impede an organization?s mission, reputation, or interest; or (3) may result in human death or serious injury. \\
+High   & The event (1) may result in a highly costly loss of major tangible assets or resources; (2) may significantly violate, harm, or impede an organization's mission, reputation, or interest; or (3) may result in human death or serious injury. \\
 \hline
-Medium & The event (1) may result in a costly loss of tangible assets or resources; (2) may violate, harm, or impede an organization?s mission, reputation, or interest, or (3) may result in human injury. \\
+Medium & The event (1) may result in a costly loss of tangible assets or resources; (2) may violate, harm, or impede an organization's mission, reputation, or interest, or (3) may result in human injury. \\
 \hline
-Low   & The event (1) may result in a loss of some tangible assets or resources or (2) may noticeably affect an organization?s mission, reputation, or inter- est. \\
+Low   & The event (1) may result in a loss of some tangible assets or resources or (2) may noticeably affect an organization's mission, reputation, or inter- est. \\
 \hline
 \end{tabular}
 \end{center}
@@ -208,7 +218,7 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
 
 
-\subsubsection{{\it Evaluation Asset X}}
+\subsubsection{{\it Evaluation Web Server}}
 
 Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
 voice: who (threat source) does what (threat action)? 
@@ -217,14 +227,44 @@ voice: who (threat source) does what (threat action)?
 \begin{prettytablex}{llp{5.5cm}lll}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & ... & ... & {\it Low} & {\it Low} & {\it Low} \\
+1 & Exper Hackers: mount an active  & ... & {\it Low} & {\it Low} & {\it Low} \\
 \hline
 2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
+\subsubsection{{\it Evaluation Backup}}
 
+Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
+voice: who (threat source) does what (threat action)? 
+
+\begin{footnotesize}
+\begin{prettytablex}{llp{5.5cm}lll}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Hardware failure & ... & {\it Low} & {\it Low} & {\it Low} \\
+\hline
+2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\subsubsection{{\it Evaluation Users}}
+
+Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
+voice: who (threat source) does what (threat action)? 
+
+\begin{footnotesize}
+\begin{prettytablex}{llp{5.5cm}lll}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 &  & ... & {\it Low} & {\it Low} & {\it Low} \\
+\hline
+2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 
 \subsubsection{{\it Evaluation Asset y}}
 
@@ -259,6 +299,11 @@ No. of threat & Proposed additional countermeasure including expected impact  \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
+
+\begin{thebibliography}{---}
+\bibitem[1]{ASL_book} Computer Security: Principles and Practice. William Stallings and Laurie Brown, Prentice Hall, 2008 
+Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schläpfer, Springer, 2011
+\end{thebibliography}
 
 \end{document}
 
