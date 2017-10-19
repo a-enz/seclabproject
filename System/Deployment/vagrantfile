@@ -1,0 +1,31 @@
+# TODO: configure private network with fix IP addresses
+Vagrant.configure("2") do |config|
+
+	config.vm.provision "shell", inline: "echo Hello Hacker!"
+	
+  	config.vm.define "web_server" do |web_server|
+    	web_server.vm.box = "centos/7"
+      config.vm.provision "shell", path: "web_server_provisioning.sh"
+  	end
+ 
+=begin
+  	config.vm.define "ca" do |ca|
+    	ca.vm.box = "centos/7"
+  	end
+
+  	config.vm.define "backup" do |backup|
+    	backup.vm.box = "centos/7"
+  	end
+=end
+
+	# TODO: configure desktop environment before starting gui
+	# TODO: configure hosts file to rach webserver
+=begin
+  	config.vm.define "client" do |client|
+    	client.vm.box = "centos/7"
+    	config.vm.provider "virtualbox" do |vb|
+    		vb.gui = true
+    	end
+  	end
+=end
+end
