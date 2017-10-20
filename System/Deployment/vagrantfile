@@ -1,31 +1,51 @@
 # TODO: configure private network with fix IP addresses
 Vagrant.configure("2") do |config|
 
+  # TODO: print some more useful infos
 	config.vm.provision "shell", inline: "echo Hello Hacker!"
-	
+
+  config.vm.provision "shell", path: "basic_provisioning.sh"
+
+  # Forward ssh-agent to host machines, this way there is no need to
+  # import private keys in an unsafe way
+  config.ssh.forward_agent = true
+
   	config.vm.define "web_server" do |web_server|
     	web_server.vm.box = "centos/7"
+      
       config.vm.provision "shell", path: "web_server_provisioning.sh"
+      config.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Web Server"]
+
+      config.vm.network "private_network", ip: "192.168.50.30"
   	end
- 
-=begin
-  	config.vm.define "ca" do |ca|
-    	ca.vm.box = "centos/7"
+
+
+  	config.vm.define "core_ca" do |core_ca|
+    	core_ca.vm.box = "centos/7"
+      
+      config.vm.provision "shell", path: "core_ca_provisioning.sh"
+      config.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Core CA"]
+
+      config.vm.network "private_network", ip: "192.168.50.31"
   	end
 
   	config.vm.define "backup" do |backup|
     	backup.vm.box = "centos/7"
+      config.vm.provision "shell", path: "backup_provisioning.sh"
+      config.vm.provision "shell", path: "sparse_clone.sh", args: ["Backup"]
+
+      config.vm.network "private_network", ip: "192.168.50.31"
   	end
-=end
 
 	# TODO: configure desktop environment before starting gui
-	# TODO: configure hosts file to rach webserver
+	# TODO: configure hosts file to reach webserver
 =begin
   	config.vm.define "client" do |client|
     	client.vm.box = "centos/7"
     	config.vm.provider "virtualbox" do |vb|
     		vb.gui = true
     	end
+      config.vm.provision "shell", path: "client_provisioning.sh"
   	end
 =end
 end
