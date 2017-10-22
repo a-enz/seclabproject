@@ -9,16 +9,18 @@
 \usepackage{longtable}
 \usepackage{color}
 \usepackage{framed}
+\usepackage{array}
 
 \usepackage{xifthen}
 \newboolean{showbackdoors}
 \setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
 
 
+
 \newenvironment{prettytablex}[1]{\vspace{0.3cm}\noindent\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
 %\newenvironment{prettytable}{\prettytablex{l X}}{\endprettytablex}
 
-
+\newcolumntype{L}{lp{0.25\textwidth}p{0.25\textwidth}lll}
 
 \title{\huge\sffamily\bfseries System Description and Risk Analysis}
 \author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
@@ -98,9 +100,11 @@ A short description of the components in Figure \ref{fig:system_arch}.
  
 \textbf{Physical Assets}
 \begin{itemize}
-\item Web Server: physical machine hosting the Web Server Application
-\item Core CA: physical machine hosting the CA Application and the legacy database
-\item Backup: physical machine hosting the backup data
+\item Web Server: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
+\item Core CA: physical machine hosting the CA Application and the legacy database. 
+\item Backup: physical machine hosting the backup data. 
+\item Internet ConnectIvity:
+\item Internal Network:
 \end{itemize}
 
 \textbf{Logical Assets}
@@ -109,7 +113,7 @@ A short description of the components in Figure \ref{fig:system_arch}.
 \begin{itemize}
 \item Web Server Application
 \item Core CA Application
-\item legacy MySQL database/application/driver?
+\item Legacy MySQL database/application/driver?
 \item REST API
 \item Backup Daemon
 \item Backup Manager
@@ -140,19 +144,19 @@ A short description of the components in Figure \ref{fig:system_arch}.
 
 \subsection{Threat Sources}
 
-TODO: Name and describe potential threat sources (\emph{not} threats!) including their motivation.
+% TODO: Name and describe potential threat sources (\emph{not} threats!) including their motivation.
 
 \begin{itemize}
-\item Nature: probably not relevant since it targets availability
+\item Nature: Floods, Thunders, Earthquakes can
 \item Users: Employees (includes also cleaning personnel etc.) and Informants can act maliciously or be careless/poorly trained
 \item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
 \item "Victims": subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
-\item Malware: TODO
+\item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
 \item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
 \item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
-\item Organizatorial Deficiencies (from SecEng slides): lack in employee training, poor/non-existing/non-enforced security measures (E.g. TODO) can weaken the overall security of the system.
-\item Hardware Failures (from SecEng slides): TODO
+\item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures (E.g. TODO) can weaken the overall security of the system.
+\item Hardware Failures
 \end{itemize}
 
 \subsection{Risks Definitions}
@@ -220,82 +224,37 @@ List all potential threats and the corresponding countermeasures. Estimate the r
 
 \subsubsection{{\it Evaluation Web Server}}
 
-Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
-
 \begin{footnotesize}
-\begin{prettytablex}{llp{5.5cm}lll}
+\begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Exper Hackers: mount an active  & ... & {\it Low} & {\it Low} & {\it Low} \\
+1 & Expert Hackers: mount MitM attack to spy and tamper communications between Clients and Web Server. This allows the Hackers to learn in particular User's password and private keys. & HTTPs connection with Server side authentication & {\it Medium} & {\it High} & {\it Medium} \\
 \hline
-2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
+2 & Victim: resorts to Script Kiddies to launch DDoS attack on Web Server and cause damage, disruptions, maybe even ask money to stop & ... & {\it High} & {\it High} & {\it High} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
 \subsubsection{{\it Evaluation Backup}}
 
-Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
-
 \begin{footnotesize}
-\begin{prettytablex}{llp{5.5cm}lll}
+\begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Hardware failure & ... & {\it Low} & {\it Low} & {\it Low} \\
-\hline
-2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
+1 & User: exploits physical access to Backup Machine and obtains backup data. & Physical protection of System's Components, Disk Encryption & {\it Low} & {\it Medium} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\subsubsection{{\it Evaluation Users}}
-
-Evaluate the likelihood, impact and the resulting risk,  \emph{after implementation of the corresponding countermeasures}. Formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
+\subsubsection{{\it Evaluation System Administrator}}
 
 \begin{footnotesize}
-\begin{prettytablex}{llp{5.5cm}lll}
+\begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 &  & ... & {\it Low} & {\it Low} & {\it Low} \\
+1 & Expert Hacker: steals System's Administrator credentials & Enforce Strong Passwords, Increase security sensibilization/awareness & {\it Medium} & {\it High} & {\it Medium} \\
 \hline
-2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
-\hline
-\end{prettytablex}
-\end{footnotesize}
-
-\subsubsection{{\it Evaluation Asset y}}
-
-\begin{footnotesize}
-\begin{prettytablex}{llp{5.5cm}lll}
-No. & Threat & Countermeasure(s) & L & I & Risk \\
-\hline
-1 & ... & ... & {\it Low} & {\it Low} & {\it Low} \\
-\hline
-2 & ... & ...& {\it Medium} & {\it High} & {\it Medium} \\
-\hline
-\end{prettytablex}
-\end{footnotesize}
-
-\subsubsection{Detailed Description of Selected Countermeasures}
-
-Optionally explain the details of the countermeasures mentioned above.
-
-
-
-\subsubsection{Risk Acceptance}
-
-List all medium and high risks, according to the evaluation above. For each risk, propose additional countermeasures that could be implemented to further reduce the risks.
-
-\begin{footnotesize}
-\begin{prettytablex}{p{2cm}X}
-No. of threat & Proposed additional countermeasure including expected impact  \\
-\hline
-... & ... \\
-\hline
-... & ... \\
+2 & Organizatorial Deficiencies: illness or injury impede its work and the System is left unattended in case of problems/attacks &  & {\it High} & {\it Medium} & {\it Medium} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}

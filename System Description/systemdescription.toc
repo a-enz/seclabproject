@@ -6,8 +6,7 @@
 \contentsline {subsection}{\numberline {2.1}Assets}{3}
 \contentsline {subsection}{\numberline {2.2}Threat Sources}{4}
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{5}
-\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{5}
-\contentsline {subsubsection}{\numberline {2.4.1}{\it Evaluation Asset X}}{6}
-\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Asset y}}{6}
-\contentsline {subsubsection}{\numberline {2.4.3}Detailed Description of Selected Countermeasures}{6}
-\contentsline {subsubsection}{\numberline {2.4.4}Risk Acceptance}{6}
+\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{6}
+\contentsline {subsubsection}{\numberline {2.4.1}{\it Evaluation Web Server}}{6}
+\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Backup}}{7}
+\contentsline {subsubsection}{\numberline {2.4.3}{\it Evaluation System Administrator}}{7}
