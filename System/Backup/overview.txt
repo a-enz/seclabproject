@@ -1,0 +1,31 @@
+-----------------------------------------------
+Needed Functionality
+-----------------------------------------------
+- Backup to remote machine
+- encrypted data transfer
+- (optional: backup encrypted -> means another
+  master key to manage)
+- Backup in scheduled intervals
+- Incremental backup. Especially for log files
+- Easy to administrate
+
+-----------------------------------------------
+Possible programs
+-----------------------------------------------
+rsync
++ simple but powerful, console based
++ encrypted traffic
++ incremental
+- cannot do scheduled tasks by itself
+- backup not encrypted
+duplicity
++ simple but powerful, console based
++ basically rsync that can also encrypt backup
+- no scheduled tasks
+bacula
++ very powerful
++ scheduled tasks, encryption of backup and 
+  traffic
+- probably too complex for our use case, 
+  consists of 5 different programs
+- GUI based
