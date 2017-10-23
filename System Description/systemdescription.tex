@@ -132,7 +132,7 @@ A short description of the components in Figure \ref{fig:system_arch}.
 
 \noindent\textbf{Persons}
 \begin{itemize}
-\item System Administrator: maintains the system by applying software updates, controlling system's logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the system's components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
+\item System Administrator: maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
 \item CA Administrators: are able to verify the current state of the CA.
 \item Users: Employees and Informants that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
 \item Management
@@ -232,9 +232,9 @@ Potential threats and countermeasures with the inferred risk.
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Medium} & {\it High} & {\it Medium} \\
+1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Med} & {\it High} & {\it Med} \\
 \hline
-2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & ... & {\it High} & {\it High} & {\it High} \\
+2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
