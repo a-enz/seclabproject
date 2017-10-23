@@ -1,15 +1,14 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.10.4)  22 OCT 2017 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex 2017.9.26)  23 OCT 2017 11:16
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **systemdescription.tex
 (./systemdescription.tex
 LaTeX2e <2017-04-15>
-Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
+(/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -24,58 +23,63 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2017/05/19 3.10 The Babel package
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2017/06/29 3.12 The Babel package
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2017/01/24 v3.3q English support from the babel system
+(/usr/share/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
+)
+(/usr/share/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2017/05/19 3.10 Babel common definitions
+(/usr/share/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2017/06/29 3.12 Babel common definitions
+
+(/usr/share/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
+)
 \babel@savecnt=\count87
 \U@D=\dimen103
-
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/xebabel.def))
+)
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: xetex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/xetex.def
-File: xetex.def 2016/07/11 v4.10 LaTeX color/graphics driver for XeTeX (L3/RRM/
-JK)
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen104
 \Gin@req@width=\dimen105
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/alltt.sty
+(/usr/share/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen106
 \extrarowheight=\dimen107
@@ -91,7 +95,7 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \TX@cols=\count88
 \TX@ftn=\toks16
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/longtable.sty
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip45
 \LTright=\skip46
@@ -109,15 +113,15 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count93
 \LT@p@ftn=\toks17
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/color.sty
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: xetex.def on input line 147.
+Package color Info: Driver file: pdftex.def on input line 147.
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/framed/framed.sty
+(/usr/share/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip49
 \fb@frw=\dimen114
@@ -125,10 +129,10 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameRule=\dimen116
 \FrameSep=\dimen117
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/usr/share/texmf-dist/tex/latex/xifthen/xifthen.sty
 Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count94
 \calc@Bcount=\count95
@@ -141,13 +145,12 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count96
 \calc@Cskip=\skip52
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+(/usr/share/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
 Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
-))
-(./systemdescription.aux)
+)) (./systemdescription.aux)
 \openout1 = `systemdescription.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -158,19 +161,87 @@ LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
+ (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count97
+\scratchdimen=\dimen120
+\scratchbox=\box30
+\nofMPsegments=\count98
+\nofMParguments=\count99
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count100
+\MPscratchDim=\dimen121
+\MPnumerator=\count101
+\makeMPintoPDFobject=\count102
+\everyMPtoPDFconversion=\toks19
+) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 31.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 31.
- (./systemdescription.toc
+
+(./systemdescription.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -181,69 +252,92 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [1
 
-]
-File: res/system_arch.eps Graphic file (type eps)
- <res/system_arch.eps>
-Overfull \hbox (0.43388pt too wide) in paragraph at lines 78--79
-[]\TU/lmr/m/n/10 Certification Store: A directory where keys and certificates a
-re stored. 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Package epstopdf Info: Source file: <res/system_arch.eps>
+(epstopdf)                    date: 2017-10-23 09:03:05
+(epstopdf)                    size: 21966 bytes
+(epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-10-23 09:03:05
+(epstopdf)                    size: 8952 bytes
+(epstopdf)             Command: <repstopdf --outfile=res/system_arch-eps-conver
+ted-to.pdf res/system_arch.eps>
+(epstopdf)             \includegraphics on input line 60.
+Package epstopdf Info: Output file is already uptodate.
+<res/system_arch-eps-converted-to.pdf, id=12, pagebox=cropbox, 579.16376pt x 41
+7.56pt>
+File: res/system_arch-eps-converted-to.pdf Graphic file (type pdf)
+<use res/system_arch-eps-converted-to.pdf>
+Package pdftex.def Info: res/system_arch-eps-converted-to.pdf  used on input li
+ne 60. on input line 60.
+Package pdftex.def Info: Requested size: 345.0pt x 248.7348pt on input line 60.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 76.
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+
+Overfull \hbox (0.44382pt too wide) in paragraph at lines 78--79
+[]\OT1/cmr/m/n/10 Certification Store: A di-rec-tory where keys and cer-tifi-ca
+tes are stored. 
  []
 
-[2]
-Overfull \hbox (14.08836pt too wide) in paragraph at lines 85--86
-[]\TU/lmr/bx/n/10 Backup Manager\TU/lmr/m/n/10 : Periodically stores specified 
-data in the backup database.
+[2 <./res/system_arch-eps-converted-to.pdf>]
+Overfull \hbox (14.06943pt too wide) in paragraph at lines 85--86
+[]\OT1/cmr/bx/n/10 Backup Man-ager\OT1/cmr/m/n/10 : Pe-ri-od-i-cally stores spe
+c-i-fied data in the backup database.
  []
 
 [3] [4]
-Overfull \hbox (16.44704pt too wide) in paragraph at lines 158--159
-[]\TU/lmr/m/n/10 Organizatorial Deficiencies: lack in employee training, poor/n
-on-existing/non-
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 158--159
+[]\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
+poor/non-existing/non-
  []
 
 
-Overfull \hbox (1.91106pt too wide) in paragraph at lines 170--199
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 170--199
  [] 
  []
 
 [5]
-Underfull \hbox (badness 3219) in paragraph at lines 235--235
-\TU/lmr/m/n/8 MitM attack to spy
+Underfull \hbox (badness 3199) in paragraph at lines 235--235
+\OT1/cmr/m/n/8 MitM at-tack to spy
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 235--235
-\TU/lmr/m/n/8 allows the Hackers
+\OT1/cmr/m/n/8 al-lows the Hack-ers
  []
 
 
-Underfull \hbox (badness 5133) in paragraph at lines 235--235
-\TU/lmr/m/n/8 User’s password and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
-[]|\TU/lmr/m/n/8 HTTPs connection
- []
-
-
-Underfull \hbox (badness 2293) in paragraph at lines 235--235
-\TU/lmr/m/n/8 with Server side au-
+Underfull \hbox (badness 5077) in paragraph at lines 235--235
+\OT1/cmr/m/n/8 User's pass-word and
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 235--235
-[]|\TU/lmr/m/n/8 Victim: resorts to
+[]|\OT1/cmr/m/n/8 HTTPs con-nec-tion
+ []
+
+
+Underfull \hbox (badness 2269) in paragraph at lines 235--235
+\OT1/cmr/m/n/8 with Server side au-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 235--235
-\TU/lmr/m/n/8 Script Kiddies to
+[]|\OT1/cmr/m/n/8 Victim: re-sorts to
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 235--235
-\TU/lmr/m/n/8 damage, disruptions,
+\OT1/cmr/m/n/8 Script Kid-dies to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--235
+\OT1/cmr/m/n/8 dam-age, dis-rup-tions,
  []
 
 
@@ -257,18 +351,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--237
  []
 
 [6]
-Underfull \hbox (badness 1163) in paragraph at lines 246--246
-[]|\TU/lmr/m/n/8 User: exploits physi-
+Underfull \hbox (badness 1152) in paragraph at lines 246--246
+[]|\OT1/cmr/m/n/8 User: ex-ploits phys-i-
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 246--246
-\TU/lmr/m/n/8 cal access to Backup
+Underfull \hbox (badness 1215) in paragraph at lines 246--246
+\OT1/cmr/m/n/8 cal ac-cess to Backup
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 246--246
-\TU/lmr/m/n/8 Machine and obtains
+Underfull \hbox (badness 2951) in paragraph at lines 246--246
+\OT1/cmr/m/n/8 Ma-chine and ob-tains
  []
 
 
@@ -283,36 +377,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--248
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 259--259
-\TU/lmr/m/n/8 System’s Administra-
+\OT1/cmr/m/n/8 Sys-tem's Ad-min-is-tra-
  []
 
 
-Underfull \hbox (badness 2689) in paragraph at lines 259--259
-[]|\TU/lmr/m/n/8 Enforce Strong Pass-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--259
-\TU/lmr/m/n/8 words, Increase se-
+Underfull \hbox (badness 2662) in paragraph at lines 259--259
+[]|\OT1/cmr/m/n/8 Enforce Strong Pass-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 259--259
-\TU/lmr/m/n/8 curity sensibiliza-
+\OT1/cmr/m/n/8 words, In-crease se-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 259--259
-[]|\TU/lmr/m/n/8 Organizatorial De-
+\OT1/cmr/m/n/8 cu-rity sen-si-bi-liza-
  []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 259--259
-\TU/lmr/m/n/8 ficiencies: illness or
+Underfull \hbox (badness 10000) in paragraph at lines 259--259
+[]|\OT1/cmr/m/n/8 Organizatorial De-
  []
 
 
-Overfull \hbox (5.04407pt too wide) in alignment at lines 259--259
+Underfull \hbox (badness 4205) in paragraph at lines 259--259
+\OT1/cmr/m/n/8 fi-cien-cies: ill-ness or
+ []
+
+
+Overfull \hbox (5.0366pt too wide) in alignment at lines 259--259
 [][][][][][] 
  []
 
@@ -321,16 +415,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 252--261
 
  []
 
-Invalid UTF-8 byte or sequence at line 264 replaced by U+FFFD.
-Missing character: There is no � in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no � in font cmr10!
 [7] (./systemdescription.aux) ) 
 Here is how much of TeX's memory you used:
- 1651 strings out of 493005
- 21950 string characters out of 6134596
- 97430 words of memory out of 5000000
- 5601 multiletter control sequences out of 15000+600000
- 6480 words of font info for 36 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 25i,9n,23p,554b,256s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 2481 strings out of 492990
+ 33823 string characters out of 6138688
+ 104469 words of memory out of 5000000
+ 5982 multiletter control sequences out of 15000+600000
+ 9492 words of font info for 33 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,9n,25p,554b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/matthias/.texlive/texmf-var/fonts/pk/ljf
+our/public/cm/cmti8.600pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi
+600/cmr8.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmsy10.pk>
+ </home/matthias/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> </u
+sr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmti10.pk> </usr/share/tex
+mf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> </usr/share/texmf-dist/fonts
+/pk/ljfour/public/cm/dpi600/cmbx10.pk> </home/matthias/.texlive/texmf-var/fonts
+/pk/ljfour/public/cm/cmbx12.720pk> </usr/share/texmf-dist/fonts/pk/ljfour/publi
+c/cm/dpi600/cmr12.pk> </home/matthias/.texlive/texmf-var/fonts/pk/ljfour/public
+/cm/cmssbx10.1244pk>
+Output written on systemdescription.pdf (7 pages, 111002 bytes).
+PDF statistics:
+ 387 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on systemdescription.pdf (7 pages).

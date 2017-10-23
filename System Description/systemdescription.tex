@@ -58,7 +58,7 @@ The System consists of three machines in a company network and external client m
 
 \begin{figure}[htb!]
 \centering{\includegraphics[width=\textwidth]{res/system_arch.eps}}
-\caption{System Architecture of the company network including an external client machien.}
+\caption{System Architecture of the company network including an external client machine.}
 \centering
 \label{fig:system_arch}
 \end{figure}
@@ -78,13 +78,13 @@ A short description of the components in Figure \ref{fig:system_arch}.
         \item Certification Store: A directory where keys and certificates are stored.
         \item Certification Generator: Built with OpenSSL
     \end{itemize}
-    \item \textbf{MySQL DB}: As provided. Interfaces with the web server over a REST AP and with the Certification Manager.
+    \item \textbf{MySQL DB}: As provided. Interfaces with the web server over a REST API and with the Certification Manager.
     \item \textbf{REST API}: Interface between Core CA machine and WebServer machine.
-    \item \textbf{Web Server}: Accepts web traffic filtered through a Firewall. Does Authorization by checking legacy database and can request certificate state changes from the Certification Manager.
+    \item \textbf{Web Server}: Accepts web traffic filtered through a firewall. Does authorization by checking legacy database and can request certificate state changes from the Certification Manager.
     \item \textbf{Firewall}: Filters traffic.
     \item \textbf{Backup Manager}: Periodically stores specified data in the backup database. Interfaces with Core CA and WebServer machine.
     \begin{itemize}
-        \item Backup Daemon: Sends Data to Backup machine
+        \item Backup Daemon: Sends data to backup machine
     \end{itemize}
 \end{itemize}
 
@@ -101,10 +101,10 @@ A short description of the components in Figure \ref{fig:system_arch}.
 \textbf{Physical Assets}
 \begin{itemize}
 \item Web Server: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
-\item Core CA: physical machine hosting the CA Application and the legacy database. 
+\item Core CA: physical machine hosting the CA application and the legacy database. 
 \item Backup: physical machine hosting the backup data. 
-\item Internet ConnectIvity:
-\item Internal Network:
+\item Internet Connectivity: Modem and lines connecting the WebServer to the Internet. 
+\item Internal Network: LAN via physical lines and a switching modem.
 \end{itemize}
 
 \textbf{Logical Assets}
@@ -131,15 +131,16 @@ A short description of the components in Figure \ref{fig:system_arch}.
 
 \textbf{Persons}
 \begin{itemize}
-\item System Administrator: maintains the system by applying software updates, controlling system's logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the system's components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as to physical access to all components.
-\item CA Administrators: are able to verify the current state of the CA 
-\item Users: Employees and Informants: both use the system to obtain certificates that allows them to communicate securely.
+\item System Administrator: maintains the system by applying software updates, controlling system's logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the system's components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
+\item CA Administrators: are able to verify the current state of the CA.
+\item Users: Employees and Informants that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
 \item Management
 \end{itemize}
 
 \textbf{Intangible Goods}
 \begin{itemize}
 \item Company Reputation
+\item Confidentiality of informant identities.
 \end{itemize}
 
 \subsection{Threat Sources}
@@ -147,15 +148,15 @@ A short description of the components in Figure \ref{fig:system_arch}.
 % TODO: Name and describe potential threat sources (\emph{not} threats!) including their motivation.
 
 \begin{itemize}
-\item Nature: Floods, Thunders, Earthquakes can
-\item Users: Employees (includes also cleaning personnel etc.) and Informants can act maliciously or be careless/poorly trained
+\item Nature: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
+\item Users: Employees (includes also cleaning personnel etc.) and informants can act maliciously or be careless/poorly trained.
 \item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
 \item "Victims": subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
 \item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
 \item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
 \item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
-\item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures (E.g. TODO) can weaken the overall security of the system.
+\item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
 \item Hardware Failures
 \end{itemize}
 
@@ -228,9 +229,9 @@ List all potential threats and the corresponding countermeasures. Estimate the r
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Expert Hackers: mount MitM attack to spy and tamper communications between Clients and Web Server. This allows the Hackers to learn in particular User's password and private keys. & HTTPs connection with Server side authentication & {\it Medium} & {\it High} & {\it Medium} \\
+1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Medium} & {\it High} & {\it Medium} \\
 \hline
-2 & Victim: resorts to Script Kiddies to launch DDoS attack on Web Server and cause damage, disruptions, maybe even ask money to stop & ... & {\it High} & {\it High} & {\it High} \\
+2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & ... & {\it High} & {\it High} & {\it High} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
