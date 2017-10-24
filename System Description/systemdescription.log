@@ -1,52 +1,17 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017)  (format=lualatex 2017.10.4)  20 OCT 2017 11:20
- restricted system commands enabled.
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  23 OCT 2017 22:21
+entering extended mode
+ restricted \write18 enabled.
  file:line:error style messages enabled.
+ %&-line parsing enabled.
 **systemdescription.tex
 (./systemdescription.tex
 LaTeX2e <2017-04-15>
-Lua module: luaotfload-main 2017/01/29 2.80001 OpenType layout system.
-Lua module: lualibs 2017-02-01 2.5 ConTeXt Lua standard libraries.
-Lua module: lualibs-extended 2017-02-01 2.5 ConTeXt Lua libraries -- extended co
-llection.(created cache path: /Users/aleb/Library/texlive/2017/texmf-var)(using 
-write cache: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic)(us
-ing read cache: /usr/local/texlive/2017/texmf-var/luatex-cache/generic /Users/al
-eb/Library/texlive/2017/texmf-var/luatex-cache/generic)
-luaotfload | conf : Root cache directory is /Users/aleb/Library/texlive/2017/tex
-mf-var/luatex-cache/generic/names.
-luaotfload | init : Loading fontloader “fontloader-2017-02-11.lua” from kpse
--resolved path “/usr/local/texlive/2017/texmf-dist/tex/luatex/luaotfload/fontl
-oader-2017-02-11.lua”.
-Lua-only attribute luaotfload@state = 1
-Lua-only attribute luaotfload@noligature = 2
-Lua-only attribute luaotfload@syllabe = 3
-luaotfload | init : Context OpenType loader version “3.027”
-Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
-Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
-Inserting `luaotfload.define_font' at position 1 in `define_font'.
-Lua-only attribute luaotfload_color_attribute = 4
-luaotfload | conf : Root cache directory is /Users/aleb/Library/texlive/2017/tex
-mf-var/luatex-cache/generic/names.
-Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
-font'.
-Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
-_font'.
-Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
-t_unsafe'.
-Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
-'.
-Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
-.
-luaotfload | main : initialization completed in 0.249 seconds
-Babel <3.10> and hyphenation patterns for 1 language(s) loaded.
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
-luaotfload | db : Font names database not found, generating new one.
-luaotfload | db : This can take several minutes; please be patient.(save: /Users
-/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-re
-gular.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic
-/fonts/otl/lmroman10-regular.luc))
+)
 \c@part=\count79
 \c@section=\count80
 \c@subsection=\count81
@@ -62,92 +27,6 @@ gular.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic
 (/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2017/05/19 3.10 The Babel package
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/luababel.def
-\l@dumylang=\language2
-Package babel Info: Non-standard hyphenation setup on input line 122.
-\l@nohyphenation=\language3
-\l@german-x-2017-03-31=\language4
-\l@ngerman-x-2017-03-31=\language5
-\l@afrikaans=\language6
-\l@ancientgreek=\language7
-\l@ibycus=\language8
-\l@arabic=\language9
-\l@armenian=\language10
-\l@basque=\language11
-\l@belarusian=\language12
-\l@bulgarian=\language13
-\l@catalan=\language14
-\l@pinyin=\language15
-\l@churchslavonic=\language16
-\l@coptic=\language17
-\l@croatian=\language18
-\l@czech=\language19
-\l@danish=\language20
-\l@dutch=\language21
-\l@ukenglish=\language22
-\l@usenglishmax=\language23
-\l@esperanto=\language24
-\l@estonian=\language25
-\l@ethiopic=\language26
-\l@farsi=\language27
-\l@finnish=\language28
-\l@french=\language29
-\l@friulan=\language30
-\l@galician=\language31
-\l@georgian=\language32
-\l@german=\language33
-\l@ngerman=\language34
-\l@swissgerman=\language35
-\l@monogreek=\language36
-\l@greek=\language37
-\l@hungarian=\language38
-\l@icelandic=\language39
-\l@assamese=\language40
-\l@bengali=\language41
-\l@gujarati=\language42
-\l@hindi=\language43
-\l@kannada=\language44
-\l@malayalam=\language45
-\l@marathi=\language46
-\l@oriya=\language47
-\l@panjabi=\language48
-\l@tamil=\language49
-\l@telugu=\language50
-\l@indonesian=\language51
-\l@interlingua=\language52
-\l@irish=\language53
-\l@italian=\language54
-\l@kurmanji=\language55
-\l@latin=\language56
-\l@classiclatin=\language57
-\l@liturgicallatin=\language58
-\l@latvian=\language59
-\l@lithuanian=\language60
-\l@mongolian=\language61
-\l@mongolianlmc=\language62
-\l@bokmal=\language63
-\l@nynorsk=\language64
-\l@occitan=\language65
-\l@piedmontese=\language66
-\l@polish=\language67
-\l@portuguese=\language68
-\l@romanian=\language69
-\l@romansh=\language70
-\l@russian=\language71
-\l@sanskrit=\language72
-\l@serbian=\language73
-\l@serbianc=\language74
-\l@slovak=\language75
-\l@slovenian=\language76
-\l@spanish=\language77
-\l@swedish=\language78
-\l@thai=\language79
-\l@turkish=\language80
-\l@turkmen=\language81
-\l@ukrainian=\language82
-\l@uppersorbian=\language83
-\l@welsh=\language84
-)
 (/usr/local/texlive/2017/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/01/24 v3.3q English support from the babel system
 
@@ -155,8 +34,7 @@ Language: english 2017/01/24 v3.3q English support from the babel system
 File: babel.def 2017/05/19 3.10 Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
-
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/luababel.def))
+)
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
@@ -177,10 +55,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: luatex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/luatex.def
-File: luatex.def 2017/01/12 v0.01h Graphics/Color for luaTeX
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
@@ -243,7 +121,7 @@ Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: luatex.def on input line 147.
+Package color Info: Driver file: pdftex.def on input line 147.
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -276,22 +154,20 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
 ))
 (./systemdescription.aux)
-\openout1 = systemdescription.aux
+\openout1 = `systemdescription.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -306,7 +182,23 @@ LaTeX Font Info:    ... okay on input line 28.
 \MPnumerator=\count102
 \makeMPintoPDFobject=\count103
 \everyMPtoPDFconversion=\toks19
-) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -323,135 +215,260 @@ Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX detected.
-))))
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO)
-
-
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-\pdftexcmds@toks=\toks20
-)
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 43
-8.
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG
-,.JBIG2,.JB2,.eps]
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 31.
 
-))(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/o
-tl/lmroman17-regular.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luate
-x-cache/generic/fonts/otl/lmroman17-regular.luc)(save: /Users/aleb/Library/texli
-ve/2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans17-regular.lua)(save: /Us
-ers/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans17-
-regular.luc)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/gener
-ic/fonts/otl/lmsans10-bold.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var
-/luatex-cache/generic/fonts/otl/lmsans10-bold.luc)(save: /Users/aleb/Library/tex
-live/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroman12-regular.lua)(save: 
-/Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroma
-n12-regular.luc)
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 29.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
-(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl
-/lmroman12-bold.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cac
-he/generic/fonts/otl/lmroman12-bold.luc)
-(./systemdescription.toc(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex
--cache/generic/fonts/otl/lmroman10-bold.lua)(save: /Users/aleb/Library/texlive/2
-017/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-bold.luc)
+(./systemdescription.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
-(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl
-/lmroman10-italic.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-c
-ache/generic/fonts/otl/lmroman10-italic.luc))
+)
 \tf@toc=\write3
+\openout3 = `systemdescription.toc'.
 
-\openout3 = systemdescription.toc
  [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 112.
-(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl
-/lmmonolt10-bold.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-ca
-che/generic/fonts/otl/lmmonolt10-bold.luc)
-[3]
-Overfull \hbox (1.91104pt too wide) in paragraph at lines 181--210
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Package epstopdf Info: Source file: <res/system_arch.eps>
+(epstopdf)                    date: 2017-10-23 22:17:38
+(epstopdf)                    size: 21966 bytes
+(epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-10-23 22:17:38
+(epstopdf)                    size: 8952 bytes
+(epstopdf)             Command: <repstopdf --outfile=res/system_arch-eps-conver
+ted-to.pdf res/system_arch.eps>
+(epstopdf)             \includegraphics on input line 60.
+Package epstopdf Info: Output file is already uptodate.
+
+<res/system_arch-eps-converted-to.pdf, id=12, 579.16376pt x 417.56pt>
+File: res/system_arch-eps-converted-to.pdf Graphic file (type pdf)
+
+<use res/system_arch-eps-converted-to.pdf>
+Package pdftex.def Info: res/system_arch-eps-converted-to.pdf used on input lin
+e 60.
+(pdftex.def)             Requested size: 345.0pt x 248.7348pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 76.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+
+Overfull \hbox (0.44382pt too wide) in paragraph at lines 78--79
+[]\OT1/cmr/m/n/10 Certification Store: A di-rec-tory where keys and cer-tifi-ca
+tes are stored. 
+ []
+
+[2 <./res/system_arch-eps-converted-to.pdf>]
+Overfull \hbox (14.06943pt too wide) in paragraph at lines 85--86
+[]\OT1/cmr/bx/n/10 Backup Man-ager\OT1/cmr/m/n/10 : Pe-ri-od-i-cally stores spe
+c-i-fied data in the backup database.
+ []
+
+[3] [4]
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 160--161
+[]\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
+poor/non-existing/non-
+ []
+
+
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 172--201
  [] 
  []
 
-[4] [5](save: /Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fo
-nts/otl/lmroman8-regular.lua)(save: /Users/aleb/Library/texlive/2017/texmf-var/l
-uatex-cache/generic/fonts/otl/lmroman8-regular.luc)(save: /Users/aleb/Library/te
-xlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroman8-italic.lua)(save: /
-Users/aleb/Library/texlive/2017/texmf-var/luatex-cache/generic/fonts/otl/lmroman
-8-italic.luc)
-Overfull \hbox (2.02623pt too wide) in alignment at lines 249--249
-[][][][][][]
+[5]
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--251
+Underfull \hbox (badness 5533) in paragraph at lines 239--239
+[]|\OT1/cmr/m/n/8 Expert Hack-ers: mount
+ []
+
+
+Underfull \hbox (badness 3724) in paragraph at lines 239--239
+\OT1/cmr/m/n/8 MitM at-tack to spy on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
+[]|\OT1/cmr/m/n/8 HTTPs con-nec-tion with
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 239--239
+\OT1/cmr/m/n/8 Kid-dies to launch DDoS
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 239--239
+\OT1/cmr/m/n/8 at-tack on Web-Server and
+ []
+
+
+Underfull \hbox (badness 2245) in paragraph at lines 239--239
+\OT1/cmr/m/n/8 SYN cook-ies against syn
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 239--239
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 239--239
+[][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--241
 
  []
 
 
-Overfull \hbox (2.02623pt too wide) in alignment at lines 264--264
-[][][][][][]
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 250--250
+[]|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--266
-
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 250--250
+[]|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--287
+Underfull \hbox (badness 10000) in alignment at lines 250--250
+[][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--252
 
  []
 
-[6] (./systemdescription.aux))
+[6]
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/n/8 Risk| 
+ []
 
-Here is how much of LuaTeX's memory you used:
- 2816 strings out of 494481
- 100000,128383 words of node,token memory allocated
- 398 words of node memory still in use:
-   2 hlist, 1 vlist, 1 rule, 2 glue, 3 attribute, 54 glue_spec, 3 attribute_list
-, 1 write nodes
-   avail lists: 2:361,3:90,4:41,5:212,6:3077,7:769,8:104,9:150,10:18,11:318
- 6728 multiletter control sequences out of 65536+600000
- 47 fonts using 3612007 bytes
- 38i,9n,23p,351b,239s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman8-italic.otf
-></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.o
-tf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.
-otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman10-itali
-c.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman10-reg
-ular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman10-
-bold.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman12-
-bold.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmroman12-
-regular.otf></usr/local/texlive/2017/texmf-dist/fonts/opentype/public/lm/lmsans1
-0-bold.otf>
-Output written on systemdescription.pdf (6 pages, 54445 bytes).
 
-PDF statistics: 86 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 131072)
- 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Underfull \hbox (badness 1354) in paragraph at lines 263--263
+[]|\OT1/cmr/m/n/8 Good Doc-u-men-ta-tion and
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 263--263
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 263--263
+[][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 256--265
+
+ []
+
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+Missing character: There is no � in font cmr10!
+[7] (./systemdescription.aux) ) 
+Here is how much of TeX's memory you used:
+ 2509 strings out of 492995
+ 35206 string characters out of 6132704
+ 108960 words of memory out of 5000000
+ 6009 multiletter control sequences out of 15000+600000
+ 9492 words of font info for 33 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 39i,9n,25p,563b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmssbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmti8.pfb>
+Output written on systemdescription.pdf (7 pages, 143277 bytes).
+PDF statistics:
+ 70 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
