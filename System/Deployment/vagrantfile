@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
   # Forward ssh-agent to host machines, this way there is no need to
   # import private keys in an unsafe way
   config.ssh.forward_agent = true
+  config.ssh.keys_only = false
 
   	config.vm.define "web_server" do |web_server|
     	web_server.vm.box = "centos/7"
