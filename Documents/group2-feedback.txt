@@ -1,0 +1,48 @@
+ASL 2017
+Feedback Group 2: Alession Bähler, Andreas Enz, Matthias Niederberger
+======================================================================
+
+General:
+- Your report is very incomplete. Time to speed up now.
+- Please do follow the template, and do not drop (sub-)sections in the final version.
+- Justify your decisions! Preferably by using the security principles from the book. So far you have only listed how you are doing it, not why.
+- Check for grammar in final version.
+
+System Characterization/Overview:
+- Consider separating the webserver from the firewall; where to put webserver machine then?
+- Maybe further separation of internal network on general principle?
+- Main CA signing key+certificate, where is it, how is it secured, what happens if lost, many questions open!
+
+System Functionality:
+- You need a section talking about functionality as described in the template!
+- What about revocation?
+- What about CA admin interface?
+- In general, you only described the components, not explicitly the required functionality.
+
+
+Security Design/Components:
+- You need a section talking about security design as such as described in the template!
+- Don't forget to provide a client machine outside of internal network (in your set of VMs and description).
+- Nothing is said about security of data, either in transit or at rest.
+- Authentication? Sessions? Key management?
+- "Certification Generator" - do you mean private/public key pair generation, creating a certificate from the public key, and a pkcs#12 archive with the certificate and private key for the user to download?
+
+
+Backup:
+- Frequency of backups? Incremental/full? What about newly created certificates?
+
+
+Assets:
+- List of assets ok, but no properties given! Also note that for an asset to be here means that it should also be evaluated in the risk analysis!
+
+
+Risk Analysis:
+- Very short, I expect a lot more risks.
+- Please use running numbers for the risk evaluation: 1,2,3,4,5,6 instead of 1,2, 1, 1,2 for much easier reference
+- Script kiddies as high impact? Probably not; what other high risk scenarion can you think of?
+- Required: risk acceptance for high (and medium) risk cases.
+
+
+minor:
+Bibliography: Your references are jumbled together, [1] should be CSPP, [2] should be the AppInfSec book, but the two are mixed to 1 entry
+
