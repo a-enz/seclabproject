@@ -1,2 +1,6 @@
 # OSX Filesystem files
 .DS_Store
+
+# Intellij files
+**.iml
+.idea

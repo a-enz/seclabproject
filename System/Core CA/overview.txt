@@ -15,8 +15,9 @@ Needed Functionality
 BACKEND
 -----------------------------------------------
 ## Technology ##
-+ Openssl (see Chapter 7 of the Book)
-+ MySQL
++ Openssl (see Chapter 7 of the Book) -> already installed on OS
+± Django REST Framework -> djangorestframework python 3 package
++ MySQL -> msqlclient python 3 package
 
 
 -----------------------------------------------
@@ -30,4 +31,18 @@ REST API
 + Rails (Ruby)
 
 ## Calls ##
-TODO
+
+- - - CA - - -
+- issue_certificate -> to create a certificate for a user -> POST /certificates TODO
+- get_certificate -> to retrieve all certificates of a user -> GET /certificates/<username>
+- revoke_certificate -> to revoke one/all certificates of a user -> DELETE /certificates/<username> TODO
+- get_revocation_list -> to retrieve the current certificate revocation list -> GET /certificates/revocation_list
+- get_number_issued -> ca admin only -> to retrieve the number of issued certificates -> GET /ca/issued
+- get_number_revoked -> ca admin only -> to retrieve the number of revoked certificates -> GET /ca/revoked
+- get_serial_number -> ca admin only -> to retrieve the current serial number -> GET /ca/serial_number
+
+- - - DB - - -
+- verify_username_password -> for user login -> POST /user/verify usr:<username>, pwd:<password>
+- verify_certificate? -> for user login
+- get_user_info -> to retrieve user information from the db -> GET /user/<username>
+- update_user_info -> to update user information in the db -> POST /user/<username> TODO
