@@ -42,7 +42,16 @@ REST API
 - get_serial_number -> ca admin only -> to retrieve the current serial number -> GET /ca/serial_number
 
 - - - DB - - -
-- verify_username_password -> for user login -> POST /user/verify usr:<username>, pwd:<password>
-- verify_certificate? -> for user login
-- get_user_info -> to retrieve user information from the db -> GET /user/<username>
-- update_user_info -> to update user information in the db -> POST /user/<username> TODO
+- verify_username_password -> for user login
+POST /users/verify args: {“userPassword”:”<password>”} returns: {“correctCredentials”:<true/false>}
+
+
+- verify_certificate? -> for user login 
+
+
+- get_user_info -> to retrieve user information from the db
+GET /users/<userid> returns {“last name”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
+
+
+- update_user_info -> to update user information in the db
+POST /users/<userid> args: {“last name”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
