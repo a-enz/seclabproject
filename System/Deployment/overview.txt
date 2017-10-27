@@ -1,0 +1,25 @@
+-----------------------------------------------
+Needed Functionality
+-----------------------------------------------
++ at least 4 virtual machines:
+	- Client: gui interface
+	- Web Server
+	- Core CA
+	- Backup
++ some linux distribution (E.g. CentOs, Fedora, Ubuntu, ...)
++ proper network connections
++ software installation
++ relevant project's part deployment
++ tests
+
+
+-----------------------------------------------
+Vagrant specific
+-----------------------------------------------
++ remove NOPASSWD config of user 'vagrant': https://stackoverflow.com/questions/30432408/why-can-user-vagrant-do-sudo-su-without-entering-password
++ how to install and distribute ssh keys such that review group
+  does not know them? Cannot just install pre-generated key with
+  config.ssh.private_key_path.
++ Deactiveate vagrant provided private keys only option
+  to use key generated on machine itself??: 
+  config.ssh.keys_only is 'true' by default.

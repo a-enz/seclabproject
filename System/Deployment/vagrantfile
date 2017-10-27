@@ -1,0 +1,52 @@
+# TODO: open needed ports and close others
+# TODO: install specific software versions
+# TODO: clone only from master branch
+Vagrant.configure("2") do |config|
+
+  # TODO: print some more useful infos
+	config.vm.provision "shell", inline: "echo Hello Hacker!"
+
+  config.vm.provision "shell", path: "basic_provisioning.sh"
+
+  # Forward ssh-agent to host machines, this way there is no need to
+  # import private keys in an unsafe way
+  config.ssh.forward_agent = true
+  config.ssh.keys_only = false
+
+  	config.vm.define "web_server" do |web_server|
+    	web_server.vm.box = "centos/7"
+      
+      web_server.vm.provision "shell", path: "web_server_provisioning.sh"
+      web_server.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Web Server"]
+
+      web_server.vm.network "private_network", ip: "192.168.50.30"
+  	end
+
+
+  	config.vm.define "core_ca" do |core_ca|
+    	core_ca.vm.box = "centos/7"
+      
+      core_ca.vm.provision "shell", path: "core_ca_provisioning.sh"
+      core_ca.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Core CA"]
+
+      core_ca.vm.network "private_network", ip: "192.168.50.31"
+  	end
+
+  	config.vm.define "backup" do |backup|
+    	backup.vm.box = "centos/7"
+      backup.vm.provision "shell", path: "backup_provisioning.sh"
+      backup.vm.provision "shell", path: "sparse_clone.sh", args: ["Backup"]
+
+      backup.vm.network "private_network", ip: "192.168.50.32"
+  	end
+=begin
+    # Use ubuntu prepared desktop box for the moment
+    config.vm.define "client" do |client|
+      client.vm.box = "box-cutter/ubuntu1404-desktop"
+
+      client.vm.provider "virtualbox" do |vb|
+        vb.gui = true
+      end
+    end
+=end
+end

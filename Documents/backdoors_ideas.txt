@@ -1,0 +1,6 @@
+## Easy
+- heartbleed on webserver -> finds server's secret key -> mitm everything
+
+
+## Hard
+- git history mining

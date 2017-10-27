@@ -4,3 +4,6 @@
 # Intellij files
 **.iml
 .idea
+
+# Vagrant files
+**/.vagrant
