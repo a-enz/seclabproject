@@ -18,12 +18,23 @@ System Characterization/Overview:
 	firewall. Additionally, we could argue that it's less of a single point of failure, at least in the situation where 
 	the cert. manager goes down, then we the database is still reachable, so at least authentication stays up.
 - Main CA signing key+certificate, where is it, how is it secured, what happens if lost, many questions open!
-	Not really sure here, but I guess the Main signing key must be on the machine with the cert. manager as it is needed
+	Not really sure here, but I guess the main signing key must be on the machine with the cert. manager as it is needed
 	to sign new certificates which are requested in real time. As to how it is secured, the machine should be secured, but
-	on the machine itself it has to be somehow accessible as we already kind of discussed.
+	on the machine itself it has to be somehow accessible as we already kind of discussed. Probably we just protect it using
+	standard Linux access control, i.e. only accessible on administrator account. (System and CA?). 
+	On the topic of the loss of the main signing key/certificate:
+	- If actually lost (not longer in possession but not stolen): Not really sure what can be done. Maybe the CA admin can issue a new 
+	  one via email, as their signing key is still valid? Didn't really find any info on this topic in the book or on the web...
+	- If compromised by a third party: Put the certificate on the CLR, this way all certificates signed by the corresponding key are
+	  invalidated. Issuance of a new signing certificate/key as described above.
+
+	We also have to think about where we publish the certificate revocation list. Probably on the webserver? And if so, should it be
+	public, or only visible once logged in? I am in favor of the latter, as it is more in line with the principle of minimal exposure.
+	
 
 System Functionality:
 - You need a section talking about functionality as described in the template!
+	
 - What about revocation?
 - What about CA admin interface?
 - In general, you only described the components, not explicitly the required functionality.
