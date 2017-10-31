@@ -10,7 +10,21 @@ Vagrant.configure("2") do |config|
   # Forward ssh-agent to host machines, this way there is no need to
   # import private keys in an unsafe way
   config.ssh.forward_agent = true
-  #config.ssh.keys_only = false
+
+  # config.ssh.keys_only = false: Only use vagrant-provided SSH private keys 
+  # (do not use any keys stored in ssh-agent). The default value is true.
+
+=begin
+    config.vm.define "firewall" do |firewall|
+      firewall.vm.box = "centos/7"
+      
+      firewall.vm.provision "shell", path: "firewall_provisioning.sh"
+      firewall.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Firewall"]
+
+      firewall.vm.network "private_network", ip: "192.168.50.29"
+    end
+=end
+
 
   	config.vm.define "web_server" do |web_server|
     	web_server.vm.box = "centos/7"
