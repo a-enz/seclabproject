@@ -14,3 +14,5 @@ echo "Create new database"
 
 # TODO: Import imovies_users.dump in create db
 echo "Import dumped data"
+
+# TODO: Set up CA stuff as showed at page 109 in the book

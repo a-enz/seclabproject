@@ -33,7 +33,7 @@ REST API
 ## Calls ##
 
 - - - CA - - -
-- issue_certificate -> to create a certificate for a user -> POST /certificates TODO
+- issue_certificate -> to create a key-pair and corresponding certificate for a user -> POST /certificates TODO
 - get_certificate -> to retrieve all certificates of a user -> GET /certificates/<username>
 - revoke_certificate -> to revoke one/all certificates of a user -> DELETE /certificates/<username> TODO
 - get_revocation_list -> to retrieve the current certificate revocation list -> GET /certificates/revocation_list
