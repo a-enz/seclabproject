@@ -23,3 +23,17 @@ Vagrant specific
 + Deactiveate vagrant provided private keys only option
   to use key generated on machine itself??: 
   config.ssh.keys_only is 'true' by default.
+
+
+-----------------------------------------------
+Hardening
+-----------------------------------------------
+1. Identify running and potentially dangerous processes:
+   (eps. running as root and/or listening to ports)
+   $ sudo lsof -i
+   # Shows open ports and coresponding processes.
+   # To find out more about the process there are
+   # a lot of possebilities, see List in SecLab book
+   # page 38. Some hints:
+   
+

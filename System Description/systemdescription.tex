@@ -78,8 +78,14 @@ voice: who (threat source) does what (threat action)?
 %%% overview of the system, e.g., suitable for managers, that complements
 %%% the more technical description that follows.
 
-
-The System consists of three machines in a company network and external client machines that connect over the Internet. Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the backup service, with backup daemons connecting to the other two machines.
+The aim of this system is to provide the customer company with an in-house certificate authority (CA). This CA provides
+employees with digital certificates on demand, which are used to secure email communication. 
+The System consists of three machines in a company network and external client machines that connect over the Internet. 
+Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. This means
+that the main signing key and certificate revocation list (CLR) are stored and maintained on Machine 1. %How is main key stored? Where is CLR published? 
+Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the 
+Internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the 
+backup service, with backup daemons connecting to the other two machines. 
 
 
 

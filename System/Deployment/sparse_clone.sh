@@ -12,8 +12,12 @@ ssh-keyscan -H gitlab.vis.ethz.ch >> ~/.ssh/known_hosts
 echo "Sparse clone $1 directory"
 mkdir -p ~/SecLabProject
 cd ~/SecLabProject
-git init
-git remote add -f origin git@gitlab.vis.ethz.ch:abaehler/SecLabProject.git
-git config core.sparseCheckout true
-echo "$1" >> .git/info/sparse-checkout
+#check if git already initialized by looking for .git folder
+if [ ! -d .git ]; then
+	#initialize git
+	git init
+	git remote add -f origin git@gitlab.vis.ethz.ch:abaehler/SecLabProject.git
+	git config core.sparseCheckout true
+	echo "$1" >> .git/info/sparse-checkout
+fi
 git pull --depth=1 origin master
