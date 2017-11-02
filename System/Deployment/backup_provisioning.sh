@@ -20,8 +20,8 @@
 # Provisioning
 # create backup directory
 echo "Authorize keys and create backup directory"
-mkdir /home/vagrant/backup
-chown vagrant:vagrant /home/vagrant/backup
+mkdir /home/vagrant/backup/web_server
+chown vagrant:vagrant /home/vagrant/backup/web_server
 # authorize ssh key of web_server machine
 # FIXME: this adds the key every time we re-provision the machine. Does not 
 # seem to be a problem, but still not good.

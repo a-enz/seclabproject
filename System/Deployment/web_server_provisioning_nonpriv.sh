@@ -1,5 +1,11 @@
 DIR=/home/vagrant/
 
+
+
+######################################
+# BACKUP PROCESS
+######################################
+
 # Add an example directory and file to check if backup works
 mkdir ${DIR}example_dir
 echo "HELLO BACKUP" > example_dir/example_file
@@ -47,7 +53,17 @@ touch ${DIR}backup.sh
 chmod u+x ${DIR}backup.sh
 touch ${DIR}backup.log
 echo "echo \"\`date +%d-%m-%y/%H:%M:%S\` starting backup process:\"" > ${DIR}backup.sh
-echo "rsync -avz -e ssh example_dir vagrant@192.168.50.32:~/backup/" >> ${DIR}backup.sh
+
+# Backup a list of files
+# CARE: list cannot be too long otherwise it might exceed argument limit
+# check: https://stackoverflow.com/questions/9766284/read-input-from-a-file-and-sync-accordingly
+echo "rsync -avz -e ssh --files-from=backup_list.txt / vagrant@192.168.50.32:~/backup/web_server/" >> ${DIR}backup.sh
+
+# list of files to back up:
+touch ${DIR}backup_list.txt
+echo "${DIR}example_dir/" > backup_list.txt
+echo "${DIR}backup.log" >> backup_list.txt
+echo "${DIR}backup_list.txt" >> backup_list.txt
 
 echo "* * * * * ${DIR}backup.sh >> ${DIR}backup.log 2>&1" | crontab
 
