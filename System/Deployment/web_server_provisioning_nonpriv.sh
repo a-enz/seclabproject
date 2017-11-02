@@ -46,7 +46,8 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCWse17nPQ/8bYN+W2fg37ea/++Y6T6rTkod/
 touch ${DIR}backup.sh
 chmod u+x ${DIR}backup.sh
 touch ${DIR}backup.log
-echo "date +%d-%m-%y/%H:%M:%S;rsync -e ssh example_dir vagrant@192.168.50.32:~/backup/" > ${DIR}backup.sh
+echo "echo \"`date +%d-%m-%y/%H:%M:%S` starting backup process:\"" > ${DIR}backup.sh
+echo "rsync -avz -e ssh example_dir vagrant@192.168.50.32:~/backup/" >> ${DIR}backup.sh
 
 echo "* * * * * ${DIR}backup.sh >> ${DIR}backup.log 2>&1" | crontab
 
