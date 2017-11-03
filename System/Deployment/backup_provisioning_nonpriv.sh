@@ -1,5 +1,7 @@
-DIR=/home/vagrant/
+backup_user=$1
+DIR=/home/${backup_user}/
 BACKUP_DIR=${DIR}.backup/
+
 
 ######################################
 # BACKUP PROCESS

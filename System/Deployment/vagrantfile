@@ -1,5 +1,10 @@
 # TODO: harden base box
 # TODO: clone only from master branch
+
+# Global variables (ruby syntax)
+$backup_user = "backup"
+$backup_user_pw = "backup"
+
 Vagrant.configure("2") do |config|
 
   # TODO: print some more useful infos
@@ -47,9 +52,15 @@ Vagrant.configure("2") do |config|
 
   	config.vm.define "backup" do |backup|
     	backup.vm.box = "centos/7"
-      backup.vm.provision "shell", path: "backup_provisioning.sh"
+      backup.vm.provision "shell", path: "backup_provisioning.sh", 
+        args: ["#$backup_user", "#$backup_user_pw"]
+
+      #backup.ssh.username = "#$backup_user"
+      #backup.ssh.password = "#$backup_user_pw"
+
       #next part unpriviledged because we need to store backup process in specific user crontab
-      backup.vm.provision "shell", path: "backup_provisioning_nonpriv.sh", privileged: false
+      backup.vm.provision "shell", path: "backup_provisioning_nonpriv.sh", 
+        privileged: false, args: ["$backup_user"]
       backup.vm.provision "shell", path: "sparse_clone.sh", args: ["Backup"]
 
       backup.vm.network "private_network", ip: "192.168.50.32"
