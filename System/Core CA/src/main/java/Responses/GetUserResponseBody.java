@@ -1,5 +1,7 @@
 package Responses;
 
+import MySQLHelpers.User;
+
 public class GetUserResponseBody {
 
     public String lastname;
@@ -8,9 +10,9 @@ public class GetUserResponseBody {
 
     public String emailAddress;
 
-    public GetUserResponseBody(String lastname, String firstname, String emailAddress) {
-        this.lastname = lastname;
-        this.firstname = firstname;
-        this.emailAddress = emailAddress;
+    public GetUserResponseBody(User user) {
+        this.lastname = user.lastName;
+        this.firstname = user.firstName;
+        this.emailAddress = user.email;
     }
 }

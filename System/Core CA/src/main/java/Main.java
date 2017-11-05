@@ -1,3 +1,5 @@
+import MySQLHelpers.MySQLInterface;
+import MySQLHelpers.User;
 import Requests.UpdateUserRequestBody;
 import Responses.GetUserResponseBody;
 import Requests.VerifyRequestBody;
@@ -9,6 +11,8 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args) {
 
+        // TODO: take db params from `args`
+        MySQLInterface sqlInterface = new MySQLInterface(3306, "testdb", "root", "");
 
         // Define port where API will be listening
         port(8100);
@@ -66,35 +70,37 @@ public class Main {
 
         // ------ DB calls ------
 
-        // TODO: Verify username:password
+        // Verify userId:passwordHash
         post("/users/verify/:userId", (req, res) -> {
             Gson jsonParser = new Gson();
             // TODO: validate request
             VerifyRequestBody requestBody = jsonParser.fromJson(req.body(), VerifyRequestBody.class);
-            // TODO: retrieve password hash from db
-            String passwordHashDB = "dummyHash";
-            // TODO: hash password
-            String passwordHashUser = "dummyHash";
+            // Retrieve password hash from db
+            String passwordHashDB = sqlInterface.getPasswordHash(req.params(":userId"));
+            String passwordHashUser = requestBody.userPasswordHash;
             res.status(200);
             return jsonParser.toJson(new VerifyResponseBody(passwordHashDB.equals(passwordHashUser)));
         });
 
-        // TODO: Get user data
+        // Get user data
         get("/users/:userId", (req, res) -> {
             Gson jsonParser = new Gson();
             // TODO: validate request
-            // TODO: get data from db
-            GetUserResponseBody userData = new GetUserResponseBody("dummy", "user", "data");
+            // Get data from db
+            User user = sqlInterface.getUser(req.params(":userId"));
+            GetUserResponseBody userData = new GetUserResponseBody(user);
             res.status(200);
             return jsonParser.toJson(userData);
         });
 
-        // TODO: Update user data
+        // Update user data
         post("/users/:userId", (req, res) -> {
             Gson jsonParser = new Gson();
             // TODO: validate request
             UpdateUserRequestBody requestBody = jsonParser.fromJson(req.body(), UpdateUserRequestBody.class);
-            // TODO: update data in db
+            // Update data in db
+            User updatedUser = new User(req.params(":userId"), requestBody.firstname, requestBody.lastname, requestBody.emailAddress);
+            sqlInterface.updateUser(updatedUser);
             res.status(204);
             return "";
         });
