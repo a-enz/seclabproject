@@ -25,29 +25,29 @@ public class Main {
 
         // ------ CA calls ------
 
-        // TODO: Issue certificate
+        // TODO: Issue certificate: generate key, generate certificate, return both in PKCS#12 format
         post("/certificates", (req, res) -> {
             return req.body();
             //return "TODO";
         });
 
         // TODO: Get all certificates of a user
-        get("/certificates/:userid", (req, res) -> {
-            return req.body();
-            //return "TODO";
-        });
+//        get("/certificates/:userid", (req, res) -> {
+//            return req.body();
+//            //return "TODO";
+//        });
 
-        // TODO: revoke one/all certificates of a user
+        // TODO: revoke one/all certificates of a user, return new certificate revocation list
         delete("/certificates/:userid", (req, res) -> {
             return req.body();
             //return "TODO";
         });
 
         // TODO: get revocation list
-        get("/certificates/revocation_list", (req, res) -> {
-            return req.body();
-            //return "TODO";
-        });
+//        get("/certificates/revocation_list", (req, res) -> {
+//            return req.body();
+//            //return "TODO";
+//        });
 
         // TODO: get number of issued certificates
         get("/ca/issued", (req, res) -> {
