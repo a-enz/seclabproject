@@ -27,9 +27,12 @@ fi
 
 # need to add vagrants key to 'authorized_keys' of the new user
 # so we can login with vagrant ssh
-sudo -u $username mkdir -m 700 /home/${username}/.ssh
-echo ${cat /home/vagrant/.ssh/authorized_keys} > /home/${username}/.ssh/authorized_keys
+mkdir /home/${username}/.ssh
+cat /home/vagrant/.ssh/authorized_keys > /home/${username}/.ssh/authorized_keys
+chown ${username}:${username} /home/${username}/.ssh
+chmod 700 /home/${username}/.ssh
 chown ${username}:${username} /home/${username}/.ssh/authorized_keys
+chmod 600 /home/${username}/.ssh/authorized_keys
 
 
 
