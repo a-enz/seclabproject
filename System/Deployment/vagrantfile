@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
 
       #next part unpriviledged because we need to store backup process in specific user crontab
       backup.vm.provision "shell", path: "backup_provisioning_nonpriv.sh", 
-        privileged: false, args: ["$backup_user"]
+        privileged: false, args: ["vagrant"]
       backup.vm.provision "shell", path: "sparse_clone.sh", args: ["Backup"]
 
       backup.vm.network "private_network", ip: "192.168.50.32"
