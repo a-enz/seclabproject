@@ -1,0 +1,36 @@
+-------------------------------
+INTERFACES
+-------------------------------
+Consists of 3 interfaces: 
+- I0: connects to internet
+- I1: connects to DMZ (webserver)
+- I2: connects to internal network
+
+
+internet ----- I0 [FW] I2 ---- {backup, core ca}
+                   I1
+                    |
+                    |
+                web_server
+
+-------------------------------
+ROUTING REQ.
+-------------------------------
+IO:
+==
+- FWD http and https traffic to web server at I1
+- FWD admin traffic (ssh traffic ?) to correct machine at I1 or I2
+- DROP everything else
+I1:
+==
+- FWD response to client
+- FWD requests to core ca
+- FWD response to admin (ssh traffic ?)
+- FWD backup traffic
+- DROP everyting else
+I2:
+==
+- FWD core ca response to web server
+- FWD backup request to web server
+- FWD response to admin (ssh traffic ?)
+- DROP everything else ?
