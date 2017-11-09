@@ -7,11 +7,12 @@ Consists of 3 interfaces:
 - I2: connects to internal network
 
 
-internet ----- I0 [FW] I2 ---- {backup, core ca}
-                   I1
-                    |
-                    |
-                web_server
+[INET] internet ----- I0 [FW] I2 ---- [INTERNAL]
+		                  I1		{backup, core ca}
+		                   |
+		                   |
+		                 [DMZ]
+		                web_server
 
 -------------------------------
 ROUTING REQ.
@@ -34,3 +35,62 @@ I2:
 - FWD backup request to web server
 - FWD response to admin (ssh traffic ?)
 - DROP everything else ?
+
+
+-------------------------------
+PFSENSE SETUP
+-------------------------------
+install
+=======
+- Download 64 bit pfSense .iso file
+- on VirtualBox create 64bit FreeBSD machine 'F'
+- in VB settings of 'F' go to Storage and add the .iso
+  as an optical drive
+- start 'F' and go through standard install of pfsense
+- Reboot 'F' after removing .iso file
+
+add network adapters
+====================
+Need 3 interfaces (see Figure above) in VirtualBox Settings of 'F'
+- Adapter1: internet access (bridged interface) [INET]
+- Adapter2: internal network [DMZ]
+- Adapter3: internal network [INTERNAL]
+
+By choosing 'host-only adapter' instead of 'internal
+network' you can move your host machine into the same 
+subnet. Basically an 'internal network' with your machine 
+added. But you might have to adjust the adapter and 
+network mask for the specific 'host-only adapter' of 
+VirtualBox: File > Preferences > Network. The adapter IP 
+and network mask need to be such that the IP of the 
+pfsense interface chosen below (em1 or em2) is in range.
+e.g. would be valid for em1 at 192.168.50.50./24
+IPv4 :192.168.50.1
+mask: 255.255.255.0
+
+assign network interfaces
+=========================
+In the pfsense console:
+- assign interfaces (option 1)
+  em0(Adapter1) -> WAN
+  em1(Adapter2) -> LAN (renamed INTERNAL)
+  em2(Adapter3) -> OPT1 (renamed DMZ)
+- set interface IP addresses (option 2)
+  em0: DHCP (not static)
+  em1: 192.168.50.50/24
+  em2: 192.168.51.51/24
+
+
+work in web dashboard
+==================
+The web dashboard is by default at the LAN interface, 
+check that the machine connecting to the web dashboard is 
+in the same network.
+- to save the firewall config: store config.xml which can
+  be obtained from e.g. Diagnostics > Backup & Restore in
+  the web dashboard
+- Check restrictions on WAN interface: uncheck option on
+  'Reserved Networks' (private networks, bogon networks)
+  Otherwise host machine might be blocked (b/c we're 
+  working in virtual environment i guess?) 
+
