@@ -1,0 +1,11 @@
+- - - DB - - -
+- verify_username_password -> for user login
+POST /users/verify/:<userId> args: {“userPasswordHash”:”<passwordHash>”} returns: {“correctCredentials”:<true/false>}
+
+
+- get_user_info -> to retrieve user information from the db
+GET /users/:<userid> returns {“lastname”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
+
+
+- update_user_info -> to update user information in the db
+POST /users/:<userid> args: {“lastname”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
