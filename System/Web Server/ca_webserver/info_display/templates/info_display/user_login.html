@@ -1,0 +1,9 @@
+<h1>Login Page<h1>
+
+  {% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+  <form action="{% url 'info_display:user_login' %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Login" />
+  </form>
