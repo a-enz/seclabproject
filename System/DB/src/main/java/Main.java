@@ -12,21 +12,17 @@ public class Main {
     public static void main(String[] args) {
 
         int listenPort = 8101;
-        int dbPort = 3302;
+        int dbPort = 3306;
         String dbName = "testDB";
         String dbUser = "root";
         String dbPassword = "";
-
-        // TODO: message
-        if(args.length != 6) {
-            System.out.println("Invalid number of arguments. Expected: <>");
-            return;
-        } else {
-            listenPort = Integer.parseInt(args[1]);
-            dbPort = Integer.parseInt(args[2]);
-            dbName = args[3];
-            dbUser = args[4];
-            dbPassword = args[5];
+        
+        if(args.length == 5) {
+            listenPort = Integer.parseInt(args[0]);
+            dbPort = Integer.parseInt(args[1]);
+            dbName = args[2];
+            dbUser = args[3];
+            dbPassword = args[4];
         }
 
         MySQLInterface sqlInterface = new MySQLInterface(dbPort, dbName, dbUser, dbPassword);

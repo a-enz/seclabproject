@@ -42,13 +42,17 @@ public class MySQLInterface {
     // TODO: destructor with proper cleanup of connection
 
     // Returns the data of the user with `userId` or null if no such user exists
-    public User getUser(String userId) throws SQLException {
-        ResultSet resSet = stmt.executeQuery(get_user_query(userId));
-        if(resSet.next()) {
-            return new User(userId, resSet.getString(1), resSet.getString(2), resSet.getString(3));
-        } else
-            return null;
-
+    public User getUser(String userId) {
+        try {
+            ResultSet resSet = stmt.executeQuery(get_user_query(userId));
+            if (resSet.next()) {
+                return new User(userId, resSet.getString(1), resSet.getString(2), resSet.getString(3));
+            } else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // Updates fields according to `user`, null fields are not updated and the function should be called only
