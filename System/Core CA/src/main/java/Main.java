@@ -1,4 +1,5 @@
 import BashHelpers.BashInterface;
+import com.google.gson.Gson;
 
 import static spark.Spark.*;
 
@@ -20,9 +21,9 @@ public class Main {
 
         // Issue certificate: generate key, generate certificate, return both in PKCS#12 format
         get("/certificates/new/:userId", (req, res) -> {
+            Gson jsonParser = new Gson();
             // TODO: validation
-            bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"));
-            return "";
+            return jsonParser.toJson(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId")));
         });
 
         // TODO: revoke one/all certificates of a user, return new certificate revocation list

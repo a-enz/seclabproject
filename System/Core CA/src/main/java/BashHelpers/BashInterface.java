@@ -1,7 +1,10 @@
 package BashHelpers;
 
+import Responses.IssueCertificateResponse;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 // See https://docs.oracle.com/javase/7/docs/api/java/lang/ProcessBuilder.html
 // and https://stackoverflow.com/questions/16825001/running-a-bash-command-from-within-a-java-program
@@ -21,18 +24,40 @@ public class BashInterface {
     private final String indexTxtFile = caDirectory + "/index.txt";
 
     // TODO: handle output
+    // Note: every single argument must be passed to ProcessBuilder separately!
     private void executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        //pb.redirectOutput(ProcessBuilder.Redirect.appendTo(new File("file1.txt")));
+        pb.redirectOutput(ProcessBuilder.Redirect.appendTo(new File("file1.txt")));
+        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("error1.txt")));
         Process p = pb.start();
     }
 
-    public String generatePrivateKeyAndCertificatePKCS12(String userId) throws java.io.IOException {
-        executeCommand("openssl genrsa -out " + userId + ".key 2048");
-        //executeCommand("openssl req -new -key " + userId + ".key -out " + userId + ".csr");
-        //executeCommand("sudo openssl ca -in " + userId + ".csr -config /etc/ssl/openssl.cnf");
-        // TODO: convert in PKCS#12
-        return "PKCS#12 key and certificate";
+    private String subj(String userId) {
+        return "/C=CH/ST=Zurich/L=Zurich/O=iMovies/OU=IT Department/CN=" + userId;
+    }
+
+    // TODO: currently not checking certificate fileds (policy_anything) and using -batch option
+    // TODO: replace openssl.cnf policy and generate ca certificate with java to have it match encoding
+    //executeCommand("openssl", "req", "-new", "-x509", "-extensions", "v3_ca", "-keyout", "cakey.pem", "-out", "cacert.pem", "-days", "3650", "-subj", subj, "-passin", "pass:test");
+    public IssueCertificateResponse generatePrivateKeyAndCertificatePKCS12(String userId) throws java.io.IOException, InterruptedException {
+        // Generate new private key
+        executeCommand("openssl", "genrsa", "-out", userId + ".key", "2048");
+        // TODO: improve waiting
+        TimeUnit.SECONDS.sleep(2);
+        // Create certificate signing request
+        executeCommand("openssl", "req", "-new", "-key", userId + ".key", "-out", userId + ".csr", "-subj", subj(userId));
+        // TODO: improve waiting
+        TimeUnit.SECONDS.sleep(2);
+        // Sign certificate
+        executeCommand("openssl", "ca", "-batch", "-in", userId + ".csr", "-config", "./ssl/openssl.cnf", "-subj", subj(userId), "-passin", "pass:test");
+        // TODO: Convert private key in PKCS#12
+        String convertedKey = "convertedKey";
+        // TODO: Convert certificate key in PKCS#12
+        String convertedCertificate = "convertedCert";
+        // TODO: Delete private key
+        //executeCommand("openssl", "pkcs12", "-export", "-in", "TODO: serial.pem", "-inkey", "TODO: key.key", "-out");
+        // TODO Delete signing request
+        return new IssueCertificateResponse(convertedKey, convertedCertificate);
     }
 
     // Bash command: openssl genrsa -out <name>.key 2048
