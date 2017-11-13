@@ -1,3 +1,10 @@
+# 'BASIC MACHINE SETUP' was already be done
+# and is more of a documentation of the setup steps so far.
+
+# check 'SPECIFIC SETUP' for further setup that still needs to 
+# be done
+
+
 ---------------------
 BASIC MACHINE SETUP
 ---------------------
@@ -25,23 +32,25 @@ passwd iadmin
 Software
 ========
 # Install software by running script basic_provisioning.sh
+basic_provisioning.sh
 
 
 Static IP 
 =========
 # (that persists after shutdown)
-https://gist.github.com/fernandoaleman/2172388
-
+# I wrote my own config for 'ifcfg-enp0s3' and replaced the old one 
+# (which can be found in 'ifcfg-enp0s3.bk')
 
 Hardening
 =========
 # Run script hardening.sh
+hardening.sh
 
 
 Local Firewall
 ==============
-# The image had some rules already installed
-# not yet sure if we should keep those
+# The image had some iptable rules already installed
+# for now those seem to be ok and they remain as-is.
 
 
 
@@ -49,15 +58,21 @@ Local Firewall
 ---------------------
 SPECIFIC SETUP
 ---------------------
+# from copy of base machine do additionally:
 
 Networking
 ==========
-- check that interface IP 
-  and default gateway of machine are
-  according to topology
-  (basically modify IPs in 'Static IP' setup above)
-- check open ports according to services 
-  we plan to make available
+# check that interface IP 
+# and default gateway of machine are
+# according to topology
+# (basically modify IPs in 'Static IP' setup above)
+vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+
+
+Software
+========
+# add whatever sofware you need
+
 
 
 
