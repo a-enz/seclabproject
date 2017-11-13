@@ -16,6 +16,7 @@ ip addr add <IP>/<subnetmask> dev <interface>
 # add default gateway to interface
 route add default gw <ip> <interface>
 # example: route add default gw 192.168.50.50 eth1
+route -n # show, but only as numeric IPs
 
 # iptables (linux firewall)
 iptables -L  # show all rules
