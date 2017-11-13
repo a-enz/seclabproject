@@ -4,10 +4,24 @@
 # check 'SPECIFIC SETUP' for further setup that still needs to 
 # be done
 
+---------------------
+BASE IMAGE 
+---------------------
+# The basic image is from https://virtualboxes.org/images/centos/
+# and then changed with the steps in 'BASIC MACHINE SETUP'
+# Metadata about the ova file from the website: 
+# CentOS 7.0 Base
+# Size: 585 MBytes
+# MD5SUM of ova image: f41153b8941c7f277a444a8e0be88a18
+# Link: https://s3-eu-west-1.amazonaws.com/virtualboxes.org/CentOS7-base.ova.torrent
+# Active user account(s)(username/password): root/reverse centos/reverse (sudo enabled).
+# Notes: Installed from CentOS-7.0-1406-x86_64-NetInstall.iso; Guest Additions NOT installed
+
 
 ---------------------
 BASIC MACHINE SETUP
 ---------------------
+
 Users
 =====
 # all this needs to be done as root
