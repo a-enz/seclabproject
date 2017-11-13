@@ -1,5 +1,8 @@
 import BashHelpers.BashInterface;
+import Responses.*;
 import com.google.gson.Gson;
+
+import java.io.IOException;
 
 import static spark.Spark.*;
 
@@ -7,6 +10,12 @@ public class Main {
     public static void main(String[] args) {
 
         BashInterface bashInterface = new BashInterface();
+
+        try {
+            bashInterface.setUpCa();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Define port where API will be listening
         port(8100);
@@ -23,38 +32,36 @@ public class Main {
         get("/certificates/new/:userId", (req, res) -> {
             Gson jsonParser = new Gson();
             // TODO: validation
-            return jsonParser.toJson(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId")));
+            return jsonParser.toJson(new IssueCertificateResponse(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"))));
         });
 
-        // TODO: revoke one/all certificates of a user, return new certificate revocation list
+        // TODO: revoke one certificate of a user, return new certificate revocation list
         delete("/certificates/one/:userid", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            return new RevokeCertificateResponse("TODO");
         });
 
-        // TODO: revoke one/all certificates of a user, return new certificate revocation list
+        // TODO: revoke all certificates of a user, return new certificate revocation list
         delete("/certificates/all/:userid", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            return new RevokeCertificateResponse("TODO");
         });
 
-        // TODO: get number of issued certificates
+        // Get number of issued certificates
+        // TODO: check if correct what is meant with issued (how many created, which is serial - 1?)
         get("/ca/issued", (req, res) -> {
-            bashInterface.getIssuedSize();
-            return req.body();
-            //return "TODO";
+            Gson jsonParser = new Gson();
+            return jsonParser.toJson(new GetIssuedResponse(bashInterface.getIssuedSize()));
         });
 
-        // TODO: get number of revoked certificates
+        // Get number of revoked certificates
         get("/ca/revoked", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            Gson jsonParser = new Gson();
+            return jsonParser.toJson(new GetRevokedResponse(bashInterface.getRevokedSize()));
         });
 
-        // TODO: get serial number
+        // Get current serial number
         get("/ca/serial_number", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            Gson jsonParser = new Gson();
+            return jsonParser.toJson(new GetSerialResponse(bashInterface.getCurrentSerial()));
         });
     }
 }

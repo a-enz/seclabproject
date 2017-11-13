@@ -2,12 +2,9 @@ package Responses;
 
 public class IssueCertificateResponse {
 
-    public String privateKey;
+    public byte[] pkcs12;
 
-    public String certificate;
-
-    public IssueCertificateResponse(String privateKey, String certificate) {
-        this.privateKey = privateKey;
-        this.certificate = certificate;
+    public IssueCertificateResponse(byte[] pkcs12) {
+        this.pkcs12 = pkcs12;
     }
 }
