@@ -1,8 +1,8 @@
-# 'BASIC MACHINE SETUP' was already be done
+# 'BASIC MACHINE SETUP' was already done
 # and is more of a documentation of the setup steps so far.
 
-# check 'SPECIFIC SETUP' for further setup that still needs to 
-# be done
+# check 'SPECIFIC SETUP' for further things that still need to 
+# be done when instantiating a specific machine from this base machine.
 
 ---------------------
 BASE IMAGE 
@@ -76,10 +76,8 @@ SPECIFIC SETUP
 
 Networking
 ==========
-# check that interface IP 
-# and default gateway of machine are
-# according to topology
-# (basically modify IPs in 'Static IP' setup above)
+# check that interface IP and default gateway of machine are
+# according to topology (basically modify IPs in 'Static IP' setup above)
 vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
 
 
