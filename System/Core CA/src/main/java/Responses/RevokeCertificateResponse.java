@@ -1,9 +1,9 @@
 package Responses;
 
 public class RevokeCertificateResponse {
-    String certificateRevocationList;
+    byte[] certificateRevocationList;
 
-    public RevokeCertificateResponse(String crl) {
+    public RevokeCertificateResponse(byte[] crl) {
         certificateRevocationList = crl;
     }
 }
