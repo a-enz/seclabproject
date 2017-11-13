@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^display_user_info/$', views.display_user_info, name='display_user_info'),
     url(r'^display_admin_info/$', views.display_admin_info, name='display_admin_info'),
     url(r'^goodbye/$', views.all_logout, name='goodbye'),
+    url(r'^renewal/$', views.renewal, name='renewal'),
 ]

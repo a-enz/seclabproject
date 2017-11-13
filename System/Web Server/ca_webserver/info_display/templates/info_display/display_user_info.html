@@ -1,1 +1,14 @@
-<h1>User display</h1>
+<p>Make changes to the user data as desired. The new certificate will incorporate these.</p>
+
+{% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+<form action="{% url 'info_display:display_user_info' %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Request" />
+
+{% if downloadfile %}<a href='pkcs12.pfx'>Download certificate</a>{% endif %}
+
+<form action="{% url 'info_display:goodbye' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Logout" />

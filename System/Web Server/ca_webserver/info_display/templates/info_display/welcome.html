@@ -1,11 +1,8 @@
 <h1>Welcome {{user_id}}<h1>
 
   {% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
-
-  <form action="{% url 'info_display:display_user_info' %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Show user data" />
-  </form>
+  {% if error_msg %}<p><strong>Referred here by {{ referrer }}</strong></p>{% endif %}
+  <a href="/info_display/display_user_info">Get new certificate</a>
   <form action="{% url 'info_display:goodbye' %}" method="post">
   {% csrf_token %}
   <input type="submit" value="Logout" />

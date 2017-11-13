@@ -20,8 +20,8 @@ class RemoteBackend(object):
         login_response = requests.post(("%s/users/verify/%s" % (base_url, username)), data=json.dumps(pwd_json))
         if login_response.ok:
             auth_status = login_response.json()['correctCredentials']
-            pdb.set_trace()
-            if auth_status == 'true':
+            #pdb.set_trace()
+            if auth_status:
                 try:
                     user = User.objects.get(username=username)
                 except User.DoesNotExist:
