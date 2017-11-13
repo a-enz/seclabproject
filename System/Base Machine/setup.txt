@@ -1,0 +1,65 @@
+---------------------
+BASIC MACHINE SETUP
+---------------------
+Users
+=====
+# all this needs to be done as root
+# and generally needs user input
+
+# remove unwanted users
+userdel <user>
+userdel centos
+rm -rf /home/<user>
+rm -rf /home/centos
+
+# create new user and add to existing groups,
+# i.e a group with correct sudoers rights
+# (alternatively modify sudo config with 'visudo')
+useradd <user> -G <list of groups>
+useradd iadmin -G wheel # 'wheel' is sudoer with all rights
+# add/change password of user
+passwd <user>
+passwd iadmin
+
+
+Software
+========
+# Install software by running script basic_provisioning.sh
+
+
+Static IP 
+=========
+# (that persists after shutdown)
+https://gist.github.com/fernandoaleman/2172388
+
+
+Hardening
+=========
+# Run script hardening.sh
+
+
+Local Firewall
+==============
+# The image had some rules already installed
+# not yet sure if we should keep those
+
+
+
+
+---------------------
+SPECIFIC SETUP
+---------------------
+
+Networking
+==========
+- check that interface IP 
+  and default gateway of machine are
+  according to topology
+  (basically modify IPs in 'Static IP' setup above)
+- check open ports according to services 
+  we plan to make available
+
+
+
+
+
