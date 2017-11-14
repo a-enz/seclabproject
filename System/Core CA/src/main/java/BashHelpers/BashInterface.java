@@ -32,8 +32,8 @@ public class BashInterface {
     private final String caDirectory = sslDirectory + "/CA";
     private final String crlDirectory = caDirectory + "/crl";
     private final String newcertsDirectory = caDirectory + "/newcerts";
-    private final String privateDirectory = caDirectory + "/private";
-    private final String certsDirectory = caDirectory + "/certs";
+    //private final String privateDirectory = caDirectory + "/private";
+    //private final String certsDirectory = caDirectory + "/certs";
     private final String tmpDirectory = "./tmp";
     private final String indexFile = caDirectory + "/index.txt";
     private final String serialFile = caDirectory + "/serial";
@@ -107,10 +107,13 @@ public class BashInterface {
 
     // TODO
     public byte[] revokeAllCertificates(String userId) throws IOException {
-        // TODO: search all certificate names for given user and add them to the list
-        List<String> certificates = new ArrayList<String>();
-        for(String cert : certificates)
-            executeCommand("openssl", "ca", "-revoke", cert + ".crt", "-config", oslConfigFile);
+        String[] grepStrings = executeCommand("grep", "CN=" + userId).split("\n");
+        for(String grepString : grepStrings) {
+            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=" + userId);
+            Matcher m = p.matcher(grepString);
+            if(m.matches())
+                executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + m.group(2) + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
+        }
         return createRevocationList();
     }
 
@@ -144,6 +147,7 @@ public class BashInterface {
     }
 
     private Integer parseWcOutput(String wcOut) {
+        // TODO: change regex to handle hex
         Pattern p = Pattern.compile(".*([0-9]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
