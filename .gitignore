@@ -7,3 +7,39 @@
 
 # Vagrant files
 **/.vagrant
+
+# CA files that are regenerated/changed when running the system
+System\ Description/systemdescription.tex.backup
+System/Core CA/a3.csr
+System/Core CA/a3.key
+System/Core CA/error1.txt
+System/Core CA/file1.txt
+System/Core\ CA/ssl
+System/Core CA/stderr.txt
+System/Core CA/stdout.txt
+System/Core CA/target
+
+# DB files that are regenerated/changed when running the system
+System/DB/target
+
+# Nano temp files
+..gitignore.swp
+
+
+# DB files that are regenerated/changed when running the system
+System/Web Server/ca_webserver/ca_webserver/__pycache__/__init__.cpython-35.pyc
+System/Web Server/ca_webserver/ca_webserver/__pycache__/settings.cpython-35.pyc
+System/Web Server/ca_webserver/ca_webserver/__pycache__/urls.cpython-35.pyc
+System/Web Server/ca_webserver/ca_webserver/__pycache__/wsgi.cpython-35.pyc
+System/Web Server/ca_webserver/db.sqlite3
+System/Web Server/ca_webserver/info_display/__pycache__/__init__.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/admin.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/apps.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/forms.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/models.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/my_backend.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/urls.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/__pycache__/views.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/migrations/__pycache__/0001_initial.cpython-35.pyc
+System/Web Server/ca_webserver/info_display/migrations/__pycache__/__init__.cpython-35.pyc
+

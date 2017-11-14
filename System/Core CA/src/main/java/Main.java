@@ -42,6 +42,11 @@ public class Main {
             return jsonParser.toJson(new IssueCertificateResponse(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"))));
         });
 
+        get("/certificates/newtest/:userId", (req, res) -> {
+            Gson jsonParser = new Gson();
+            return jsonParser.toJson(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId")));
+        });
+
         // TODO: revoke one certificate of a user, return new certificate revocation list
         delete("/certificates/:userId/one", (req, res) -> {
             Gson jsonParser = new Gson();

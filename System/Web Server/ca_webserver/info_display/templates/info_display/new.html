@@ -1,0 +1,11 @@
+<h2>Download your new certificate</h2>
+
+{% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+<form action="{% url 'info_display:new' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Download" />
+
+<form action="{% url 'info_display:goodbye' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Logout" />

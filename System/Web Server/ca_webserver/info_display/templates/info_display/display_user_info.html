@@ -2,13 +2,14 @@
 
 {% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
 
-<form action="{% url 'info_display:display_user_info' %}" method="post">
+{% if form %}<form action="{% url 'info_display:display_user_info' %}" method="post">
 {% csrf_token %}
 {{ form }}
-<input type="submit" value="Request" />
+<input type="submit" value="Request" />{% endif %}
 
-{% if downloadfile %}<a href='pkcs12.pfx'>Download certificate</a>{% endif %}
+{% if downloadfile %}<a href='/info_display/files/pkcs12.pfx' download>Download certificate</a>{% endif %}
 
+<br>
 <form action="{% url 'info_display:goodbye' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Logout" />

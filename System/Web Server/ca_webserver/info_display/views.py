@@ -1,5 +1,7 @@
+import array
 import json
 import OpenSSL
+import os
 import pdb
 import requests
 
@@ -75,6 +77,7 @@ def welcome(request):
 def display_user_info(request):
     if request.user.is_authenticated:
         downloadfile = False
+        error_msg = False
         if request.method == 'GET':
             data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)))
             if data_response.ok:
@@ -90,7 +93,7 @@ def display_user_info(request):
             else:
                 return HttpResponseRedirect('/info_display/welcome/', request)
         else:
-            pdb.set_trace()
+            # pdb.set_trace()
             # Method is post, check for changes in user data
             # Create form instance from submitted data
             form = UpdateInfoForm(request.POST)
@@ -113,16 +116,22 @@ def display_user_info(request):
                     certificate_response = requests.get("%s/certificates/new/%s" % (ca_url, request.user.username))
                     if certificate_response.ok:
                         cert_dict = certificate_response.json()
-                        pkcs12 = OpenSSL.crypto.PKCS12()
-                        pkcs12.set_privatekey(cert_dict['privateKey'])
-                        pkcs12.set_certificate(cert_dict['certificate'])
+                        #pkcs12 = OpenSSL.crypto.PKCS12()
+                        #pkcs12.set_privatekey(cert_dict['privateKey'])
+                        #pkcs12.set_certificate(cert_dict['certificate'])
                         # Create file if it doesn't exist. No other user's data can be leaked, because the
                         # file is written with the data bound to the authenticated user
-                        open(('pkcs12_%s.pfx' % request.user.username), 'wb+').write(pkcs12.export())
+                        #pdb.set_trace()
+                        pkcs_bytes = array.array('b', cert_dict['pkcs12'])
+                        file_handle = open(('info_display/files/pkcs12_%s.pfx' % request.user.username), 'wb+')
+                        file_handle.truncate() # in case the last certificate was not downloaded
+                        file_handle.write(pkcs_bytes)# pkcs12.export())
+                        file_handle.close()
                         downloadfile = True
                     else:
                         return HttpResponseRedirect('/info_display/welcome/')
-                    return render(request, 'info_display/display_user_info.html', {'form': form, 'error_msg': error_msg, 'downloadfile': downloadfile})
+                    form = None # No need to display the form now
+                    return HttpResponseRedirect('/info_display/new/', request)
 
                 else:
                     return HttpResponseRedirect('/info_display/welcome/', request)
@@ -154,8 +163,20 @@ def all_logout(request):
     else:
         return render(request, 'info_display/goodbye.html', {'info_msg': 'No user was logged in...'})
 
-def renewal(request):
+def new(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/info_display/user_login/')
+        if request.method == 'GET':
+            return render(request, 'info_display/new.html', {'error_msg': None})
+        elif request.method == 'POST':
+            try:
+                file_handle = open(('info_display/files/pkcs12_%s.pfx' % request.user.username), 'rb')
+                file_data = file_handle.read()
+                file_handle.close()
+                os.remove('info_display/files/pkcs12_%s.pfx' % request.user.username)
+                response = HttpResponse(file_data, content_type='application/octet-stream')
+                response['Content-Disposition'] = 'attachment; filename="pkcs12.pfx"'
+                return response
+            except IOError:
+                return render(request, 'info_display/new.html', {'error_msg': "Certificate files can only be downloaded once after creation!"})
     else:
         return HttpResponseRedirect('/info_display/user_login/')
