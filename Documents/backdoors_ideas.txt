@@ -1,6 +1,7 @@
 ## Easy
-- heartbleed on webserver -> finds server's secret key -> mitm everything
+- daemon that opens a telnet port every period of time (e.g. 1min) for some time (e.g. 10sec) and stay open if some conditions are satisfied
 
 
 ## Hard
-- git history mining
+- command injection via rest api
+- command injection via magic/hidden HTTP header
