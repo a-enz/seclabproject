@@ -11,9 +11,11 @@ public class Main {
         BashInterface bashInterface = new BashInterface();
 
         Boolean reset = false;
+        Integer caPort = 8100; // TODO change to 80/443
 
-        if(args.length == 1) {
+        if(args.length == 2) {
             reset = Boolean.parseBoolean(args[0]);
+            caPort = Integer.parseInt(args[1]);
         }
 
         try {
@@ -26,10 +28,10 @@ public class Main {
         Gson jsonParser = new Gson();
 
         // TODO: Enable SSL/TLS
-        // secure(, null, null);
+        // secure("./cakeystore", "password", null, null);
 
         // Define port where API will be listening
-        port(8100);
+        port(caPort);
 
         // ------ Filters ------
         after((req, res) -> {

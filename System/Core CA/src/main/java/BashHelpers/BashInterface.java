@@ -6,9 +6,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +20,7 @@ public class BashInterface {
     private final String STATE_NAME = "Zurich";
     private final String LOCALITY_NAME = "Zurich";
     private final String ORGANIZATION_NAME = "iMovies";
-    private final String ORGANIZATORIAL_UNIT = "Users";
+    private final String ORGANIZATORIAL_UNIT = "User";
 
     private final static String caPassword = "passwordThatShouldNotBeHardcoded";
 
@@ -45,7 +42,7 @@ public class BashInterface {
     // Note: every single argument must be passed to ProcessBuilder separately!
     private String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("stderr.log")));
+        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("./logs/stderr.log")));
         return IOUtils.toString(pb.start().getInputStream());
     }
 
