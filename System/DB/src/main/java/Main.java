@@ -1,6 +1,7 @@
 import MySQLHelpers.MySQLInterface;
 import MySQLHelpers.User;
 import Requests.UpdateUserRequestBody;
+import Responses.ErrorResponseBody;
 import Responses.GetUserResponseBody;
 import Requests.VerifyRequestBody;
 import Responses.VerifyResponseBody;
@@ -11,7 +12,7 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args) {
 
-        int listenPort = 8101;
+        int listenPort = 8100;
         int dbPort = 3306;
         String dbName = "testDB";
         String dbUser = "root";
@@ -27,11 +28,12 @@ public class Main {
 
         MySQLInterface sqlInterface = new MySQLInterface(dbPort, dbName, dbUser, dbPassword);
 
+        Gson jsonParser = new Gson();
+
         // Define port where API will be listening
         port(listenPort);
 
         // ------ Filters ------
-        // TODO
         after((req, res) -> {
             res.type("application/json");
         });
@@ -40,9 +42,11 @@ public class Main {
 
         // Verify userId:passwordHash
         post("/users/verify/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
             VerifyRequestBody requestBody = jsonParser.fromJson(req.body(), VerifyRequestBody.class);
+            if(requestBody == null) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
             // Retrieve password hash from db
             String passwordHashDB = sqlInterface.getPasswordHash(req.params(":userId"));
             String passwordHashUser = requestBody.userPasswordHash;
@@ -52,8 +56,6 @@ public class Main {
 
         // Get user data
         get("/users/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
             // Get data from db
             User user = sqlInterface.getUser(req.params(":userId"));
             GetUserResponseBody userData = new GetUserResponseBody(user);
@@ -63,15 +65,16 @@ public class Main {
 
         // Update user data
         post("/users/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
             UpdateUserRequestBody requestBody = jsonParser.fromJson(req.body(), UpdateUserRequestBody.class);
+            if(requestBody == null) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
             // Update data in db
             User updatedUser = new User(req.params(":userId"), requestBody.firstname, requestBody.lastname, requestBody.emailAddress);
             sqlInterface.updateUser(updatedUser);
             res.status(204);
             return "";
         });
-
     }
 }

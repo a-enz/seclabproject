@@ -23,24 +23,21 @@ public class BashInterface {
     private final String STATE_NAME = "Zurich";
     private final String LOCALITY_NAME = "Zurich";
     private final String ORGANIZATION_NAME = "iMovies";
-    private final String ORGANIZATORIAL_UNIT = "Users"; // TODO
+    private final String ORGANIZATORIAL_UNIT = "Users";
 
-    private final static String caPassword = "test";
+    private final static String caPassword = "passwordThatShouldNotBeHardcoded";
 
     // File paths
     private final String sslDirectory = "./ssl";
     private final String caDirectory = sslDirectory + "/CA";
     private final String crlDirectory = caDirectory + "/crl";
     private final String newcertsDirectory = caDirectory + "/newcerts";
-    //private final String privateDirectory = caDirectory + "/private";
-    //private final String certsDirectory = caDirectory + "/certs";
     private final String tmpDirectory = "./tmp";
     private final String indexFile = caDirectory + "/index.txt";
     private final String serialFile = caDirectory + "/serial";
     private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
 
-    // TODO: delete files before creating them
     public void setUpCa(Boolean reset) throws IOException, InterruptedException {
         executeCommand("sh", "setup.sh");
     }
@@ -48,8 +45,7 @@ public class BashInterface {
     // Note: every single argument must be passed to ProcessBuilder separately!
     private String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        //pb.redirectOutput(ProcessBuilder.Redirect.appendTo(new File("stdout.txt")));
-        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("stderr.txt")));
+        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("stderr.log")));
         return IOUtils.toString(pb.start().getInputStream());
     }
 
@@ -85,27 +81,21 @@ public class BashInterface {
         executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, "-subj", subj(userId), "-passin", "pass:" + caPassword);
 
         // Convert private key and certificate in PKCS#12
-        // TODO: user password
-        executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "someName", "-passout", "pass:12345");
+        // TODO: remove password? return a random password? request it?
+        executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "iMovies", "-passout", "pass:12345");
         TimeUnit.SECONDS.sleep(1);
 
         // Read PKCS#12 file
         byte[] pkcs12 = FileUtils.readFileToByteArray(new File(pkcs12FileName));
-        //byte[] base64Pkcs12 = Base64.getEncoder().encode(bytes);
 
         // Delete private key, signing request and PKCS#12 files
         executeCommand("rm", keyFileName);
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
 
-        // TODO: only for testing purposes
-        //FileUtils.writeByteArrayToFile(new File(tmpDirectory + "/decoded.p12"), Base64.getDecoder().decode(pkcs12));
-        //assert(Base64.getDecoder().decode(base64Pkcs12).equals(base64Pkcs12));
-
         return pkcs12;
     }
 
-    // TODO
     public byte[] revokeAllCertificates(String userId) throws IOException {
         String[] grepStrings = executeCommand("grep", "CN=" + userId).split("\n");
         for(String grepString : grepStrings) {
@@ -117,28 +107,23 @@ public class BashInterface {
         return createRevocationList();
     }
 
-    // TODO
     public byte[] revokeCertificate(String number) throws IOException {
         executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + number + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
         return createRevocationList();
     }
 
-    // TODO
     public byte[] createRevocationList() throws IOException {
         executeCommand("openssl", "ca", "-gencrl", "-out", crlDirectory + "/crl.pem", "-config", oslConfigFile);
         byte[] crl = FileUtils.readFileToByteArray(new File(crlFile));
         return crl;
     }
 
-    // TODO: error handling
     public Integer getIssuedSize() throws IOException {
         String output = executeCommand("wc", "-l", indexFile);
         return parseWcOutput(output);
     }
 
-    // TODO: error handling
     public Integer getRevokedSize() throws IOException {
-        //String output = executeCommand("grep", "R", indexFile, "|", "wc", "-l");
         String output = executeCommand("bash", "-c", "grep R " + indexFile + " | wc -l");
         if(output.isEmpty())
             return 0;
@@ -147,8 +132,7 @@ public class BashInterface {
     }
 
     private Integer parseWcOutput(String wcOut) {
-        // TODO: change regex to handle hex
-        Pattern p = Pattern.compile(".*([0-9]+) ?.*\n");
+        Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
             return Integer.parseInt(m.group(1));
@@ -156,7 +140,6 @@ public class BashInterface {
             return 0;
     }
 
-    // TODO: error handling
     public String getCurrentSerial() throws IOException {
         return executeCommand("cat", serialFile).replace("\n", "");
     }

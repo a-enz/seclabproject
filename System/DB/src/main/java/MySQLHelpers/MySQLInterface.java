@@ -39,8 +39,6 @@ public class MySQLInterface {
         }
     }
 
-    // TODO: destructor with proper cleanup of connection
-
     // Returns the data of the user with `userId` or null if no such user exists
     public User getUser(String userId) {
         try {
