@@ -32,8 +32,10 @@ INET: 192.168.70.0/24 subnet
 DMZ: 192.168.51.0/24 subnet
 INET: 192.168.50.0/24 subnet
 
-Firewall
+Firewall 
 ========
+Login:  root (pw: pfsense), admin: (pw: pfsense)
+
 Import applience, create 3 network adapters:
 - Adapter1: Host-only 'vboxnet0'
   -> In Preferences > Network > Host-only Networks
@@ -49,6 +51,8 @@ IPs are already configured, but just for clarity:
 
 Base Machine
 ============
+Login:  root (pw: secure), iadmin: (pw: secure)
+
 Import appliance, create clones and name them 
 (backup, web_server, core_ca)
 - backup:
