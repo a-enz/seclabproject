@@ -5,7 +5,9 @@
 <form action="{% url 'info_display:new' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Download" />
+</form>
 
 <form action="{% url 'info_display:goodbye' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Logout" />
+</form>

@@ -27,19 +27,18 @@ System/DB/target
 
 
 # DB files that are regenerated/changed when running the system
-System/Web Server/ca_webserver/ca_webserver/__pycache__/__init__.cpython-35.pyc
-System/Web Server/ca_webserver/ca_webserver/__pycache__/settings.cpython-35.pyc
-System/Web Server/ca_webserver/ca_webserver/__pycache__/urls.cpython-35.pyc
-System/Web Server/ca_webserver/ca_webserver/__pycache__/wsgi.cpython-35.pyc
-System/Web Server/ca_webserver/db.sqlite3
-System/Web Server/ca_webserver/info_display/__pycache__/__init__.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/admin.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/apps.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/forms.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/models.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/my_backend.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/urls.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/__pycache__/views.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/migrations/__pycache__/0001_initial.cpython-35.pyc
-System/Web Server/ca_webserver/info_display/migrations/__pycache__/__init__.cpython-35.pyc
-
+System/Webserver/ca_webserver/ca_webserver/__pycache__/__init__.cpython-35.pyc
+System/Webserver/ca_webserver/ca_webserver/__pycache__/settings.cpython-35.pyc
+System/Webserver/ca_webserver/ca_webserver/__pycache__/urls.cpython-35.pyc
+System/Webserver/ca_webserver/ca_webserver/__pycache__/wsgi.cpython-35.pyc
+System/Webserver/ca_webserver/db.sqlite3
+System/Webserver/ca_webserver/info_display/__pycache__/__init__.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/admin.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/apps.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/forms.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/models.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/my_backend.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/urls.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/__pycache__/views.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/migrations/__pycache__/0001_initial.cpython-35.pyc
+System/Webserver/ca_webserver/info_display/migrations/__pycache__/__init__.cpython-35.pyc
