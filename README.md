@@ -1,5 +1,5 @@
 ## What is this project
-Group project for the ETH Zurich course Applied Information Security. Authors: Alessio Bähler, Andreas Enz and Matthias Niederberger.
+Group project for the ETH Zurich course Applied Information Security. Authors: Alessio BÃ¤hler, Andreas Enz and Matthias Niederberger.
 
 ## How to deploy the project for the first time
 - clone this git repository
@@ -28,3 +28,6 @@ TODO
 
 ## Useful sources
 TODO
+
+## IP Topo
+![](/System%20Description/res/basic_topo.png)
