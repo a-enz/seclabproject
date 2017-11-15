@@ -28,7 +28,7 @@ public class Main {
         Gson jsonParser = new Gson();
 
         // TODO: Enable SSL/TLS
-        // secure("./cakeystore", "password", null, null);
+        //secure("./core_ca.jks", "password", null, null);
 
         // Define port where API will be listening
         port(caPort);

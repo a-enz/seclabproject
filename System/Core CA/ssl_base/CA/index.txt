@@ -1,11 +1,7 @@
-R	181115085509Z	171115085644Z	01	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=ohmy
-V	181115085546Z		02	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=ohmy
-V	181115121201Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=ohmy
-V	181115131626Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=ohmy
-V	181115141009Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=web_server
-V	181115141152Z		06	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=core_ca
-V	181115141317Z		07	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=backup
-V	181115141408Z		08	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=firewall
-V	181115141437Z		09	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=database
-V	181115141631Z		0A	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=sys_admin
-V	181115141705Z		0B	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=ca_admin
+V	181115164358Z		01	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=web_server
+V	181115164411Z		02	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=core_ca
+V	181115164422Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=backup
+V	181115164432Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=firewall
+V	181115164443Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=database
+V	181115164517Z		06	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=sys_admin
+V	181115164525Z		07	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=ca_admin

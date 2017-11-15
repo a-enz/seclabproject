@@ -36,7 +36,7 @@ public class BashInterface {
     private final String crlFile = crlDirectory + "/crl.pem";
 
     public void setUpCa(Boolean reset) throws IOException, InterruptedException {
-        executeCommand("sh", "setup.sh");
+        executeCommand("sh", "./scripts/reset.sh");
     }
 
     // Note: every single argument must be passed to ProcessBuilder separately!

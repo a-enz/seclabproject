@@ -16,5 +16,5 @@ bash -c "echo '01' > ./ssl/CA/serial"
 touch ./ssl/CA/index.txt
 
 echo "Place root key and self-signed root certificate at the right place"
-mv cakey.pem ./ssl/CA/private/
-mv cacert.pem ./ssl/CA/
+mv ./ssl/cakey.pem ./ssl/CA/private/
+mv ./ssl/cacert.pem ./ssl/CA/
