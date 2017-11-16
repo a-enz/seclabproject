@@ -38,6 +38,10 @@ public class BashInterface {
     private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
 
+    public BashInterface() {
+        new File(crlDirectory).mkdirs();
+    }
+
     // Note: every single argument must be passed to ProcessBuilder separately!
     private String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
