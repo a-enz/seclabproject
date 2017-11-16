@@ -15,8 +15,8 @@ from django.template import loader
 from .forms import UserLoginForm, UpdateInfoForm, ConfirmationForm
 from .models import UserInfo
 
-db_url = "http://127.0.0.1:8101"
-ca_url = "http://127.0.0.1:8100"
+db_url = "http://127.0.0.1:8100"
+ca_url = "http://127.0.0.1:8101"
 self_url = "http://127.0.0.1:8000"
 legal_renew_referer = "/info_display/display_user_info"
 
@@ -183,6 +183,7 @@ def revoke_all(request):
             form = ConfirmationForm()
             return render(request, 'info_display/revoke_all.html', {'form':form})
         elif request.method == 'POST':
+            # pdb.set_trace()
             form = ConfirmationForm(request.POST)
             if form.is_valid():
                 user = authenticate(username=request.user.username, password=form.cleaned_data['password'])

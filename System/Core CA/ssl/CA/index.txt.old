@@ -4,3 +4,12 @@ V	181115164422Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=backu
 V	181115164432Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=firewall
 V	181115164443Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=database
 V	181115164517Z		06	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=sys_admin
+V	181115164525Z		07	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=ca_admin
+R	181116140232Z	171116142054Z	08	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116140504Z	171116142054Z	09	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116142044Z	171116142054Z	0A	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116142245Z	171116142342Z	0B	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116142409Z	171116142449Z	0C	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116142507Z	171116142620Z	0D	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+R	181116142558Z	171116142620Z	0E	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3
+V	181116142702Z		0F	unknown	/C=CH/ST=Zurich/O=iMovies/OU=User/CN=a3

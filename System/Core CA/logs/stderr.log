@@ -912,3 +912,632 @@ reason: No such file or directory
 Data Base Updated
 rm: ./tmp/ca_admin.csr: No such file or directory
 rm: ./tmp/ca_admin.p12: No such file or directory
+mkdir: cannot create directory ‘./tmp’: File exists
+Generating RSA private key, 2048 bit long modulus
+.................+++
+......+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 16 13:23:50 2017 GMT
+            Not After : Nov 16 13:23:50 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                E4:0F:92:3B:07:99:78:01:41:F1:F4:AB:77:EA:14:D2:83:6A:AA:58
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:23:50 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+mkdir: cannot create directory ‘./tmp’: File exists
+Generating RSA private key, 2048 bit long modulus
+.............................................................................+++
+....+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 16 13:28:30 2017 GMT
+            Not After : Nov 16 13:28:30 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                E3:45:50:E2:62:19:3D:96:A4:54:41:BD:2D:6F:EB:16:59:13:B5:0E
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:28:30 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Using configuration from ./ssl/openssl.cnf
+Using configuration from ./ssl/openssl.cnf
+mkdir: cannot create directory ‘./tmp’: File exists
+Using configuration from ./ssl/openssl.cnf
+unable to rename ./ssl/CA/crlnumber.new to ./ssl/CA/crlnumber
+reason: No such file or directory
+mkdir: cannot create directory ‘./tmp’: File exists
+mkdir: cannot create directory ‘./tmp’: File exists
+Using configuration from ./ssl/openssl.cnf
+Generating RSA private key, 2048 bit long modulus
+....................................+++
+................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 16 13:39:16 2017 GMT
+            Not After : Nov 16 13:39:16 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                76:72:8A:1B:9D:E3:5F:F1:85:97:5B:45:A2:13:42:63:CE:B3:00:BB
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:39:16 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Generating RSA private key, 2048 bit long modulus
+.....................................................................................................+++
+.......+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 2 (0x2)
+        Validity
+            Not Before: Nov 16 13:42:28 2017 GMT
+            Not After : Nov 16 13:42:28 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                CD:DB:50:A0:D4:5D:DF:9D:79:56:8D:02:CC:2B:8D:DB:EE:59:B3:3B
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:42:28 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+mkdir: cannot create directory ‘./tmp’: File exists
+Generating RSA private key, 2048 bit long modulus
+.................+++
+....................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 16 13:47:58 2017 GMT
+            Not After : Nov 16 13:47:58 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                13:D6:C9:A0:92:29:6A:0E:C6:1C:1C:8D:6D:DE:E3:4A:4C:DA:F5:A1
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:47:58 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+..+++
+........................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 2 (0x2)
+        Validity
+            Not Before: Nov 16 13:48:12 2017 GMT
+            Not After : Nov 16 13:48:12 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                3D:1E:4A:EA:6F:1A:21:8F:08:75:A0:7F:6F:16:34:97:AA:31:45:A9
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:48:12 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Generating RSA private key, 2048 bit long modulus
+..............+++
+..................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 3 (0x3)
+        Validity
+            Not Before: Nov 16 13:51:39 2017 GMT
+            Not After : Nov 16 13:51:39 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                15:5B:44:6C:71:27:FC:D9:E4:52:B0:E6:23:51:2F:25:EB:4A:D4:23
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 13:51:39 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+mkdir: cannot create directory ‘./tmp’: File exists
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140145888302744:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140145888302744:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+...................+++
+..+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 8 (0x8)
+        Validity
+            Not Before: Nov 16 14:02:32 2017 GMT
+            Not After : Nov 16 14:02:32 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                1D:BE:E3:27:0A:2F:77:18:3F:81:21:7B:F8:FF:EE:BF:25:81:E0:67
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:02:32 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140616665552536:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140616665552536:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+..................................................+++
+..................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 9 (0x9)
+        Validity
+            Not Before: Nov 16 14:05:04 2017 GMT
+            Not After : Nov 16 14:05:04 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                0C:DD:16:38:1B:3A:7D:BF:E9:94:8B:4D:C0:E0:23:64:42:66:9F:0C
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:05:04 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+...............+++
+..........+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 10 (0xa)
+        Validity
+            Not Before: Nov 16 14:20:44 2017 GMT
+            Not After : Nov 16 14:20:44 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                47:0F:6D:57:06:F4:FF:17:E7:F6:09:02:36:8A:1E:FD:92:27:72:1F
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:20:44 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 08.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 09.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0A.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140502211831448:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140502211831448:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+....................+++
+.............+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 11 (0xb)
+        Validity
+            Not Before: Nov 16 14:22:45 2017 GMT
+            Not After : Nov 16 14:22:45 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                1E:2B:AB:16:7D:E2:EF:07:6D:E6:5C:AA:82:3E:76:02:39:FB:A3:58
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:22:45 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140515115067032:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140515115067032:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+...........................................................................+++
+.........+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 12 (0xc)
+        Validity
+            Not Before: Nov 16 14:24:09 2017 GMT
+            Not After : Nov 16 14:24:09 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                ED:68:88:D1:EA:34:59:C5:A3:BF:7F:B3:C6:B2:66:06:57:03:49:22
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:24:09 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140298710468248:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140298710468248:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+.......+++
+...........................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 13 (0xd)
+        Validity
+            Not Before: Nov 16 14:25:07 2017 GMT
+            Not After : Nov 16 14:25:07 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                49:43:26:0D:28:C5:11:32:EB:3F:77:14:FF:7D:5E:32:63:97:B5:9F
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:25:07 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+.+++
+................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 14 (0xe)
+        Validity
+            Not Before: Nov 16 14:25:58 2017 GMT
+            Not After : Nov 16 14:25:58 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                06:A5:08:CC:B2:71:2E:FF:96:F6:76:55:91:73:C4:6C:83:42:F2:72
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:25:58 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 09
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0A
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0B
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0C
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0D.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0E.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140192498259608:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140192498259608:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Generating RSA private key, 2048 bit long modulus
+.........................................+++
+.....................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 15 (0xf)
+        Validity
+            Not Before: Nov 16 14:27:02 2017 GMT
+            Not After : Nov 16 14:27:02 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = a3
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                DC:3A:1E:38:59:D3:3D:D2:81:E0:A6:6C:5C:26:31:AF:31:CB:B6:17
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:27:02 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 09
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0A
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0B
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0C
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0D
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0E
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0F.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140585981482648:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140585981482648:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 09
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0A
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0B
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0C
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0D
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0E
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0F
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140695636199064:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140695636199064:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 09
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0A
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0B
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0C
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0D
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0E
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0F
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+140483971151512:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+140483971151512:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 09
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0A
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0B
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0C
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0D
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0E
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 0F
+Using configuration from ./ssl/openssl.cnf
+./ssl/CA/crl/crl.pem: No such file or directory
+139897698301592:error:02001002:system library:fopen:No such file or directory:bss_file.c:398:fopen('./ssl/CA/crl/crl.pem','w')
+139897698301592:error:20074002:BIO routines:FILE_CTRL:system lib:bss_file.c:400:

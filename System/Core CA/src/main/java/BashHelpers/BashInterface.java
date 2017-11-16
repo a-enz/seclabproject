@@ -94,9 +94,9 @@ public class BashInterface {
     }
 
     public byte[] revokeAllCertificates(String userId) throws IOException {
-        String[] grepStrings = executeCommand("grep", "CN=" + userId).split("\n");
+        String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
         for(String grepString : grepStrings) {
-            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=" + userId);
+            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
             Matcher m = p.matcher(grepString);
             if(m.matches())
                 executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + m.group(2) + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
