@@ -1,5 +1,10 @@
 # TODO: harden base box
 # TODO: clone only from master branch
+
+# Global variables:
+$dmz_network = "imovies_dmz"
+$internal_network = "imovies_internal"
+
 Vagrant.configure("2") do |config|
 
   # TODO: print some more useful infos
@@ -14,16 +19,22 @@ Vagrant.configure("2") do |config|
   # config.ssh.keys_only = false: Only use vagrant-provided SSH private keys 
   # (do not use any keys stored in ssh-agent). The default value is true.
 
-=begin
+
     config.vm.define "firewall" do |firewall|
       firewall.vm.box = "centos/7"
       
       firewall.vm.provision "shell", path: "firewall_provisioning.sh"
       firewall.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Firewall"]
 
-      firewall.vm.network "private_network", ip: "192.168.50.29"
+      # interface to internal company network
+      firewall.vm.network "private_network", ip: "192.168.50.29",
+      virtualbox__intnet: "#$internal_network"
+      # interface to web server (DMZ)
+      firewall.vm.network "private_network", ip: "192.168.51.15",
+      virtualbox__intnet: "#$dmz_network"
+      
     end
-=end
+
 
 
   	config.vm.define "web_server" do |web_server|
@@ -32,8 +43,9 @@ Vagrant.configure("2") do |config|
       web_server.vm.provision "shell", path: "web_server_provisioning.sh"
       web_server.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Web Server"]
 
-      web_server.vm.network "private_network", ip: "192.168.50.30"
-  	end
+      web_server.vm.network "private_network", ip: "192.168.51.14",
+      virtualbox__intnet: "#$dmz_network"
+    end
 
 
   	config.vm.define "core_ca" do |core_ca|
@@ -42,7 +54,8 @@ Vagrant.configure("2") do |config|
       core_ca.vm.provision "shell", path: "core_ca_provisioning.sh"
       core_ca.vm.provision "shell", path: "sparse_clone.sh", args: ["System/Core CA"]
 
-      core_ca.vm.network "private_network", ip: "192.168.50.31"
+      core_ca.vm.network "private_network", ip: "192.168.50.31",
+      virtualbox__intnet: "#$internal_network"
   	end
 
   	config.vm.define "backup" do |backup|
@@ -50,7 +63,8 @@ Vagrant.configure("2") do |config|
       backup.vm.provision "shell", path: "backup_provisioning.sh"
       backup.vm.provision "shell", path: "sparse_clone.sh", args: ["Backup"]
 
-      backup.vm.network "private_network", ip: "192.168.50.32"
+      backup.vm.network "private_network", ip: "192.168.50.32",
+      virtualbox__intnet: "#$internal_network"
   	end
 =begin
     # Use ubuntu prepared desktop box for the moment

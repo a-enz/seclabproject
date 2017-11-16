@@ -35,10 +35,12 @@
 		<nextgid>2000</nextgid>
 		<timeservers>0.pfsense.pool.ntp.org</timeservers>
 		<webgui>
-			<protocol>http</protocol>
+			<protocol>https</protocol>
 			<loginautocomplete></loginautocomplete>
 			<ssl-certref>5a021b69d39da</ssl-certref>
 			<dashboardcolumns>2</dashboardcolumns>
+			<port></port>
+			<max_procs>2</max_procs>
 		</webgui>
 		<disablenatreflection>yes</disablenatreflection>
 		<disablesegmentationoffloading></disablesegmentationoffloading>
@@ -53,7 +55,9 @@
 		<already_run_config_upgrade></already_run_config_upgrade>
 		<crypto_hardware>cryptodev</crypto_hardware>
 		<timezone>Etc/UTC</timezone>
-		<enablesshd></enablesshd>
+		<enablesshd>enabled</enablesshd>
+		<serialspeed>115200</serialspeed>
+		<primaryconsole>serial</primaryconsole>
 	</system>
 	<interfaces>
 		<wan>
@@ -220,29 +224,6 @@
 			</source>
 			<destination>
 				<network>wanip</network>
-				<port>5010</port>
-			</destination>
-			<protocol>tcp</protocol>
-			<target>192.168.50.10</target>
-			<local-port>22</local-port>
-			<interface>wan</interface>
-			<descr><![CDATA[port 5010 ssh redirect to TEST CENTOS]]></descr>
-			<associated-rule-id>nat_5a0574e8a86676.36110782</associated-rule-id>
-			<updated>
-				<time>1510307048</time>
-				<username>admin@192.168.50.1</username>
-			</updated>
-			<created>
-				<time>1510307048</time>
-				<username>admin@192.168.50.1</username>
-			</created>
-		</rule>
-		<rule>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<network>wanip</network>
 				<port>web_server_ssh_nat</port>
 			</destination>
 			<protocol>tcp</protocol>
@@ -312,7 +293,7 @@
 			</source>
 			<destination>
 				<network>opt1ip</network>
-				<port>443</port>
+				<port>core_ca_https_nat</port>
 			</destination>
 			<protocol>tcp</protocol>
 			<target>core_ca_ip</target>
@@ -325,7 +306,30 @@
 				<username>admin@192.168.50.1</username>
 			</created>
 			<updated>
-				<time>1510314188</time>
+				<time>1510763398</time>
+				<username>admin@192.168.50.50</username>
+			</updated>
+		</rule>
+		<rule>
+			<source>
+				<address>web_server_ip</address>
+			</source>
+			<destination>
+				<network>opt1ip</network>
+				<port>database_https_nat</port>
+			</destination>
+			<protocol>tcp</protocol>
+			<target>database_ip</target>
+			<local-port>443</local-port>
+			<interface>opt1</interface>
+			<descr><![CDATA[web_server database redirect]]></descr>
+			<associated-rule-id>nat_5a0c6b6ab173c1.97020729</associated-rule-id>
+			<created>
+				<time>1510763370</time>
+				<username>admin@192.168.50.50</username>
+			</created>
+			<updated>
+				<time>1510763431</time>
 				<username>admin@192.168.50.50</username>
 			</updated>
 		</rule>
@@ -401,65 +405,6 @@
 			</created>
 		</rule>
 		<rule>
-			<type>pass</type>
-			<ipprotocol>inet</ipprotocol>
-			<descr><![CDATA[Default allow LAN to any rule]]></descr>
-			<interface>lan</interface>
-			<tracker>0100000101</tracker>
-			<source>
-				<network>lan</network>
-			</source>
-			<destination>
-				<any></any>
-			</destination>
-		</rule>
-		<rule>
-			<type>pass</type>
-			<ipprotocol>inet6</ipprotocol>
-			<descr><![CDATA[Default allow LAN IPv6 to any rule]]></descr>
-			<interface>lan</interface>
-			<tracker>0100000102</tracker>
-			<source>
-				<network>lan</network>
-			</source>
-			<destination>
-				<any></any>
-			</destination>
-		</rule>
-		<rule>
-			<id></id>
-			<tracker>1510148225</tracker>
-			<type>pass</type>
-			<interface>opt1</interface>
-			<ipprotocol>inet</ipprotocol>
-			<tag></tag>
-			<tagged></tagged>
-			<max></max>
-			<max-src-nodes></max-src-nodes>
-			<max-src-conn></max-src-conn>
-			<max-src-states></max-src-states>
-			<statetimeout></statetimeout>
-			<statetype><![CDATA[keep state]]></statetype>
-			<os></os>
-			<protocol>icmp</protocol>
-			<icmptype>any</icmptype>
-			<source>
-				<any></any>
-			</source>
-			<destination>
-				<any></any>
-			</destination>
-			<descr><![CDATA[checking if i can ping now]]></descr>
-			<updated>
-				<time>1510148225</time>
-				<username>admin@192.168.50.1</username>
-			</updated>
-			<created>
-				<time>1510148225</time>
-				<username>admin@192.168.50.1</username>
-			</created>
-		</rule>
-		<rule>
 			<source>
 				<any></any>
 			</source>
@@ -532,6 +477,65 @@
 			</created>
 		</rule>
 		<rule>
+			<type>pass</type>
+			<ipprotocol>inet</ipprotocol>
+			<descr><![CDATA[Default allow LAN to any rule]]></descr>
+			<interface>lan</interface>
+			<tracker>0100000101</tracker>
+			<source>
+				<network>lan</network>
+			</source>
+			<destination>
+				<any></any>
+			</destination>
+		</rule>
+		<rule>
+			<type>pass</type>
+			<ipprotocol>inet6</ipprotocol>
+			<descr><![CDATA[Default allow LAN IPv6 to any rule]]></descr>
+			<interface>lan</interface>
+			<tracker>0100000102</tracker>
+			<source>
+				<network>lan</network>
+			</source>
+			<destination>
+				<any></any>
+			</destination>
+		</rule>
+		<rule>
+			<id></id>
+			<tracker>1510148225</tracker>
+			<type>pass</type>
+			<interface>opt1</interface>
+			<ipprotocol>inet</ipprotocol>
+			<tag></tag>
+			<tagged></tagged>
+			<max></max>
+			<max-src-nodes></max-src-nodes>
+			<max-src-conn></max-src-conn>
+			<max-src-states></max-src-states>
+			<statetimeout></statetimeout>
+			<statetype><![CDATA[keep state]]></statetype>
+			<os></os>
+			<protocol>icmp</protocol>
+			<icmptype>any</icmptype>
+			<source>
+				<any></any>
+			</source>
+			<destination>
+				<any></any>
+			</destination>
+			<descr><![CDATA[checking if i can ping now]]></descr>
+			<updated>
+				<time>1510148225</time>
+				<username>admin@192.168.50.1</username>
+			</updated>
+			<created>
+				<time>1510148225</time>
+				<username>admin@192.168.50.1</username>
+			</created>
+		</rule>
+		<rule>
 			<source>
 				<address>web_server_ip</address>
 			</source>
@@ -551,19 +555,19 @@
 		</rule>
 		<rule>
 			<source>
-				<any></any>
+				<address>web_server_ip</address>
 			</source>
-			<interface>wan</interface>
+			<interface>opt1</interface>
 			<protocol>tcp</protocol>
 			<destination>
-				<address>192.168.50.10</address>
-				<port>22</port>
+				<address>database_ip</address>
+				<port>443</port>
 			</destination>
-			<descr><![CDATA[NAT port 5010 ssh redirect to TEST CENTOS]]></descr>
-			<associated-rule-id>nat_5a0574e8a86676.36110782</associated-rule-id>
-			<tracker>1510307048</tracker>
+			<descr><![CDATA[NAT web_server database redirect]]></descr>
+			<associated-rule-id>nat_5a0c6b6ab173c1.97020729</associated-rule-id>
+			<tracker>1510763370</tracker>
 			<created>
-				<time>1510307048</time>
+				<time>1510763370</time>
 				<username>NAT Port Forward</username>
 			</created>
 		</rule>
@@ -590,6 +594,13 @@
 			<detail><![CDATA[Entry added Fri, 10 Nov 2017 11:36:42 +0000]]></detail>
 		</alias>
 		<alias>
+			<name>core_ca_https_nat</name>
+			<type>port</type>
+			<address>4430</address>
+			<descr><![CDATA[port which is nat'ed to core_ca port 443]]></descr>
+			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:28:15 +0000]]></detail>
+		</alias>
+		<alias>
 			<name>core_ca_ip</name>
 			<type>host</type>
 			<address>192.168.50.31</address>
@@ -602,6 +613,27 @@
 			<address>5031</address>
 			<descr><![CDATA[ssh port which is nat'ed to core_ca port 22 ]]></descr>
 			<detail><![CDATA[Entry added Fri, 10 Nov 2017 11:37:26 +0000]]></detail>
+		</alias>
+		<alias>
+			<name>database_https_nat</name>
+			<type>port</type>
+			<address>4431</address>
+			<descr><![CDATA[port which is nat'ed to database port 443]]></descr>
+			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:27:34 +0000]]></detail>
+		</alias>
+		<alias>
+			<name>database_ip</name>
+			<type>host</type>
+			<address>192.168.50.33</address>
+			<descr></descr>
+			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:21:50 +0000]]></detail>
+		</alias>
+		<alias>
+			<name>database_ssh_nat</name>
+			<type>port</type>
+			<address>5033</address>
+			<descr><![CDATA[ssh port which is nat'ed to database port 22]]></descr>
+			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:22:51 +0000]]></detail>
 		</alias>
 		<alias>
 			<name>fw_webinterface_ip</name>
@@ -773,8 +805,8 @@
 	</unbound>
 	<dyndnses></dyndnses>
 	<revision>
-		<time>1510314219</time>
-		<description><![CDATA[admin@192.168.50.50: Firewall: NAT: Port Forward - saved/edited a port forward rule.]]></description>
+		<time>1510827858</time>
+		<description><![CDATA[admin@192.168.50.50: Edited a firewall alias.]]></description>
 		<username>admin@192.168.50.50</username>
 	</revision>
 	<cert>
@@ -787,4 +819,17 @@
 	<vlans></vlans>
 	<ppps></ppps>
 	<gateways></gateways>
+	<schedules>
+		<schedule>
+			<name>test</name>
+			<descr></descr>
+			<timerange>
+				<month>11</month>
+				<day>17</day>
+				<hour>0:00-23:59</hour>
+				<rangedescr></rangedescr>
+			</timerange>
+			<schedlabel>5a0ad4819c70a</schedlabel>
+		</schedule>
+	</schedules>
 </pfsense>

@@ -1,0 +1,18 @@
+# To tunnel (firefox) browser traffic through ssh
+
+# start ssh tunnel
+ssh -p 5050 -D 4041 -f -N admin@10.2.128.221
+# -p 5050: target port 5050
+# -D 4041: bind to outgoing port 4041
+# -f: run in background
+# -N: send no commands
+
+# start firefox with sock proxy over 4041
+# In firefox preferences:
+#   Advanced > Network > Connection Settings
+#   'Manual proxy config'
+#   SOCKS Host: localhost, port 4041
+
+# stop the tunneling
+ps aux | grep ssh # get the tunneling process <id>
+kill <id>

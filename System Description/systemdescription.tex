@@ -287,10 +287,6 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 
 % List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
 
-\subsubsection{{\it Evaluation Asset X}}
-
-% List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
-
 Potential threats and countermeasures with the inferred risk.
 
 
@@ -303,6 +299,17 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Med} & {\it High} & {\it Med} \\
 \hline
 2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\subsubsection{{\it Evaluation Core CA}}
+
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Hardware Failures: cause damages to the hard drives and privite CA key and certificate can't be recovered. &  & {\it Low} & {\it Med} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
