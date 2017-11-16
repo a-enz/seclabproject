@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 
-from .forms import UserLoginForm, UpdateInfoForm
+from .forms import UserLoginForm, UpdateInfoForm, ConfirmationForm
 from .models import UserInfo
 
 db_url = "http://127.0.0.1:8101"
@@ -70,6 +70,7 @@ def admin_login(request):
 #@login_required(login_url='/info_display/user_login')
 def welcome(request):
     if request.user.is_authenticated:
+
         return render(request, 'info_display/welcome.html', {'user_id': request.user.username})
     else:
         return HttpResponseRedirect('/info_display/user_login')
@@ -116,12 +117,7 @@ def display_user_info(request):
                     certificate_response = requests.get("%s/certificates/new/%s" % (ca_url, request.user.username))
                     if certificate_response.ok:
                         cert_dict = certificate_response.json()
-                        #pkcs12 = OpenSSL.crypto.PKCS12()
-                        #pkcs12.set_privatekey(cert_dict['privateKey'])
-                        #pkcs12.set_certificate(cert_dict['certificate'])
-                        # Create file if it doesn't exist. No other user's data can be leaked, because the
-                        # file is written with the data bound to the authenticated user
-                        #pdb.set_trace()
+
                         pkcs_bytes = array.array('b', cert_dict['pkcs12'])
                         file_handle = open(('info_display/files/pkcs12_%s.pfx' % request.user.username), 'wb+')
                         file_handle.truncate() # in case the last certificate was not downloaded
@@ -178,5 +174,54 @@ def new(request):
                 return response
             except IOError:
                 return render(request, 'info_display/new.html', {'error_msg': "Certificate files can only be downloaded once after creation!"})
+    else:
+        return HttpResponseRedirect('/info_display/user_login/')
+
+def revoke_all(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            form = ConfirmationForm()
+            return render(request, 'info_display/revoke_all.html', {'form':form})
+        elif request.method == 'POST':
+            form = ConfirmationForm(request.POST)
+            if form.is_valid():
+                user = authenticate(username=request.user.username, password=form.cleaned_data['password'])
+                if user is not None:
+                    revoke_response = requests.delete(("%s/certificates/%s/all" % (ca_url, request.user.username)))
+                    if revoke_response.ok:
+                        # Update crl
+                        try:
+                            crl_file = open('info_display/files/crl.pem', 'wb')
+                            response_json = revoke_response.json()
+                            crl_bytes = array.array('b', response_json['certificateRevocationList'])
+                            crl_file.write(crl_bytes)
+                            crl_file.close()
+                            return render(request, 'info_display/revoke_all.html', {'form':None, 'error_msg': 'All certificates revoked'})
+                        except IOError:
+                            return render(request, 'info_display/revoke_all.html', {'form':None, 'error_msg': 'CRL appending failed'})
+                    else:
+                        return render(request, 'info_display/revoke_all.html', {'form':ConfirmationForm, 'error_msg': 'Revocation failed'})
+                else:
+                    return render(request, 'info_display/revoke_all.html', {'form':ConfirmationForm, 'error_msg': 'Wrong password'})
+            else:
+                return render(request, 'info_display/revoke_all.html', {'form':ConfirmationForm, 'error_msg': 'Invalid form data'})
+
+    else:
+        return HttpResponseRedirect('/info_display/user_login/')
+
+def crl(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            return render(request, 'info_display/crl.html', {'error_msg': None})
+        elif request.method == 'POST':
+            try:
+                file_handle = open(('info_display/files/crl.pem'), 'rb')
+                file_data = file_handle.read()
+                file_handle.close()
+                response = HttpResponse(file_data, content_type='application/octet-stream')
+                response['Content-Disposition'] = 'attachment; filename="crl.pem"'
+                return response
+            except IOError:
+                return render(request, 'info_display/crl.html', {'error_msg': "The certificate revocation list is empty"})
     else:
         return HttpResponseRedirect('/info_display/user_login/')

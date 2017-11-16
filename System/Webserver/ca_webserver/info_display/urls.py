@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^display_admin_info/$', views.display_admin_info, name='display_admin_info'),
     url(r'^goodbye/$', views.all_logout, name='goodbye'),
     url(r'^new/$', views.new, name='new'),
+    url(r'^crl/$', views.crl, name='crl'),
+    url(r'^revoke_all/$', views.revoke_all, name='revoke_all'),
 ]

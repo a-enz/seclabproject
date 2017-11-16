@@ -1,11 +1,11 @@
-<h3>Download your new certificate</h3>
+<h3>Download the certificate revocation list</h3>
 
 {% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
 <p>
 <a href="/info_display/welcome">Back to welcome</a>
 </p>
 
-<form action="{% url 'info_display:new' %}" method="post">
+<form action="{% url 'info_display:crl' %}" method="post">
 {% csrf_token %}
 <input type="submit" value="Download" />
 </form>
