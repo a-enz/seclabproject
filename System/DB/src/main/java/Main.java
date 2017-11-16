@@ -12,18 +12,16 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args) {
 
-        int listenPort = 8100;
+        Boolean ssl = false;
+        int listenPort = 48100;
         int dbPort = 3306;
-        String dbName = "testDB";
-        String dbUser = "root";
-        String dbPassword = "";
+        String dbName = "iMoviesDB";
+        String dbUser = "dbuser";
+        String dbPassword = "securePwd17!";
         
-        if(args.length == 5) {
-            listenPort = Integer.parseInt(args[0]);
-            dbPort = Integer.parseInt(args[1]);
-            dbName = args[2];
-            dbUser = args[3];
-            dbPassword = args[4];
+        if(args.length == 2) {
+            ssl = Boolean.parseBoolean(args[0]);
+            listenPort = Integer.parseInt(args[1]);
         }
 
         MySQLInterface sqlInterface = new MySQLInterface(dbPort, dbName, dbUser, dbPassword);
@@ -33,7 +31,11 @@ public class Main {
         // Define port where API will be listening
         port(listenPort);
 
+        if(ssl)
+            secure("./database.jks", "passwordThatShouldNotBeHardcoded", null, null);
+
         // ------ Filters ------
+        // TODO: block ips
         after((req, res) -> {
             res.type("application/json");
         });

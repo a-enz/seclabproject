@@ -10,30 +10,26 @@ public class Main {
 
         BashInterface bashInterface = new BashInterface();
 
-        Boolean reset = false;
-        Integer caPort = 8100; // TODO change to 80/443
+        Boolean ssl = false;
+        Integer listenPort = 4800; // TODO change to 80/443
 
         if(args.length == 2) {
-            reset = Boolean.parseBoolean(args[0]);
-            caPort = Integer.parseInt(args[1]);
-        }
-
-        try {
-            if(reset)
-                bashInterface.setUpCa(reset);
-        } catch (Exception e) {
-            e.printStackTrace();
+            ssl = Boolean.parseBoolean(args[0]);
+            listenPort = Integer.parseInt(args[1]);
         }
 
         Gson jsonParser = new Gson();
 
-        // TODO: Enable SSL/TLS
-        //secure("./core_ca.jks", "password", null, null);
+        // Enable SSL/TLS
+        if(ssl)
+            secure("./core_ca.jks", "passwordThatShouldNotBeHardcoded", null, null);
 
         // Define port where API will be listening
-        port(caPort);
+        port(listenPort);
 
         // ------ Filters ------
+        // TODO: block ips
+
         after((req, res) -> {
             res.type("application/json");
         });
@@ -51,6 +47,10 @@ public class Main {
             if(requestBody == null) {
                 res.status(400);
                 return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
+            else if(notRevokable(requestBody.number)) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked"));
             }
             return jsonParser.toJson(new RevokeCertificateResponse(bashInterface.revokeCertificate(requestBody.number)));
         });
@@ -75,5 +75,13 @@ public class Main {
         get("/ca/serial_number", (req, res) -> {
             return jsonParser.toJson(new GetSerialResponse(bashInterface.getCurrentSerial()));
         });
+    }
+
+    // TODO
+    private static Boolean notRevokable(String number) {
+        switch(number) {
+            case "01": case "02": case "03": return true;
+            default: return false;
+        }
     }
 }
