@@ -1,0 +1,12 @@
+[Unit]
+Description=CoreCA
+After=network-online.target
+
+[Service]
+Type=forking
+User=coreca
+WorkingDirectory=/home/coreca
+ExecStart=/home/coreca/scripts/start_core_ca.sh
+
+[Install]
+WantedBy=multi-user.target
