@@ -624,14 +624,14 @@
 		<alias>
 			<name>database_ip</name>
 			<type>host</type>
-			<address>192.168.50.30</address>
+			<address>192.168.50.33</address>
 			<descr></descr>
 			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:21:50 +0000]]></detail>
 		</alias>
 		<alias>
 			<name>database_ssh_nat</name>
 			<type>port</type>
-			<address>5030</address>
+			<address>5033</address>
 			<descr><![CDATA[ssh port which is nat'ed to database port 22]]></descr>
 			<detail><![CDATA[Entry added Wed, 15 Nov 2017 16:22:51 +0000]]></detail>
 		</alias>
@@ -805,8 +805,8 @@
 	</unbound>
 	<dyndnses></dyndnses>
 	<revision>
-		<time>1510763431</time>
-		<description><![CDATA[admin@192.168.50.50: Firewall: NAT: Port Forward - saved/edited a port forward rule.]]></description>
+		<time>1510827858</time>
+		<description><![CDATA[admin@192.168.50.50: Edited a firewall alias.]]></description>
 		<username>admin@192.168.50.50</username>
 	</revision>
 	<cert>
