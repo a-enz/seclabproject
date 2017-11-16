@@ -1,6 +1,0 @@
-V	181115164358Z		01	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=web_server
-V	181115164411Z		02	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=core_ca
-V	181115164422Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=backup
-V	181115164432Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=firewall
-V	181115164443Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Infrastructure/CN=database
-V	181115164517Z		06	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=sys_admin
