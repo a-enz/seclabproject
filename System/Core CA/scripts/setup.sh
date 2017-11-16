@@ -12,10 +12,12 @@ echo "Install Java"
 # Reload env
 #source /etc/environment
 
-# Insert MANIFEST in jar with
-#jar uf out/artifac input-file(s) 
+# Create keystore for https and activate secure option in code
+#openssl pkcs12 -export -in ../Certificates/core_ca.pem -inkey ../Certificates/core_ca.key -out core_ca.p12 -name iMovies -passout pass:passwordThatShouldNotBeHardcoded
+#keytool -importkeystore -srckeystore core_ca.p12 -srcstoretype pkcs12 -destkeystore core_ca.jks -deststoretype JKS -storepass passwordThatShouldNotBeHardcoded
+#keytool -import -trustcacerts -alias root -file ../Certificates/cacert.crt -keystore ca_cert.jks
 
-# Create startup service for the application
+# TODO: Create startup service for the application
 # put java -jar ~/coreca/core_ca.jar in /etc/init.d/start_core_ca and make it executable with chmod +x /etch/init.d/start_core_ca
 
 ## Log in as coreca:secure
@@ -23,18 +25,14 @@ echo "Install Java"
 
 # Set up CA stuff
 echo "Setup"
-cd ~/coreca
-
-# FIXME: Change branch until not merged
-cd SecLabProject
-git checkout rest_api
-cd ..
+cd ~/
 
 # Copy relevant data here
-cp ./SecLabProject/System/Core\ CA/out/artifacts/Core_CA_jar/Core\ CA.jar ./core_ca.jar
-cp ./SecLabProject/System/Core\ CA/scripts .
-cp ./SecLabProject/System/Core\ CA/ssl/ .
-cp ./SecLabProject/System/Certificates/cakeystore .
+cp ./Core\ CA/out/artifacts/Core_CA_jar/Core\ CA.jar ./core_ca.jar
+cp -r ./Core\ CA/scripts/ ./scripts
+cp -r ./Core\ CA/ssl_base/ ./ssl
+cp -r ./Core\ CA/ssl_base/ ./ssl_base
+cp ./Core\ CA/core_ca.jks .
 
 
 echo "Create CA directories and files"
@@ -45,7 +43,8 @@ mkdir ./logs
 
 
 # TODO: Clean up (logs, history, ...)
-rm -r ./SecLabProject
+rm -r ./Core\ CA
 
-# TODO: start application
-java -jar Core\ CA.jar
+# Disable firewall
+#systemctl stop firewalld
+#systemctl disable firewalld

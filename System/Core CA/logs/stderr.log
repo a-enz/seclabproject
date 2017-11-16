@@ -912,3 +912,178 @@ reason: No such file or directory
 Data Base Updated
 rm: ./tmp/ca_admin.csr: No such file or directory
 rm: ./tmp/ca_admin.p12: No such file or directory
+Illegal option:  -destkeystoretype
+keytool -importkeystore [OPTION]...
+
+Imports one or all entries from another keystore
+
+Options:
+
+ -srckeystore <keystore>   source keystore name
+ -destkeystore <keystore>  destination keystore name
+ -srcstoretype <type>      source keystore type
+ -deststoretype <type>     destination keystore type
+ -srcstorepass <arg>       source keystore password
+ -deststorepass <arg>      destination keystore password
+ -srcprotected             source keystore password protected
+ -destprotected            destination keystore password protected
+ -srcprovidername <name>   source keystore provider name
+ -destprovidername <name>  destination keystore provider name
+ -srcalias <alias>         source alias
+ -destalias <alias>        destination alias
+ -srckeypass <arg>         source key password
+ -destkeypass <arg>        destination key password
+ -noprompt                 do not prompt
+ -addprovider <name>       add security provider by name (e.g. SunPKCS11)
+   [-providerarg <arg>]      configure argument for -addprovider
+ -providerclass <class>    add security provider by fully-qualified class name
+   [-providerarg <arg>]      configure argument for -providerclass
+ -providerpath <list>      provider classpath
+ -v                        verbose output
+
+Use "keytool -help" for all available commands
+Enter destination keystore password:  Generating RSA private key, 2048 bit long modulus
+..................+++
+......+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 8 (0x8)
+        Validity
+            Not Before: Nov 16 08:07:45 2017 GMT
+            Not After : Nov 16 08:07:45 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = dummy
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                7C:49:0B:EA:30:52:17:46:A3:9D:33:A8:A5:57:E9:32:7B:A2:7C:CE
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 08:07:45 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+...........+++
+.................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 9 (0x9)
+        Validity
+            Not Before: Nov 16 08:10:29 2017 GMT
+            Not After : Nov 16 08:10:29 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = dummy
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                59:CC:AA:3E:46:23:C6:CC:26:B7:95:48:E7:8B:AA:D6:48:C0:9C:14
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 08:10:29 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+..............+++
+.................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 10 (0xa)
+        Validity
+            Not Before: Nov 16 08:30:04 2017 GMT
+            Not After : Nov 16 08:30:04 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = dummy
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                A9:8F:9E:64:8F:18:AD:8E:5F:6A:46:35:14:36:1C:02:43:63:53:59
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 08:30:04 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+..................................+++
+.........................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 11 (0xb)
+        Validity
+            Not Before: Nov 16 14:09:16 2017 GMT
+            Not After : Nov 16 14:09:16 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = dummy
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                14:65:79:F8:CB:08:4B:28:73:46:E0:49:57:79:FF:C0:24:5B:B6:08
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 16 14:09:16 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Using configuration from ./ssl/openssl.cnf
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 08.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+ERROR:Already revoked, serial number 08
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 09.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0A.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf
+Revoking Certificate 0B.
+Data Base Updated
+Using configuration from ./ssl/openssl.cnf

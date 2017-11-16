@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,24 +26,22 @@ public class BashInterface {
     private final static String caPassword = "passwordThatShouldNotBeHardcoded";
 
     // File paths
-    private final String sslDirectory = "./ssl";
+    private final String baseDirectory = ".";
+    private final String sslDirectory = baseDirectory + "/ssl";
     private final String caDirectory = sslDirectory + "/CA";
     private final String crlDirectory = caDirectory + "/crl";
     private final String newcertsDirectory = caDirectory + "/newcerts";
-    private final String tmpDirectory = "./tmp";
+    private final String tmpDirectory = baseDirectory + "/tmp";
+    private final String logsDirectory = baseDirectory + "/logs";
     private final String indexFile = caDirectory + "/index.txt";
     private final String serialFile = caDirectory + "/serial";
     private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
 
-    public void setUpCa(Boolean reset) throws IOException, InterruptedException {
-        executeCommand("sh", "./scripts/reset.sh");
-    }
-
     // Note: every single argument must be passed to ProcessBuilder separately!
     private String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File("./logs/stderr.log")));
+        pb.redirectError(ProcessBuilder.Redirect.appendTo(new File(logsDirectory + "/stderr.log")));
         return IOUtils.toString(pb.start().getInputStream());
     }
 
@@ -94,9 +93,9 @@ public class BashInterface {
     }
 
     public byte[] revokeAllCertificates(String userId) throws IOException {
-        String[] grepStrings = executeCommand("grep", "CN=" + userId).split("\n");
+        String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
         for(String grepString : grepStrings) {
-            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=Users/CN=" + userId);
+            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
             Matcher m = p.matcher(grepString);
             if(m.matches())
                 executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + m.group(2) + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
