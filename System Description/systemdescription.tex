@@ -16,7 +16,6 @@
 \setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
 
 
-
 \newenvironment{prettytablex}[1]{\vspace{0.3cm}\noindent\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
 %\newenvironment{prettytable}{\prettytablex{l X}}{\endprettytablex}
 
@@ -30,20 +29,48 @@
 \begin{document}
 \maketitle
 
-%% **** please observe the page limit ****
+%% **** please observe the page limit **** 
 %% (it is not allowed to change the font size or page geometry to gain more space)
 %% comment or remove lines below before hand-in
-
+\begin{center}
+{\large\textcolor{red}{Page limit: 30 pages.}}
+\end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \tableofcontents
 \pagebreak
 
+\begin{framed}
+\noindent
+{\it
+Recall the following guidelines when writing your reports:
+\begin{itemize}
+\item Adhere to the given templates.
+
+\item Refer to the security principles in the book for justification.
+
+\item Use clear terminology: 
+\begin{itemize}
+\item secure = confidential + authentic. Be clear about
+which properties you are writing.
+\item Are pairwise distinct: certificate, private key, public key, archive to of certificate with private key. Please avoid mixing these up.
+\end{itemize}
+
+\item Refer to the source document of your risk definitions if appropriate.
+
+\item For the risk evaluation, formulate the threats in active, not passive, 
+voice: who (threat source) does what (threat action)? 
+
+\item Use a spell checker before hand-in!
+
+\end{itemize}
+}
+\end{framed}
+
 
 \section{System Characterization}
 
 \subsection{System Overview}
-
 
 %%% Describe the systems mission,  the system boundaries,
 %%% and the overall system architecture, including the main subsystems and
@@ -51,8 +78,14 @@
 %%% overview of the system, e.g., suitable for managers, that complements
 %%% the more technical description that follows.
 
-
-The System consists of three machines in a company network and external client machines that connect over the Internet. Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the backup service, with backup daemons connecting to the other two machines.
+The aim of this system is to provide the customer company with an in-house certificate authority (CA). This CA provides
+employees with digital certificates on demand, which are used to secure email communication. 
+The System consists of three machines in a company network and external client machines that connect over the Internet. 
+Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. This means
+that the main signing key and certificate revocation list (CLR) are stored and maintained on Machine 1. %How is main key stored? Where is CLR published? 
+Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the 
+Internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the 
+backup service, with backup daemons connecting to the other two machines. 
 
 
 
@@ -62,6 +95,16 @@ The System consists of three machines in a company network and external client m
 \centering
 \label{fig:system_arch}
 \end{figure}
+
+
+\subsection{System Functionality}
+
+Describe the system's functions.
+
+
+\subsection{Security Design}
+
+Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
 
 
 \subsection{Components}
@@ -88,6 +131,26 @@ A short description of the components in Figure \ref{fig:system_arch}.
     \end{itemize}
 \end{itemize}
 
+
+\ifthenelse{\boolean{showbackdoors}}{
+% show for handed-in version
+
+\subsection{Backdoors}
+
+Describe the implemented backdoors. 
+
+\bigskip\noindent
+\textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
+
+
+%% do not delete the three lines below
+}{ 
+% empty for reviewing group's version
+} 
+
+\subsection{Additional Material}
+
+You may have additional sections according to your needs.
 
 
 \section{Risk Analysis and Security Measures}
@@ -219,6 +282,7 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 \end{center}
 
 
+
 \subsection{Risk Evaluation}
 
 % List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
@@ -235,6 +299,17 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Med} & {\it High} & {\it Med} \\
 \hline
 2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\subsubsection{{\it Evaluation Core CA}}
+
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Hardware Failures: cause damages to the hard drives and privite CA key and certificate can't be recovered. &  & {\it Low} & {\it Med} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -264,13 +339,13 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \end{footnotesize}
 
 \begin{thebibliography}{---}
-\bibitem[1]{ASL_book} Computer Security: Principles and Practice. William Stallings and Laurie Brown, Prentice Hall, 2008
-Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schl�pfer, Springer, 2011
+\bibitem[1]{CompSec} Computer Security: Principles and Practice. William Stallings and Laurie Brown, Prentice Hall, 2008
+\bibitem[2]{ASL_book} Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schl�pfer, Springer, 2011
 \end{thebibliography}
 
 \end{document}
 
-%%% Local Variables:
+%%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../../book"
-%%% End:
+%%% End: 
