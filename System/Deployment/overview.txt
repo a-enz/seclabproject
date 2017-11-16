@@ -28,12 +28,60 @@ Vagrant specific
 -----------------------------------------------
 Hardening
 -----------------------------------------------
-1. Identify running and potentially dangerous processes:
-   (eps. running as root and/or listening to ports)
-   $ sudo lsof -i
-   # Shows open ports and coresponding processes.
-   # To find out more about the process there are
-   # a lot of possebilities, see List in SecLab book
-   # page 38. Some hints:
+# Network Services
+==================
+
+Identify running and potentially dangerous processes:
+(eps. running as root and/or listening to ports)
+sudo lsof -i
+# Shows open ports and coresponding processes.
+# To find out more about the process there are
+# a lot of possebilities, see List in SecLab book
+# page 38. Some hints:
+# find out version of installed software
+yum list installed <process>
+<process> --version 
+<process> -V
+# find out port process is using:
+sudo lsof -i | grep <process>
+ss -plnt # centos specific
+# find (config) files of process
+locate <process> # install 'mlocate' on centos
+# user owning the process
+ps aux | grep <process>
+
+==> deactive process: best way is to use the official 
+  'stop' script or similar (check p. 172 answer 3.11)
+  # disable rpcbind, don't need it and it exposes a port
+  systemctl disable rpcbind # restart system
+  # disable chrony
+  systemctl disable chrony
+
+==> restrict service: firewall/tcp wrapper/configuration
+
+
+
+# Auth. and Access Control
+========================== 
+
+1. SSH: 
+  - can restrict the commands a client can execute 
+    (bound to a public key in authorized_keys)
+  - 'no-pty' option prevents allocation of a pseudo terminal
+2. Restrict file permissions:
+  # find all worl writable files without symbolic links
+  find <dir> -perm -o=w -a ! -type l  
+  # change file permissions
+  chmod 
+  # set default permission for newly created files
+  umask
+  # set special attributes to files:
+  # e.g.: cannot be deleted, cannot be renamed
+  chattr
+
+
+
+
+
    
 

@@ -1,0 +1,64 @@
+---------------------
+BASE IMAGE 
+---------------------
+# The basic image is from https://virtualboxes.org/images/centos/
+# and then changed with the steps in 'BASIC MACHINE SETUP'
+# Metadata about the ova file from the website: 
+# CentOS 7.0 Base
+# Size: 585 MBytes
+# MD5SUM of ova image: f41153b8941c7f277a444a8e0be88a18
+# Link: https://s3-eu-west-1.amazonaws.com/virtualboxes.org/CentOS7-base.ova.torrent
+# Active user account(s)(username/password): root/reverse centos/reverse (sudo enabled).
+# Notes: Installed from CentOS-7.0-1406-x86_64-NetInstall.iso; Guest Additions NOT installed
+
+
+---------------------
+BASIC MACHINE SETUP
+---------------------
+
+Users
+=====
+# all this needs to be done as root
+# and generally needs user input
+
+# remove unwanted users
+userdel <user>
+userdel centos
+rm -rf /home/<user>
+rm -rf /home/centos
+
+# create new user and add to existing groups,
+# i.e a group with correct sudoers rights
+# (alternatively modify sudo config with 'visudo')
+useradd <user> -G <list of groups>
+useradd iadmin -G wheel # 'wheel' is sudoer with all rights
+# add/change password of user
+passwd <user>
+passwd iadmin
+
+
+Software
+========
+# Install software by running script basic_provisioning.sh
+basic_provisioning.sh
+
+
+Static IP 
+=========
+# (that persists after shutdown)
+# I wrote my own config for 'ifcfg-enp0s3' and replaced the old one 
+# (which can be found in 'ifcfg-enp0s3.bk')
+
+Hardening
+=========
+# Run script hardening.sh
+hardening.sh
+
+
+Local Firewall
+==============
+# The image had some iptable rules already installed
+# for now those seem to be ok and they remain as-is.
+
+
+
