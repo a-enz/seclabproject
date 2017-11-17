@@ -62,8 +62,8 @@ DB_SH=$HOME/backup_db.sh
 # ssh target
 WS_ADR=iadmin@192.168.51.14
 FW_ADR=root@192.168.50.50
-CA_ADR=iadmin@192.168.50.31
-DB_ADR=iadmin@192.168.50.33
+CA_ADR=coreca@192.168.50.31
+DB_ADR=database@192.168.50.33
 
 # Backup log file
 LOG=$HOME/backup.log
@@ -98,13 +98,13 @@ EOF
 # core ca
 # TODO files
 cat << EOF > $CA_LIST
-/home/iadmin/test
+/home/coreca
 EOF
 
 # database
 # TODO files
 cat << EOF > $DB_LIST
-/home/iadmin/test
+/home/database
 EOF
 
 
