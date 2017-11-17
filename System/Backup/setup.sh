@@ -69,7 +69,7 @@ DB_ADR=database@192.168.50.33
 LOG=$HOME/backup.log
 
 # SSH Key file
-$KEY=$HOME/.ssh/ip_rsa
+KEY=$HOME/.ssh/id_rsa
 
 
 
@@ -110,6 +110,33 @@ EOF
 
 
 
+##############
+## SSH KEYS ##
+##############
+
+# Distributes ssh public key of backup
+if [ ! -f $KEY ]; then
+echo "Creating ssh key, please don't change defaults (just hit enter)"
+ssh-keygen
+fi
+
+# Copying ssh public key to machines we want to back up
+echo "Copying ssh public key to remote hosts"
+
+send_key $WS_ADR $KEY
+
+# CAREFUL: to make key authorization persisten on pfsense, 
+# it has to be added to the config.xml. Otherwise it will
+# be wiped on reboot of the firewall
+send_key $FW_ADR $KEY
+
+send_key $CA_ADR $KEY
+
+send_key $DB_ADR $KEY
+
+
+
+
 ##################
 ## CRONTAB JOBS ##
 ##################
@@ -137,33 +164,8 @@ crontab < tmpcron
 rm -f tmpcron
 
 # restart crontab to make changes persist after reboot
-systemctl restart crond
-
-
-
-##############
-## SSH KEYS ##
-##############
-
-# Distributes ssh public key of backup
-if [ ! -f $KEY ]; then
-echo "Creating ssh key, please don't change defaults (just hit enter)"
-ssh-keygen
-fi
-
-# Copying ssh public key to machines we want to back up
-echo "Copying ssh public key to remote hosts"
-
-send_key $WS_ADR $KEY
-
-# CAREFUL: to make key authorization persisten on pfsense, 
-# it has to be added to the config.xml. Otherwise it will
-# be wiped on reboot of the firewall
-send_key $FW_ADR $KEY
-
-send_key $CA_ADR $KEY
-
-send_key $DB_ADR $KEY
+# for now this seems to work without??
+# systemctl restart crond
 
 
 
