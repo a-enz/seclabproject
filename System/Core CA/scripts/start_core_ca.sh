@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar /home/coreca/core_ca.jar &
+/usr/bin/java -jar /home/coreca/core_ca.jar &

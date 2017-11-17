@@ -4,9 +4,9 @@ After=network-online.target
 
 [Service]
 Type=forking
-User=coreca
+User=root
 WorkingDirectory=/home/coreca
-ExecStart=/home/coreca/scripts/start_core_ca.sh
+ExecStart=/usr/bin/screen -d -m /usr/bin/java -jar /home/coreca/core_ca.jar
 
 [Install]
 WantedBy=multi-user.target

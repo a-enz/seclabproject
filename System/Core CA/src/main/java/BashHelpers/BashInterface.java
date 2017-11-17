@@ -135,7 +135,7 @@ public class BashInterface {
         Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
-            return Integer.parseInt(m.group(1));
+            return Integer.parseInt(m.group(1), 16);
         else
             return 0;
     }

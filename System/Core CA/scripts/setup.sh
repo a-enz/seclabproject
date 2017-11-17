@@ -1,5 +1,5 @@
 # TODO: Install Java version 9 (Oracle version)
-echo "Install Java"
+#echo "Install Java"
 # see https://howtoprogram.xyz/2017/09/22/install-oracle-java-9-centos-rhel/
 # Download from Oracle webpage
 #sudo wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" \
@@ -45,6 +45,7 @@ mkdir ./logs
 # TODO: Clean up (logs, history, ...)
 rm -r ./Core\ CA
 
-# Disable firewall
-#systemctl stop firewalld
-#systemctl disable firewalld
+# Prepare service (as root)
+# cp /home/coreca/scripts/coreca.service /etc/systemd/system
+# systemctl enable coreca
+# systemctl start coreca
