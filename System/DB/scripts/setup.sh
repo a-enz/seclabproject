@@ -38,10 +38,11 @@ cd ~/
 cp ./DB/database.jks .
 cp ./DB/out/artifacts/DB_jar/DB.jar ./db.jar
 cp -r ./DB/scripts/ ./scripts
-mv ./scripts/start_database.sh .
 
+# TODO: cleanup
 rm -r ./DB
 
-# Disable firewall
-#systemctl stop firewalld
-#systemctl disable firewalld
+# Prepare service (as root)
+# cp /home/database/scripts/database.service /etc/systemd/system
+# systemctl enable database
+# systemctl start database
