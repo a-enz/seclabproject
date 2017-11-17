@@ -12,7 +12,6 @@
 			<description><![CDATA[All Users]]></description>
 			<scope>system</scope>
 			<gid>1998</gid>
-			<member>0</member>
 		</group>
 		<group>
 			<name>admins</name>
@@ -30,6 +29,11 @@
 			<bcrypt-hash>$2b$10$aWtkAPM1bqN2CJwDbHMoI.WSPdLWe2EIKrT6VFQRNRY4OScGaPJXC</bcrypt-hash>
 			<uid>0</uid>
 			<priv>user-shell-access</priv>
+			<expires></expires>
+			<dashboardcolumns>2</dashboardcolumns>
+			<authorizedkeys>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEQnhlUFBFRVpOaktuUWE0VlBSSlNDZk0zWTJFSytCL2N3c2hBOEhyUC92TWJHcUFhaVBFbktHRFJiWFcxNEZ2UEtPR3g3bFNLRS96dkRFdjJBa2M3SUtVMGxPQTRycVNONUNoamQ0QUdGOUJ1QXZmTEtnc1pGWExhdjd5SnRNVk94M0duME1rcjJDbEJNNXJwWEtoUHVWTlQrQUpzWEVFNGhmS0hwRWlsbGNQUWVMcFlOSzN0bC9RWTZLd3dyYit5a1pvRVFOQ2pDTXJYTlNNZllBTCs0d0tsZEpDdkJjbEhwZ1JzYWpmcERuendFeUlXNUtmSEtyd1E4bEVwZWp3US9tQW9SZko2QlFsbzVjVTlYeVVLN3NwQ2lqclIwLzBxM1dUODdEMDBxNHp6NVdMRExDb2FRbHlUeXZCUXBIRmszNlRMbmNkRVJ1YWpob2cxQmV4bTUNCg==</authorizedkeys>
+			<ipsecpsk></ipsecpsk>
+			<webguicss>pfSense.css</webguicss>
 		</user>
 		<nextuid>2000</nextuid>
 		<nextgid>2000</nextgid>
@@ -333,6 +337,29 @@
 				<username>admin@192.168.50.50</username>
 			</updated>
 		</rule>
+		<rule>
+			<source>
+				<any></any>
+			</source>
+			<destination>
+				<network>wanip</network>
+				<port>backup_nc</port>
+			</destination>
+			<protocol>tcp</protocol>
+			<target>backup_ip</target>
+			<local-port>9844</local-port>
+			<interface>wan</interface>
+			<descr></descr>
+			<associated-rule-id>nat_5a0ec9bcd60542.78683584</associated-rule-id>
+			<created>
+				<time>1510918588</time>
+				<username>admin@192.168.50.50</username>
+			</created>
+			<updated>
+				<time>1510918733</time>
+				<username>admin@192.168.50.50</username>
+			</updated>
+		</rule>
 	</nat>
 	<filter>
 		<rule>
@@ -571,6 +598,24 @@
 				<username>NAT Port Forward</username>
 			</created>
 		</rule>
+		<rule>
+			<source>
+				<any></any>
+			</source>
+			<interface>wan</interface>
+			<protocol>tcp</protocol>
+			<destination>
+				<address>backup_ip</address>
+				<port>9844</port>
+			</destination>
+			<descr><![CDATA[NAT ]]></descr>
+			<associated-rule-id>nat_5a0ec9bcd60542.78683584</associated-rule-id>
+			<tracker>1510918588</tracker>
+			<created>
+				<time>1510918588</time>
+				<username>NAT Port Forward</username>
+			</created>
+		</rule>
 		<separator>
 			<opt1></opt1>
 			<wan></wan>
@@ -585,6 +630,13 @@
 			<address>192.168.50.32</address>
 			<descr></descr>
 			<detail><![CDATA[Entry added Fri, 10 Nov 2017 11:33:12 +0000]]></detail>
+		</alias>
+		<alias>
+			<name>backup_nc</name>
+			<type>port</type>
+			<address>9844</address>
+			<descr></descr>
+			<detail><![CDATA[Entry added Fri, 17 Nov 2017 11:37:44 +0000]]></detail>
 		</alias>
 		<alias>
 			<name>backup_ssh_nat</name>
@@ -805,8 +857,8 @@
 	</unbound>
 	<dyndnses></dyndnses>
 	<revision>
-		<time>1510827858</time>
-		<description><![CDATA[admin@192.168.50.50: Edited a firewall alias.]]></description>
+		<time>1510918733</time>
+		<description><![CDATA[admin@192.168.50.50: Firewall: NAT: Port Forward - saved/edited a port forward rule.]]></description>
 		<username>admin@192.168.50.50</username>
 	</revision>
 	<cert>
