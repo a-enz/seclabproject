@@ -5,5 +5,15 @@
 # update the base machine setup$
 
 ## Disable firewalld
+echo "Stopping firewalld"
 systemctl stop firewalld
 systemctl disable firewalld
+
+## Set approx. correct time
+echo "Setting approx. correct time"
+timedatectl set-timezone 'Europe/Zurich'
+echo "Provide the time in format HH:MM:SS"
+read TIME
+timedatectl set-time $TIME
+echo "This is the time you have set:"
+date
