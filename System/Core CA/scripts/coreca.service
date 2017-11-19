@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-User=root
+User=coreca
 WorkingDirectory=/home/coreca
 ExecStart=/usr/bin/screen -d -m /usr/bin/java -jar /home/coreca/core_ca.jar
 

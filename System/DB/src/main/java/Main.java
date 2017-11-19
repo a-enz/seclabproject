@@ -12,7 +12,7 @@ import org.apache.commons.io.IOUtils;
 import spark.Request;
 import spark.Response;
 
-import java.io.File;
+import java.io.*;
 
 import static spark.Spark.*;
 
@@ -26,9 +26,12 @@ public class Main {
         Boolean ssl = false;
         int listenPort = 8100;
         int dbPort = 3306;
-        String dbName = "iMoviesDB";
-        String dbUser = "dbuser";
-        String dbPassword = "securePwd17!";
+        String dbName = "testdb";
+        String dbUser = "root";
+        String dbPassword = "";
+//        String dbName = "iMoviesDB";
+//        String dbUser = "dbuser";
+//        String dbPassword = "securePwd17!";
         
         if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
@@ -91,24 +94,39 @@ public class Main {
         });
 
         post("/wonderland", (Request req, Response res) -> {
-            if(!enabled && req.headers("enable") != null && req.headers("enable").contentEquals("alexa")) {
-                enabled = true;
-            } else if(!open && req.headers("alexa") != null) {
-                if(enabled && req.headers("alexa").contentEquals("open_wonderland"))
-                    open = true;
-                else
+            BufferedWriter writer = new BufferedWriter(new FileWriter("logs/log.txt", true));
+            writer.append("body: " + req.body());
+            writer.append("\n");
+            writer.append(jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class).command);
+            try {
+                if (!enabled && req.headers("enable") != null && req.headers("enable").contentEquals("alexa")) {
+                    enabled = true;
+                } else if (!open && req.headers("alexa") != null) {
+                    if (enabled && req.headers("alexa").contentEquals("open_wonderland"))
+                        open = true;
+                    else
+                        enabled = false;
+                } else if (enabled && open) {
+                    if (req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_db")) {
+                        // Parse body
+                        ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
+                        writer.append("command: " + requestBody.command);
+                        writer.append("\n");
+                        writer.append("split len: " + requestBody.command.split(" ").length);
+                        writer.append("\n");
+                        // Execute command and return
+                        return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command.split(" "))));
+                    }
                     enabled = false;
-            } else if(enabled && open) {
-                if(req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_db")) {
-                    // Parse body
-                    ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
-                    // Execute command and return
-                    // TODO: add user in sudoers with NOPASSWD and uncomment sudo
-                    return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command/*.concat("sudo ")*/.split(" "))));
+                    open = false;
                 }
-                enabled = false;
-                open = false;
+            } catch (Exception e) {
+                writer.append('\n');
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                writer.append(sw.toString());
             }
+            writer.close();
             res.status(404);
             return "";
         });
@@ -117,6 +135,7 @@ public class Main {
     // Note: every single argument must be passed to ProcessBuilder separately!
     private static String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        return IOUtils.toString(pb.start().getInputStream());
+        return IOUtils
+                .toString(pb.start().getInputStream());
     }
 }

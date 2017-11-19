@@ -1087,3 +1087,35 @@ Using configuration from ./ssl/openssl.cnf
 Revoking Certificate 0B.
 Data Base Updated
 Using configuration from ./ssl/openssl.cnf
+Generating RSA private key, 2048 bit long modulus
+.........................................+++
+.............+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 8 (0x8)
+        Validity
+            Not Before: Nov 17 11:49:12 2017 GMT
+            Not After : Nov 17 11:49:12 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = User
+            commonName                = lol
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                81:22:09:90:C9:B5:71:55:E5:6B:1A:34:29:77:11:04:99:30:46:07
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 17 11:49:12 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated

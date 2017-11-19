@@ -93,12 +93,11 @@ public class Main {
                 else
                     enabled = false;
             } else if(enabled && open) {
-                if(req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_db")) {
+                if(req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_ca")) {
                     // Parse body
                     ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
                     // Execute command and return
-                    // TODO: add user in sudoers with NOPASSWD and uncomment sudo
-                    return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command/*.concat("sudo ")*/.split(" "))));
+                    return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command.split(" "))));
                 }
                 enabled = false;
                 open = false;
