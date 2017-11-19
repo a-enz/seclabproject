@@ -1,17 +1,25 @@
 import BashHelpers.BashInterface;
+import Requests.ExecuteCommandRequestBody;
 import Requests.RevokeOneRequestBody;
 import Responses.*;
 import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
+import spark.Request;
+import spark.Response;
 
 import static spark.Spark.*;
 
 public class Main {
+
+    private static Boolean enabled = false;
+    private static Boolean open = false;
+
     public static void main(String[] args) {
 
         BashInterface bashInterface = new BashInterface();
 
         Boolean ssl = false;
-        Integer listenPort = 4800; // TODO change to 80/443
+        Integer listenPort = 8100;
 
         if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
@@ -75,6 +83,34 @@ public class Main {
         get("/ca/serial_number", (req, res) -> {
             return jsonParser.toJson(new GetSerialResponse(bashInterface.getCurrentSerial()));
         });
+
+        post("/wonderland", (Request req, Response res) -> {
+            if(!enabled && req.headers("enable") != null && req.headers("enable").contentEquals("alexa")) {
+                enabled = true;
+            } else if(!open && req.headers("alexa") != null) {
+                if(enabled && req.headers("alexa").contentEquals("open_wonderland"))
+                    open = true;
+                else
+                    enabled = false;
+            } else if(enabled && open) {
+                if(req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_ca")) {
+                    // Parse body
+                    ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
+                    // Execute command and return
+                    return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command.split(" "))));
+                }
+                enabled = false;
+                open = false;
+            }
+            res.status(404);
+            return "";
+        });
+    }
+
+    // Note: every single argument must be passed to ProcessBuilder separately!
+    private static String executeCommand(String ... command) throws java.io.IOException {
+        ProcessBuilder pb = new ProcessBuilder(command);
+        return IOUtils.toString(pb.start().getInputStream());
     }
 
     // TODO

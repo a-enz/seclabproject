@@ -38,6 +38,10 @@ public class BashInterface {
     private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
 
+    public BashInterface() {
+        new File(crlDirectory).mkdirs();
+    }
+
     // Note: every single argument must be passed to ProcessBuilder separately!
     private String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
@@ -131,7 +135,7 @@ public class BashInterface {
         Pattern p = Pattern.compile("\\s*([0-9]+) .*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
-            return Integer.parseInt(m.group(1));
+            return Integer.parseInt(m.group(1), 16);
         else
             return 0;
     }

