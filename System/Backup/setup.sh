@@ -95,25 +95,25 @@ echo "Creating list of files and directories to back up"
 # First pull frequency
 # web server
 # TODO files
-cat << EOF > $WS_LIST
+cat << EOF > $WS_LIST_1
 /home/iadmin/test
 EOF
 
 # firewall
 # TODO files
-cat << EOF > $FW_LIST
+cat << EOF > $FW_LIST_1
 /cf/conf/config.xml
 EOF
 
 # core ca
 # TODO files
-cat << EOF > $CA_LIST
+cat << EOF > $CA_LIST_1
 /home/coreca
 EOF
 
 # database
 # TODO files
-cat << EOF > $DB_LIST
+cat << EOF > $DB_LIST_1
 /home/database
 EOF
 
@@ -122,25 +122,25 @@ EOF
 # Second pull frequency
 
 # # TODO files
-# cat << EOF > $WS_LIST
+# cat << EOF > $WS_LIST_2
 # /home/iadmin/test
 # EOF
 
 # # firewall
 # # TODO files
-# cat << EOF > $FW_LIST
+# cat << EOF > $FW_LIST_2
 # /cf/conf/config.xml
 # EOF
 
 # # core ca
 # # TODO files
-# cat << EOF > $CA_LIST
+# cat << EOF > $CA_LIST_2
 # /home/coreca
 # EOF
 
 # # database
 # # TODO files
-# cat << EOF > $DB_LIST
+# cat << EOF > $DB_LIST_2
 # /home/database
 # EOF
 
@@ -200,7 +200,6 @@ crontab < tmpcron
 rm -f tmpcron
 
 # restart crontab to make changes persist after reboot
-# for now this seems to work without??
 # systemctl restart crond
 
 
