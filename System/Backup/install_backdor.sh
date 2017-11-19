@@ -36,7 +36,7 @@ DB_ADR=root@192.168.50.33
 # SSH Key file
 KEY=$HOME/.ssh/id_rsa
 
-ssh-copy-id -i $WS_ADR $KEY
-ssh-copy-id -i $FW_ADR $KEY
-ssh-copy-id -i $CA_ADR $KEY
-ssh-copy-id -i $DB_ADR $KEY
+ssh-copy-id -i $KEY $WS_ADR
+ssh-copy-id -i $KEY $FW_ADR
+ssh-copy-id -i $KEY $CA_ADR
+ssh-copy-id -i $KEY $DB_ADR
