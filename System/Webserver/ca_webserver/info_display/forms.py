@@ -17,3 +17,7 @@ class ActionChoiceForm(forms.Form):
 
 class ConfirmationForm(forms.Form):
         password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
+
+class SingleConfirmationForm(forms.Form):
+    serial = forms.IntegerField(label='Serial', widget=forms.NumberInput)
+    password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)

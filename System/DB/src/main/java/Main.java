@@ -15,9 +15,9 @@ public class Main {
         Boolean ssl = false;
         int listenPort = 48100;
         int dbPort = 3306;
-        String dbName = "iMoviesDB";
-        String dbUser = "dbuser";
-        String dbPassword = "securePwd17!";
+        String dbName = "testDB";
+        String dbUser = "root";
+        String dbPassword = "";
         
         if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);

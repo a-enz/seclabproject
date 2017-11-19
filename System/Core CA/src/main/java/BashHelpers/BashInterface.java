@@ -85,7 +85,7 @@ public class BashInterface {
         byte[] pkcs12 = FileUtils.readFileToByteArray(new File(pkcs12FileName));
 
         // Delete private key, signing request and PKCS#12 files
-        executeCommand("rm", keyFileName);
+        //executeCommand("rm", keyFileName);
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
 
@@ -128,7 +128,7 @@ public class BashInterface {
     }
 
     private Integer parseWcOutput(String wcOut) {
-        Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
+        Pattern p = Pattern.compile("\\s*([0-9]+) .*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
             return Integer.parseInt(m.group(1));

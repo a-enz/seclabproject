@@ -1,1 +1,23 @@
-<h1>Admin display</h1>
+<h3>Admin display</h3>
+
+{% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+<form action="{% url 'info_display:display_admin_info' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Request values"/>
+</form>
+
+{% if values %}
+
+<ul>
+  <li>Issued certificates: {{ values.issued }}</li>
+  <li>Revoked certificates: {{ values.revoked }}</li>
+  <li>Current serial: {{ values.serial_number }}</li>
+</ul>
+
+{% endif %}
+
+<form action="{% url 'info_display:goodbye' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Logout" />
+</form>

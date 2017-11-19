@@ -9,9 +9,10 @@ from django.contrib.auth.models import User
 base_url = "http://127.0.0.1:8100"
 
 class RemoteBackend(object):
-
     def authenticate(self, request, username=None, password=None):
         #TODO could save users?
+        if username is None or password is None:
+            return None
         digester = hashlib.sha1()
         digester.update(password.encode('utf-8'))
 
@@ -24,22 +25,14 @@ class RemoteBackend(object):
             if auth_status:
                 try:
                     user = User.objects.get(username=username)
+                    # Dirty fix
+                    user.backend = 'RemoteBackend'
                 except User.DoesNotExist:
                     user = User(username=username)
+                    user.backend = 'RemoteBackend'
                     user.save()
                 return user
         return None
-
-    # def authenticate(self, request, username=None, password=None):
-    #     if username == 'none':
-    #         return None
-    #     else:
-    #         try:
-    #             user = User.objects.get(username=username)
-    #         except User.DoesNotExist:
-    #             user = User(username=username)
-    #             user.save()
-    #         return user
 
     def get_user(self, user_id):
         try:

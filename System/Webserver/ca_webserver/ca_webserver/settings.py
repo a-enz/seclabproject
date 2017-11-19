@@ -48,10 +48,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_ssl_auth.SSLClientAuthMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'info_display.my_backend.RemoteBackend'
+    'django_ssl_auth.SSLClientAuthBackend',
+    'info_display.my_backend.RemoteBackend',
 ]
 
 
@@ -124,3 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# SSL AUTH settings
+AUTOCREATE_VALID_SSL_USERS = True
+USER_DATA_FN = 'info_display.helpers.get_data_from_cert'
+LOGIN_URL = '/info_display/user_login/'
+LOGIN_REDIRECT_URL = '/info_display/welcome'
