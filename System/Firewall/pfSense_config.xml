@@ -26,16 +26,16 @@
 			<descr><![CDATA[System Administrator]]></descr>
 			<scope>system</scope>
 			<groupname>admins</groupname>
-			<bcrypt-hash>$2b$10$aWtkAPM1bqN2CJwDbHMoI.WSPdLWe2EIKrT6VFQRNRY4OScGaPJXC</bcrypt-hash>
+			<bcrypt-hash>$2b$10$oh82nXY.WL6mYBqA51.gQ..ZFj2V0SQMhF9ER.EvLbANp8TzBD52m</bcrypt-hash>
 			<uid>0</uid>
 			<priv>user-shell-access</priv>
 			<expires></expires>
 			<dashboardcolumns>2</dashboardcolumns>
-			<authorizedkeys>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEQnhlUFBFRVpOaktuUWE0VlBSSlNDZk0zWTJFSytCL2N3c2hBOEhyUC92TWJHcUFhaVBFbktHRFJiWFcxNEZ2UEtPR3g3bFNLRS96dkRFdjJBa2M3SUtVMGxPQTRycVNONUNoamQ0QUdGOUJ1QXZmTEtnc1pGWExhdjd5SnRNVk94M0duME1rcjJDbEJNNXJwWEtoUHVWTlQrQUpzWEVFNGhmS0hwRWlsbGNQUWVMcFlOSzN0bC9RWTZLd3dyYit5a1pvRVFOQ2pDTXJYTlNNZllBTCs0d0tsZEpDdkJjbEhwZ1JzYWpmcERuendFeUlXNUtmSEtyd1E4bEVwZWp3US9tQW9SZko2QlFsbzVjVTlYeVVLN3NwQ2lqclIwLzBxM1dUODdEMDBxNHp6NVdMRExDb2FRbHlUeXZCUXBIRmszNlRMbmNkRVJ1YWpob2cxQmV4bTUNCg==</authorizedkeys>
+			<authorizedkeys>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDNjhsR3FzQ0JGcWxCY0NtRXFJTzY1Yzd6TDFNOGgvYzNnaGJwSUVBR1B4Q1lJUWJ2ejV2OXh0K2VCeUczbENFa29QWUJPSVlENmRBR1crbUJzOXQyZXllL2QzbEo0V3RnT2xFZ1dWQVRJcm1hVU1VenFEd0RVT2pHZDFMN3R4MCtWTDkrMjRSMDJXcDY1L0RNU0VKaitiK1Q0U3pvZlhmSWttMytGVVUzOFVrUktoaW4rNkFtRUJTSnpPWFJjMW5tRlR3dURmdTFUMVpnNjNNejIvTG10MVNVRWtHSUc4MXJQZldlOHhZYWQ2Rzh2Uzk2UzEvU2JVbzdpM01YalhOZjI2R3FEOEQwQWdIMVFNOTd4UTNVQWorTDM3U3QxeExmeXI4YXRZZkc0dm4zZDVJUEZIV3JRUmxDY1VaMUxIZnF4Njg3aElxMU13VDlqZkxVU2lIaXYNCg==</authorizedkeys>
 			<ipsecpsk></ipsecpsk>
 			<webguicss>pfSense.css</webguicss>
 		</user>
-		<nextuid>2000</nextuid>
+		<nextuid>2001</nextuid>
 		<nextgid>2000</nextgid>
 		<timeservers>0.pfsense.pool.ntp.org</timeservers>
 		<webgui>
@@ -62,6 +62,7 @@
 		<enablesshd>enabled</enablesshd>
 		<serialspeed>115200</serialspeed>
 		<primaryconsole>serial</primaryconsole>
+		<disableconsolemenu></disableconsolemenu>
 	</system>
 	<interfaces>
 		<wan>
@@ -905,8 +906,8 @@
 	</unbound>
 	<dyndnses></dyndnses>
 	<revision>
-		<time>1510936597</time>
-		<description><![CDATA[admin@192.168.50.50: /firewall_nat.php made unknown change]]></description>
+		<time>1511100359</time>
+		<description><![CDATA[admin@192.168.50.50: /system_advanced_admin.php made unknown change]]></description>
 		<username>admin@192.168.50.50</username>
 	</revision>
 	<cert>
