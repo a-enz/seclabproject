@@ -82,10 +82,10 @@ CA_SH=$SCRIPTS_DIR/backup_ca.sh
 DB_SH=$SCRIPTS_DIR/backup_db.sh
 
 # ssh target
-WS_ADR=iadmin@192.168.51.14
+WS_ADR=root@192.168.51.14
 FW_ADR=root@192.168.50.50
-CA_ADR=coreca@192.168.50.31
-DB_ADR=database@192.168.50.33
+CA_ADR=root@192.168.50.31
+DB_ADR=root@192.168.50.33
 
 # Backup log file
 LOG=$HOME/backup.log
@@ -108,23 +108,40 @@ echo "Creating list of files and directories to back up"
 # web server
 # TODO files
 cat << EOF > $WS_LIST_1
+/var/log/secure
+/var/log/messages
+/var/log/cron
+/var/log/wtmp
+/var/log/lastlog
 EOF
 
 # firewall
 cat << EOF > $FW_LIST_1
 /cf/conf/config.xml
+/var/log/filter.log
+/var/log/system.log
 EOF
 
 # core ca
 cat << EOF > $CA_LIST_1
 /home/coreca/logs
 /home/coreca/ssl
+/var/log/secure
+/var/log/messages
+/var/log/cron
+/var/log/wtmp
+/var/log/lastlog
 EOF
 
 # database
 # TODO files
 cat << EOF > $DB_LIST_1
 /home/database/logs
+/var/log/secure
+/var/log/messages
+/var/log/cron
+/var/log/wtmp
+/var/log/lastlog
 EOF
 
 
