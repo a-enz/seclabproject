@@ -1,0 +1,28 @@
+# Some useful shell commands I came across 
+# while debugging the FW and related issues
+
+# Start firefox with a certain users 
+# (allows multiple instances with different settings. E.g. proxy)
+firefox -p <name>
+
+# tcpdump (-n shows IP instead of FQDN)
+tcpdump -n -i <interface>
+
+# ip and relatet settings on a machine
+ip addr # show network interfaces and IPs
+# add IP to interface
+ip addr add <IP>/<subnetmask> dev <interface>
+# example: ip addr add 192.168.50.50/24 dev eth1
+# add default gateway to interface
+route add default gw <ip> <interface>
+# example: route add default gw 192.168.50.50 eth1
+route -n # show, but only as numeric IPs
+
+# iptables (linux firewall)
+iptables -L  # show all rules
+iptables -L -v  # show all rules with packet counts
+iptables -Z  # reset packet counts
+iptables -F  # flush rules
+
+# try tcp connection to specific port
+telnet <ip> <port>
