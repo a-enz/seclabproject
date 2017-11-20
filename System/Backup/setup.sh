@@ -147,6 +147,7 @@ EOF
 # database
 # TODO files
 cat << EOF > $DB_LIST_1
+/home/database/database.dump
 /home/database/logs
 /var/log/secure
 /var/log/messages
