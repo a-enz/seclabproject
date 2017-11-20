@@ -21,7 +21,7 @@ public class BashInterface {
     private final String STATE_NAME = "Zurich";
     private final String LOCALITY_NAME = "Zurich";
     private final String ORGANIZATION_NAME = "iMovies";
-    private final String ORGANIZATORIAL_UNIT = "User";
+    private final String ORGANIZATORIAL_UNIT = "Administration";
 
     private final static String caPassword = "passwordThatShouldNotBeHardcoded";
 
@@ -122,7 +122,7 @@ public class BashInterface {
 
     public Integer getIssuedSize() throws IOException {
         String output = executeCommand("wc", "-l", indexFile);
-        return parseWcOutput(output) - 1; // index.txt has an empty line at the end
+        return parseWcOutput(output); // index.txt has an empty line at the end
     }
 
     public Integer getRevokedSize() throws IOException {
@@ -130,14 +130,14 @@ public class BashInterface {
         if(output.isEmpty())
             return 0;
         else
-            return parseWcOutput(output);
+            return parseWcOutput(output) - 1;
     }
 
     private Integer parseWcOutput(String wcOut) {
-        Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
+        Pattern p = Pattern.compile(" *([0-9]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
-            return Integer.parseInt(m.group(1), 16);
+            return Integer.parseInt(m.group(1));
         else
             return 0;
     }

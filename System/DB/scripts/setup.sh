@@ -32,7 +32,7 @@
 # Start VM
 
 # Copy files from host to database@192.168.50.33:~/ using scp
-# scp ./DB database@192.168.50.33:~/
+# scp -r ./DB database@192.168.50.33:~/
 
 # (TODO: Set date back in the past to hide changes)
 #date -s '2014-12-25 12:34:56'
