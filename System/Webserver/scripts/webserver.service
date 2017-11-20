@@ -1,0 +1,12 @@
+[Unit]
+Description=Database
+After=network-online.target
+
+[Service]
+Type=forking
+User=database
+WorkingDirectory=/home/webserver
+ExecStart=/usr/bin/screen -d -m TODO
+
+[Install]
+WantedBy=multi-user.target
