@@ -18,7 +18,8 @@ echo "Initiating cronjob for $2, prefix $7, config from $3"
 # create backup script
 # don't indent this, otherwise EOF is not sent correctly:
 cat << EOF > $1
-echo "\n---------------------------"
+echo ""
+echo "---------------------------"
 echo "[\`date +%d-%m-%y/%H:%M:%S\`] running backup for $2:"
 rsync -avzr -e ssh --files-from=\$2 $4:/ $2/\$1_\`date +%d%m%y_%H%M\`
 EOF
@@ -248,7 +249,8 @@ initialize_rsync_pull $DB_SH $DB_DIR $DB_LIST_2 $DB_ADR "$DB_SCHEDULE_2" $LOG $P
 echo "creating cleanup cronjobs"
 
 cat << EOF > $CLEAN_SH
-echo "\n---------------------------"
+echo ""
+echo "---------------------------"
 echo "[\`date +%d-%m-%y/%H:%M:%S\`] cleaning backups in \$1 older than \$2 days:"
 find \$1 -mindepth 1 -maxdepth 1 -type d -mtime \$2 | xargs rm -rfv
 EOF
