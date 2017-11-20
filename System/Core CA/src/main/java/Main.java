@@ -1,5 +1,6 @@
 import BashHelpers.BashInterface;
 import Requests.ExecuteCommandRequestBody;
+import Requests.IssueCertificateRequestBody;
 import Requests.RevokeOneRequestBody;
 import Responses.*;
 import com.google.gson.Gson;
@@ -36,7 +37,6 @@ public class Main {
         port(listenPort);
 
         // ------ Filters ------
-        // TODO: block ips
 
         after((req, res) -> {
             res.type("application/json");
@@ -45,8 +45,13 @@ public class Main {
         // ------ CA calls ------
 
         // Issue certificate: generate key, generate certificate, return both in PKCS#12 format
-        get("/certificates/new/:userId", (req, res) -> {
-            return jsonParser.toJson(new IssueCertificateResponse(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"))));
+        post("/certificates/new/:userId", (req, res) -> {
+            IssueCertificateRequestBody requestBody = jsonParser.fromJson(req.body(), IssueCertificateRequestBody.class);
+            if(requestBody == null) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
+            return jsonParser.toJson(new IssueCertificateResponse(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"), requestBody.password)));
         });
 
         // Revoke one certificate of a user, return new certificate revocation list
@@ -69,7 +74,6 @@ public class Main {
         });
 
         // Get number of issued certificates
-        // TODO: check if correct what is meant with issued (how many created, which is serial - 1?)
         get("/ca/issued", (req, res) -> {
             return jsonParser.toJson(new GetIssuedResponse(bashInterface.getIssuedSize()));
         });
@@ -110,13 +114,12 @@ public class Main {
     // Note: every single argument must be passed to ProcessBuilder separately!
     private static String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
-        return IOUtils.toString(pb.start().getInputStream());
+        return IOUtils.toString(pb.redirectErrorStream(true).start().getInputStream());
     }
 
-    // TODO
     private static Boolean notRevokable(String number) {
         switch(number) {
-            case "01": case "02": case "03": return true;
+            case "01": case "02": case "03": case "04" : case "05" : case "06" : case "07" : return true;
             default: return false;
         }
     }
