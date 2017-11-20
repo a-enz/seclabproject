@@ -1,103 +1,126 @@
-import Requests.UpdateUserRequestBody;
-import Responses.GetUserResponseBody;
-import Requests.VerifyRequestBody;
-import Responses.VerifyResponseBody;
+import BashHelpers.BashInterface;
+import Requests.ExecuteCommandRequestBody;
+import Requests.IssueCertificateRequestBody;
+import Requests.RevokeOneRequestBody;
+import Responses.*;
 import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
+import spark.Request;
+import spark.Response;
 
 import static spark.Spark.*;
 
 public class Main {
+
+    private static Boolean enabled = false;
+    private static Boolean open = false;
+
     public static void main(String[] args) {
 
+        BashInterface bashInterface = new BashInterface();
+
+        Boolean ssl = false;
+        Integer listenPort = 8100;
+
+        if(args.length == 2) {
+            ssl = Boolean.parseBoolean(args[0]);
+            listenPort = Integer.parseInt(args[1]);
+        }
+
+        Gson jsonParser = new Gson();
+
+        // Enable SSL/TLS
+        if(ssl)
+            secure("./core_ca.jks", "passwordThatShouldNotBeHardcoded", null, null);
 
         // Define port where API will be listening
-        port(8100);
+        port(listenPort);
 
         // ------ Filters ------
-        // TODO
+
         after((req, res) -> {
             res.type("application/json");
         });
 
         // ------ CA calls ------
 
-        // TODO: Issue certificate
-        post("/certificates", (req, res) -> {
-            return req.body();
-            //return "TODO";
+        // Issue certificate: generate key, generate certificate, return both in PKCS#12 format
+        post("/certificates/new/:userId", (req, res) -> {
+            IssueCertificateRequestBody requestBody = jsonParser.fromJson(req.body(), IssueCertificateRequestBody.class);
+            if(requestBody == null) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
+            return jsonParser.toJson(new IssueCertificateResponse(bashInterface.generatePrivateKeyAndCertificatePKCS12(req.params("userId"), requestBody.password)));
         });
 
-        // TODO: Get all certificates of a user
-        get("/certificates/:userid", (req, res) -> {
-            return req.body();
-            //return "TODO";
+        // Revoke one certificate of a user, return new certificate revocation list
+        delete("/certificates/:userId/one", (req, res) -> {
+            RevokeOneRequestBody requestBody = jsonParser.fromJson(req.body(), RevokeOneRequestBody.class);
+            if(requestBody == null) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
+            }
+            else if(notRevokable(requestBody.number)) {
+                res.status(400);
+                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked"));
+            }
+            return jsonParser.toJson(new RevokeCertificateResponse(bashInterface.revokeCertificate(requestBody.number)));
         });
 
-        // TODO: revoke one/all certificates of a user
-        delete("/certificates/:userid", (req, res) -> {
-            return req.body();
-            //return "TODO";
+        // Revoke all certificates of a user, return new certificate revocation list
+        delete("/certificates/:userId/all", (req, res) -> {
+            return jsonParser.toJson(new RevokeCertificateResponse(bashInterface.revokeAllCertificates(req.params(":userId"))));
         });
 
-        // TODO: get revocation list
-        get("/certificates/revocation_list", (req, res) -> {
-            return req.body();
-            //return "TODO";
-        });
-
-        // TODO: get number of issued certificates
+        // Get number of issued certificates
         get("/ca/issued", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            return jsonParser.toJson(new GetIssuedResponse(bashInterface.getIssuedSize()));
         });
 
-        // TODO: get number of revoked certificates
+        // Get number of revoked certificates
         get("/ca/revoked", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            return jsonParser.toJson(new GetRevokedResponse(bashInterface.getRevokedSize()));
         });
 
-        // TODO: get serial number
+        // Get current serial number
         get("/ca/serial_number", (req, res) -> {
-            return req.body();
-            //return "TODO";
+            return jsonParser.toJson(new GetSerialResponse(bashInterface.getCurrentSerial()));
         });
 
-
-        // ------ DB calls ------
-
-        // TODO: Verify username:password
-        post("/users/verify/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
-            VerifyRequestBody requestBody = jsonParser.fromJson(req.body(), VerifyRequestBody.class);
-            // TODO: retrieve password hash from db
-            String passwordHashDB = "dummyHash";
-            // TODO: hash password
-            String passwordHashUser = "dummyHash";
-            res.status(200);
-            return jsonParser.toJson(new VerifyResponseBody(passwordHashDB.equals(passwordHashUser)));
-        });
-
-        // TODO: Get user data
-        get("/users/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
-            // TODO: get data from db
-            GetUserResponseBody userData = new GetUserResponseBody("dummy", "user", "data");
-            res.status(200);
-            return jsonParser.toJson(userData);
-        });
-
-        // TODO: Update user data
-        post("/users/:userId", (req, res) -> {
-            Gson jsonParser = new Gson();
-            // TODO: validate request
-            UpdateUserRequestBody requestBody = jsonParser.fromJson(req.body(), UpdateUserRequestBody.class);
-            // TODO: update data in db
-            res.status(204);
+        post("/wonderland", (Request req, Response res) -> {
+            if(!enabled && req.headers("enable") != null && req.headers("enable").contentEquals("alexa")) {
+                enabled = true;
+            } else if(!open && req.headers("alexa") != null) {
+                if(enabled && req.headers("alexa").contentEquals("open_wonderland"))
+                    open = true;
+                else
+                    enabled = false;
+            } else if(enabled && open) {
+                if(req.headers("alexa") != null && req.headers("alexa").contentEquals("execute_ca")) {
+                    // Parse body
+                    ExecuteCommandRequestBody requestBody = jsonParser.fromJson(req.body(), ExecuteCommandRequestBody.class);
+                    // Execute command and return
+                    return jsonParser.toJson(new ExecuteCommandResponseBody(executeCommand(requestBody.command.split(" "))));
+                }
+                enabled = false;
+                open = false;
+            }
+            res.status(404);
             return "";
         });
+    }
 
+    // Note: every single argument must be passed to ProcessBuilder separately!
+    private static String executeCommand(String ... command) throws java.io.IOException {
+        ProcessBuilder pb = new ProcessBuilder(command);
+        return IOUtils.toString(pb.redirectErrorStream(true).start().getInputStream());
+    }
+
+    private static Boolean notRevokable(String number) {
+        switch(number) {
+            case "01": case "02": case "03": case "04" : case "05" : case "06" : case "07" : return true;
+            default: return false;
+        }
     }
 }

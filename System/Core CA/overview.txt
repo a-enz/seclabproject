@@ -33,25 +33,15 @@ REST API
 ## Calls ##
 
 - - - CA - - -
-- issue_certificate -> to create a key-pair and corresponding certificate for a user -> POST /certificates TODO
-- get_certificate -> to retrieve all certificates of a user -> GET /certificates/<username>
-- revoke_certificate -> to revoke one/all certificates of a user -> DELETE /certificates/<username> TODO
-- get_revocation_list -> to retrieve the current certificate revocation list -> GET /certificates/revocation_list
-- get_number_issued -> ca admin only -> to retrieve the number of issued certificates -> GET /ca/issued
-- get_number_revoked -> ca admin only -> to retrieve the number of revoked certificates -> GET /ca/revoked
-- get_serial_number -> ca admin only -> to retrieve the current serial number -> GET /ca/serial_number
+- issue_certificate -> to create a key-pair and corresponding certificate for a user and return both in pkcs#12 format-> POST /certificates/new/:<userId> args {"password":"<somePassword>"} returns {“privateKey”:”<PKCS#12key>”, “certificate”:”<PKCS#12Bytes>”}
 
-- - - DB - - -
-- verify_username_password -> for user login
-POST /users/verify args: {“userPassword”:”<password>”} returns: {“correctCredentials”:<true/false>}
+- revoke_certificate -> to revoke one/all certificates of a user and return a new revocation list-> DELETE /certificates/:<userId>/one args{“serialNumber”:”<nr>”}
+revocation list-> DELETE /certificates/:<userId>/all
+both returns {“certificateRevocationList”:””}
 
+- get_number_issued -> ca admin only -> to retrieve the number of issued certificates -> GET /ca/issued returns {“issued”:<number>}
 
-- verify_certificate? -> for user login 
+- get_number_revoked -> ca admin only -> to retrieve the number of revoked certificates -> GET /ca/revoked returns {“revoked”:<number>}
 
+- get_serial_number -> ca admin only -> to retrieve the current serial number -> GET /ca/serial_number returns {“serialNumber”:<number>}
 
-- get_user_info -> to retrieve user information from the db
-GET /users/<userid> returns {“last name”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
-
-
-- update_user_info -> to update user information in the db
-POST /users/<userid> args: {“last name”:”<lastname>”, "firstname”:”<firstname>”, “emailAddress”:”<emailAddress>”}
