@@ -127,6 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#Log users out when they close the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 # SSL AUTH settings
 AUTOCREATE_VALID_SSL_USERS = True
 USER_DATA_FN = 'info_display.helpers.get_data_from_cert'

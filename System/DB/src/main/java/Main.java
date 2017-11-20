@@ -26,7 +26,7 @@ public class Main {
         Boolean ssl = false;
         int listenPort = 8100;
         int dbPort = 3306;
-        String dbName = "testdb";
+        String dbName = "testDB";
         String dbUser = "root";
         String dbPassword = "";
 //        String dbName = "iMoviesDB";

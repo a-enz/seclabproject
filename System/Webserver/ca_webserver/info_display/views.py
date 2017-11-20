@@ -8,6 +8,7 @@ import subprocess
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
@@ -112,15 +113,13 @@ def display_user_info(request):
                         pass
                     else:
                         # Modify user data
-                        for field in ['lastname', 'firstname', 'emailAddress']:
-                            if form.cleaned_data[field] == user_data[field]:
-                                form.cleaned_data[field] = None
                         update_response = requests.post(("%s/users/%s" % (db_url, request.user.username)), data=json.dumps(form.cleaned_data))
                         if update_response.ok:
                             pass
                         else:
                             return HttpResponseRedirect('/info_display/welcome/')
-                    certificate_response = requests.get("%s/certificates/new/%s" % (ca_url, request.user.username))
+                    certificate_pw = {'password': form.cleaned_data['password']}
+                    certificate_response = requests.get("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw))
                     if certificate_response.ok:
                         cert_dict = certificate_response.json()
 
@@ -173,6 +172,10 @@ def all_logout(request):
     if request.user.is_authenticated:
         user_id = request.user.username
         logout(request)
+        #User has to re-confirm their certificate
+
+        #Forget which backend was used before
+        Session.objects.all().delete()
         return render(request, 'info_display/goodbye.html', {'info_msg': 'Logged %s out successfully' % user_id})
     else:
         return render(request, 'info_display/goodbye.html', {'info_msg': 'No user was logged in...'})
