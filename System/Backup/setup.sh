@@ -11,9 +11,9 @@ umask 0077
 ## FUNCTIONS ##
 ###############
 
-# start cronjob for a certain machine
+# start rsync cronjob for a certain machine
 # arguments: script name, backup directory, file list, ssh target, schedule, log, prefix
-function initiate_cronjob {
+function initialize_rsync_pull {
 echo "Initiating cronjob for $2, prefix $7, config from $3"
 # create backup script
 # don't indent this, otherwise EOF is not sent correctly:
@@ -75,6 +75,10 @@ FW_SCHEDULE_2="8 1 * * *"
 CA_SCHEDULE_2="13 1 * * *"
 DB_SCHEDULE_2="18 1 * * *"
 
+# Backup keep time in days (older entries are deleted)
+DEL_1=0
+DEL_2=60
+
 # backup frequencies prefix
 PREFIX_FAST="backup"
 PREFIX_SLOW="daily_backup"
@@ -84,6 +88,8 @@ WS_SH=$SCRIPTS_DIR/backup_ws.sh
 FW_SH=$SCRIPTS_DIR/backup_fw.sh
 CA_SH=$SCRIPTS_DIR/backup_ca.sh
 DB_SH=$SCRIPTS_DIR/backup_db.sh
+
+CLEAN_SH=$SCRIPTS_DIR/cleanup.sh
 
 # ssh target
 WS_ADR=root@192.168.51.14
@@ -216,28 +222,59 @@ chmod u+x $WS_SH $FW_SH $CA_SH $DB_SH
 touch $LOG tmpcron
 
 # initiate cronjobs
-initiate_cronjob $WS_SH $WS_DIR $WS_LIST_1 $WS_ADR "$WS_SCHEDULE_1" $LOG $PREFIX_FAST
+initialize_rsync_pull $WS_SH $WS_DIR $WS_LIST_1 $WS_ADR "$WS_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $FW_SH $FW_DIR $FW_LIST_1 $FW_ADR "$FW_SCHEDULE_1" $LOG $PREFIX_FAST
+initialize_rsync_pull $FW_SH $FW_DIR $FW_LIST_1 $FW_ADR "$FW_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $CA_SH $CA_DIR $CA_LIST_1 $CA_ADR "$CA_SCHEDULE_1" $LOG $PREFIX_FAST
+initialize_rsync_pull $CA_SH $CA_DIR $CA_LIST_1 $CA_ADR "$CA_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $DB_SH $DB_DIR $DB_LIST_1 $DB_ADR "$DB_SCHEDULE_1" $LOG $PREFIX_FAST
+initialize_rsync_pull $DB_SH $DB_DIR $DB_LIST_1 $DB_ADR "$DB_SCHEDULE_1" $LOG $PREFIX_FAST
 
 
-initiate_cronjob $WS_SH $WS_DIR $WS_LIST_2 $WS_ADR "$WS_SCHEDULE_2" $LOG $PREFIX_SLOW
+initialize_rsync_pull $WS_SH $WS_DIR $WS_LIST_2 $WS_ADR "$WS_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $FW_SH $FW_DIR $FW_LIST_2 $FW_ADR "$FW_SCHEDULE_2" $LOG $PREFIX_SLOW
+initialize_rsync_pull $FW_SH $FW_DIR $FW_LIST_2 $FW_ADR "$FW_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $CA_SH $CA_DIR $CA_LIST_2 $CA_ADR "$CA_SCHEDULE_2" $LOG $PREFIX_SLOW
+initialize_rsync_pull $CA_SH $CA_DIR $CA_LIST_2 $CA_ADR "$CA_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $DB_SH $DB_DIR $DB_LIST_2 $DB_ADR "$DB_SCHEDULE_2" $LOG $PREFIX_SLOW
+initialize_rsync_pull $DB_SH $DB_DIR $DB_LIST_2 $DB_ADR "$DB_SCHEDULE_2" $LOG $PREFIX_SLOW
+
+
+
+#####################
+## CLEANUP PROCESS ##
+#####################
+
+echo "creating cleanup cronjobs"
+
+cat << EOF > $CLEAN_SH
+echo "\n---------------------------"
+echo "[\`date +%d-%m-%y/%H:%M:%S\`] cleaning backups in \$1 older than \$2 days:"
+find \$1 -mindepth 1 -maxdepth 1 -type d -mtime \$2 | xargs rm -rfv
+EOF
+
+
+
+# echo "31 1 * * * bash $CLEAN_SH $WS_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+# echo "36 1 * * * bash $CLEAN_SH $FW_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+# echo "41 1 * * * bash $CLEAN_SH $CA_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+# echo "46 1 * * * bash $CLEAN_SH $DB_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+
+# echo "51 1 * * * bash $CLEAN_SH $WS_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+# echo "56 1 * * * bash $CLEAN_SH $FW_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+# echo "1 2 * * * bash $CLEAN_SH $CA_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+# echo "6 2 * * * bash $CLEAN_SH $DB_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+
+echo "3 * * * * bash $CLEAN_SH $WS_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "8 * * * * bash $CLEAN_SH $FW_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "13 * * * * bash $CLEAN_SH $CA_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "18 * * * * bash $CLEAN_SH $DB_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+
 
 
 # load rules into crontab
 crontab < tmpcron
 rm -f tmpcron
-
 
 
 ######################
