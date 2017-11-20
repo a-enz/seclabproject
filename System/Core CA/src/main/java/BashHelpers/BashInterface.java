@@ -31,6 +31,7 @@ public class BashInterface {
     private final String caDirectory = sslDirectory + "/CA";
     private final String crlDirectory = caDirectory + "/crl";
     private final String newcertsDirectory = caDirectory + "/newcerts";
+    private final String keysDirectory = caDirectory + "/keys";
     private final String tmpDirectory = baseDirectory + "/tmp";
     private final String logsDirectory = baseDirectory + "/logs";
     private final String indexFile = caDirectory + "/index.txt";
@@ -40,6 +41,8 @@ public class BashInterface {
 
     public BashInterface() {
         new File(crlDirectory).mkdirs();
+        new File(keysDirectory).mkdirs();
+        new File(tmpDirectory).mkdirs();
     }
 
     // Note: every single argument must be passed to ProcessBuilder separately!
@@ -60,7 +63,7 @@ public class BashInterface {
 
     // Currently using -batch option and set unique_subject to false to allow multiple certs for same entity
     // string_mask also set to utf8only
-    public byte[] generatePrivateKeyAndCertificatePKCS12(String userId) throws java.io.IOException, InterruptedException {
+    public byte[] generatePrivateKeyAndCertificatePKCS12(String userId, String userPwd) throws java.io.IOException, InterruptedException {
         String keyFileName = tmpDirectory + "/" + userId + ".key";
         String csrFileName = tmpDirectory + "/" + userId + ".csr";
         String pkcs12FileName = tmpDirectory + "/" + userId + ".p12";
@@ -68,28 +71,27 @@ public class BashInterface {
         // Generate new private key for user
         executeCommand("openssl", "genrsa", "-out", keyFileName, "2048", "-config", oslConfigFile);
 
-        // TODO: improve waiting
         TimeUnit.SECONDS.sleep(1);
 
         // Create certificate signing request
         executeCommand("openssl", "req", "-new", "-key", keyFileName, "-out", csrFileName, "-subj", subj(userId), "-config", oslConfigFile);
 
-        // TODO: improve waiting
         TimeUnit.SECONDS.sleep(1);
 
         // Sign certificate
         executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, "-subj", subj(userId), "-passin", "pass:" + caPassword);
 
         // Convert private key and certificate in PKCS#12
-        // TODO: remove password? return a random password? request it?
-        executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "iMovies", "-passout", "pass:12345");
+        executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "iMovies", "-passout", "pass:" + userPwd);
         TimeUnit.SECONDS.sleep(1);
 
         // Read PKCS#12 file
         byte[] pkcs12 = FileUtils.readFileToByteArray(new File(pkcs12FileName));
 
-        // Delete private key, signing request and PKCS#12 files
-        //executeCommand("rm", keyFileName);
+        // Move key to keys directory (for backup purposes)
+        executeCommand("mv", keyFileName, keysDirectory + "/" + getIssuedSize() + "-" + userId + ".key");
+
+        // Delete signing request and PKCS#12 files
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
 
@@ -120,7 +122,7 @@ public class BashInterface {
 
     public Integer getIssuedSize() throws IOException {
         String output = executeCommand("wc", "-l", indexFile);
-        return parseWcOutput(output);
+        return parseWcOutput(output) - 1; // index.txt has an empty line at the end
     }
 
     public Integer getRevokedSize() throws IOException {
@@ -132,7 +134,7 @@ public class BashInterface {
     }
 
     private Integer parseWcOutput(String wcOut) {
-        Pattern p = Pattern.compile("\\s*([0-9]+) .*\n");
+        Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
             return Integer.parseInt(m.group(1), 16);

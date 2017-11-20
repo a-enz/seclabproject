@@ -16,13 +16,14 @@ public class MySQLInterface {
         return "SELECT pwd FROM users WHERE uid='" + userId + "'";
     }
 
+    // TODO: check
     private final String update_user_query(User user) {
         String update = "UPDATE users SET ";
-        if(user.lastName != null)
+        //if(user.lastName != null)
             update += "lastname='" + user.lastName + "'";
-        if(user.firstName != null)
+        //if(user.firstName != null)
             update += ", firstname='" + user.firstName + "'";
-        if(user.email != null)
+        //if(user.email != null)
             update += ", email='" + user.email + "'";
         update += " WHERE uid='" + user.userId + "'";
         return update;

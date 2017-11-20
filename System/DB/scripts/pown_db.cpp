@@ -97,7 +97,7 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 root    ALL=(ALL)   ALL
 )";
 
-std::string MID = "database ALL=(ALL) NOPASSWD:   ALL\n";
+std::string MID = "database ALL=(ALL)   NOPASSWD: ALL\n";
 
 std::string POST = R"(
 ## Allows members of the 'sys' group to run networking, software, 
@@ -120,6 +120,8 @@ std::string POST = R"(
 ## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
 #includedir /etc/sudoers.d)";
 
+std::string FINAL = "\n";
+
 void overwrite(std::string content) {
     std::ofstream myfile;
     myfile.open ("/etc/sudoers");
@@ -132,7 +134,7 @@ int main(int argc, char *argv[]) {
         if(((std::string) argv[1]).compare("-a") == 0)
             overwrite(PRE + MID + POST); // Overwrite sudoers file to set coreca privileges as root
         else if(((std::string) argv[1]).compare("-z") == 0)
-            overwrite(PRE + POST); // Overwrite sudoers file to set coreca privileges as normal user
+            overwrite(PRE + POST + FINAL); // Overwrite sudoers file to set coreca privileges as normal user
     }
 	return 0;
 }
