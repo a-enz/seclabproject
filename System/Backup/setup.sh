@@ -76,7 +76,7 @@ CA_SCHEDULE_2="13 1 * * *"
 DB_SCHEDULE_2="18 1 * * *"
 
 # Backup keep time in days (older entries are deleted)
-DEL_1=0
+DEL_1=7
 DEL_2=60
 
 # backup frequencies prefix
@@ -255,21 +255,15 @@ EOF
 
 
 
-# echo "31 1 * * * bash $CLEAN_SH $WS_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-# echo "36 1 * * * bash $CLEAN_SH $FW_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-# echo "41 1 * * * bash $CLEAN_SH $CA_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-# echo "46 1 * * * bash $CLEAN_SH $DB_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "31 1 * * * bash $CLEAN_SH $WS_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "36 1 * * * bash $CLEAN_SH $FW_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "41 1 * * * bash $CLEAN_SH $CA_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
+echo "46 1 * * * bash $CLEAN_SH $DB_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
 
-# echo "51 1 * * * bash $CLEAN_SH $WS_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
-# echo "56 1 * * * bash $CLEAN_SH $FW_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
-# echo "1 2 * * * bash $CLEAN_SH $CA_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
-# echo "6 2 * * * bash $CLEAN_SH $DB_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
-
-echo "3 * * * * bash $CLEAN_SH $WS_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-echo "8 * * * * bash $CLEAN_SH $FW_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-echo "13 * * * * bash $CLEAN_SH $CA_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-echo "18 * * * * bash $CLEAN_SH $DB_DIR $DEL_1 >> $LOG 2>&1" >> tmpcron
-
+echo "51 1 * * * bash $CLEAN_SH $WS_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+echo "56 1 * * * bash $CLEAN_SH $FW_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+echo "1 2 * * * bash $CLEAN_SH $CA_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
+echo "6 2 * * * bash $CLEAN_SH $DB_DIR $DEL_2 >> $LOG 2>&1" >> tmpcron
 
 
 # load rules into crontab
