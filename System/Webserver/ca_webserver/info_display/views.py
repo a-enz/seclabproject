@@ -88,6 +88,8 @@ def display_user_info(request):
             data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)))
             if data_response.ok:
                 user_data = data_response.json()
+                #Set password field
+                user_data['password'] = 'Password'
                 #Create form instance from retrieved data
                 form = UpdateInfoForm(user_data)
                 #Check for validity
@@ -119,7 +121,7 @@ def display_user_info(request):
                         else:
                             return HttpResponseRedirect('/info_display/welcome/')
                     certificate_pw = {'password': form.cleaned_data['password']}
-                    certificate_response = requests.get("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw))
+                    certificate_response = requests.post("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw))
                     if certificate_response.ok:
                         cert_dict = certificate_response.json()
 
