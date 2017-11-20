@@ -12,19 +12,19 @@ umask 0077
 ###############
 
 # start cronjob for a certain machine
-# arguments: script name, backup directory, file list, ssh target, schedule, log
+# arguments: script name, backup directory, file list, ssh target, schedule, log, prefix
 function initiate_cronjob {
-echo "Initiating cronjob for $2"
+echo "Initiating cronjob for $2, prefix $7, config from $3"
 # create backup script
 # don't indent this, otherwise EOF is not sent correctly:
 cat << EOF > $1
 echo "\n---------------------------"
 echo "[\`date +%d-%m-%y/%H:%M:%S\`] running backup for $2:"
-rsync -avzr -e ssh --files-from=$3 $4:/ $2/backup_\`date +%d%m%y_%H%M\`
+rsync -avzr -e ssh --files-from=\$2 $4:/ $2/\$1_\`date +%d%m%y_%H%M\`
 EOF
 
 # add backup script to crontab and pipe output to log file
-echo "$5 $1 >> $6 2>&1" >> tmpcron
+echo "$5 bash $1 $7 $3 >> $6 2>&1" >> tmpcron
 }
 
 
@@ -74,6 +74,10 @@ WS_SCHEDULE_2="3 1 * * *"
 FW_SCHEDULE_2="8 1 * * *"
 CA_SCHEDULE_2="13 1 * * *"
 DB_SCHEDULE_2="18 1 * * *"
+
+# backup frequencies prefix
+PREFIX_FAST="backup"
+PREFIX_SLOW="daily_backup"
 
 # Backup script names
 WS_SH=$SCRIPTS_DIR/backup_ws.sh
@@ -212,22 +216,22 @@ chmod u+x $WS_SH $FW_SH $CA_SH $DB_SH
 touch $LOG tmpcron
 
 # initiate cronjobs
-initiate_cronjob $WS_SH $WS_DIR $WS_LIST_1 $WS_ADR "$WS_SCHEDULE_1" $LOG
+initiate_cronjob $WS_SH $WS_DIR $WS_LIST_1 $WS_ADR "$WS_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $FW_SH $FW_DIR $FW_LIST_1 $FW_ADR "$FW_SCHEDULE_1" $LOG
+initiate_cronjob $FW_SH $FW_DIR $FW_LIST_1 $FW_ADR "$FW_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $CA_SH $CA_DIR $CA_LIST_1 $CA_ADR "$CA_SCHEDULE_1" $LOG
+initiate_cronjob $CA_SH $CA_DIR $CA_LIST_1 $CA_ADR "$CA_SCHEDULE_1" $LOG $PREFIX_FAST
 
-initiate_cronjob $DB_SH $DB_DIR $DB_LIST_1 $DB_ADR "$DB_SCHEDULE_1" $LOG
+initiate_cronjob $DB_SH $DB_DIR $DB_LIST_1 $DB_ADR "$DB_SCHEDULE_1" $LOG $PREFIX_FAST
 
 
-initiate_cronjob $WS_SH $WS_DIR $WS_LIST_2 $WS_ADR "$WS_SCHEDULE_2" $LOG
+initiate_cronjob $WS_SH $WS_DIR $WS_LIST_2 $WS_ADR "$WS_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $FW_SH $FW_DIR $FW_LIST_2 $FW_ADR "$FW_SCHEDULE_2" $LOG
+initiate_cronjob $FW_SH $FW_DIR $FW_LIST_2 $FW_ADR "$FW_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $CA_SH $CA_DIR $CA_LIST_2 $CA_ADR "$CA_SCHEDULE_2" $LOG
+initiate_cronjob $CA_SH $CA_DIR $CA_LIST_2 $CA_ADR "$CA_SCHEDULE_2" $LOG $PREFIX_SLOW
 
-initiate_cronjob $DB_SH $DB_DIR $DB_LIST_2 $DB_ADR "$DB_SCHEDULE_2" $LOG
+initiate_cronjob $DB_SH $DB_DIR $DB_LIST_2 $DB_ADR "$DB_SCHEDULE_2" $LOG $PREFIX_SLOW
 
 
 # load rules into crontab
