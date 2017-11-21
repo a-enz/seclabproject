@@ -1119,3 +1119,227 @@ Certificate is to be certified until Nov 17 11:49:12 2018 GMT (365 days)
 
 Write out database with 1 new entries
 Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+......................................................................................................................+++
+..+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 10 (0xa)
+        Validity
+            Not Before: Nov 21 13:51:51 2017 GMT
+            Not After : Nov 21 13:51:51 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.50.31
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                14:01:F2:C7:90:90:07:2B:14:EB:E6:9D:C4:1B:29:4D:22:D8:BD:B1
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 13:51:51 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+...................+++
+................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 21 13:53:12 2017 GMT
+            Not After : Nov 21 13:53:12 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.50.31
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                F3:41:15:0C:BA:87:58:F7:4B:53:E1:F7:B9:27:12:98:8B:52:8D:D4
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 13:53:12 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+.......................+++
+........................................................................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 2 (0x2)
+        Validity
+            Not Before: Nov 21 13:53:20 2017 GMT
+            Not After : Nov 21 13:53:20 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.50.32
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                2E:FC:E9:EC:F1:8F:CE:9F:EF:1E:68:B1:68:29:FB:1C:3F:E9:9A:8E
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 13:53:20 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+.........+++
+.......................................................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 3 (0x3)
+        Validity
+            Not Before: Nov 21 13:53:27 2017 GMT
+            Not After : Nov 21 13:53:27 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.50.33
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                B5:5F:AE:77:6C:B8:0E:71:AF:9A:66:B1:21:67:CD:05:2E:54:0E:93
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 13:53:27 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+............................................................+++
+........+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 4 (0x4)
+        Validity
+            Not Before: Nov 21 13:53:57 2017 GMT
+            Not After : Nov 21 13:53:57 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.51.14
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                B1:52:43:5F:CC:AC:C5:91:16:CE:FA:99:9D:CA:B0:15:1D:04:89:69
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 13:53:57 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+..+++
+......................................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 5 (0x5)
+        Validity
+            Not Before: Nov 21 14:02:47 2017 GMT
+            Not After : Nov 21 14:02:47 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = 192.168.50.50
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                89:72:86:B3:D7:88:67:BC:95:2D:19:C4:3B:E8:2D:0B:45:24:82:C7
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 14:02:47 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
+Generating RSA private key, 2048 bit long modulus
+...+++
+........................+++
+e is 65537 (0x10001)
+Using configuration from ./ssl/openssl.cnf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 6 (0x6)
+        Validity
+            Not Before: Nov 21 14:03:03 2017 GMT
+            Not After : Nov 21 14:03:03 2018 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = Zurich
+            organizationName          = iMovies
+            organizationalUnitName    = Administration
+            commonName                = ca_admin
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                1C:17:9F:AD:04:25:9D:FB:A5:FE:AE:88:45:D9:C6:C9:82:23:09:70
+            X509v3 Authority Key Identifier: 
+                keyid:C0:2C:B3:C6:96:26:48:D2:12:34:D0:37:AF:84:16:12:5B:FE:91:D7
+
+Certificate is to be certified until Nov 21 14:03:03 2018 GMT (365 days)
+
+Write out database with 1 new entries
+Data Base Updated
