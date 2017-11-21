@@ -137,7 +137,16 @@ A short description of the components in Figure \ref{fig:system_arch}.
 
 \subsection{Backdoors}
 
-Describe the implemented backdoors. 
+\subsubsection{Easy Backdoor}
+We put the easy backdoor on the Backup machine. In certain intervals a port is opened for a short time that is directly bound to a shell. Once the attacker has access to the Backup machine he can ssh as root into all other machines from which backup data is pulled. This is possible because the backup process has root access over ssh to all machines that need to be backed up, since it needs to pull system logs readable only by root.
+
+We did this with netcat listening on port 9844 for 10 seconds:
+ncat -l 9844 -i 10 -v -e /bin/bash
+The interval scheduling is done with a few cronjobs in the crontab of user backup. To obscure those crontab entries, all their output to stdout and stderr is sent to /dev/null. Also the crontab calls a bash script instead of the netcat command, so that is looks a bit less suspicious. Finally that script is hidden with with a not so easy to find name ". ", which makes it more suspicous in the crontab entry but harder to find in general.
+The port opens in a pattern every few minutes. The pattern repeats every 10 minutes and during those opens at minute 0, 1, 3, 5, 6, 8.
+
+The connection is persistent if an attacker connects curing those 10 seconds when the port is open.
+
 
 \bigskip\noindent
 \textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
