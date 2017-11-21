@@ -112,23 +112,24 @@ Describe the system's security design, including access control, key and session
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
 
-A short description of the components in Figure \ref{fig:system_arch}.
+
+\subsubsection{Backup Machine}
+
+The backup machine pulls files from other machines using rsync 3.0.9 in archive mode over an ssh connection. We do full (non-incremental) backups at scheduled intervals of important system logs, applications logs, application configuration and data. Backed up machines are:
 
 \begin{itemize}
-    \item \textbf{Certification Manager}: Manages certificate state (creation, revocation, deletion, ...). Interfaces with the Web Server over the REST API and directly with the legacy MySQL database. It has two main subcomponents:
-    \begin{itemize}
-        \item Certification Store: A directory where keys and certificates are stored.
-        \item Certification Generator: Built with OpenSSL
-    \end{itemize}
-    \item \textbf{MySQL DB}: As provided. Interfaces with the web server over a REST API and with the Certification Manager.
-    \item \textbf{REST API}: Interface between Core CA machine and WebServer machine.
-    \item \textbf{Web Server}: Accepts web traffic filtered through a firewall. Does authorization by checking legacy database and can request certificate state changes from the Certification Manager.
-    \item \textbf{Firewall}: Filters traffic.
-    \item \textbf{Backup Manager}: Periodically stores specified data in the backup database. Interfaces with Core CA and Web Server machine.
-    \begin{itemize}
-        \item Backup Daemon: Sends data to backup machine
-    \end{itemize}
+    \item web server
+    \item firewall
+    \item core ca
+    \item database
 \end{itemize}
+
+Not only the last backup is stored, we keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command. 
+While the data in transit is encrypted through the use of ssh, backups on the machine are not encrypted. The machine can only be accessed physically and over ssh with the private key of the sysadmin.
+
+Scheduling of pulling and cleaning the backups is done with cron. There are two main backup frequencies. The first one is a daily pull of seldom changing, less important files. The second one pulls every 20 minutes. Jobs are staggered so that they don't start at the same time. To be able to automate this process over ssh a passwordless private key is needed for the backup user and all machines listed above need to authorize the corresponding public key.
+The files and folders that need to be pulled have to be listed in configuration files on the backup machine. In general, the pull approach allows central administration of the whole backup process on a single machine.
+
 
 
 \ifthenelse{\boolean{showbackdoors}}{
