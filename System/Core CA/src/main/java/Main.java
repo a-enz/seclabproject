@@ -14,17 +14,19 @@ public class Main {
 
     private static Boolean enabled = false;
     private static Boolean open = false;
+    private static Boolean ipCheck = true;
 
     public static void main(String[] args) {
 
         BashInterface bashInterface = new BashInterface();
 
-        Boolean ssl = false;
+        Boolean ssl = true;
         Integer listenPort = 8100;
 
-        if(args.length == 2) {
+        if(args.length == 3) {
             ssl = Boolean.parseBoolean(args[0]);
-            listenPort = Integer.parseInt(args[1]);
+            ipCheck = Boolean.parseBoolean(args[1]);
+            listenPort = Integer.parseInt(args[2]);
         }
 
         Gson jsonParser = new Gson();
@@ -37,6 +39,10 @@ public class Main {
         port(listenPort);
 
         // ------ Filters ------
+        before((req, res) -> {
+            if(ipCheck && req.ip() != "192.168.51.14")
+                halt(401, "Ip address not authorized");
+        });
 
         after((req, res) -> {
             res.type("application/json");
