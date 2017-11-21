@@ -7,15 +7,15 @@ EOF
 
 ## INSTALL CRON
 # create cronjob to activate the script in certain intervals:
-# repeats every 20 minutes, during those 20min the pattern is:
-# at minute: 0, 5, 8, 11, 17, 19
+# repeats every 10 minutes, during those 10min the pattern is:
+# at minute: 0, 1, 3, 5, 6, 8
 
-echo "*/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
-echo "5-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
-echo "8-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
-echo "11-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
-echo "17-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
-echo "19-59/20 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "*/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "1-59/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "3-59/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "5-59/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "6-59/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
+echo "8-59/10 * * * * bash '$SCRIPT' > /dev/null 2>&1" >> tmpcron
 
 
 # Check if cronjob already installed
