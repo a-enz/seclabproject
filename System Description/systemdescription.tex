@@ -99,8 +99,32 @@ backup service, with backup daemons connecting to the other two machines.
 
 \subsection{System Functionality}
 
-\subsubsection{Functional Requirements}
-test
+
+\subsubsection{Certificate Issuing Process}
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
+\subsubsection{Certificate Revocation Process}
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
+\subsubsection{CA Administration Interface}
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
+\subsubsection{Key Backup}
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
+\subsubsection{System Administration and Maintenance}
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
 \subsection{Security Design}
 
 Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
@@ -111,8 +135,33 @@ Describe the system's security design, including access control, key and session
 %%% List all system components and their interfaces, subdivided, for example, into
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
-\subsubsection{Core CA}
-TODO
+\subsubsection{Core Certificate Authority (CA)}
+The Core CA machine runs in the iMovies internal network at IP address 192.168.50.31 and exposes a JavaSpark REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
+The JavaSpark application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in Json format.\\
+The following table shows the available REST calls.
+\\
+\begin{tabular} {| c | l | l | l | l |}
+\hline
+\textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
+\hline
+1 & POST /certificates/new/:userId & password & pkcs12\\
+\hline
+2 & DELETE /certificates/:userId/one & serialNumber & certificateRevocationList\\
+\hline
+3 & DELETE /certificates/:userId/all & - & certificateRevocationList\\
+\hline
+4 & GET /ca/issued & - & issued\\
+\hline
+5 & GET /ca/revoked & - & revoked\\
+\hline
+6 & GET /ca/serial\_number & - & serialNumber\\
+\hline
+\end{tabular}
+\\
+\textbf{Description}:
+\begin{enumerate}
+\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS#12 file that can be opened with \emph{password}, whose bytes are then returned in \emph{pkcs12}.
+\end{enumerate}
 
 \subsubsection{Database}
 TODO
