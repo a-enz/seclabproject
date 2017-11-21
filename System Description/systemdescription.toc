@@ -1,27 +1,27 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}System Characterization}{2}
-\contentsline {subsection}{\numberline {1.1}System Overview}{2}
-\contentsline {subsection}{\numberline {1.2}System Functionality}{2}
-\contentsline {subsubsection}{\numberline {1.2.1}Certificate Issuing Process}{2}
-\contentsline {subsubsection}{\numberline {1.2.2}Certificate Revocation Process}{2}
-\contentsline {subsubsection}{\numberline {1.2.3}CA Administration Interface}{3}
-\contentsline {subsubsection}{\numberline {1.2.4}Key Backup}{3}
-\contentsline {subsubsection}{\numberline {1.2.5}System Administration and Maintenance}{3}
-\contentsline {subsection}{\numberline {1.3}Security Design}{3}
-\contentsline {subsection}{\numberline {1.4}Components}{4}
-\contentsline {subsubsection}{\numberline {1.4.1}Core Certificate Authority (CA)}{4}
-\contentsline {subsubsection}{\numberline {1.4.2}Database}{4}
-\contentsline {subsection}{\numberline {1.5}Backdoors}{5}
-\contentsline {subsubsection}{\numberline {1.5.1}Easy Backdoor}{5}
-\contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{5}
-\contentsline {subsection}{\numberline {1.6}Additional Material}{5}
-\contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{6}
-\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{6}
-\contentsline {subsection}{\numberline {2.1}Assets}{6}
-\contentsline {subsection}{\numberline {2.2}Threat Sources}{7}
-\contentsline {subsection}{\numberline {2.3}Risks Definitions}{8}
-\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{9}
-\contentsline {subsubsection}{\numberline {2.4.1}{\it Evaluation Web Server}}{9}
-\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Core CA}}{10}
-\contentsline {subsubsection}{\numberline {2.4.3}{\it Evaluation Backup}}{10}
-\contentsline {subsubsection}{\numberline {2.4.4}{\it Evaluation System Administrator}}{10}
+\contentsline {section}{\numberline {1}System Characterization}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}System Overview}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}System Functionality}{2}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Certificate Issuing Process}{2}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Certificate Revocation Process}{2}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}CA Administration Interface}{3}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Key Backup}{3}{subsubsection.1.2.4}
+\contentsline {subsubsection}{\numberline {1.2.5}System Administration and Maintenance}{3}{subsubsection.1.2.5}
+\contentsline {subsection}{\numberline {1.3}Security Design}{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Components}{4}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Core Certificate Authority (CA)}{4}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Database}{5}{subsubsection.1.4.2}
+\contentsline {subsection}{\numberline {1.5}Backdoors}{5}{subsection.1.5}
+\contentsline {subsubsection}{\numberline {1.5.1}Easy Backdoor}{5}{subsubsection.1.5.1}
+\contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{5}{subsubsection.1.5.2}
+\contentsline {subsection}{\numberline {1.6}Additional Material}{6}{subsection.1.6}
+\contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{6}{subsubsection.1.6.1}
+\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Assets}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Threat Sources}{8}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Risks Definitions}{9}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{9}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}{\it Evaluation Web Server}}{10}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Core CA}}{10}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}{\it Evaluation Backup}}{10}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}{\it Evaluation System Administrator}}{10}{subsubsection.2.4.4}

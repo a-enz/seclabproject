@@ -10,6 +10,7 @@
 \usepackage{color}
 \usepackage{framed}
 \usepackage{array}
+\usepackage{hyperref}
 
 \usepackage{xifthen}
 \newboolean{showbackdoors}
@@ -24,6 +25,8 @@
 \title{\huge\sffamily\bfseries System Description and Risk Analysis}
 \author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
 \date{\today}
+
+\hypersetup{linktocpage}
 
 
 \begin{document}
@@ -101,29 +104,32 @@ backup service, with backup daemons connecting to the other two machines.
 
 
 \subsubsection{Certificate Issuing Process}
-\begin{enumerate}
+\begin{itemize}
 \item TODO
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{Certificate Revocation Process}
-\begin{enumerate}
+\begin{itemize}
 \item TODO
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{CA Administration Interface}
-\begin{enumerate}
-\item TODO
-\end{enumerate}
+Allows CA admins to see:
+\begin{itemize}
+\item Number of issued certificates
+\item Number of revoked certificates
+\item Current serial number
+\end{itemize}
 
 \subsubsection{Key Backup}
-\begin{enumerate}
+\begin{itemize}
 \item TODO
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{System Administration and Maintenance}
-\begin{enumerate}
+\begin{itemize}
 \item TODO
-\end{enumerate}
+\end{itemize}
 
 \subsection{Security Design}
 
@@ -160,7 +166,12 @@ The following table shows the available REST calls.
 \\
 \textbf{Description}:
 \begin{enumerate}
-\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS#12 file that can be opened with \emph{password}, whose bytes are then returned in \emph{pkcs12}.
+\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12}\\
+\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}\\
+\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}\\
+\item Returns the number of issued certificates in \emph{issued}\\
+\item Returns the number of revoked certificates in \emph{revoked}\\
+\item Returns the current serial number in \emph{serialNumber}\\
 \end{enumerate}
 
 \subsubsection{Database}
@@ -398,8 +409,6 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 \hline
 \end{tabular}
 \end{center}
-
-
 
 \subsection{Risk Evaluation}
 
