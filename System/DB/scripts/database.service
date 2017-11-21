@@ -6,7 +6,7 @@ After=network-online.target
 Type=forking
 User=database
 WorkingDirectory=/home/database
-ExecStart=/usr/bin/screen -d -m /usr/bin/java -jar /home/database/db.jar false 8100
+ExecStart=/usr/bin/screen -d -m /usr/bin/java -jar /home/database/db.jar
 
 [Install]
 WantedBy=multi-user.target
