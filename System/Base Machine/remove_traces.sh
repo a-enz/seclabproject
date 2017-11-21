@@ -47,3 +47,9 @@ if [ "$ANS" == "yes" ]; then
   history -c
   history -w
 fi
+
+
+# Set secure passwords for all users (root, iadmin, coreca)
+passwd iadmin
+passwd root
+echo "SET PASSWORD FOR UNPRIVILEGED USER (database, coreca or webserver)"

