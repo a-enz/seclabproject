@@ -78,14 +78,13 @@ voice: who (threat source) does what (threat action)?
 %%% overview of the system, e.g., suitable for managers, that complements
 %%% the more technical description that follows.
 
-The aim of this system is to provide the customer company with an in-house certificate authority (CA). This CA provides
-employees with digital certificates on demand, which are used to secure email communication. 
-The System consists of three machines in a company network and external client machines that connect over the Internet. 
-Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. This means
-that the main signing key and certificate revocation list (CLR) are stored and maintained on Machine 1. %How is main key stored? Where is CLR published? 
-Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the 
-Internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the 
-backup service, with backup daemons connecting to the other two machines. 
+
+iMovies is a company producing independent movies with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure. 
+The system described in this report implements a certificate authority (CA), that allows employees to download digital certificates created by iMovies. Those can then be used to secure their mail correspondence. 
+
+The CA System is reachable from the internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks. The company networks are further divided into the DMZ and the internal network. The DMZ contains only the web server that hosts the CA web application. In the internal network we have a server creating and managing certificates (for short: core\_ca), a dedicated database server and a backup machine. See Fig. (?? REF OVERVIEW). 
+
+Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server. All traffic on the network is encrypted.
 
 
 
