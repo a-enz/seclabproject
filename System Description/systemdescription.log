@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  21 NOV 2017 09:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  21 NOV 2017 10:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -277,233 +277,230 @@ e 93.
 (pdftex.def)             Requested size: 345.0pt x 248.7348pt.
  [2]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
 
-Overfull \hbox (0.44382pt too wide) in paragraph at lines 121--122
+Overfull \hbox (0.44382pt too wide) in paragraph at lines 126--127
 []\OT1/cmr/m/n/10 Certification Store: A di-rec-tory where keys and cer-tifi-ca
 tes are stored. 
  []
 
-
-Overfull \hbox (14.06943pt too wide) in paragraph at lines 128--129
+[3 <./res/system_arch-eps-converted-to.pdf>]
+Overfull \hbox (14.06943pt too wide) in paragraph at lines 133--134
 []\OT1/cmr/bx/n/10 Backup Man-ager\OT1/cmr/m/n/10 : Pe-ri-od-i-cally stores spe
 c-i-fied data in the backup database.
  []
 
-[3 <./res/system_arch-eps-converted-to.pdf>]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 149.
- [4] [5]
-Overfull \hbox (16.41739pt too wide) in paragraph at lines 223--224
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 168.
+[4] [5] [6]
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 242--243
 []\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
 poor/non-existing/non-
  []
 
 
-Overfull \hbox (1.89563pt too wide) in paragraph at lines 235--264
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 254--283
  [] 
  []
 
-[6]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 303--303
+[7]
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 303--303
+Underfull \hbox (badness 5533) in paragraph at lines 322--322
 []|\OT1/cmr/m/n/8 Expert Hack-ers: mount
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 303--303
+Underfull \hbox (badness 3724) in paragraph at lines 322--322
 \OT1/cmr/m/n/8 MitM at-tack to spy on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--303
+Underfull \hbox (badness 10000) in paragraph at lines 322--322
 []|\OT1/cmr/m/n/8 HTTPs con-nec-tion with
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 303--303
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 303--303
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 303--303
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 303--303
+Underfull \hbox (badness 3039) in paragraph at lines 322--322
 \OT1/cmr/m/n/8 Kid-dies to launch DDoS
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 303--303
+Underfull \hbox (badness 1122) in paragraph at lines 322--322
 \OT1/cmr/m/n/8 at-tack on Web-Server and
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 303--303
+Underfull \hbox (badness 2245) in paragraph at lines 322--322
 \OT1/cmr/m/n/8 SYN cook-ies against syn
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 303--303
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 303--303
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 303--303
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 322--322
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 303--303
+Underfull \hbox (badness 10000) in alignment at lines 322--322
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--305
+Underfull \hbox (badness 10000) in paragraph at lines 315--324
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 314--314
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 333--333
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 314--314
+Underfull \hbox (badness 1215) in paragraph at lines 333--333
 []|\OT1/cmr/m/n/8 Hardware Fail-ures: cause
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 314--314
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 333--333
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 314--314
+Underfull \hbox (badness 10000) in alignment at lines 333--333
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--316
+Underfull \hbox (badness 10000) in paragraph at lines 328--335
 
  []
 
-[7]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 325--325
+
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 344--344
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 325--325
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 344--344
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 325--325
+Underfull \hbox (badness 10000) in alignment at lines 344--344
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 320--327
+Underfull \hbox (badness 10000) in paragraph at lines 339--346
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 338--338
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 338--338
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 338--338
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 338--338
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 338--338
+Underfull \hbox (badness 1354) in paragraph at lines 357--357
 []|\OT1/cmr/m/n/8 Good Doc-u-men-ta-tion and
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 338--338
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 338--338
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 338--338
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 357--357
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 338--338
+Underfull \hbox (badness 10000) in alignment at lines 357--357
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 350--359
 
  []
 
+[8]
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¿ in font cmr10!
 Missing character: There is no ½ in font cmr10!
-[8] (./systemdescription.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+ [9] (./systemdescription.aux) ) 
 Here is how much of TeX's memory you used:
  2514 strings out of 492995
  35267 string characters out of 6132704
- 108960 words of memory out of 5000000
+ 111964 words of memory out of 5000000
  6013 multiletter control sequences out of 15000+600000
  9660 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,9n,25p,412b,243s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on systemdescription.pdf (8 pages, 162818 bytes).
+ 39i,9n,25p,747b,244s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmssbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb>
+Output written on systemdescription.pdf (9 pages, 165478 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

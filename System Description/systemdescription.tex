@@ -112,6 +112,11 @@ Describe the system's security design, including access control, key and session
 %%% List all system components and their interfaces, subdivided, for example, into
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
+\subsubsection{Core CA}
+TODO
+
+\subsubsection{Database}
+TODO
 
 A short description of the components in Figure \ref{fig:system_arch}.
 
@@ -135,9 +140,23 @@ A short description of the components in Figure \ref{fig:system_arch}.
 \ifthenelse{\boolean{showbackdoors}}{
 % show for handed-in version
 
+Describe the implemented backdoors. 
+
 \subsection{Backdoors}
 
-Describe the implemented backdoors. 
+\subsubsection{Easy Backdoor}
+TODO: Andi
+
+\subsubsection{Hard Backdoor}
+The hard backdoor is a two-stage process that allows any attacker to execute bash commands with root privileges on the Webserver, Core CA and Database machines. The first phase consists in a hidden webpage on the webserver and a hidden REST call on Core CA/Database that, when a given state is reached, allows the execution of any command given by the attacker. Since these commands will be executed with the rights of the unprivileged user running the processes, the second phase consists in using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and receive its output. \\
+Here a more detailed explanation of the two phases:
+\begin{itemize}
+\item \textbf{Phase 1}: TODO
+\item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has setuid bit set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many files wit setuid bit set, the file is placed in a legitimate and pre-existent operating system's directory, is given a misleading name and has creation date set before semester begin to make more difficult its discovery.
+\end{itemize}
+
+
+
 
 \bigskip\noindent
 \textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
