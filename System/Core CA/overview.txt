@@ -33,7 +33,7 @@ REST API
 ## Calls ##
 
 - - - CA - - -
-- issue_certificate -> to create a key-pair and corresponding certificate for a user and return both in pkcs#12 format-> POST /certificates/new/:<userId> args {"password":"<somePassword>"} returns {“privateKey”:”<PKCS#12key>”, “certificate”:”<PKCS#12Bytes>”}
+- issue_certificate -> to create a key-pair and corresponding certificate for a user and return both in pkcs#12 format-> POST /certificates/new/:<userId> args {"password":"<somePassword>"} returns {“pkcs12”:”<PKCS#12>”}
 
 - revoke_certificate -> to revoke one/all certificates of a user and return a new revocation list-> DELETE /certificates/:<userId>/one args{“serialNumber”:”<nr>”}
 revocation list-> DELETE /certificates/:<userId>/all
