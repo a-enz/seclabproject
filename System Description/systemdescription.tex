@@ -132,6 +132,88 @@ The files and folders that need to be pulled have to be listed in configuration 
 
 
 
+
+\subsubsection{Network Firewall Machine}
+- pfsense shell interface
+- webinterface for pfsense
+- interfaces: inet, dmz, internal, webinterface
+
+This machine separates the iMovies company networks from the internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and ssh connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an ssh tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy) 
+
+As seen in Fig. (?? REF OVERVIEW) the Firewall has three network interfaces connecting to the internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules we set up do explicitly allow certain traffic, because the pfSense default is to reject everything. 
+
+We use static IPs on all machines and network interfaces (see Figure ??? REF TOPO). For the sake of readability we will use the following names for the IP addresses:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{IP} & \textbf{Description} \\ \hline
+WAN & 192.168.70.10 & Firewall interface connecting to the internet \\ \hline
+DMZ & 192.168.51.51 & Firewall interface connecting to the DMZ \\ \hline
+INTERN & 192.168.50.50 & Firewall interface connecting to the internal network \\ \hline
+WS & 192.168.51.14 & Web server \\ \hline
+DB & 192.168.50.33 & Database server \\ \hline
+BK & 192.168.50.32 & Backup machine \\ \hline
+CA & 192.168.50.31 & Core CA server \\ \hline
+
+\end{tabular}
+\caption{Names of IPs used in further explanations. See Figure ??? REF OVERVIEW for a graphical representation}
+\label{fw_ip_names}
+\end{table}
+
+
+\textbf{WAN port routing table}
+
+The only IP exposed to the internet is that of the WAN interface. This means traffic has to be routed to the correct machine using NAT. The only traffic from the internet we we want to allow is https traffic to the web server and ssh traffic to every machine for remote administration. Table \ref{fw_inet_nat} shows the routing rules for TCP traffic depending on destination port.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+\textbf{Dest. Port} & \textbf{NAT IP} & \textbf{NAT Port} \\ \hline
+443 & WS & 8100 \\ \hline
+5050 & INTERN & 22 \\ \hline
+5031 & CA & 22 \\ \hline
+5032 & BK & 22 \\ \hline
+5033 & DB & 22 \\ \hline
+5114 & WS & 22 \\ \hline
+
+\end{tabular}
+\caption{NAT port routing at the WAN interface}
+\label{fw_inet_nat}
+\end{table}
+
+
+pfSense automatically creates firewall rules to allow NATed traffic. The only rule we add is to allow ICMP traffic to the WAN interface from any host, so that the ping command can be used to check if the WAN interface is reachable.
+
+
+
+\textbf{DMZ firewall rules}
+
+Only connections from the web server to the https ports of database and core\_ca are allowed. Also enabling ICMP to be able to ping any host on the company network.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Protocol} & \textbf{Src. IP} & \textbf{Dest. IP} & \textbf{Dest. Port} & \textbf{Action} \\ \hline
+TCP & WS & DB & 8100 & Pass\\ \hline
+TCP & WS & CA & 8100 & Pass \\ \hline
+ICMP & * & * & * & Pass \\ \hline
+
+\end{tabular}
+\caption{Firewall rules at the DMZ interface}
+\label{fw_dmz}
+\end{table}
+
+
+
+\textbf{INTERN firewall rules}
+
+
+
+
 \ifthenelse{\boolean{showbackdoors}}{
 % show for handed-in version
 
