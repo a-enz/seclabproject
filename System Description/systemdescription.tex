@@ -384,10 +384,15 @@ ICMP & * & * & * & Pass \\ \hline
 This interface allows all outgoing IPv4 traffic. Also there is a special Lockout prevention rule in place making sure the pfSense web interface is always reachable from the internal network.
 
 \subsubsection{Web Server}
-The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS requests coming from the Internet as well as the HTTP responses coming from 
+The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS traffic from and to the Internet as well as the HTTPS traffic from and to 
 the database (DB) and core certificate authority (CA) machines in the iMovies internal network. User authentication is executed in collaboration with DB in the case of username/password authentication
-and CA in the case of client certificate based authentication. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
-on the web framework Django 1.11.6. The machine runs CentOS 7 and the aforementioned uWSGI and Django applications run in a Python 3.6.3 virtual environment.  
+and CA in the case of client certificate based authentication. The web server acts as interface for clients to access the certificate authority functionality and allows them to make changes to first name, last name
+and email address entries in the database. The web server logs all relevant user activity such as authentication, certificate generation and revocation. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
+on the web framework Django 1.11.6. The machine runs CentOS 7 and the aforementioned uWSGI and Django applications run in a Python 3.6.3 virtual environment. The firewall restricts access to the web server to ports 22 and 8100. 
+Additionally, the web server itself restricts all access to ports 22, for system administrator remote maintenance and backup services, and 8100, on which the web server accepts HTTPS requests. HTTP requests are flat out rejected. 
+The system has dedicated account for remote administration and running the uWSGI/Django applications, where the former is a sudoer and the latter is not. Since the web server machine is located in a locked room, only the system 
+administrator, who keeps the key, has physical access to it. The machine is maintained by the system administrator on a daily basis, which includes updating the installed software and checking the logs. The backup process stores the logs
+every 20 minutes and the uWSGI/Django code and configuration files daily.
 
 
 \ifthenelse{\boolean{showbackdoors}}{
