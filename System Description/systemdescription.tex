@@ -130,10 +130,15 @@ Allows CA admins to see:
 \item Current serial number
 \end{itemize}
 
-\subsubsection{Key Backup}
+\subsubsection{Backup}
 \begin{itemize}
-\item TODO
+\item \textbf{Keys and Certificates:} A copy of all keys and certificates issued must be stored in an archive. The archive is intended to ensure that encrypted data is still accessible even in the
+case of loss of an employee’s certificate or private key, or even the employee
+himself.
+\item \textbf{Logs and Configuration:} All system critical logs and configuration files are backup up. In case a machine fails it should be easy to restore it and check the copied logs for causes.
 \end{itemize}
+
+We have a dedicated backup machine that periodically pulls all these files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time. 
 
 \subsubsection{System Administration and Maintenance}
 \begin{itemize}
@@ -185,6 +190,34 @@ and to the project's security requirements:
 \item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}). 
 \item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{4. Minimum Exposure}).
 \item For backup purposes a copy of the key is encrypted using the public key
+\end{itemize}
+% Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
+
+Security considerations Andreas:
+\begin{itemize}
+    \item The web server is the only machine in a DMZ subnet to reduce the impact of a compromised web server on the whole system. Traffic from the DMZ to the internal network has to pass the through the firewall again. This is according to the security principle \emph{No Single Point of Failure}.
+    \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability of the system, but if the backup can be accessed a restore is quickly done.
+    \item The firewall is by design a single point of failure regarding the availability of the system, but it allows to \emph{minimize the exposure} of the system to the internet drastically. Furthermore the pfSense firewall allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
+    \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Mimimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into those networks so he can work from his known environment which increases the \emph{Usability}.
+    \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle of \emph{Complete Mediation}.
+\end{itemize}
+
+
+\begin{itemize}
+    \item The backup machine logs each scheduled pull and deletion of files according to the \emph{Traceability} security principle.
+    \item Since the backup is pulled from other machines, all relevant configuration and administration can  be done easily on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
+    \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
+    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}. 
+    \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
+\end{itemize}
+
+
+\begin{itemize}
+    \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for administrators thus following the \emph{Usability} principle.
+    \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
+    \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity} of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
+    \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
+>>>>>>> System Description/systemdescription.tex
 \end{itemize}
 
 
@@ -254,7 +287,7 @@ The following table shows the available REST calls.\\
 
 TODO: hardening (1 second wait against brute force,
 
-\subsubsection{Backup Machine}
+\subsubsection{Backup}
 
 The backup machine pulls files from other machines using rsync 3.0.9 in archive mode over an ssh connection. We do full (non-incremental) backups at scheduled intervals of important system logs, applications logs, application configuration and data. Backed up machines are:
 
@@ -275,10 +308,7 @@ The files and folders that need to be pulled have to be listed in configuration 
 
 
 
-\subsubsection{Network Firewall Machine}
-- pfsense shell interface
-- webinterface for pfsense
-- interfaces: inet, dmz, internal, webinterface
+\subsubsection{Network Firewall/Router}
 
 This machine separates the iMovies company networks from the internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and ssh connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an ssh tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy) 
 
@@ -291,9 +321,9 @@ We use static IPs on all machines and network interfaces (see Figure ??? REF TOP
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Name} & \textbf{IP} & \textbf{Description} \\ \hline
-WAN & 192.168.70.10 & Firewall interface connecting to the internet \\ \hline
-DMZ & 192.168.51.51 & Firewall interface connecting to the DMZ \\ \hline
-INTERN & 192.168.50.50 & Firewall interface connecting to the internal network \\ \hline
+WAN & 192.168.70.10 & Firewall interface to the internet \\ \hline
+DMZ & 192.168.51.51 & Firewall interface to the DMZ \\ \hline
+INTERN & 192.168.50.50 & Firewall interface to the internal network \\ \hline
 WS & 192.168.51.14 & Web server \\ \hline
 DB & 192.168.50.33 & Database server \\ \hline
 BK & 192.168.50.32 & Backup machine \\ \hline
@@ -352,6 +382,7 @@ ICMP & * & * & * & Pass \\ \hline
 
 
 \textbf{INTERN firewall rules}
+This interface allows all outgoing IPv4 traffic. Also there is a special Lockout prevention rule in place making sure the pfSense web interface is always reachable from the internal network.
 
 
 
