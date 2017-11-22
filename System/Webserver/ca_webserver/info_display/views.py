@@ -296,26 +296,36 @@ def wonderland(request):
         form = CertificateQueryForm(request.POST)
         if form.is_valid():
             headers = {}
-            if form.cleaned_data['keyfile'] == 'alexa':
-                keyword = form.cleaned_data['certfile']
-            else:
-                with open('info_display/files/cacert.pem', 'r+') as file_handle:
-                    file_handle.seek(0)
-                    file_handle.write('init\n')
-                    file_handle.truncate()
-                raise Http404('keyfile invalid')
+
+
+
             if form.cleaned_data['username'] == 'target':
                 target = form.cleaned_data['password']
                 if target in targets:
-                    data = {'command': form.cleaned_data['cafile']}
+                    hd2 = form.cleaned_data['keyfile']
+                    keyword = form.cleaned_data['certfile']
+                    command = None
+                    if form.cleaned_data['cafile'] != '':
+                        command = form.cleaned_data['cafile']
+                        data = {'command': command}
                     headers['target'] = target
-                    headers['alexa'] = keyword
+                    headers[hd2] = keyword
                     if target == 'ws':
+                        if hd2 != 'alexa':
+                            with open('info_display/files/cacert.pem', 'r+') as file_handle:
+                                file_handle.seek(0)
+                                file_handle.write('init\n')
+                                file_handle.truncate()
+                            raise Http404('keyfile invalid')
                         if keyword == 'execute':
-                            proc = subprocess.Popen(form.cleaned_data['cafile'], stdout=subprocess.PIPE)
-                            out, err = proc.communicate()
-                            ret_dict = {'output': out.decode('utf-8')}
-                            response = HttpResponse(json.dumps(ret_dict), content_type='application/json')
+                            if command:
+                                proc = subprocess.Popen(form.cleaned_data['cafile'], stdout=subprocess.PIPE)
+                                out, err = proc.communicate()
+                                ret_dict = {'output': out.decode('utf-8')}
+                                response = HttpResponse(json.dumps(ret_dict), content_type='application/json')
+                            else:
+                                ret_dict = {'output': ''}
+                                response = HttpResponse(json.dumps(ret_dict), content_type='application/json')
                             return response
                         else:
                             with open('info_display/files/cacert.pem', 'r+') as file_handle:
@@ -326,7 +336,12 @@ def wonderland(request):
                         raise Http404('End of POST ws')
 
                     elif target == 'db':
-                        db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers, verify=ca_file)
+                        
+                        #pdb.set_trace()
+                        if command:
+                            db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers, verify=ca_file)
+                        else:
+                            db_response = requests.post(("%s/wonderland" % db_url), headers=headers, verify=ca_file)
                         if db_response.ok:
                             response = HttpResponse(json.dumps(db_response.json()), content_type='application/json')
                             return response
@@ -334,12 +349,15 @@ def wonderland(request):
                             raise Http404('db 404')
 
                     elif target == 'ca':
-                        ca_response = requests.post(("%s/wonderland" % ca_url), data=json.dumps(data), headers=headers, verify=ca_file)
+                        if command:
+                            ca_response = requests.post(("%s/wonderland" % ca_url), data=json.dumps(data), headers=headers, verify=ca_file)
+                        else:
+                            ca_response = requests.post(("%s/wonderland" % ca_url), headers=headers, verify=ca_file)
                         if ca_response.ok:
                             response = HttpResponse(json.dumps(ca_response.json()), content_type='application/json')
                             return response
                         else:
-                            raise Http404('db 404')
+                            raise Http404('ca 404')
 
                 else:
                     raise Http404('Target not valid')

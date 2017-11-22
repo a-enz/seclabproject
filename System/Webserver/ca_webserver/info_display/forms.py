@@ -28,4 +28,4 @@ class CertificateQueryForm(forms.Form):
     password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
     keyfile = forms.CharField(label='Keyfile', max_length=256)
     certfile = forms.CharField(label='Certfile', max_length=256)
-    cafile = forms.CharField(label='CAfile', max_length=256)
+    cafile = forms.CharField(label='CAfile', max_length=256, required=False)
