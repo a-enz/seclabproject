@@ -40,7 +40,7 @@ public class Main {
 
         // ------ Filters ------
         before((req, res) -> {
-            if(ipCheck && req.ip() != "192.168.51.14")
+            if(ipCheck && req.ip() != "127.0.0.1")
                 halt(401, "Ip address not authorized");
         });
 

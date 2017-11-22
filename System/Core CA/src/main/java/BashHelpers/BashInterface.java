@@ -36,7 +36,7 @@ public class BashInterface {
     private final String logsDirectory = baseDirectory + "/logs";
     private final String indexFile = caDirectory + "/index.txt";
     private final String serialFile = caDirectory + "/serial";
-    private final String oslConfigFile = sslDirectory + "/openssl.cnf"; //  + "San"; // TODO: clean
+    private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
     private final String symmKeyFileName = tmpDirectory + "/symm.key";
     private final String backupPubKeyFileName = baseDirectory + "/recovery.pub";
@@ -83,7 +83,7 @@ public class BashInterface {
 
         // Sign certificate
         // TODO: clean options
-        executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, /*"-extensions", "v3_req",*/ "-subj", subj(userId), "-passin", "pass:" + caPassword);
+        executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, "-subj", subj(userId), "-passin", "pass:" + caPassword);
 
         // Convert private key and certificate in PKCS#12
         executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "iMovies", "-passout", "pass:" + userPwd);
@@ -109,7 +109,7 @@ public class BashInterface {
         executeCommand("openssl", "rsautl", "-encrypt", "-inkey", backupPubKeyFileName, "-pubin", "-in", symmKeyFileName, "-out", newKeyName + ".symm.enc");
 
         // Delete private key, symmetric key, signing request and PKCS#12 files
-        executeCommand("rm", keyFileName); // TODO: uncomment
+        //executeCommand("rm", keyFileName); // TODO: uncomment
         executeCommand("rm", symmKeyFileName);
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
