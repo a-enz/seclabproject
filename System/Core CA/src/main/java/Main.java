@@ -125,7 +125,7 @@ public class Main {
 
     private static Boolean notRevokable(String number) {
         switch(number) {
-            case "01": case "02": case "03": case "04" : case "05" : case "06" : return true;
+            case "01": case "02": case "03": case "04" : case "05" : return true;
             default: return false;
         }
     }

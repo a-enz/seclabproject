@@ -1,6 +1,5 @@
-V	181121135312Z		01	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.31
-V	181121135320Z		02	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.32
-V	181121135327Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.33
-V	181121135357Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.51.14
-V	181121140247Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.50
-V	181121140303Z		06	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=ca_admin
+V	181121215910Z		01	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.51.14
+V	181121220157Z		02	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.50
+V	181121220204Z		03	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.31
+V	181121220208Z		04	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=192.168.50.33
+V	181121220215Z		05	unknown	/C=CH/ST=Zurich/O=iMovies/OU=Administration/CN=ca_admin
