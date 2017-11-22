@@ -38,6 +38,8 @@ public class BashInterface {
     private final String serialFile = caDirectory + "/serial";
     private final String oslConfigFile = sslDirectory + "/openssl.cnf";
     private final String crlFile = crlDirectory + "/crl.pem";
+    private final String symmKeyFileName = tmpDirectory + "/symm.key";
+    private final String backupPubKeyFileName = baseDirectory + "/recovery.pub";
 
     public BashInterface() {
         new File(crlDirectory).mkdirs();
@@ -68,30 +70,46 @@ public class BashInterface {
         String csrFileName = tmpDirectory + "/" + userId + ".csr";
         String pkcs12FileName = tmpDirectory + "/" + userId + ".p12";
 
+
         // Generate new private key for user
         executeCommand("openssl", "genrsa", "-out", keyFileName, "2048", "-config", oslConfigFile);
 
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.MILLISECONDS.sleep(200);
 
         // Create certificate signing request
         executeCommand("openssl", "req", "-new", "-key", keyFileName, "-out", csrFileName, "-subj", subj(userId), "-config", oslConfigFile);
 
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.MILLISECONDS.sleep(200);
 
         // Sign certificate
         executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, "-subj", subj(userId), "-passin", "pass:" + caPassword);
 
         // Convert private key and certificate in PKCS#12
         executeCommand("openssl", "pkcs12", "-export", "-in", newcertsDirectory + "/" + getOldSerial() + ".pem", "-inkey", keyFileName, "-out", pkcs12FileName, "-name", "iMovies", "-passout", "pass:" + userPwd);
-        TimeUnit.SECONDS.sleep(1);
+
+        TimeUnit.MILLISECONDS.sleep(200);
 
         // Read PKCS#12 file
         byte[] pkcs12 = FileUtils.readFileToByteArray(new File(pkcs12FileName));
 
-        // Move key to keys directory (for backup purposes)
-        executeCommand("mv", keyFileName, keysDirectory + "/" + getIssuedSize() + "-" + userId + ".key");
+        // Generate 256 symmteric key
+        executeCommand("openssl", "rand", "32", "-out", symmKeyFileName);
 
-        // Delete signing request and PKCS#12 files
+        TimeUnit.MILLISECONDS.sleep(200);
+
+        // Encrypt private key and store in /keys
+        String newKeyName = keysDirectory + "/" + getIssuedSize() + "-" + userId;
+        executeCommand("openssl", "enc", "-aes-256-cbc", "-salt", "-in", keyFileName, "-out", newKeyName + ".key.enc", "-pass", "file:" + symmKeyFileName);
+        // openssl enc -aes-256-cbc -salt -in largefile.pdf -out largefile.pdf.enc -pass file:./bin.key
+        TimeUnit.MILLISECONDS.sleep(200);
+
+        // Encrypt symmteric key and store it in /keys
+        // openssl rsautl -encrypt -inkey ../Certificates/backup.pub -pubin -in symm.key -out symm.enc
+        executeCommand("openssl", "rsautl", "-encrypt", "-inkey", backupPubKeyFileName, "-pubin", "-in", symmKeyFileName, "-out", newKeyName + ".symm.enc");
+
+        // Delete private key, symmetric key, signing request and PKCS#12 files
+        executeCommand("rm", keyFileName);
+        executeCommand("rm", symmKeyFileName);
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
 
@@ -101,12 +119,23 @@ public class BashInterface {
     public byte[] revokeAllCertificates(String userId) throws IOException {
         String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
         for(String grepString : grepStrings) {
-            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
+            Pattern p = Pattern.compile("(R|V)\t[0-9Z]*\t[0-9Z]*\t([0-9A-F]{2})\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
             Matcher m = p.matcher(grepString);
             if(m.matches())
                 executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + m.group(2) + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
         }
         return createRevocationList();
+    }
+
+    public Boolean isRevokable(String userId, String number) throws IOException {
+        String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
+        for(String grepString : grepStrings) {
+            Pattern p = Pattern.compile("(R|V)\t[0-9Z]*\t[0-9Z]*\t" + number + "\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
+            Matcher m = p.matcher(grepString);
+            if(m.matches())
+                return true;
+        }
+        return false;
     }
 
     public byte[] revokeCertificate(String number) throws IOException {
@@ -122,7 +151,7 @@ public class BashInterface {
 
     public Integer getIssuedSize() throws IOException {
         String output = executeCommand("wc", "-l", indexFile);
-        return parseWcOutput(output) - 1; // index.txt has an empty line at the end
+        return parseWcOutput(output); // index.txt has an empty line at the end
     }
 
     public Integer getRevokedSize() throws IOException {
@@ -130,14 +159,14 @@ public class BashInterface {
         if(output.isEmpty())
             return 0;
         else
-            return parseWcOutput(output);
+            return parseWcOutput(output) - 1;
     }
 
     private Integer parseWcOutput(String wcOut) {
-        Pattern p = Pattern.compile(".*([0-9A-F]+) ?.*\n");
+        Pattern p = Pattern.compile(" *([0-9]+) ?.*\n");
         Matcher m = p.matcher(wcOut);
         if(m.matches())
-            return Integer.parseInt(m.group(1), 16);
+            return Integer.parseInt(m.group(1));
         else
             return 0;
     }

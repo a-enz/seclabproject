@@ -12,6 +12,8 @@ import org.apache.commons.io.IOUtils;
 import spark.Request;
 import spark.Response;
 
+import java.util.concurrent.TimeUnit;
+
 import static spark.Spark.*;
 
 public class Main {
@@ -21,13 +23,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Boolean ssl = false;
+        Boolean ssl = true;
         int listenPort = 8100;
         int dbPort = 3306;
         String dbName = "iMoviesDB";
         String dbUser = "dbuser";
         String dbPassword = "securePwd17!";
-        
+
         if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
             listenPort = Integer.parseInt(args[1]);
@@ -61,6 +63,8 @@ public class Main {
             String passwordHashDB = sqlInterface.getPasswordHash(req.params(":userId"));
             String passwordHashUser = requestBody.userPasswordHash;
             res.status(200);
+            // Wait one second as minimal brute force protection
+            TimeUnit.SECONDS.sleep(1);
             return jsonParser.toJson(new VerifyResponseBody(passwordHashUser.equals(passwordHashDB)));
         });
 
@@ -70,6 +74,8 @@ public class Main {
             User user = sqlInterface.getUser(req.params(":userId"));
             GetUserResponseBody userData = new GetUserResponseBody(user);
             res.status(200);
+            // Wait one second as minimal brute force protection
+            TimeUnit.SECONDS.sleep(1);
             return jsonParser.toJson(userData);
         });
 
