@@ -62,3 +62,7 @@ setsebool -P httpd_read_user_content 1 # nginx can read user-owned conf file
 semanage port -a -t http_port_t -p tcp 8100 # Allow listening in this port
 ausearch -c 'nginx' --raw | audit2allow -M my-nginx # Allow nginx to write to socket
 semodule -i my-nginx.pp # See above
+
+# Allow webserver user to reload the nginx service
+# Create the file /etc/sudoers.d/webserver and enter the following into it:
+webserver ALL=(ALL) NOPASSWD: /usr/sbin/service nginx reload

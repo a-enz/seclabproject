@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 
 def get_data_from_cert(cert):
     user_data = {}
-    matching = re.search(r'.*CN=(?P<username>.*$)', cert)
+    matching = re.search(r'.*CN=(?P<username>[^,]*).*', cert)
     if matching:
         user_data['username'] = matching.group('username')
     else:

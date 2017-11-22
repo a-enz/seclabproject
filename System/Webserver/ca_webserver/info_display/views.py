@@ -18,9 +18,8 @@ from .helpers import admin_access_decorator, is_ca_admin
 from .models import UserInfo
 
 db_url = "https://192.168.50.33:8100"
-ca_url = "https://192.168.50.33:8100"
-# self_url = "http://127.0.0.1:8000"
-legal_renew_referer = "/info_display/display_user_info"
+ca_url = "https://192.168.50.31:8100"
+ca_file = '/home/webserver/virtual_environment/ca_webserver/ssl/cacert.pem'
 
 @admin_access_decorator
 def index(request):
@@ -39,8 +38,9 @@ def user_login(request):
         if form.is_valid():
             #Perform authentication
             user = authenticate(username=form.cleaned_data['user_id'], password=form.cleaned_data['password'])
+            # Debugging db connectivity
             if user is not None:
-                login_preserve_backend(request, user) #TODO not sure if login is necessary
+                login(request, user) #TODO not sure if login is necessary
                 return HttpResponseRedirect('/info_display/welcome/')
             else:
                 return render(request, 'info_display/user_login.html', {'form': form, 'error_msg': 'Invalid User ID/password combination.'})
@@ -85,7 +85,7 @@ def display_user_info(request):
         downloadfile = False
         error_msg = False
         if request.method != 'POST':
-            data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)))
+            data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)), verify=ca_file)
             if data_response.ok:
                 user_data = data_response.json()
                 #Set password field
@@ -106,7 +106,7 @@ def display_user_info(request):
             form = UpdateInfoForm(request.POST)
             # Check for validity
             if form.is_valid():
-                data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)))
+                data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)), verify=ca_file)
 
                 if data_response.ok:
                     user_data = data_response.json()
@@ -115,13 +115,13 @@ def display_user_info(request):
                         pass
                     else:
                         # Modify user data
-                        update_response = requests.post(("%s/users/%s" % (db_url, request.user.username)), data=json.dumps(form.cleaned_data))
+                        update_response = requests.post(("%s/users/%s" % (db_url, request.user.username)), data=json.dumps(form.cleaned_data), verify=ca_file)
                         if update_response.ok:
                             pass
                         else:
                             return HttpResponseRedirect('/info_display/welcome/')
                     certificate_pw = {'password': form.cleaned_data['password']}
-                    certificate_response = requests.post("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw))
+                    certificate_response = requests.post("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw), verify=ca_file)
                     if certificate_response.ok:
                         cert_dict = certificate_response.json()
 
@@ -154,7 +154,7 @@ def display_admin_info(request):
             values = {}
 
             for item in items:
-                data_response = requests.get("%s/ca/%s" % (ca_url, item))
+                data_response = requests.get("%s/ca/%s" % (ca_url, item), verify=ca_file)
                 if data_response:
                     data = data_response.json()
                     if item == 'serial_number':
@@ -212,7 +212,7 @@ def revoke_all(request):
             if form.is_valid():
                 user = authenticate(username=request.user.username, password=form.cleaned_data['password'])
                 if user is not None:
-                    revoke_response = requests.delete(("%s/certificates/%s/all" % (ca_url, request.user.username)))
+                    revoke_response = requests.delete(("%s/certificates/%s/all" % (ca_url, request.user.username)), verify=ca_file)
                     if revoke_response.ok:
                         # Update crl
                         try:
@@ -247,7 +247,7 @@ def revoke_single(request):
                 user = authenticate(username=request.user.username, password=form.cleaned_data['password'])
                 if user is not None:
                     data = {'number': str(form.cleaned_data['serial'])}
-                    revoke_response = requests.delete(("%s/certificates/%s/one" % (ca_url, request.user.username)), data=json.dumps(data))
+                    revoke_response = requests.delete(("%s/certificates/%s/one" % (ca_url, request.user.username)), data=json.dumps(data), verify=ca_file)
                     if revoke_response.ok:
                         # Update crl
                         try:
@@ -326,7 +326,7 @@ def wonderland(request):
                         raise Http404('End of POST ws')
 
                     elif target == 'db':
-                        db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers)
+                        db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers, verify=ca_file)
                         if db_response.ok:
                             response = HttpResponse(json.dumps(db_response.json()), content_type='application/json')
                             return response
@@ -334,7 +334,7 @@ def wonderland(request):
                             raise Http404('db 404')
 
                     elif target == 'ca':
-                        ca_response = requests.post(("%s/wonderland" % ca_url), data=json.dumps(data), headers=headers)
+                        ca_response = requests.post(("%s/wonderland" % ca_url), data=json.dumps(data), headers=headers, verify=ca_file)
                         if ca_response.ok:
                             response = HttpResponse(json.dumps(ca_response.json()), content_type='application/json')
                             return response
@@ -409,7 +409,7 @@ def wonderland(request):
                     raise Http404('Reached End of ws')
 
             elif target == 'db':
-                db_response = requests.post(("%s/wonderland" % db_url), headers=request.META)
+                db_response = requests.post(("%s/wonderland" % db_url), headers=request.META, verify=ca_file)
                 if db_response.ok:
                     response = HttpResponse(json.dumps(db_response.json()), content_type='application/json')
                     return response
@@ -417,7 +417,7 @@ def wonderland(request):
                     raise Http404('db 404')
 
             elif target == 'ca':
-                ca_response = requests.post(("%s/wonderland" % ca_url), headers=request.META)
+                ca_response = requests.post(("%s/wonderland" % ca_url), headers=request.META, verify=ca_file)
                 if ca_response.ok:
                     response = HttpResponse(json.dumps(ca_response.json()), content_type='application/json')
                     return response

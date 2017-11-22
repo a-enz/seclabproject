@@ -20,7 +20,7 @@ class ConfirmationForm(forms.Form):
         password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
 
 class SingleConfirmationForm(forms.Form):
-    serial = forms.IntegerField(label='Serial', widget=forms.NumberInput)
+    serial = forms.CharField(label='Serial', max_length=256)
     password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
 
 class CertificateQueryForm(forms.Form):

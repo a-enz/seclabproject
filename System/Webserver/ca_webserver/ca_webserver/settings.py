@@ -137,4 +137,4 @@ LOGIN_URL = '/info_display/user_login/'
 LOGIN_REDIRECT_URL = '/info_display/welcome'
 
 # Allowed hosts
-ALLOWED_HOSTS = ['192.168.51.14', '192.168.70.10', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['192.168.51.14', '192.168.70.10', '127.0.0.1', 'localhost', 'imovies.com', 'www.imovies.com']
