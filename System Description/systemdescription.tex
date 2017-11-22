@@ -11,6 +11,7 @@
 \usepackage{framed}
 \usepackage{array}
 \usepackage{hyperref}
+\usepackage{authblk}
 
 \usepackage{xifthen}
 \newboolean{showbackdoors}
@@ -22,14 +23,22 @@
 
 \newcolumntype{L}{lp{0.3\textwidth}p{0.3\textwidth}p{15pt}p{15pt}p{15pt}}
 
-\title{\huge\sffamily\bfseries System Description and Risk Analysis}
-\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
 \date{\today}
 
 \hypersetup{linktocpage}
-
+\hypersetup{
+    linktoc=all
+}
 
 \begin{document}
+
+\title{\huge\sffamily\bfseries System Description and Risk Analysis}
+%\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
+\author[1]{B\"ahler Alessio}
+\author[1]{Enz Andreas}
+\author[1]{Niederberger Matthias}
+\affil[ ]{Department of Computer Science, ETH Zurich}
+\affil[ ]{\textit {\{abaehler, aenz, niederbm\}@student.ethz.ch}}
 \maketitle
 
 %% **** please observe the page limit **** 
