@@ -19,7 +19,7 @@ public class Main {
 
         BashInterface bashInterface = new BashInterface();
 
-        Boolean ssl = false;
+        Boolean ssl = true;
         Integer listenPort = 8100;
 
         if(args.length == 2) {
@@ -37,7 +37,6 @@ public class Main {
         port(listenPort);
 
         // ------ Filters ------
-
         after((req, res) -> {
             res.type("application/json");
         });
@@ -61,9 +60,9 @@ public class Main {
                 res.status(400);
                 return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
             }
-            else if(notRevokable(requestBody.number)) {
+            else if(!bashInterface.isRevokable(req.params(":userId"), requestBody.number)) {
                 res.status(400);
-                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked"));
+                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked because it does not belong to the user."));
             }
             return jsonParser.toJson(new RevokeCertificateResponse(bashInterface.revokeCertificate(requestBody.number)));
         });
@@ -115,12 +114,5 @@ public class Main {
     private static String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
         return IOUtils.toString(pb.redirectErrorStream(true).start().getInputStream());
-    }
-
-    private static Boolean notRevokable(String number) {
-        switch(number) {
-            case "01": case "02": case "03": case "04" : case "05" : case "06" : case "07" : return true;
-            default: return false;
-        }
     }
 }
