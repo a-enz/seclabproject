@@ -119,6 +119,7 @@ echo "Creating list of files and directories to back up"
 # web server
 # TODO files
 cat << EOF > $WS_LIST_1
+/home/webserver/virtual_environment/ca_webserver/logs
 /var/log/secure
 /var/log/messages
 /var/log/cron
@@ -162,6 +163,7 @@ EOF
 
 # TODO files
 cat << EOF > $WS_LIST_2
+/home/webserver/virtual_environment/ca_webserver
 EOF
 
 # firewall
@@ -198,16 +200,16 @@ fi
 # Copying ssh public key to machines we want to back up
 echo "Copying ssh public key to remote hosts"
 
-# send_key $WS_ADR $KEY
+send_key $WS_ADR $KEY
 
-# # CAREFUL: to make key authorization persisten on pfsense, 
-# # it has to be added to the config.xml. Otherwise it will
-# # be wiped on reboot of the firewall
-# send_key $FW_ADR $KEY
+# CAREFUL: to make key authorization persisten on pfsense, 
+# it has to be added to the config.xml. Otherwise it will
+# be wiped on reboot of the firewall
+send_key $FW_ADR $KEY
 
-# send_key $CA_ADR $KEY
+send_key $CA_ADR $KEY
 
-# send_key $DB_ADR $KEY
+send_key $DB_ADR $KEY
 
 
 
