@@ -327,7 +327,11 @@ ICMP & * & * & * & Pass \\ \hline
 \textbf{INTERN firewall rules}
 This interface allows all outgoing IPv4 traffic. Also there is a special Lockout prevention rule in place making sure the pfSense web interface is always reachable from the internal network.
 
-
+\subsubsection{Web Server}
+The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS requests coming from the Internet as well as the HTTP responses coming from 
+the database (DB) and core certificate authority (CA) machines in the iMovies internal network. User authentication is executed in collaboration with DB in the case of username/password authentication
+and CA in the case of client certificate based authentication. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
+on the web framework Django 1.11.6. The machine runs CentOS 7 and the aforementioned uWSGI and Django applications run in a Python 3.6.3 virtual environment.  
 
 
 \ifthenelse{\boolean{showbackdoors}}{
