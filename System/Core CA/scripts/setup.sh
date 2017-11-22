@@ -55,9 +55,9 @@ chmod 700 /home/coreca/ssl
 mv ./Core\ CA/core_ca.jks /home/coreca
 chmod 500 /home/coreca/core_ca.jks
 
-# TODO: Backup public key
-mv ./Core\ CA/backup.pub /home/coreca
-chmod 500 /home/coreca/backup.pub
+# Recovery public key
+mv ./Core\ CA/recovery.pub /home/coreca
+chmod 500 /home/coreca/recovery.pub
 
 # Prepare, enable and start service
 cp /home/coreca/scripts/coreca.service /etc/systemd/system

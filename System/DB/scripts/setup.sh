@@ -28,6 +28,8 @@
 # Change default settings
 #mysql_secure_installation
 
+# Allow localhost only access to the db by adding the next line to the [mysqld] section of /etc/my.cnf
+# bind-address = 127.0.0.1
 
 # Start VM
 
