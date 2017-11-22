@@ -145,14 +145,24 @@ Security considerations Andreas:
     \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability of the system, but if the backup can be accessed a restore is quickly done.
     \item The firewall is by design a single point of failure regarding the availability of the system, but it allows to \emph{minimize the exposure} of the system to the internet drastically. Furthermore the pfSense firewall allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
     \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Mimimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into those networks so he can work from his known environment which increases the \emph{Usability}.
+    \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle of \emph{Complete Mediation}.
 \end{itemize}
 
 
 \begin{itemize}
     \item The backup machine logs each scheduled pull and deletion of files according to the \emph{Traceability} security principle.
-    \item Since the backup is pulled from other machines, all relevant configuration and administration can easiyl be done on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
+    \item Since the backup is pulled from other machines, all relevant configuration and administration can  be done easily on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
     \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
-    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles
+    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}. 
+    \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
+\end{itemize}
+
+
+\begin{itemize}
+    \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for administrators thus following the \emph{Usability} principle.
+    \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
+    \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity} of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
+    \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
 \end{itemize}
 
 
