@@ -1,0 +1,3 @@
+2017-11-22 17:30:55,919 django_ssl_auth.base DEBUG    insecure request
+2017-11-22 17:31:01,611 django_ssl_auth.base DEBUG    insecure request
+2017-11-22 17:31:01,618 requests.packages.urllib3.connectionpool INFO     Starting new HTTPS connection (1): 192.168.50.33

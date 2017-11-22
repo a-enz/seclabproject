@@ -1,0 +1,2 @@
+
+found 0 alerts in /var/log/audit/audit.log
