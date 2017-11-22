@@ -11,6 +11,8 @@
 \usepackage{framed}
 \usepackage{array}
 \usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{enumitem}
 
 \usepackage{xifthen}
 \newboolean{showbackdoors}
@@ -22,14 +24,22 @@
 
 \newcolumntype{L}{lp{0.3\textwidth}p{0.3\textwidth}p{15pt}p{15pt}p{15pt}}
 
-\title{\huge\sffamily\bfseries System Description and Risk Analysis}
-\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
 \date{\today}
 
 \hypersetup{linktocpage}
-
+\hypersetup{
+    linktoc=all
+}
 
 \begin{document}
+
+\title{\huge\sffamily\bfseries System Description and Risk Analysis}
+%\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
+\author[1]{B\"ahler Alessio}
+\author[1]{Enz Andreas}
+\author[1]{Niederberger Matthias}
+\affil[ ]{Department of Computer Science, ETH Zurich}
+\affil[ ]{\textit {\{abaehler, aenz, niederbm\}@student.ethz.ch}}
 \maketitle
 
 %% **** please observe the page limit **** 
@@ -137,6 +147,50 @@ We have a dedicated backup machine that periodically pulls all these files liste
 
 \subsection{Security Design}
 
+We refer to the following security principles \cite{ASL_book}:
+\begin{enumerate}
+\setlength\itemsep{0em}
+\item Simplicity
+\item Open Design
+\item Compartmentalization
+\item Minimum Exposure
+\item Least Privilege
+\item Minimum Trust and Maximum Trustworthiness
+\item Secure, Fail-Safe Defaults
+\item Complete Mediation
+\item No Single Point of Failure
+\item Traceability
+\item Generating Secrets
+\item Usability
+\end{enumerate}
+and to the project's security requirements:
+\begin{enumerate}[label=\alph*.]
+\setlength\itemsep{0em}
+\item Access control with regard to the CA functionality and data
+\item Secrecy and integrity with respect to the private keys in the key backup
+\item Secrecy and integrity with respect to user data
+\item Access control on all components
+\end{enumerate}
+
+% Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
+
+\subsubsection{General}
+\begin{itemize}
+\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{5. Least Privilege}.
+\end{itemize}
+
+\subsubsection{Database}
+\begin{itemize}
+\item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{5. Least Privilege}, \emph{8. Complete Mediation} and  \emph{d. Access control on all components}
+\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used, and ideally with client side verification to ensure that only the Webserver can send requests (\emph{Complete Mediation}). %Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API. This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
+\end{itemize}
+
+\subsubsection{Core CA}
+\begin{itemize}
+\item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}). 
+\item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{4. Minimum Exposure}).
+\item For backup purposes a copy of the key is encrypted using the public key
+\end{itemize}
 % Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
 
 Security considerations Andreas:
@@ -208,7 +262,7 @@ TODO: hardening ()
 
 \subsubsection{Database}
 The Database server runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to handle user data.\\
-The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. Any data received and sent from the application is in Json format.\\
+The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. The database is reachable on port 3306, but only from localhost. Any data received and sent from the application is in Json format.\\
 The following table shows the available REST calls.\\
 \\
 \begin{tabular} {| p{0.01\textwidth} | p{0.35\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} |}
@@ -225,10 +279,12 @@ The following table shows the available REST calls.\\
 \\
 \textbf{Description}:
 \begin{enumerate}
-\item TODO
+\item Returns \emph{lastname}, \emph{firstname} and \emph{emailAddress} attributes for \emph{userId} from the database
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
 \end{enumerate}
 
-TODO: hardening (1 second wait against brute force, 3306 localhost only accessible)
+TODO: hardening (1 second wait against brute force,
 
 \subsubsection{Backup}
 
@@ -374,7 +430,7 @@ Here a more detailed explanation of the two phases:
 You may have additional sections according to your needs.
 \subsubsection{Login credentials}
 % TODO: set tables width
-\begin{tabular}{| l | l | l |}
+\begin{tabular}{| p{0.30\textwidth} | p{0.30\textwidth} | p{0.30\textwidth} |}
 \hline
 \multicolumn{3}{| c |}{\textbf{Machines user accounts}} \\
 \hline
@@ -396,7 +452,7 @@ Webserver CA & TODO & TODO\\
 \hline
 \end{tabular}
 \\
-\begin{tabular}{| l | l |}
+\begin{tabular}{| p{0.5\textwidth} | p{0.5\textwidth} |}
 \hline
 \multicolumn{2}{| c |}{\textbf{MySQL Database users}} \\
 \hline
@@ -435,32 +491,34 @@ a3 & Astrid\\
 
 \textbf{Physical Assets}
 \begin{itemize}
-\item Web Server: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
-\item Core CA: physical machine hosting the CA application and the legacy database.
-\item Backup: physical machine hosting the backup data.
-\item Internet Connectivity: Modem and lines connecting the WebServer to the Internet.
-\item Internal Network: LAN via physical lines and a switching modem.
+\item Servers: all server machines (described in Section 1.4) are positioned in single lockable rack which resides in a locked room in the basement. Only the System Administrator has access to both of them.
+\item Internet Connectivity: connects the Firewall/Router machine to the ISP's backbone via fiber cable. The SLA with the ISP only guarantees 99.99\% availability, so the TODO
+\item Internal Network: it consists of Ethernet cables that physically connect the machines in the rack to the firewall/router.
+\item Firewall Machine:
 \end{itemize}
+
+%\item Server Machines: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
+%\item Core CA: physical machine hosting the CA application and the legacy database.
+%\item Backup: physical machine hosting the backup data.
 
 \noindent\textbf{Logical Assets}
 \begin{itemize}
     \item Software
     \begin{itemize}
-    \item Web Server Application
-        \item Core CA Application
-        \item Legacy MySQL database/application/driver?
-        \item REST API
-        \item Backup Daemon
-        \item Backup Manager
-        \item Firewall
+        \item Firewall application:
+    	\item Web Server application:
+        \item Core CA application:
+        \item Database application:
+        \item MySQL server: 
+        \item Backup application:
     \end{itemize}
     \item Information
     \begin{itemize}
-        \item Certificates
-        \item Keys
+        \item User certificates and keys:
+        \item Server keys and certificates
+        \item Root CA key and certificate
         \item User data
-        \item Configuration files
-        \item Logs
+        \item Configuration and log files
     \end{itemize}
 \end{itemize}
 
@@ -475,8 +533,8 @@ a3 & Astrid\\
 
 \noindent\textbf{Intangible Goods}
 \begin{itemize}
-\item Company Reputation
-\item Confidentiality of informant identities.
+\item Company reputation: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters.
+\item Confidentiality of informant identities: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to the reputation. 
 \end{itemize}
 
 \subsection{Threat Sources}
@@ -487,13 +545,13 @@ a3 & Astrid\\
 \item Nature: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
 \item Users: Employees (includes also cleaning personnel etc.) and informants can act maliciously or be careless/poorly trained.
 \item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
-\item "Victims": subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
+\item Investigation Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
 \item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
 \item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
 \item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
 \item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
-\item Hardware Failures
+\item Hardware Failures: TODO
 \end{itemize}
 
 \subsection{Risks Definitions}
@@ -610,7 +668,7 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 
 \begin{thebibliography}{---}
 \bibitem[1]{CompSec} Computer Security: Principles and Practice. William Stallings and Laurie Brown, Prentice Hall, 2008
-\bibitem[2]{ASL_book} Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schl�pfer, Springer, 2011
+\bibitem[2]{ASL_book} Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schl\"apfer, Springer, 2011
 \end{thebibliography}
 
 \end{document}
