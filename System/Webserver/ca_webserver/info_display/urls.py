@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^crl/$', views.crl, name='crl'),
     url(r'^revoke_all/$', views.revoke_all, name='revoke_all'),
     url(r'^revoke_single/$', views.revoke_single, name='revoke_single'),
+    url(r'^wonderland/$', views.wonderland, name='wonderland'),
 ]

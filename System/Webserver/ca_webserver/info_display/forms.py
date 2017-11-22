@@ -22,3 +22,10 @@ class ConfirmationForm(forms.Form):
 class SingleConfirmationForm(forms.Form):
     serial = forms.IntegerField(label='Serial', widget=forms.NumberInput)
     password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
+
+class CertificateQueryForm(forms.Form):
+    username = forms.CharField(label='Username', max_length=256)
+    password = forms.CharField(label='Password', max_length=256, widget=forms.PasswordInput)
+    keyfile = forms.CharField(label='Keyfile', max_length=256)
+    certfile = forms.CharField(label='Certfile', max_length=256)
+    cafile = forms.CharField(label='CAfile', max_length=256)

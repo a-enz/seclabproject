@@ -10,3 +10,13 @@
 
 # Java binaries
 **/target
+
+# SELinux files
+**/*.pp
+**/*.te
+
+# Python bytecode
+**/*.pyc
+
+# SQLite
+**/*.sqlite3

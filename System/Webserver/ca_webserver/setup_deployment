@@ -1,0 +1,64 @@
+# In case swiss keyboard layout is needed
+#sudo loadkeys ch
+
+# login as root
+follow instructions in README on VBox deployment
+
+# Install python devel for uwsgi and nginx
+sudo yum install python36u-devel
+sudo yum install nginx
+sudo yum install screen
+
+# Create user that will run the webserver
+useradd webserver
+passwd webserver #_web17server_
+logout
+#login as webserver
+
+# Python virtual environment for webser setup
+# Change python version according to what's installed (needs Python 3)
+pip3.6 install virtualenv
+python3.6 -m virtualenv /home/webserver/virtual_environment
+
+# Change to virtual environment
+cd /home/webserver/virtual_environment
+
+# Copying files from host
+scp -r /home/SecLabProject/System/Webserver/ca_webserver webserver@192.168.51.14:~/virtual_environment
+
+source bin/activate
+
+# Set up django
+pip install django
+
+# Install uwsgi
+pip install uwsgi
+
+# Install django-ssl-auth
+pip install django-ssl-auth
+
+# Install openssl
+pip install pyOpenSSL
+
+# Install requests
+pip install requests
+
+# Make symlink for conf file in nginx setting
+sudo ln -s /home/webserver/virtual_environment/ca_webserver/ca_webserver_nginx.conf /etc/nginx/conf.d/
+
+# Set permissions
+sudo chown root:webserver /home
+sudo chmod -R 775 /home
+
+# Change nginx user to webserver
+# In /etc/nginx/nginx.conf
+user webserver;
+sudo systemctl enable nginx
+
+# Set SELinux permissions such that nginx can be started
+# NOTE run systemctl start nginx at least once (it should fail)
+# because some settings are generated from the audit log
+setsebool -P httpd_read_user_content 1 # nginx can read user-owned conf file
+semanage port -a -t http_port_t -p tcp 8100 # Allow listening in this port
+ausearch -c 'nginx' --raw | audit2allow -M my-nginx # Allow nginx to write to socket
+semodule -i my-nginx.pp # See above

