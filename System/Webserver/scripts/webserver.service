@@ -1,0 +1,12 @@
+[Unit]
+Description=Database
+After=network-online.target
+
+[Service]
+Type=forking
+User=database
+WorkingDirectory=/home/webserver/virtual_environemnt/ca_webserver
+ExecStart=/home/webserver/virtual_environment/bin/uwsgi --socket ca_webserver.sock --module ca_webserver.wsgi:application --chmod-socket=666
+
+[Install]
+WantedBy=multi-user.target

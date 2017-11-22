@@ -1,0 +1,19 @@
+<p>Make changes to the user data as desired. The new certificate will incorporate these. The password
+you enter here is used to encrypt the certificate file. This <strong>is not</strong> your account's
+password!</p>
+
+{% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+{% if form %}<form action="{% url 'info_display:display_user_info' %}" method="post">
+{% csrf_token %}
+{{ form.as_ul }}
+<input type="submit" value="Request" />
+</form>
+{% endif %}
+
+{% if downloadfile %}<a href='/info_display/files/pkcs12.pfx' download>Download certificate</a>{% endif %}
+
+<form action="{% url 'info_display:goodbye' %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Logout" />
+</form>

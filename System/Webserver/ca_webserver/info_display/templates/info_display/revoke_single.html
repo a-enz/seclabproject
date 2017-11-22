@@ -1,0 +1,20 @@
+<p>Enter the serial of the certificate you want to revoke,
+  enter your password and click the revoke button.</p>
+
+  {% if error_msg %}<p><strong>{{ error_msg }}</strong></p>{% endif %}
+
+  <p>
+  <a href="/info_display/welcome">Back to welcome</a>
+</p>
+
+  {% if form %}
+  <form action="{% url 'info_display:revoke_single' %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Revoke" />
+  </form>
+  {% endif %}
+  <form action="{% url 'info_display:goodbye' %}" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Logout" />
+  </form>
