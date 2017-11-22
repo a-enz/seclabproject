@@ -142,7 +142,7 @@ Describe the system's security design, including access control, key and session
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
 \subsubsection{Core Certificate Authority (CA)}
-The Core CA machine runs in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
+The Core CA server runs in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
 The SparkJava application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in Json format.\\
 The following table shows the available REST calls.
 \\
@@ -177,7 +177,7 @@ The following table shows the available REST calls.
 TODO: hardening ()
 
 \subsubsection{Database}
-The Database machine runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to handle user data.\\
+The Database server runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to handle user data.\\
 The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. Any data received and sent from the application is in Json format.\\
 The following table shows the available REST calls.\\
 \\
