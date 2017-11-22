@@ -42,7 +42,7 @@
 \affil[ ]{\textit {\{abaehler, aenz, niederbm\}@student.ethz.ch}}
 \maketitle
 
-%% **** please observe the page limit **** 
+%% **** please observe the page limit ****
 %% (it is not allowed to change the font size or page geometry to gain more space)
 %% comment or remove lines below before hand-in
 \begin{center}
@@ -62,7 +62,7 @@ Recall the following guidelines when writing your reports:
 
 \item Refer to the security principles in the book for justification.
 
-\item Use clear terminology: 
+\item Use clear terminology:
 \begin{itemize}
 \item secure = confidential + authentic. Be clear about
 which properties you are writing.
@@ -71,8 +71,8 @@ which properties you are writing.
 
 \item Refer to the source document of your risk definitions if appropriate.
 
-\item For the risk evaluation, formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
+\item For the risk evaluation, formulate the threats in active, not passive,
+voice: who (threat source) does what (threat action)?
 
 \item Use a spell checker before hand-in!
 
@@ -92,12 +92,15 @@ voice: who (threat source) does what (threat action)?
 %%% the more technical description that follows.
 
 
-iMovies is a company producing independent movies with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure. 
-The system described in this report implements a certificate authority (CA), that allows employees to download digital certificates created by iMovies. Those can then be used to secure their mail correspondence. 
+iMovies is a company producing independent movies with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure.
+The system described in this report implements a certificate authority (CA), that allows employees to download digital certificates created by iMovies. Those can then be used to secure their mail correspondence.
 
-The CA System is reachable from the internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks. The company networks are further divided into the DMZ and the internal network. The DMZ contains only the web server that hosts the CA web application. In the internal network we have a server creating and managing certificates (for short: core\_ca), a dedicated database server and a backup machine. See Fig. (?? REF OVERVIEW). 
+The CA System is reachable from the internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks.
+The company networks are further divided into the DMZ and the internal network. The DMZ contains only the web server that hosts the CA web application. In the internal network we have a server creating and managing certificates
+(for short: core\_ca), a dedicated database server and a backup machine. See Fig. (?? REF OVERVIEW).
 
-Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server. All traffic on the network is encrypted.
+Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. Traffic from clients in the internet to the web server/firewall is encrypted.
+The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server. All traffic on the network is encrypted.
 
 
 
@@ -144,7 +147,7 @@ himself.
 \item \textbf{Logs and Configuration:} All system critical logs and configuration files are backup up. In case a machine fails it should be easy to restore it and check the copied logs for causes.
 \end{itemize}
 
-We have a dedicated backup machine that periodically pulls all these files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time. 
+We have a dedicated backup machine that periodically pulls all these files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time.
 
 \subsubsection{System Administration and Maintenance}
 The system provides remote administration functionality on all servers over SSH and on the firewall via HTTPS. In addition, an automated back-up solution must be implemented, which includes configuration and logging information
@@ -191,7 +194,7 @@ and to the project's security requirements:
 
 \subsubsection{Core CA}
 \begin{itemize}
-\item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}). 
+\item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}).
 \item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{4. Minimum Exposure}).
 \item For backup purposes a copy of the key is encrypted using the public key
 \end{itemize}
@@ -211,7 +214,7 @@ Security considerations Andreas:
     \item The backup machine logs each scheduled pull and deletion of files according to the \emph{Traceability} security principle.
     \item Since the backup is pulled from other machines, all relevant configuration and administration can  be done easily on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
     \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
-    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}. 
+    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}.
     \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
 \end{itemize}
 
@@ -302,7 +305,7 @@ The backup machine pulls files from other machines using rsync 3.0.9 in archive 
 \end{itemize}
 %%
 
-Not only the last backup is stored, we keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command. 
+Not only the last backup is stored, we keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command.
 While the data in transit is encrypted through the use of ssh, backups on the machine are not encrypted. The machine can only be accessed physically and over ssh with the private key of the sysadmin.
 
 Scheduling of pulling and cleaning the backups is done with cron. There are two main backup frequencies. The first one is a daily pull of seldom changing, less important files. The second one pulls every 20 minutes. Jobs are staggered so that they don't start at the same time. To be able to automate this process over ssh a passwordless private key is needed for the backup user and all machines listed above need to authorize the corresponding public key.
@@ -313,9 +316,9 @@ The files and folders that need to be pulled have to be listed in configuration 
 
 \subsubsection{Network Firewall/Router}
 
-This machine separates the iMovies company networks from the internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and ssh connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an ssh tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy) 
+This machine separates the iMovies company networks from the internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and ssh connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an ssh tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy)
 
-As seen in Fig. (?? REF OVERVIEW) the Firewall has three network interfaces connecting to the internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules we set up do explicitly allow certain traffic, because the pfSense default is to reject everything. 
+As seen in Fig. (?? REF OVERVIEW) the Firewall has three network interfaces connecting to the internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules we set up do explicitly allow certain traffic, because the pfSense default is to reject everything.
 
 We use static IPs on all machines and network interfaces (see Figure ??? REF TOPO). For the sake of readability we will use the following names for the IP addresses:
 
@@ -387,13 +390,22 @@ ICMP & * & * & * & Pass \\ \hline
 \textbf{INTERN firewall rules}
 This interface allows all outgoing IPv4 traffic. Also there is a special Lockout prevention rule in place making sure the pfSense web interface is always reachable from the internal network.
 
-
+\subsubsection{Web Server}
+The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS traffic from and to the Internet as well as the HTTPS traffic from and to
+the database (DB) and core certificate authority (CA) machines in the iMovies internal network. User authentication is executed in collaboration with DB in the case of username/password authentication
+and CA in the case of client certificate based authentication. The web server acts as interface for clients to access the certificate authority functionality and allows them to make changes to first name, last name
+and email address entries in the database. The web server logs all relevant user activity such as authentication, certificate generation and revocation. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
+on the web framework Django 1.11.6. The machine runs CentOS 7 and the aforementioned uWSGI and Django applications run in a Python 3.6.3 virtual environment. The firewall restricts access to the web server to ports 22 and 8100.
+Additionally, the web server itself restricts all access to ports 22, for system administrator remote maintenance and backup services, and 8100, on which the web server accepts HTTPS requests. HTTP requests are flat out rejected.
+The system has dedicated account for remote administration and running the uWSGI/Django applications, where the former is a sudoer and the latter is not. Since the web server machine is located in a locked room, only the system
+administrator, who keeps the key, has physical access to it. The machine is maintained by the system administrator on a daily basis, which includes updating the installed software and checking the logs. The backup process stores the logs
+every 20 minutes and the uWSGI/Django code and configuration files daily.
 
 
 \ifthenelse{\boolean{showbackdoors}}{
 % show for handed-in version
 
-Describe the implemented backdoors. 
+Describe the implemented backdoors.
 
 \subsection{Backdoors}
 
@@ -421,9 +433,9 @@ Here a more detailed explanation of the two phases:
 
 
 %% do not delete the three lines below
-}{ 
+}{
 % empty for reviewing group's version
-} 
+}
 
 \subsection{Additional Material}
 
@@ -509,7 +521,7 @@ TODO: group with same properties
 \item \textbf{Firewall application}: pfSense application running on the Firewall machine TODO: Andi? ref
 \item \textbf{Web application}: TODO Matthias?
 \item \textbf{CA and Database applications}: the SparkJava applications running respectively on the Core CA machine and on the Database machine TODO refs
-\item \textbf{MySQL server}: 
+\item \textbf{MySQL server}:
 \item \textbf{Backup application}: TODO: Andi?
 \end{itemize}
 
@@ -542,7 +554,7 @@ TODO: group with same properties, textbf
 \subsubsection{\textbf{Intangible Goods}}
 \begin{itemize}
 \item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters.
-\item \textbf{Confidentiality of informant identities}: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to the reputation. 
+\item \textbf{Confidentiality of informant identities}: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to the reputation.
 \end{itemize}
 
 \subsection{Threat Sources}
@@ -702,7 +714,7 @@ No. of threat & Proposed additional countermeasure including expected impact  \\
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../../book"
-%%% End: 
+%%% End:
