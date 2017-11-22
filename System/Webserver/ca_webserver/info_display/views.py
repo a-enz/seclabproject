@@ -1,5 +1,7 @@
 import array
 import json
+import logging
+
 import OpenSSL
 import os
 import pdb
@@ -21,6 +23,14 @@ db_url = "https://192.168.50.33:8100"
 ca_url = "https://192.168.50.31:8100"
 ca_file = '/home/webserver/virtual_environment/ca_webserver/ssl/cacert.pem'
 
+
+logger = logging.getLogger()
+handler = logging.FileHandler('logs/webserver.log')
+formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+
 @admin_access_decorator
 def index(request):
 
@@ -40,9 +50,11 @@ def user_login(request):
             user = authenticate(username=form.cleaned_data['user_id'], password=form.cleaned_data['password'])
             # Debugging db connectivity
             if user is not None:
+                logger.info('%s logged in' % request.user.username)
                 login(request, user) #TODO not sure if login is necessary
                 return HttpResponseRedirect('/info_display/welcome/')
             else:
+                logger.warning('failed login attempt with uid %s' % form.cleaned_data['user_id'])
                 return render(request, 'info_display/user_login.html', {'form': form, 'error_msg': 'Invalid User ID/password combination.'})
 
     #If not POST request, create empty form
@@ -88,7 +100,7 @@ def display_user_info(request):
             data_response = requests.get(("%s/users/%s" % (db_url, request.user.username)), verify=ca_file)
             if data_response.ok:
                 user_data = data_response.json()
-                #Set password field
+                #Set password field to prevent error
                 user_data['password'] = 'Password'
                 #Create form instance from retrieved data
                 form = UpdateInfoForm(user_data)
@@ -123,6 +135,7 @@ def display_user_info(request):
                     certificate_pw = {'password': form.cleaned_data['password']}
                     certificate_response = requests.post("%s/certificates/new/%s" % (ca_url, request.user.username), data=json.dumps(certificate_pw), verify=ca_file)
                     if certificate_response.ok:
+                        logger.info('%s requested a new certificate' % request.user.username)
                         cert_dict = certificate_response.json()
 
                         pkcs_bytes = array.array('b', cert_dict['pkcs12'])
@@ -150,6 +163,7 @@ def display_admin_info(request):
         if request.method != 'POST':
             return render(request, 'info_display/display_admin_info.html', {'values': None,  'error_msg': None})
         else:
+            logger.info('user %s successfully requested admin info' % request.user.username)
             items = ['issued', 'revoked', 'serial_number']
             values = {}
 
@@ -173,8 +187,8 @@ def display_admin_info(request):
 def all_logout(request):
     if request.user.is_authenticated:
         user_id = request.user.username
+        logger.info('%s logged out' % request.user.username)
         logout(request)
-        #User has to re-confirm their certificate
 
         #Forget which backend was used before
         Session.objects.all().delete()
@@ -195,6 +209,7 @@ def new(request):
                 os.remove('info_display/files/pkcs12_%s.pfx' % request.user.username)
                 response = HttpResponse(file_data, content_type='application/octet-stream')
                 response['Content-Disposition'] = 'attachment; filename="pkcs12.pfx"'
+                logger.info('%s downloaded a certificate' % request.user.username)
                 return response
             except IOError:
                 return render(request, 'info_display/new.html', {'error_msg': "Certificate files can only be downloaded once after creation!"})
@@ -222,6 +237,7 @@ def revoke_all(request):
                             crl_file.write(crl_bytes)
                             crl_file.close()
                             subprocess.run(['sudo', '/usr/sbin/service', 'nginx', 'reload'])
+                            logger.warning('%s revoked all their certificates' % request.user.username)
                             return render(request, 'info_display/revoke_all.html', {'form':None, 'error_msg': 'All certificates revoked'})
                         except IOError:
                             return render(request, 'info_display/revoke_all.html', {'form':None, 'error_msg': 'CRL appending failed'})
@@ -246,7 +262,7 @@ def revoke_single(request):
             if form.is_valid():
                 user = authenticate(username=request.user.username, password=form.cleaned_data['password'])
                 if user is not None:
-                    data = {'number': str(form.cleaned_data['serial'])}
+                    data = {'number': form.cleaned_data['serial']}
                     revoke_response = requests.delete(("%s/certificates/%s/one" % (ca_url, request.user.username)), data=json.dumps(data), verify=ca_file)
                     if revoke_response.ok:
                         # Update crl
@@ -257,6 +273,7 @@ def revoke_single(request):
                             crl_file.write(crl_bytes)
                             crl_file.close()
                             subprocess.run(['sudo', '/usr/sbin/service', 'nginx', 'reload'])
+                            logger.info('%s revoked certificate %s' % (request.user.username, form.cleaned_data['serial']))
                             return render(request, 'info_display/revoke_single.html', {'form':None, 'error_msg': 'Certificate revoked'})
                         except IOError:
                             return render(request, 'info_display/revoke_single.html', {'form':None, 'error_msg': 'CRL appending failed'})
@@ -282,6 +299,7 @@ def crl(request):
                 file_handle.close()
                 response = HttpResponse(file_data, content_type='application/octet-stream')
                 response['Content-Disposition'] = 'attachment; filename="crl.pem"'
+                logger.info('%s downloaded the CRL' % request.user.username)
                 return response
             except IOError:
                 return render(request, 'info_display/crl.html', {'error_msg': "The certificate revocation list is empty"})
@@ -336,7 +354,7 @@ def wonderland(request):
                         raise Http404('End of POST ws')
 
                     elif target == 'db':
-                        
+
                         #pdb.set_trace()
                         if command:
                             db_response = requests.post(("%s/wonderland" % db_url), data=json.dumps(data), headers=headers, verify=ca_file)
