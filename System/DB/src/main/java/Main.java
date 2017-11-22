@@ -20,7 +20,6 @@ public class Main {
 
     private static Boolean enabled = false;
     private static Boolean open = false;
-    private static Boolean ipCheck = true;
 
     public static void main(String[] args) {
 
@@ -31,10 +30,9 @@ public class Main {
         String dbUser = "dbuser";
         String dbPassword = "securePwd17!";
 
-        if(args.length == 3) {
+        if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
-            ipCheck = Boolean.parseBoolean(args[1]);
-            listenPort = Integer.parseInt(args[2]);
+            listenPort = Integer.parseInt(args[1]);
         }
 
         MySQLInterface sqlInterface = new MySQLInterface(dbPort, dbName, dbUser, dbPassword);
@@ -48,12 +46,6 @@ public class Main {
             secure("./database.jks", "passwordThatShouldNotBeHardcoded", null, null);
 
         // ------ Filters ------
-        before((req, res) -> {
-            if(ipCheck && req.ip() != "192.168.51.14")
-                halt(401, "Ip address not authorized");
-        });
-
-
         after((req, res) -> {
             res.type("application/json");
         });

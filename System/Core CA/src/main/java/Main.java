@@ -14,7 +14,6 @@ public class Main {
 
     private static Boolean enabled = false;
     private static Boolean open = false;
-    private static Boolean ipCheck = true;
 
     public static void main(String[] args) {
 
@@ -23,10 +22,9 @@ public class Main {
         Boolean ssl = true;
         Integer listenPort = 8100;
 
-        if(args.length == 3) {
+        if(args.length == 2) {
             ssl = Boolean.parseBoolean(args[0]);
-            ipCheck = Boolean.parseBoolean(args[1]);
-            listenPort = Integer.parseInt(args[2]);
+            listenPort = Integer.parseInt(args[1]);
         }
 
         Gson jsonParser = new Gson();
@@ -39,11 +37,6 @@ public class Main {
         port(listenPort);
 
         // ------ Filters ------
-        before((req, res) -> {
-            if(ipCheck && req.ip() != "127.0.0.1")
-                halt(401, "Ip address not authorized");
-        });
-
         after((req, res) -> {
             res.type("application/json");
         });
@@ -67,9 +60,9 @@ public class Main {
                 res.status(400);
                 return jsonParser.toJson(new ErrorResponseBody("Invalid request body"));
             }
-            else if(notRevokable(requestBody.number)) {
+            else if(!bashInterface.isRevokable(req.params(":userId"), requestBody.number)) {
                 res.status(400);
-                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked"));
+                return jsonParser.toJson(new ErrorResponseBody("Certificate cannot be revoked because it does not belong to the user."));
             }
             return jsonParser.toJson(new RevokeCertificateResponse(bashInterface.revokeCertificate(requestBody.number)));
         });
@@ -121,12 +114,5 @@ public class Main {
     private static String executeCommand(String ... command) throws java.io.IOException {
         ProcessBuilder pb = new ProcessBuilder(command);
         return IOUtils.toString(pb.redirectErrorStream(true).start().getInputStream());
-    }
-
-    private static Boolean notRevokable(String number) {
-        switch(number) {
-            case "01": case "02": case "03": case "04" : case "05" : return true;
-            default: return false;
-        }
     }
 }

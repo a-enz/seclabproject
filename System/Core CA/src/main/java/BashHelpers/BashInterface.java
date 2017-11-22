@@ -21,7 +21,7 @@ public class BashInterface {
     private final String STATE_NAME = "Zurich";
     private final String LOCALITY_NAME = "Zurich";
     private final String ORGANIZATION_NAME = "iMovies";
-    private final String ORGANIZATORIAL_UNIT = "Administration";
+    private final String ORGANIZATORIAL_UNIT = "User";
 
     private final static String caPassword = "passwordThatShouldNotBeHardcoded";
 
@@ -82,7 +82,6 @@ public class BashInterface {
         TimeUnit.MILLISECONDS.sleep(200);
 
         // Sign certificate
-        // TODO: clean options
         executeCommand("openssl", "ca", "-batch", "-in", csrFileName, "-config", oslConfigFile, "-subj", subj(userId), "-passin", "pass:" + caPassword);
 
         // Convert private key and certificate in PKCS#12
@@ -109,7 +108,7 @@ public class BashInterface {
         executeCommand("openssl", "rsautl", "-encrypt", "-inkey", backupPubKeyFileName, "-pubin", "-in", symmKeyFileName, "-out", newKeyName + ".symm.enc");
 
         // Delete private key, symmetric key, signing request and PKCS#12 files
-        //executeCommand("rm", keyFileName); // TODO: uncomment
+        executeCommand("rm", keyFileName);
         executeCommand("rm", symmKeyFileName);
         executeCommand("rm", csrFileName);
         executeCommand("rm", pkcs12FileName);
@@ -120,12 +119,23 @@ public class BashInterface {
     public byte[] revokeAllCertificates(String userId) throws IOException {
         String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
         for(String grepString : grepStrings) {
-            Pattern p = Pattern.compile("(R|V)\t.*\t.*\t([0-9A-F]+)\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
+            Pattern p = Pattern.compile("(R|V)\t[0-9Z]*\t[0-9Z]*\t([0-9A-F]{2})\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
             Matcher m = p.matcher(grepString);
             if(m.matches())
                 executeCommand("openssl", "ca", "-revoke", newcertsDirectory + "/" + m.group(2) + ".pem", "-config", oslConfigFile, "-passin", "pass:" + caPassword);
         }
         return createRevocationList();
+    }
+
+    public Boolean isRevokable(String userId, String number) throws IOException {
+        String[] grepStrings = executeCommand("grep", "CN=" + userId, indexFile).split("\n");
+        for(String grepString : grepStrings) {
+            Pattern p = Pattern.compile("(R|V)\t[0-9Z]*\t[0-9Z]*\t" + number + "\tunknown\t/C=CH/ST=Zurich/O=iMovies/OU=User/CN=" + userId);
+            Matcher m = p.matcher(grepString);
+            if(m.matches())
+                return true;
+        }
+        return false;
     }
 
     public byte[] revokeCertificate(String number) throws IOException {
