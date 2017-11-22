@@ -142,19 +142,19 @@ Describe the system's security design, including access control, key and session
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
 \subsubsection{Core Certificate Authority (CA)}
-The Core CA machine runs in the iMovies internal network at IP address 192.168.50.31 and exposes a JavaSpark REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
-The JavaSpark application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in Json format.\\
+The Core CA machine runs in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
+The SparkJava application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in Json format.\\
 The following table shows the available REST calls.
 \\
 \begin{tabular} {| c | l | l | l | l |}
 \hline
 \textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
 \hline
-1 & POST /certificates/new/:userId & password & pkcs12\\
+1 & POST /certificates/new/userId & password & pkcs12\\
 \hline
-2 & DELETE /certificates/:userId/one & serialNumber & certificateRevocationList\\
+2 & DELETE /certificates/userId/one & serialNumber & certificateRevocationList\\
 \hline
-3 & DELETE /certificates/:userId/all & - & certificateRevocationList\\
+3 & DELETE /certificates/userId/all & - & certificateRevocationList\\
 \hline
 4 & GET /ca/issued & - & issued\\
 \hline
@@ -166,17 +166,42 @@ The following table shows the available REST calls.
 \\
 \textbf{Description}:
 \begin{enumerate}
-\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12}\\
-\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}\\
-\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}\\
-\item Returns the number of issued certificates in \emph{issued}\\
-\item Returns the number of revoked certificates in \emph{revoked}\\
-\item Returns the current serial number in \emph{serialNumber}\\
+\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12}
+\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}
+\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}
+\item Returns the number of issued certificates in \emph{issued}
+\item Returns the number of revoked certificates in \emph{revoked}
+\item Returns the current serial number in \emph{serialNumber}
 \end{enumerate}
 
-\subsubsection{Database}
-TODO
+TODO: hardening ()
 
+\subsubsection{Database}
+The Database machine runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to handle user data.\\
+The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. Any data received and sent from the application is in Json format.\\
+The following table shows the available REST calls.\\
+\\
+\begin{tabular} {| p{0.01\textwidth} | p{0.35\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} |}
+\hline
+\textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
+\hline
+1 & GET /users/userId & - & lastname, firstname, emailAddress\\
+\hline
+2 & POST /users/userId & lastname, firstname, emailAddress & -\\
+\hline
+3 & POST /users/verify/userId & userPasswordHash & correctCredentials\\
+\hline
+\end{tabular}
+\\
+\textbf{Description}:
+\begin{enumerate}
+\item TODO
+\end{enumerate}
+
+TODO: hardening (1 second wait against brute force, 3306 localhost only accessible)
+
+
+ %% TODO: Change
 A short description of the components in Figure \ref{fig:system_arch}.
 
 \begin{itemize}
@@ -194,6 +219,7 @@ A short description of the components in Figure \ref{fig:system_arch}.
         \item Backup Daemon: Sends data to backup machine
     \end{itemize}
 \end{itemize}
+%%
 
 
 \ifthenelse{\boolean{showbackdoors}}{
@@ -207,14 +233,12 @@ Describe the implemented backdoors.
 TODO: Andi
 
 \subsubsection{Hard Backdoor}
-The hard backdoor is a two-stage process that allows any attacker to execute bash commands with root privileges on the Webserver, Core CA and Database machines. The first phase consists in a hidden webpage on the webserver and a hidden REST call on Core CA/Database that, when a given state is reached, allows the execution of any command given by the attacker. Since these commands will be executed with the rights of the unprivileged user running the processes, the second phase consists in using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and receive its output. \\
+The hard backdoor is a two-stage process that allows any attacker to execute bash commands with root privileges on the Webserver, Core CA and Database machines. The first phase consists in a hidden webpage on the Webserver and a hidden REST call on both Core CA and Database that, when a given state is reached, allows the execution of any command given by the attacker. Since these commands will be executed with the rights of the unprivileged user running the processes, the second phase consists in using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and receive its output. \\
 Here a more detailed explanation of the two phases:
 \begin{itemize}
 \item \textbf{Phase 1}: TODO
-\item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has setuid bit set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many files wit setuid bit set, the file is placed in a legitimate and pre-existent operating system's directory, is given a misleading name and has creation date set before semester begin to make more difficult its discovery.
+\item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has \emph{setuid bit} set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory, is given a misleading name and has creation date set before semester begin to make more difficult its discovery.
 \end{itemize}
-
-
 
 
 \bigskip\noindent
