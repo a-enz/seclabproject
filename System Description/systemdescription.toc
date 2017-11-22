@@ -22,12 +22,12 @@
 \contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{12}{subsubsection.1.5.2}
 \contentsline {subsection}{\numberline {1.6}Additional Material}{13}{subsection.1.6}
 \contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{13}{subsubsection.1.6.1}
-\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{13}{section.2}
-\contentsline {subsection}{\numberline {2.1}Assets}{13}{subsection.2.1}
+\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{14}{section.2}
+\contentsline {subsection}{\numberline {2.1}Assets}{14}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Threat Sources}{15}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{16}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{16}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{17}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}{\it Evaluation Web Server}}{17}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Core CA}}{17}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}{\it Evaluation Backup}}{17}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}{\it Evaluation System Administrator}}{17}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.2}{\it Evaluation Core CA}}{18}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}{\it Evaluation Backup}}{18}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}{\it Evaluation System Administrator}}{18}{subsubsection.2.4.4}
