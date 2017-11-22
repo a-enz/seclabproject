@@ -1,16 +1,29 @@
-# TODO
-# Installing the software for rsync backup:
-# rsync: already on centos/7 box
-# ssh: already on centos/7 box
-# cron: already on centos/7 box
+# Provision backup as root
 
-# Basic idea: backup with rsync:
-# ==============================
-# 1) generate ssh keypair, push pubkey to backup server
-# 2) use rsync to push predefined files to backup server
-# 3) do scheduled backup with crontab
-# ssh-keygen create key (without passphrase)
-# ssh-copy-id user@hostname.example.com:  give public key to backup server
-# run crontab every 30min
-# */30 * * * * /usr/bin/somedirectory/somecommand
-# rsync -e ssh web_server vagrant@192.168.50.32:~/backup/
+
+# create the backup user and group if not already there
+username=$1
+pass=$(perl -e 'print crypt($ARGV[0], "password")' $2)
+
+echo "Setting up user and group for ${username}"
+# Check if group already exists before creating
+grep -q "$username" /etc/group
+if [ $? -ne 0 ]; then #not equal
+	echo "Creating new group $username"
+	groupadd $username
+else
+	echo "Group $username already exists"
+fi  
+
+# Check if user already exists before creating
+grep -q "$username" /etc/passwd
+if [ $? -ne 0 ]; then #not equal
+	echo "Creating new user $username"
+	useradd -p "$pass" -d /home/"$username" \
+	-m -g "$username" "$username"
+else
+	echo "User $username already exists"
+fi 
+
+
+
