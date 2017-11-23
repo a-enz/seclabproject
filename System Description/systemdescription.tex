@@ -153,7 +153,7 @@ himself.
 \item \textbf{Logs and Configuration:} All system critical logs and configuration files are backup up. In case a machine fails it should be easy to restore it and check the copied logs for causes.
 \end{itemize}
 
-We have a dedicated backup machine that periodically pulls all these files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time.
+We have a dedicated backup machine that periodically pulls all the files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time.
 
 \subsubsection{System Administration and Maintenance}
 The system provides remote administration functionality on all servers over SSH and on the firewall via HTTPS. In addition, an automated back-up solution must be implemented, which includes configuration and logging information
@@ -477,7 +477,7 @@ With the web server in state 4, the attacker now also has the possibility to inf
 of these machines is shown in \label{fig:db_ca_fsm}. Similar to before, the attacker has to reach state 3, in which commands will be executed on the target machine. 
 \item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has \emph{setuid bit} set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the
 machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many
-files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory, is given a misleading name and has creation date set before semester begin to make more difficult its discovery.
+files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory and is given a misleading name and has creation date set before the start of the semester in order to make its discovery more difficult.
 \end{itemize}
 
 
