@@ -33,7 +33,8 @@
 \contentsline {subsection}{\numberline {2.2}Threat Sources}{18}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{19}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Risk Evaluation}{20}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Logical Assets}{21}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Persons}{21}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Intangible Goods}{21}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}Risk Acceptance}{22}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{20}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{21}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Persons}{22}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{22}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{23}{subsubsection.2.4.5}
