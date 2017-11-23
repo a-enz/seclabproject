@@ -761,7 +761,7 @@ TODO: running numbers!! \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Nature: Floods, lightnings, fire & Building has necessary physical countermeasures & {\it Low} & {\it Med} & {\it Low} \\
+1 & Nature: Floods, lightnings, fire & Building has necessary physical countermeasures. Area has very low risk of flooding. & {\it Low} & {\it Med} & {\it Low} \\
 \hline
 2 & Hardware Failure: one or more machines down, data loss or system unresponsive/unavailable & RAID storage, contract with hardware specialist for quick substitution, failures notification system for System Administrator & {\it Low} & {\it Low} & {\it Low} \\
 \hline
@@ -800,6 +800,23 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 
 \subsubsection{Logical Assets}
 \textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Employees that misconfigure software unintentionally resulting in loss of data or system downtime. & Well-trained system administrators, restricted access.  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+1 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+1 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
+\hline
+1 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
+\hline
+1 & Nature: Flooding of the server room results in total loss of all machines & Area has very low risk of flooding & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
 \textbf{Firewall application}
 \textbf{Web application}
 \textbf{CA and Database applications}
