@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.28)  23 NOV 2017 03:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.28)  23 NOV 2017 04:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -466,10 +466,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [12] [13]
 Package epstopdf Info: Source file: <res/webserver_fsm.eps>
-(epstopdf)                    date: 2017-11-23 03:35:21
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 89993 bytes
 (epstopdf)             Output file: <res/webserver_fsm-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-23 03:36:24
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 20862 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/webserver_fsm-eps-conv
 erted-to.pdf res/webserver_fsm.eps>
@@ -484,10 +484,10 @@ Package pdftex.def Info: res/webserver_fsm-eps-converted-to.pdf used on input l
 ine 491.
 (pdftex.def)             Requested size: 169.0519pt x 160.15071pt.
 Package epstopdf Info: Source file: <res/db_ca_fsm.eps>
-(epstopdf)                    date: 2017-11-23 03:36:10
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 76516 bytes
 (epstopdf)             Output file: <res/db_ca_fsm-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-23 03:36:24
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 16541 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/db_ca_fsm-eps-converte
 d-to.pdf res/db_ca_fsm.eps>
@@ -516,215 +516,215 @@ Overfull \hbox (40.19998pt too wide) in paragraph at lines 520--531
  []
 
 [16] [17] [18]
-Overfull \hbox (16.41739pt too wide) in paragraph at lines 626--627
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 627--628
 []\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
 poor/non-existing/non-
  []
 
 
-Overfull \hbox (1.89563pt too wide) in paragraph at lines 638--667
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 639--668
  [] 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 695--699
+Underfull \hbox (badness 10000) in paragraph at lines 696--700
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 715--715
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 715--715
+Underfull \hbox (badness 5533) in paragraph at lines 716--716
 []|\OT1/cmr/m/n/8 Expert Hack-ers: mount
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 715--715
+Underfull \hbox (badness 3724) in paragraph at lines 716--716
 \OT1/cmr/m/n/8 MitM at-tack to spy on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--715
+Underfull \hbox (badness 10000) in paragraph at lines 716--716
 []|\OT1/cmr/m/n/8 HTTPs con-nec-tion with
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 715--715
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 715--715
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 715--715
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 715--715
+Underfull \hbox (badness 3039) in paragraph at lines 716--716
 \OT1/cmr/m/n/8 Kid-dies to launch DDoS
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 715--715
+Underfull \hbox (badness 1122) in paragraph at lines 716--716
 \OT1/cmr/m/n/8 at-tack on Web-Server and
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 715--715
+Underfull \hbox (badness 2245) in paragraph at lines 716--716
 \OT1/cmr/m/n/8 SYN cook-ies against syn
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 715--715
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 715--715
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 715--715
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 716--716
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 715--715
+Underfull \hbox (badness 10000) in alignment at lines 716--716
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 708--717
+Underfull \hbox (badness 10000) in paragraph at lines 709--718
 
  []
 
 [20]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 724--724
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 725--725
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 724--724
+Underfull \hbox (badness 1215) in paragraph at lines 725--725
 []|\OT1/cmr/m/n/8 Hardware Fail-ures: cause
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 724--724
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 725--725
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 724--724
+Underfull \hbox (badness 10000) in alignment at lines 725--725
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 719--726
+Underfull \hbox (badness 10000) in paragraph at lines 720--727
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 733--733
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 734--734
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 733--733
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 734--734
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 733--733
+Underfull \hbox (badness 10000) in alignment at lines 734--734
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--735
+Underfull \hbox (badness 10000) in paragraph at lines 729--736
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 744--744
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 744--744
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 744--744
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 744--744
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 744--744
+Underfull \hbox (badness 1354) in paragraph at lines 745--745
 []|\OT1/cmr/m/n/8 Good Doc-u-men-ta-tion and
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 744--744
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 744--744
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 744--744
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 745--745
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 744--744
+Underfull \hbox (badness 10000) in alignment at lines 745--745
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 737--746
+Underfull \hbox (badness 10000) in paragraph at lines 738--747
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 752--761
+Underfull \hbox (badness 10000) in paragraph at lines 753--762
 
  []
 
 [21]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 768.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 769.
  [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 768.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 769.
  (./systemdescription.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 768.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 768.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 769.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 769.
 Package rerunfilecheck Info: File `systemdescription.out' has not changed.
 (rerunfilecheck)             Checksum: DDAB9E9B8B3F68368B63508F1BAD4AD3;2813.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 768.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 769.
  ) 
 Here is how much of TeX's memory you used:
  6461 strings out of 493029
  95198 string characters out of 6136233
- 193834 words of memory out of 5000000
+ 194834 words of memory out of 5000000
  9810 multiletter control sequences out of 15000+600000
  10007 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -740,7 +740,7 @@ onts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts
 c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb>
-Output written on systemdescription.pdf (22 pages, 255046 bytes).
+Output written on systemdescription.pdf (22 pages, 255248 bytes).
 PDF statistics:
  461 PDF objects out of 1000 (max. 8388607)
  417 compressed objects within 5 object streams
