@@ -846,6 +846,15 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \end{prettytablex}
 \end{footnotesize}
 \textbf{Backup private SSH key}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Attacker gaining access to this key can remotely connect to almost all servers over SSH without passphrase & Key only stored on backup server, to which access heavily restricted. Only system administrator with passphrase SSH key and physical access possible. & {\it Low} & {\it High} & {\it Med} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
 \textbf{CA Administrator's private key}\\
 
 \subsubsection{Persons}
