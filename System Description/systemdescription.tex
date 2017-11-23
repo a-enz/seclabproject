@@ -13,6 +13,7 @@
 \usepackage{hyperref}
 \usepackage{authblk}
 \usepackage{enumitem}
+\usepackage{float} % exact floater placement with H
 
 \usepackage{xifthen}
 % TODO: boolean disabled because verbatim package does not work in the backdoors section. Please uncomment backdor by hand
@@ -243,15 +244,15 @@ Table \ref{ca_rest_calls} shows the available REST calls.
 \\
 \begin{table}[h]
 \centering
-\begin{tabular} {| c | l | l | l | l |}
+\begin{tabularx}{\textwidth} {| c | l | l | X |}
 \hline
 \textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
 \hline
 1 & POST /certificates/new/userId & password & pkcs12\\
 \hline
-2 & DELETE /certificates/userId/one & serialNumber & certificateRevocationList\\
+2 & DELETE /certificates/userId/one & serialNumber & RevocationList\\
 \hline
-3 & DELETE /certificates/userId/all & - & certificateRevocationList\\
+3 & DELETE /certificates/userId/all & - & RevocationList\\
 \hline
 4 & GET /ca/issued & - & issued\\
 \hline
@@ -259,7 +260,7 @@ Table \ref{ca_rest_calls} shows the available REST calls.
 \hline
 6 & GET /ca/serial\_number & - & serialNumber\\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{Core CA REST API calls.}
 \label{ca_rest_calls}
 \end{table}
@@ -282,7 +283,7 @@ Table \ref{db_rest_calls} shows the available REST calls.\\
 \\
 \begin{table}[h!]
 \centering
-\begin{tabular} {| p{0.01\textwidth} | p{0.35\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} |}
+\begin{tabularx}{\textwidth} {| p{10pt} | X | X | X |}
 \hline
 \textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
 \hline
@@ -292,7 +293,7 @@ Table \ref{db_rest_calls} shows the available REST calls.\\
 \hline
 3 & POST /users/verify/userId & userPasswordHash & correctCredentials\\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{Database REST API calls.}
 \label{db_rest_calls}
 \end{table}
@@ -422,10 +423,12 @@ The connection is persistent if an attacker connects during the 10 seconds when 
 
 \subsubsection{Hard Backdoor}
 The hard backdoor is a two-stage process that allows any attacker to execute bash commands with root privileges on the Web server, Core CA and Database machines. The first phase consists of a hidden webpage on the Web server and a hidden
-REST call on both Core CA and Database that, when a given state is reached, allows the execution of any command given by the attacker. Since these commands will be executed with the rights of the unprivileged user running the processes, 
-the second phase consists in using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and 
+REST call on both Core CA and Database that, when a given state is reached, allows the execution of bash commands given by the attacker. 
+
+Since these commands will be executed with the rights of the unprivileged user running the processes, 
+the second phase consists of using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and 
 receive its output. \\
-Here a more detailed explanation of the two phases:
+A more detailed explanation of the two phases:
 \begin{figure}[!tbp]
   \centering
   \begin{minipage}[b]{0.49\textwidth}
@@ -441,11 +444,11 @@ Here a more detailed explanation of the two phases:
 \end{figure}
 \begin{itemize}
 \item \textbf{Phase 1}: The web server implements a finite state machine (FSM) with four states. The transitions are achieved by inserting special headers into the requests sent to the webserver. All requests have to be sent to 
-https://www.imovies.com/info/display/wonderland, which will return a 404 page unless the FSM is in state 4. In \ref{fig:db_ca_fsm} the necessary headers in the form \emph{name: value} are indicated on the transition, whereas \emph{other}
-simply means any other headers. Another header header of the form \emph{target: [ws, db, ca]} has to be included in order to indicate the target machine of the request. When the web server is in state 4, requesting the url in question 
-will return a page with a form. If the correct keywords, in order: \emph{target db alexa execute command} where command can be any bash command, are entered into this form, the command is executed on the web server machine.
+https://www.imovies.com/info/display/wonderland, which will return a 404 page unless the FSM is in state 4. In Figure \ref{fig:db_ca_fsm} the necessary headers in the form \emph{name: value} are indicated on the transition, whereas \emph{other}
+simply means any unspecified header. A header value of the form \emph{target: [ws, db, ca]} has to be included in order to indicate the target machine of the request. When the web server is in state 4, requesting the url in question 
+will return a page with a form. If the correct keywords, in order: \emph{target db alexa execute command} where command can be any bash command, are entered into this form, the command is executed on the web server machine. Any output of the command will be returned as a json string.
 With the web server in state 4, the attacker now also has the possibility to influence the FSM on the DB or CA. Via the form, two header (name/value) pairs can be included into the request from web server to the target machine. The FSM
-of these machines is shown in \ref{fig:db_ca_fsm}. Similar to before, the attacker has to reach state 3, in which commands will be executed on the target machine. 
+of these machines is shown in Figure \ref{fig:db_ca_fsm}. Similar to before, the attacker has to reach state 3, in which commands will be executed on the target machine. 
 \item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has \emph{setuid bit} set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the
 machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many
 files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory and is given a misleading name and has creation date set before the start of the semester in order to make its discovery more difficult.
@@ -459,12 +462,11 @@ files with \emph{setuid bit} set, the file is placed in a legitimate and pre-exi
 
 \subsection{Additional Material}
 
-You may have additional sections according to your needs.
 \subsubsection{Login credentials}
 
 
 %%% MACHINE LOGIN TABLE
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{| X | X | X |}
 \hline
@@ -499,7 +501,7 @@ Webserver CA & webserver & \_web17server\_\\
 
 
 %%% SSH PRIVATE KEY TABLE
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
@@ -516,7 +518,7 @@ System Administrator & PaperW8Less\\
 
 
 %%% MQSQL DB USERS TABLE
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
@@ -535,7 +537,7 @@ dbuser & securePwd17!\\
 
 
 %%% IMOVIES PASSWORDS
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{| X | X |}
 \hline
@@ -556,7 +558,7 @@ a3 & Astrid\\
 \end{table}
 
 
-
+\clearpage
 \section{Risk Analysis and Security Measures}
 
 \subsection{Assets}
