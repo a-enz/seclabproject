@@ -93,15 +93,15 @@ voice: who (threat source) does what (threat action)?
 %%% the more technical description that follows.
 
 
-iMovies is a company producing independent movies with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure.
+iMovies is a company that produces independent movies of various kind but with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure.
 The system described in this report implements a certificate authority (CA), that allows employees to download digital certificates created by iMovies. Those can then be used to secure their mail correspondence.
 
-The CA System is reachable from the internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks.
+The CA System is reachable from the Internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks.
 The company networks are further divided into the DMZ and the internal network. The DMZ contains only the web server that hosts the CA web application. In the internal network we have a server creating and managing certificates
-(for short: core\_ca), a dedicated database server and a backup machine. See Fig. (?? REF OVERVIEW).
+(for short: core\_ca), a dedicated database server and a backup machine. See Fig. \ref{fig:system_arch}.
 
-Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. Traffic from clients in the internet to the web server/firewall is encrypted.
-The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server. All traffic on the network is encrypted.
+Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. Traffic from clients in the Internet to the web server/firewall is encrypted and so is also all internal network traffic.
+The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server.
 
 
 
@@ -146,18 +146,12 @@ Since the CA administrator does not necessarily  have a user ID and the DB/CA en
 of the website.
 
 \subsubsection{Backup}
-TODO: change in active form, move something to next point
-\begin{itemize}
-\item \textbf{Keys and Certificates:} A copy of all keys and certificates issued must be stored in an archive. The archive is intended to ensure that encrypted data is still accessible even in the
-case of loss of an employeeâ€™s certificate or private key, or even the employee
+A copy of all keys and certificates issued is stored in an archive. The archive is intended to ensure that encrypted data is still accessible even in the
+case of loss of an employee'€™s certificate or private key, or even the employee
 himself.
-\item \textbf{Logs and Configuration:} All system critical logs and configuration files are backup up. In case a machine fails it should be easy to restore it and check the copied logs for causes.
-\end{itemize}
-
-We have a dedicated backup machine that periodically pulls all the files listed. Each backup is kept for a while, which means we have a history of backups allowing a restore at certain points in time.
 
 \subsubsection{System Administration and Maintenance}
-The system provides remote administration functionality on all servers over SSH and on the firewall via HTTPS. In addition, an automated back-up solution must be implemented, which includes configuration and logging information
+The system provides remote administration functionality on all servers over SSH and on the firewall via HTTPS. In addition, an automated back-up solution is implemented, so that all critical system log and configuration files are regularly saved and it is possible to easily restore a machine in case of failure.
 
 \subsection{Security Design}
 
@@ -197,16 +191,15 @@ encrypted, in adherence to \emph{4. Minimum Exposure}.
 \subsubsection{Database}
 \begin{itemize}
 \item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{5. Least Privilege}, \emph{8. Complete Mediation} and  \emph{d. Access control on all components}
-\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used, and ideally with client side verification to ensure that only the Webserver
-can send requests (\emph{Complete Mediation}). %Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API.
-This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
+\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used. Ideally client side verification is used to ensure that only the Webserver
+can send requests (\emph{8. Complete Mediation}). 
 \end{itemize}
 
 \subsubsection{Core CA}
 \begin{itemize}
 \item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}).
 \item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{4. Minimum Exposure}).
-\item For backup purposes a copy of the key is encrypted using the public key
+\item As for \emph{b. Secrecy and integrity with respect to the private keys in the key backup}, a copy of the key is encrypted, using the public key of a dedicated recovery key pair, before being backed-up
 \end{itemize}
 % Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
 
@@ -319,6 +312,9 @@ The following table shows the available REST calls.\\
 \item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
 \item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
 \end{enumerate}
+
+%Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API.
+%This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
 
 TODO: hardening (1 second wait against brute force,
 
