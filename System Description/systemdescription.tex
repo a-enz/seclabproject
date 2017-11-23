@@ -501,7 +501,7 @@ a3 & Astrid\\
 %%  properties. For example, data objects, access restrictions,
 %%  configurations, etc.
 
-\subsubsection{\textbf{Physical Assets}}
+\subsubsection{Physical Assets}
 \begin{itemize}
 \item \textbf{Servers}: all server machines (described in Section 1.4) are positioned in single lockable rack which resides in a locked room in the basement. Only the System Administrator has access to  them.
 \item \textbf{Internet Connectivity}: connects the Firewall/Router machine to the ISP's backbone via fiber cable. The SLA with the ISP only guarantees 99.99\% availability, so there might some short periods of time in which there is no connection to the Internet.
@@ -513,7 +513,7 @@ a3 & Astrid\\
 %\item Core CA: physical machine hosting the CA application and the legacy database.
 %\item Backup: physical machine hosting the backup data.
 
-\subsubsection{\textbf{Logical Assets}}
+\subsubsection{Logical Assets}
 
 \textbf{Software}
 TODO: group with same properties
@@ -526,35 +526,33 @@ TODO: group with same properties
 \end{itemize}
 
 \noindent\textbf{Information}
-TODO: group with same properties, textbf
 \begin{itemize}
-\item User certificates and keys:
-\item Server keys and certificates: Core Ca, Database and Webserver
-\item Root CA key and certificate:
-\item User data:
-\item Configuration and log files:
-\item private SSH keys:
+\item \textbf{User keys}: are handed out to the users in password protected PKCS\#12 files, which have to be kept secure by the user, who also has the obligation to revoke the corresponding certificate would the key be compromised. An encrypted copy is also stored on the Core CA and Backup machines for recovery purposes.
+\item \textbf{Recovery public-private key pair}: the public key is used to encrypt user private keys and has to be available to the CA application. The private key can be used to recover the private keys in case of necessity and given its importance is stored in a safe in the Administrators office (\emph{administrators safe}) that can be opened only in the presence of both the System and the CA Administrators.
+\item \textbf{Server keys and certificates}: Core CA, Database and Webserver
+\item \textbf{Root CA key and certificate}: are the corner stones of the CA and must therefore be handled accordingly. The key is stored on the Core CA machine (in plaintext), where it is needed to sign certificates requests, and the single existing copy is stored in the administrators safe.
+\item \textbf{User data}: is stored in the legacy database and includes sensitive information like personal information and the password hash.
+\item \textbf{Configuration and log files}: contain sensitive data like password or usernames and are therefore to be handled and stored securely.
 \item \textbf{Certificate revocation list}: contains all revoked certificates. It has to be up to date and available to the users. Furthermore its integrity has to be guaranteed.
-\item \textbf{Recovery private and public keys}: the public key is used to encrypt user private keys and has to be available to the CA application. The private key can be used to recover the private keys in case of necessity and given its importance is stored in the safe in the Administrators office that can be opened only in the presence of both the System and the CA Administrators.
-\item Login data on different machines
-%\item System Administrator's public and private key
-%\item CA Administrator's private and public keys
-%\item Backup private and public keys: TODO Andi?
+\item \textbf{Login data for machines user accounts}: allows local access to the machines and since it is known only by the System Administrator it is his responsibility to keep it secure.
+\item \textbf{System Administrator's private SSH key}: allows remote access to all machines and is therefore important that it is kept secret by the System Administrator. It is protected by a password and allows direct access only to the respective unprivileged user of each machine.
+\item \textbf{Backup private SSH key}: is needed by the Backup application to pull data from the other machines. It is stored in cleartext, but only readable by the \emph{backup} user.
+\item \textbf{CA Administrator's private key}: is needed to be able to login in the CA interface on the Web application and keeping it secure is responability of the CA Admin.
 \end{itemize}
 
-\subsubsection{\textbf{Persons}}
+\subsubsection{Persons}
 \begin{itemize}
-\item \textbf{System Administrator}: maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
-\item \textbf{CA Administrators}: are able to verify the current state of the CA.
-\item \textbf{Employees}
-\item \textbf{Informants} that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
-\item \textbf{Management}
+\item \textbf{System Administrator}: maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection as well as physical access to all components.
+\item \textbf{CA Administrator}: is able to verify the current state of the CA and is the main point of contanct for the users if they have problems. He the coordinates with the System Administrator for solving the problems.
+\item \textbf{Employees}: TODO
+\item \textbf{Informants}: TODO use the system to obtain certificates which allow them to communicate securely with the WebServer.
+\item \textbf{Management}: can also use the system as the Employees, but also has to control the work of the Administrators and schedule audits of the system with a specialized external company. 
 \end{itemize}
 
-\subsubsection{\textbf{Intangible Goods}}
+\subsubsection{Intangible Goods}
 \begin{itemize}
-\item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters.
-\item \textbf{Confidentiality of informant identities}: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to the reputation.
+\item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its employees. Therefore TODO
+\item \textbf{Confidentiality of informant identities}: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to its reputation.
 \end{itemize}
 
 \subsection{Threat Sources}
@@ -562,16 +560,16 @@ TODO: group with same properties, textbf
 % TODO: Name and describe potential threat sources (\emph{not} threats!) including their motivation.
 
 \begin{itemize}
-\item Nature: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
-\item Users: Employees (includes also cleaning personnel etc.) and informants can act maliciously or be careless/poorly trained.
-\item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
-\item Investigation Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
-\item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
-\item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
-\item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
-\item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
-\item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
-\item Hardware Failures: TODO
+\item \textbf{Nature}: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
+\item \textbf{Employees}: (includes also cleaning personnel etc.) can act maliciously, unintentionally or be careless/poorly trained and consequently damage the system in different ways.
+\item \textbf{Competitors}: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
+\item Investigated Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
+\item \textbf{Organized Crime}: can directly or indirectly be an Investigated Subject, could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
+\item \textbf{Malware}: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans. TODO
+\item \textbf{Skilled Hackers}: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities. May itself be an Investigated Subject, act for other personal interests or for monetary interests.
+\item \textbf{Script Kiddies}: has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
+\item \textbf{Organizatorial Deficiencies}: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
+\item \textbf{Hardware Failures:} hardware may occasionally break or be subject of malfunctioning. Consequences may be data losses, system errors or unavailability and even total collapse.
 \end{itemize}
 
 \subsection{Risks Definitions}
