@@ -563,14 +563,15 @@ TODO: group with same properties
 \item \textbf{Nature}: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
 \item \textbf{Employees}: (includes also cleaning personnel etc.) can act maliciously, unintentionally or be careless/poorly trained and consequently damage the system in different ways.
 \item \textbf{Competitors}: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
-\item Investigated Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
+\item textbf{Investigated Subjects}: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item \textbf{Organized Crime}: can directly or indirectly be an Investigated Subject, could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
 \item \textbf{Malware}: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans. TODO
 \item \textbf{Skilled Hackers}: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities. May itself be an Investigated Subject, act for other personal interests or for monetary interests.
 \item \textbf{Script Kiddies}: has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
-\item \textbf{Organizatorial Deficiencies}: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
+\item \textbf{Organizatorial Deficiencies}: lack in employee training, poor, non-existing or non-enforced security measures can weaken the overall security of the system.
 \item \textbf{Hardware Failures:} hardware may occasionally break or be subject of malfunctioning. Consequences may be data losses, system errors or unavailability and even total collapse.
 \end{itemize}
+TODO: terrorists and governmental agencies not relevant
 
 \subsection{Risks Definitions}
 
@@ -638,16 +639,55 @@ TODO: running numbers!!
 
 \subsubsection{Physical Assets}
 \textbf{Common} \\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Nature: Floods, lightnings, fire & Building as necessary physical countermeasures & {\it Low} & {\it Med} & {\it Low} \\
+\hline
+2 & Hardware Failure: one or more machines down, data loss or system unresponsive/unavailable & RAID storage, contract with hardware specialist for quick substitution, failures notification system for System Administrator & {\it Low} & {\it Low} & {\it Low} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 \textbf{Servers} \\
 \textbf{internet Connectivity} \\
 \textbf{Internal Network} \\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low} \\
+\hline
+\end{prettytablex}
 
-\subsubsection{Logical Assets}
-
-
+\end{footnotesize}\subsubsection{Logical Assets}
+\textbf{Common}\\
+\textbf{User keys}\\
+\textbf{Recovery public-private key pair}\\
+\textbf{Server keys and certificates}\\
+\textbf{Root CA key and certificate}\\
+\textbf{User data}\\
+\textbf{Configuration and log files}\\
+\textbf{Certificate revocation list}\\
+\textbf{Login data for machines user accounts}\\
+\textbf{System Administrator's private SSH key}\\
+\textbf{Backup private SSH key}\\
+\textbf{CA Administrator's private key}\\
 
 \subsubsection{Persons}
+\textbf{System Administrator}\\
+\textbf{CA Administrator}\\
+\textbf{Employees}\\
+\textbf{Informants}\\
+\textbf{Management} \\
+
+
+
 \subsubsection{Intangible Goods}
+\textbf{Company reputation}\\
+\textbf{Confidentiality of informant identities}\\
+
+
 
 \begin{footnotesize}
 \begin{prettytablex}{L}

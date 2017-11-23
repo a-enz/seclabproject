@@ -1,38 +1,38 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}System Characterization}{3}{section.1}
-\contentsline {subsection}{\numberline {1.1}System Overview}{3}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}System Functionality}{4}{subsection.1.2}
-\contentsline {subsubsection}{\numberline {1.2.1}Certificate Issuing Process}{4}{subsubsection.1.2.1}
-\contentsline {subsubsection}{\numberline {1.2.2}Certificate Revocation Process}{4}{subsubsection.1.2.2}
-\contentsline {subsubsection}{\numberline {1.2.3}CA Administration Interface}{5}{subsubsection.1.2.3}
-\contentsline {subsubsection}{\numberline {1.2.4}Backup}{5}{subsubsection.1.2.4}
-\contentsline {subsubsection}{\numberline {1.2.5}System Administration and Maintenance}{5}{subsubsection.1.2.5}
-\contentsline {subsection}{\numberline {1.3}Security Design}{5}{subsection.1.3}
-\contentsline {subsubsection}{\numberline {1.3.1}General}{6}{subsubsection.1.3.1}
-\contentsline {subsubsection}{\numberline {1.3.2}Database}{6}{subsubsection.1.3.2}
-\contentsline {subsubsection}{\numberline {1.3.3}Core CA}{6}{subsubsection.1.3.3}
-\contentsline {subsection}{\numberline {1.4}Components}{8}{subsection.1.4}
-\contentsline {subsubsection}{\numberline {1.4.1}Core Certificate Authority (CA)}{8}{subsubsection.1.4.1}
-\contentsline {subsubsection}{\numberline {1.4.2}Database}{9}{subsubsection.1.4.2}
-\contentsline {subsubsection}{\numberline {1.4.3}Backup}{10}{subsubsection.1.4.3}
-\contentsline {subsubsection}{\numberline {1.4.4}Network Firewall/Router}{10}{subsubsection.1.4.4}
-\contentsline {subsubsection}{\numberline {1.4.5}Web Server}{12}{subsubsection.1.4.5}
-\contentsline {subsection}{\numberline {1.5}Backdoors}{13}{subsection.1.5}
-\contentsline {subsubsection}{\numberline {1.5.1}Easy Backdoor}{13}{subsubsection.1.5.1}
-\contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{13}{subsubsection.1.5.2}
-\contentsline {subsection}{\numberline {1.6}Additional Material}{14}{subsection.1.6}
-\contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{14}{subsubsection.1.6.1}
-\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{14}{section.2}
-\contentsline {subsection}{\numberline {2.1}Assets}{14}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Physical Assets}{14}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Logical Assets}{15}{subsubsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.3}Persons}{16}{subsubsection.2.1.3}
-\contentsline {subsubsection}{\numberline {2.1.4}Intangible Goods}{16}{subsubsection.2.1.4}
-\contentsline {subsection}{\numberline {2.2}Threat Sources}{17}{subsection.2.2}
+\contentsline {section}{\numberline {1}System Characterization}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}System Overview}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}System Functionality}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Certificate Issuing Process}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Certificate Revocation Process}{3}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}CA Administration Interface}{4}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Backup}{4}{subsubsection.1.2.4}
+\contentsline {subsubsection}{\numberline {1.2.5}System Administration and Maintenance}{4}{subsubsection.1.2.5}
+\contentsline {subsection}{\numberline {1.3}Security Design}{4}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}General}{5}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Database}{5}{subsubsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.3}Core CA}{5}{subsubsection.1.3.3}
+\contentsline {subsection}{\numberline {1.4}Components}{7}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Core Certificate Authority (CA)}{7}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Database}{8}{subsubsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.3}Backup}{9}{subsubsection.1.4.3}
+\contentsline {subsubsection}{\numberline {1.4.4}Network Firewall/Router}{9}{subsubsection.1.4.4}
+\contentsline {subsubsection}{\numberline {1.4.5}Web Server}{11}{subsubsection.1.4.5}
+\contentsline {subsection}{\numberline {1.5}Backdoors}{12}{subsection.1.5}
+\contentsline {subsubsection}{\numberline {1.5.1}Easy Backdoor}{12}{subsubsection.1.5.1}
+\contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{12}{subsubsection.1.5.2}
+\contentsline {subsection}{\numberline {1.6}Additional Material}{13}{subsection.1.6}
+\contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{13}{subsubsection.1.6.1}
+\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{13}{section.2}
+\contentsline {subsection}{\numberline {2.1}Assets}{13}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Physical Assets}{13}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Logical Assets}{14}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}Persons}{15}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}Intangible Goods}{15}{subsubsection.2.1.4}
+\contentsline {subsection}{\numberline {2.2}Threat Sources}{16}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{17}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{18}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{19}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{19}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Persons}{19}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{19}{subsubsection.2.4.4}
-\contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{20}{subsubsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{17}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{18}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{18}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Persons}{18}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{18}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{19}{subsubsection.2.4.5}
