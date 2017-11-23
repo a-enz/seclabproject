@@ -156,10 +156,7 @@ public class BashInterface {
 
     public Integer getRevokedSize() throws IOException {
         String output = executeCommand("bash", "-c", "grep R " + indexFile + " | wc -l");
-        if(output.isEmpty())
-            return 0;
-        else
-            return parseWcOutput(output) - 1;
+        return parseWcOutput(output);
     }
 
     private Integer parseWcOutput(String wcOut) {
