@@ -1,15 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  23 NOV 2017 07:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.28)  23 NOV 2017 08:44
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **systemdescription.tex
 (./systemdescription.tex
-LaTeX2e <2017-04-15>
-Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -24,14 +23,14 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2017/05/19 3.10 The Babel package
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2016/02/24 3.9q The Babel package
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2017/01/24 v3.3q English support from the babel system
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2017/05/19 3.10 Babel common definitions
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2016/02/24 3.9q Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
 )
@@ -39,50 +38,50 @@ File: babel.def 2017/05/19 3.10 Babel common definitions
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen104
 \Gin@req@width=\dimen105
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/alltt.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/tabularx.sty
-Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2014/10/28 v2.10 `tabularx' package (DPC)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/array.sty
-Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen106
 \extrarowheight=\dimen107
 \NC@list=\toks15
@@ -97,7 +96,7 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \TX@cols=\count89
 \TX@ftn=\toks16
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/longtable.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip45
 \LTright=\skip46
@@ -115,15 +114,15 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count94
 \LT@p@ftn=\toks17
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 147.
+Package color Info: Driver file: pdftex.def on input line 143.
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/framed/framed.sty
+(/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip49
 \fb@frw=\dimen114
@@ -131,96 +130,97 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \FrameRule=\dimen116
 \FrameSep=\dimen117
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
 Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
-Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
 )
-Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
-Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
-Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
-Package: xcolor-patch 2016/05/16 xcolor patch
-Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
-Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
-Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen118
 \Hy@linkcounter=\count95
 \Hy@pagecounter=\count96
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count97
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4498.
-Package hyperref Info: Link nesting OFF on input line 4503.
-Package hyperref Info: Hyper index ON on input line 4506.
-Package hyperref Info: Plain pages OFF on input line 4513.
-Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4751.
+Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count98
-LaTeX Info: Redefining \url on input line 5104.
+LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen119
 \Fld@menulength=\count99
 \Field@Width=\dimen120
 \Fld@charsize=\dimen121
-Package hyperref Info: Hyper figures OFF on input line 6358.
-Package hyperref Info: Link nesting OFF on input line 6363.
-Package hyperref Info: Hyper index ON on input line 6366.
-Package hyperref Info: backreferencing OFF on input line 6373.
-Package hyperref Info: Link coloring OFF on input line 6378.
-Package hyperref Info: Link coloring with OCG OFF on input line 6383.
-Package hyperref Info: PDF/A mode OFF on input line 6388.
-LaTeX Info: Redefining \ref on input line 6428.
-LaTeX Info: Redefining \pageref on input line 6432.
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
 \Hy@abspage=\count100
 \c@Item=\count101
 \c@Hfootnote=\count102
@@ -228,19 +228,19 @@ LaTeX Info: Redefining \pageref on input line 6432.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count103
 \c@bookmark@seq@number=\count104
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip50
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/preprint/authblk.sty
+(/usr/share/texlive/texmf-dist/tex/latex/preprint/authblk.sty
 Package: authblk 2001/02/27 1.3 (PWD)
 \affilsep=\skip51
 \@affilsep=\skip52
@@ -248,7 +248,7 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@authors=\count106
 \c@affil=\count107
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/enumitem/enumitem.sty
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip53
 \enit@outerparindent=\dimen122
@@ -256,10 +256,10 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box30
 \enitdp@description=\count108
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/xifthen/xifthen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty
 Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/calc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count109
 \calc@Bcount=\count110
@@ -272,10 +272,10 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count111
 \calc@Cskip=\skip56
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
 Package: ifmtarg 2009/09/02 v1.2a check for an empty argument
 ))
 Package hyperref Info: Option `linktocpage' set `true' on input line 30.
@@ -304,7 +304,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
- (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count112
 \scratchdimen=\dimen125
@@ -317,31 +317,29 @@ LaTeX Font Info:    ... okay on input line 35.
 \MPnumerator=\count116
 \makeMPintoPDFobject=\count117
 \everyMPtoPDFconversion=\toks20
-) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
+(grfext)             \AppendGraphicsExtensions on input line 452.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box32
 Package hyperref Info: Link coloring OFF on input line 35.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
-(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count118
 )
@@ -361,7 +359,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 44.
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 44.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
@@ -374,7 +372,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
  [1
 
-{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write4
 \openout4 = `systemdescription.toc'.
 
@@ -382,10 +380,10 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
 Package epstopdf Info: Source file: <res/system_arch.eps>
-(epstopdf)                    date: 2017-11-22 23:28:59
+(epstopdf)                    date: 2017-11-22 22:18:21
 (epstopdf)                    size: 16863 bytes
 (epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-22 23:28:59
+(epstopdf)                    date: 2017-11-22 22:22:23
 (epstopdf)                    size: 7415 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/system_arch-eps-conver
 ted-to.pdf res/system_arch.eps>
@@ -405,98 +403,98 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
  [5] [6] [7] [8]
-Overfull \hbox (14.77612pt too wide) in paragraph at lines 258--282
+Overfull \hbox (14.77612pt too wide) in paragraph at lines 268--292
 \OT1/cmr/m/n/10 The Core CA server runs in the iMovies in-ter-nal net-work at I
 P ad-dress 192.168.50.31
  []
 
 
-Overfull \hbox (29.80609pt too wide) in paragraph at lines 258--282
+Overfull \hbox (29.80609pt too wide) in paragraph at lines 268--292
 [] 
  []
 
 [9]
-Overfull \hbox (6.13518pt too wide) in paragraph at lines 299--299
+Overfull \hbox (6.13518pt too wide) in paragraph at lines 309--309
 []|\OT1/cmr/bx/n/10 #| 
  []
 
 
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 301--301
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 311--311
 []|\OT1/cmr/m/n/10 1| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 301--302
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
 []|\OT1/cmr/m/n/10 lastname, first-name,
  []
 
 
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 303--303
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 313--313
 []|\OT1/cmr/m/n/10 2| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--303
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
 []|\OT1/cmr/m/n/10 lastname, first-name,
  []
 
 
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 305--305
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 315--315
 []|\OT1/cmr/m/n/10 3| 
  []
 
 
-Overfull \hbox (17.72171pt too wide) in paragraph at lines 293--311
+Overfull \hbox (17.72171pt too wide) in paragraph at lines 303--321
 \OT1/cmr/m/n/10 The Database server runs in the iMovies in-ter-nal net-work at 
 IP ad-dress 192.168.50.33
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--311
+Underfull \hbox (badness 10000) in paragraph at lines 303--321
 
  []
 
 
-Overfull \hbox (36.20229pt too wide) in paragraph at lines 293--311
+Overfull \hbox (36.20229pt too wide) in paragraph at lines 303--321
 [] 
  []
 
 [10] [11] [12] [13]
 Package epstopdf Info: Source file: <res/webserver_fsm.eps>
-(epstopdf)                    date: 2017-11-23 04:37:16
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 89993 bytes
 (epstopdf)             Output file: <res/webserver_fsm-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-23 04:37:16
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 20862 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/webserver_fsm-eps-conv
 erted-to.pdf res/webserver_fsm.eps>
-(epstopdf)             \includegraphics on input line 458.
+(epstopdf)             \includegraphics on input line 468.
 Package epstopdf Info: Output file is already uptodate.
 
-<res/webserver_fsm-eps-converted-to.pdf, id=350, 343.2825pt x 325.215pt>
+<res/webserver_fsm-eps-converted-to.pdf, id=352, 343.2825pt x 325.215pt>
 File: res/webserver_fsm-eps-converted-to.pdf Graphic file (type pdf)
 
 <use res/webserver_fsm-eps-converted-to.pdf>
 Package pdftex.def Info: res/webserver_fsm-eps-converted-to.pdf used on input l
-ine 458.
+ine 468.
 (pdftex.def)             Requested size: 169.0519pt x 160.15071pt.
 Package epstopdf Info: Source file: <res/db_ca_fsm.eps>
-(epstopdf)                    date: 2017-11-23 04:37:16
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 76516 bytes
 (epstopdf)             Output file: <res/db_ca_fsm-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-23 04:37:16
+(epstopdf)                    date: 2017-11-23 03:58:08
 (epstopdf)                    size: 16541 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/db_ca_fsm-eps-converte
 d-to.pdf res/db_ca_fsm.eps>
-(epstopdf)             \includegraphics on input line 464.
+(epstopdf)             \includegraphics on input line 474.
 Package epstopdf Info: Output file is already uptodate.
 
-<res/db_ca_fsm-eps-converted-to.pdf, id=351, 343.2825pt x 238.8925pt>
+<res/db_ca_fsm-eps-converted-to.pdf, id=353, 343.2825pt x 238.8925pt>
 File: res/db_ca_fsm-eps-converted-to.pdf Graphic file (type pdf)
 
 <use res/db_ca_fsm-eps-converted-to.pdf>
 Package pdftex.def Info: res/db_ca_fsm-eps-converted-to.pdf used on input line 
-464.
+474.
 (pdftex.def)             Requested size: 169.0519pt x 117.64157pt.
  [14]
 
@@ -513,63 +511,18 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [15 <./res/webserver_fsm-eps-converted-to.pdf> <./res/db_ca_fsm-eps-converted-t
 o.pdf>] [16] [17] [18] [19]
-Overfull \hbox (16.41739pt too wide) in paragraph at lines 681--682
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 691--692
 []\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
 poor/non-existing/non-
  []
 
 
-Overfull \hbox (1.89563pt too wide) in paragraph at lines 693--722
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 703--732
  [] 
  []
 
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 745--747
-
- []
-
-
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 759--759
-[]|\OT1/cmr/m/n/8 Risk| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 759--759
-[]|\OT1/cmr/m/n/8 Building has nec-es-sary
- []
-
-
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 759--759
-[]|\OT1/cmr/m/it/8 Med| 
- []
-
-
-Underfull \hbox (badness 2310) in paragraph at lines 759--759
-\OT1/cmr/m/n/8 loss or sys-tem un-re-spon-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 759--759
-[]|\OT1/cmr/m/n/8 RAID stor-age, con-tract
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 759--759
-\OT1/cmr/m/n/8 no-ti-fi-ca-tion sys-tem for
- []
-
-
-Underfull \hbox (badness 10000) in alignment at lines 759--759
-[][][][][][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 749--761
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 749--761
+Underfull \hbox (badness 10000) in paragraph at lines 755--757
 
  []
 
@@ -579,13 +532,8 @@ Overfull \hbox (1.45302pt too wide) in paragraph at lines 769--769
  []
 
 
-Underfull \hbox (badness 1675) in paragraph at lines 769--769
-\OT1/cmr/m/n/8 copies data di-rectly from
- []
-
-
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 769--769
-[]|\OT1/cmr/m/it/8 High| 
+Underfull \hbox (badness 10000) in paragraph at lines 769--769
+[]|\OT1/cmr/m/n/8 Building has nec-es-sary
  []
 
 
@@ -594,28 +542,53 @@ Overfull \hbox (0.58893pt too wide) in paragraph at lines 769--769
  []
 
 
+Underfull \hbox (badness 2310) in paragraph at lines 769--769
+\OT1/cmr/m/n/8 loss or sys-tem un-re-spon-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 769--769
+[]|\OT1/cmr/m/n/8 RAID stor-age, con-tract
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 769--769
+\OT1/cmr/m/n/8 no-ti-fi-ca-tion sys-tem for
+ []
+
+
 Underfull \hbox (badness 10000) in alignment at lines 769--769
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 762--771
+Underfull \hbox (badness 10000) in paragraph at lines 759--771
 
  []
 
-[21]
+
+Underfull \hbox (badness 10000) in paragraph at lines 759--771
+
+ []
+
+
 Overfull \hbox (1.45302pt too wide) in paragraph at lines 779--779
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 7595) in paragraph at lines 779--779
-[]|\OT1/cmr/m/n/8 Service Level Agree-ment
+Underfull \hbox (badness 1675) in paragraph at lines 779--779
+\OT1/cmr/m/n/8 copies data di-rectly from
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 779--779
-\OT1/cmr/m/n/8 com-pen-sa-tion if it is ex-
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 779--779
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 779--779
+[]|\OT1/cmr/m/it/8 Med| 
  []
 
 
@@ -628,19 +601,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 772--781
 
  []
 
-
+[21]
 Overfull \hbox (1.45302pt too wide) in paragraph at lines 789--789
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 789--789
-[]|\OT1/cmr/m/n/8 Physical pro-tec-tion, data
+Underfull \hbox (badness 7595) in paragraph at lines 789--789
+[]|\OT1/cmr/m/n/8 Service Level Agree-ment
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 789--789
-\OT1/cmr/m/n/8 en-cryp-tion with SSH and
+Underfull \hbox (badness 1478) in paragraph at lines 789--789
+\OT1/cmr/m/n/8 com-pen-sa-tion if it is ex-
  []
 
 
@@ -654,367 +627,398 @@ Underfull \hbox (badness 10000) in paragraph at lines 782--791
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 814--814
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 799--799
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 814--814
-[]|\OT1/cmr/m/it/8 High| 
+Underfull \hbox (badness 3375) in paragraph at lines 799--799
+[]|\OT1/cmr/m/n/8 Physical pro-tec-tion, data
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 814--814
-[]|\OT1/cmr/m/it/8 Med| 
+Underfull \hbox (badness 1127) in paragraph at lines 799--799
+\OT1/cmr/m/n/8 en-cryp-tion with SSH and
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 814--814
+Underfull \hbox (badness 10000) in alignment at lines 799--799
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 793--818
+Underfull \hbox (badness 10000) in paragraph at lines 792--801
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 829--829
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 824--824
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 829--829
-[]|\OT1/cmr/m/it/8 Med| 
- []
-
-
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 829--829
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 824--824
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 829--829
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 824--824
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 829--829
+Underfull \hbox (badness 10000) in alignment at lines 824--824
+[][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 803--828
+
+ []
+
+
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 839--839
+[]|\OT1/cmr/m/n/8 Risk| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 839--839
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 839--839
+[]|\OT1/cmr/m/it/8 High| 
+ []
+
+
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 839--839
+[]|\OT1/cmr/m/it/8 Med| 
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 839--839
 []|\OT1/cmr/m/n/8 more Sys-tem Ad-min-is-tra-
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 829--829
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 839--839
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 829--829
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 839--839
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 829--829
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 839--839
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 829--829
+Underfull \hbox (badness 10000) in alignment at lines 839--839
 [][][][][][] 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 840--840
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 840--840
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 840--840
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 840--840
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 840--840
+Underfull \hbox (badness 2253) in paragraph at lines 850--850
 []|\OT1/cmr/m/n/8 more Sys-tem Ad-min-is-tra-
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 840--840
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 840--840
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 840--840
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 850--850
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 840--840
+Underfull \hbox (badness 10000) in alignment at lines 850--850
 [][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 820--846
+Underfull \hbox (badness 10000) in paragraph at lines 830--856
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 848--850
+Underfull \hbox (badness 10000) in paragraph at lines 858--860
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 860--860
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 860--860
+Underfull \hbox (badness 5533) in paragraph at lines 870--870
 []|\OT1/cmr/m/n/8 Expert Hack-ers: mount
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 860--860
+Underfull \hbox (badness 3724) in paragraph at lines 870--870
 \OT1/cmr/m/n/8 MitM at-tack to spy on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 860--860
+Underfull \hbox (badness 10000) in paragraph at lines 870--870
 []|\OT1/cmr/m/n/8 HTTPs con-nec-tion with
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 860--860
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 860--860
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 860--860
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 860--860
+Underfull \hbox (badness 3039) in paragraph at lines 870--870
 \OT1/cmr/m/n/8 Kid-dies to launch DDoS
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 860--860
+Underfull \hbox (badness 1122) in paragraph at lines 870--870
 \OT1/cmr/m/n/8 at-tack on Web-Server and
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 860--860
+Underfull \hbox (badness 2245) in paragraph at lines 870--870
 \OT1/cmr/m/n/8 SYN cook-ies against syn
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 860--860
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 860--860
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 860--860
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 870--870
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 860--860
+Underfull \hbox (badness 10000) in alignment at lines 870--870
 [][][][][][] 
  []
 
 
-Overfull \hbox (205.5003pt too wide) in paragraph at lines 851--862
+Overfull \hbox (205.5003pt too wide) in paragraph at lines 861--872
 []\OT1/cmr/m/n/10 TODO: check if al-ready present and re-move  []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 851--862
+Underfull \hbox (badness 10000) in paragraph at lines 861--872
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 869--869
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 879--879
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 869--869
+Underfull \hbox (badness 1215) in paragraph at lines 879--879
 []|\OT1/cmr/m/n/8 Hardware Fail-ures: cause
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 869--869
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 879--879
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 869--869
+Underfull \hbox (badness 10000) in alignment at lines 879--879
 [][][][][][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 869--871
+Overfull \hbox (15.0pt too wide) in paragraph at lines 879--881
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 869--871
+Underfull \hbox (badness 10000) in paragraph at lines 879--881
 
  []
 
 [23]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 878--878
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 888--888
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 878--878
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 888--888
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 878--878
+Underfull \hbox (badness 10000) in alignment at lines 888--888
 [][][][][][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 878--880
+Overfull \hbox (15.0pt too wide) in paragraph at lines 888--890
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 878--880
+Underfull \hbox (badness 10000) in paragraph at lines 888--890
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 889--889
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 889--889
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 889--889
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 889--889
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 889--889
+Underfull \hbox (badness 1354) in paragraph at lines 899--899
 []|\OT1/cmr/m/n/8 Good Doc-u-men-ta-tion and
  []
 
 
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 889--889
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 889--889
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 889--889
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 899--899
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 889--889
+Underfull \hbox (badness 10000) in alignment at lines 899--899
 [][][][][][] 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 889--891
+Overfull \hbox (15.0pt too wide) in paragraph at lines 899--901
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 889--891
+Underfull \hbox (badness 10000) in paragraph at lines 899--901
 
  []
 
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 904--906
+Overfull \hbox (15.0pt too wide) in paragraph at lines 914--916
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 904--906
+Underfull \hbox (badness 10000) in paragraph at lines 914--916
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 913.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 923.
 [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 913.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 923.
  (./systemdescription.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 913.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 913.
-Package rerunfilecheck Info: File `systemdescription.out' has not changed.
-(rerunfilecheck)             Checksum: DDAB9E9B8B3F68368B63508F1BAD4AD3;2813.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 923.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 923.
 
+
+Package rerunfilecheck Warning: File `systemdescription.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `systemdescription.out':
+(rerunfilecheck)             Before: DDAB9E9B8B3F68368B63508F1BAD4AD3;2813
+(rerunfilecheck)             After:  50F4213BD025182C11846268AC9B1C21;2950.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 913.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 923.
  ) 
 Here is how much of TeX's memory you used:
- 6512 strings out of 492995
- 96463 string characters out of 6132704
- 199321 words of memory out of 5000000
- 9875 multiletter control sequences out of 15000+600000
+ 6465 strings out of 493029
+ 95249 string characters out of 6136233
+ 197043 words of memory out of 5000000
+ 9810 multiletter control sequences out of 15000+600000
  10007 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,11n,28p,823b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on systemdescription.pdf (24 pages, 263785 bytes).
+ 29i,11n,28p,604b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmtt10.pfb>
+Output written on systemdescription.pdf (24 pages, 262786 bytes).
 PDF statistics:
- 470 PDF objects out of 1000 (max. 8388607)
- 424 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 472 PDF objects out of 1000 (max. 8388607)
+ 426 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
  328 words of extra memory for PDF output out of 10000 (max. 10000000)
 

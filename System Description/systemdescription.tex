@@ -184,70 +184,80 @@ and to the project's security requirements:
 
 \subsubsection{General}
 \begin{itemize}
-\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{5. Least Privilege}. All data in transit (via SSH or HTTPS) is
-encrypted, in adherence to \emph{4. Minimum Exposure}.
+\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{Least Privilege}. All data in transit (via SSH or HTTPS) is
+encrypted, in adherence to \emph{Minimum Exposure}.
+\end{itemize}
+
+\subsubsection{Firewall}
+\begin{itemize}
+    \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for 
+    administrators thus following the \emph{Usability} principle.
+    \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
+    \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity}
+    of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
+    \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
 \end{itemize}
 
 \subsubsection{Database}
 \begin{itemize}
-\item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{5. Least Privilege}, \emph{8. Complete Mediation} and  \emph{d. Access control on all components}
-\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used. Ideally client side verification is used to ensure that only the Webserver
-can send requests (\emph{8. Complete Mediation}). 
+\item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{Least Privilege}, \emph{Complete Mediation} and  \emph{Access control on all components}
+\item The REST API is reachable only over HTTPS, in accord with \emph{Simplicity} and \emph{ Open Design} since no custom protocol is used. Ideally client side verification is used to ensure that only the Webserver
+can send requests (\emph{Complete Mediation}). 
 \end{itemize}
 
 \subsubsection{Core CA}
 \begin{itemize}
-\item Keys are generated using RSA and are 2048-bit long (\emph{11. Generating Secrets}).
-\item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{4. Minimum Exposure}).
-\item As for \emph{b. Secrecy and integrity with respect to the private keys in the key backup}, a copy of the key is encrypted, using the public key of a dedicated recovery key pair, before being backed-up
-\end{itemize}
-% Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
-
-\subsubsection{Security considerations Andreas}
-\begin{itemize}
-    \item The web server is the only machine in a DMZ subnet to reduce the impact of a compromised web server on the whole system. Traffic from the DMZ to the internal network has to pass the through the firewall again. This is according to the security principle \emph{No Single Point of Failure}.
-    \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability of the system, but if the backup can be accessed a restore is quickly done.
-    \item The firewall is by design a single point of failure regarding the availability of the system, but it allows to \emph{minimize the exposure} of the system to the internet drastically. Furthermore the pfSense firewall allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
-    \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Mimimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into those networks so he can work from his known environment which increases the \emph{Usability}.
-    \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle of \emph{Complete Mediation}.
+\item Keys are generated using RSA and are 2048-bit long (\emph{Generating Secrets}).
+\item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{Minimum Exposure}).
+\item As for \emph{Secrecy and integrity with respect to the private keys in the key backup}, a copy of the key is encrypted, using the public key of a dedicated recovery key pair, before being backed-up
 \end{itemize}
 
-
+\subsubsection{Backup}
 \begin{itemize}
-    \item The backup machine logs each scheduled pull and deletion of files according to the \emph{Traceability} security principle.
+    \item The backup machine logs each scheduled pull and the deletion of files according to the \emph{Traceability} security principle.
     \item Since the backup is pulled from other machines, all relevant configuration and administration can  be done easily on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
-    \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
+    \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. 
+    On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this
+    with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
     \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}.
-    \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
-\end{itemize}
-
-
-\begin{itemize}
-    \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for administrators thus following the \emph{Usability} principle.
-    \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
-    \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity} of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
-    \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
+    \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated 
+    way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
 \end{itemize}
 
 \subsubsection{Web Server}
 \begin{itemize}
- \item Respecting \emph{10. Traceability}, the webserver logs user authentication, logins (users/CA admins), logouts, certificate issuance requests, certificate revocation, CRL downloads and failed login attempts. Additionally, these logs
- as well as relevant configuration and code files are being backed up, adhering to \emph{9. No Single Point of Failure}.
- \item All pages of the website apart from welcomes pages, which don't provide any information or functionality, are only accessible to authenticated and logged in users. This complies with principles \emph{4. Minimum Exposure}, \emph{5. Least Privilege},
- and \emph{8. Complete Mediation}.
+ \item Respecting \emph{Traceability}, the webserver logs user authentication, logins (users/CA admins), logouts, certificate issuance requests, certificate revocation, CRL downloads and failed login attempts. Additionally, these logs
+ as well as relevant configuration and code files are being backed up, adhering to \emph{No Single Point of Failure}.
+ \item All pages of the website apart from welcomes pages, which don't provide any information or functionality, are only accessible to authenticated and logged in users. This complies with principles \emph{Minimum Exposure}, \emph{Least Privilege},
+ and \emph{Complete Mediation}.
  \item The web server will only connect to/be connected to via the secure technologies SSH and HTTPS, hence all data legitimately sent to and received from it is encrypted. The data stored on the web server is only accessible to authenticated
- and authorized agents and users are never given the opportunity to directly access the underlying operating system or file system. This means that all data is duly protected in accordance with \emph{4. Minimum Exposure} and \emph{8. Complete
+ and authorized agents and users are never given the opportunity to directly access the underlying operating system or file system. This means that all data is duly protected in accordance with \emph{Minimum Exposure} and \emph{Complete
  Mediation}.
- \item Web server session management is handled by Django, a well-established web framework, which adheres to \emph{1. Simplicity} and \emph{2. Open Design}. Django's session management is based on cookies which are set to expire when the browser
+ \item Web server session management is handled by Django, a well-established web framework, which adheres to \emph{Simplicity} and \emph{Open Design}. Django's session management is based on cookies which are set to expire when the browser
  is closed. The session representation objects are encoded in order to not have the cookies leak information and are stored in a SQLite database on the web server machine. This database is only accessible by root and webserver, the user running the
- web server applications. No remote users have any rights on the database. This configuration follows principles \emph{4. Minimum Exposure}, \emph{5. Least Privilege} and \emph{8. Complete Mediation}
- \item The web server is protected by a firewall that only allows traffic to the former flow over ports 22 and 443 which are internally mapped to 22 and 8100 respectively. Considering \emph{9. No Single Point of Failure}, the web server itself
- also restricts access to ports 22 for SSH and 8100 for HTTPS. Honouring \emph{6. Minimum Trust and Maximum Trustworthiness}, the web server will connect to the DB and CA machines via HTTPS, effectively identifying them and reducing trust that
+ web server applications. No remote users have any rights on the database. This configuration follows principles \emph{Minimum Exposure}, \emph{Least Privilege} and \emph{Complete Mediation}
+ \item The web server is protected by a firewall that only allows traffic to the former flow over ports 22 and 443 which are internally mapped to 22 and 8100 respectively. Considering \emph{No Single Point of Failure}, the web server itself
+ also restricts access to ports 22 for SSH and 8100 for HTTPS. Honouring \emph{Minimum Trust and Maximum Trustworthiness}, the web server will connect to the DB and CA machines via HTTPS, effectively identifying them and reducing trust that
  has to be put in the integrity of in-house machines.
- \item Multiple forms of authentication reduce the reliance on each single one, hence offering users to login either via credentials like user ID and password or via client certificate is another realization of \emph{9. No Single Point of Failure}.
+ \item Multiple forms of authentication reduce the reliance on each single one, hence offering users to login either via credentials like user ID and password or via client certificate is another realization of \emph{No Single Point of Failure}.
 \end{itemize}
 
-
+\subsubsection{Structure of the internal networks}
+\begin{itemize}
+    \item The web server is the only machine in a DMZ subnet to reduce the impact of a compromised web server on the whole system. Traffic from the DMZ to the internal network has to pass the through the firewall again.
+    This is according to the security principle \emph{No Single Point of Failure}.
+    \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle 
+    since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability
+    of the system, but if the backup can be accessed and a restore is quickly done.
+    \item The firewall is by design a single point of failure regarding the availability of the system, but it allows to \emph{minimize the exposure} of the system to the internet drastically. Furthermore the pfSense firewall
+    allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
+    \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a
+    new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in
+    a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Mimimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into 
+    those networks so he can work from his known environment which increases the \emph{Usability}.
+    \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle 
+    of \emph{Complete Mediation}.
+\end{itemize}
 
 \subsection{Components}
 
