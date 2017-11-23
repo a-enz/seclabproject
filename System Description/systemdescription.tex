@@ -611,7 +611,6 @@ periods of time during which there is no connection to the Internet.
 \subsubsection{\textbf{Logical Assets}}
 
 \textbf{Software}
-TODO: group with same properties
 \begin{itemize}
 \item \textbf{Firewall application}: pfSense application running on the Firewall machine and additionally fulfills routing duties for the internal network and the DMZ. It filters traffic based on a port whitelist and redirects
 SSH and HTTPS traffic to their destination. TODO refs
@@ -622,7 +621,6 @@ SSH and HTTPS traffic to their destination. TODO refs
 \end{itemize}
 
 \noindent\textbf{Information}
-TODO: group with same properties
 \begin{itemize}
 \item \textbf{User certificates and keys}: The user certificates and private keys are of twofold importance: on the one hand, they are used for secure email communication and on the other hand they can be used as client certificates/private key pairs
 in SSL/TLS-based authentication. 
@@ -762,7 +760,7 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \end{prettytablex}
 \end{footnotesize}
 
-\textbf{Servers}: TODO: 1 and 2 from common \\
+\textbf{Servers}:\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
@@ -800,15 +798,15 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
 1 & Employees that misconfigure software unintentionally resulting in loss of data or system downtime. & Well-trained system administrators, restricted access.  & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-1 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
+2 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-1 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
+3 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
 \hline
-1 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
+4 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
 \hline
-1 & Nature: Flooding of the server room results in total loss of all machines & Area has very low risk of flooding & {\it Low} & {\it High} & {\it Med}\\
+5 & Nature: Flooding of the server room results in total loss of all machines & Area has very low risk of flooding & {\it Low} & {\it High} & {\it Med}\\
 \hline
-1 & Employees lose or leak private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
+6 & Employees lose or leak private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -821,7 +819,9 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
 1 & Hacker discovers/buys a zero-day exploit in one of the frameworks, possible compromise of web server, broken authorization, rogue certificates & Keep system up-to-date at all times.  & {\it Low} & {\it High} & {\it Med}\\
 \hline
-1 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
+2 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+3 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -888,18 +888,6 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \subsubsection{Intangible Goods}
 \textbf{Company reputation}\\
 \textbf{Confidentiality of informant identities}\\
-
-TODO: check if already present and remove
-\begin{footnotesize}
-\begin{prettytablex}{L}
-No. & Threat &  Countermeasure(s) & L & I & Risk \\
-\hline
-1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Med} & {\it High} & {\it Med} \\
-\hline
-2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
-\hline
-\end{prettytablex}
-\end{footnotesize}
 
 \begin{footnotesize}
 \begin{prettytablex}{L}

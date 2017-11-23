@@ -19,24 +19,24 @@
 \contentsline {subsubsection}{\numberline {1.4.1}Core Certificate Authority (CA)}{9}{subsubsection.1.4.1}
 \contentsline {subsubsection}{\numberline {1.4.2}Database}{10}{subsubsection.1.4.2}
 \contentsline {subsubsection}{\numberline {1.4.3}Backup}{11}{subsubsection.1.4.3}
-\contentsline {subsubsection}{\numberline {1.4.4}Network Firewall/Router}{11}{subsubsection.1.4.4}
+\contentsline {subsubsection}{\numberline {1.4.4}Network Firewall/Router}{12}{subsubsection.1.4.4}
 \contentsline {subsubsection}{\numberline {1.4.5}Web Server}{13}{subsubsection.1.4.5}
 \contentsline {subsection}{\numberline {1.5}Backdoors}{14}{subsection.1.5}
 \contentsline {subsubsection}{\numberline {1.5.1}Easy Backdoor}{14}{subsubsection.1.5.1}
 \contentsline {subsubsection}{\numberline {1.5.2}Hard Backdoor}{14}{subsubsection.1.5.2}
-\contentsline {subsection}{\numberline {1.6}Additional Material}{15}{subsection.1.6}
+\contentsline {subsection}{\numberline {1.6}Additional Material}{16}{subsection.1.6}
 \contentsline {subsubsection}{\numberline {1.6.1}Login credentials}{16}{subsubsection.1.6.1}
-\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{16}{section.2}
-\contentsline {subsection}{\numberline {2.1}Assets}{16}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}\textbf {Physical Assets}}{16}{subsubsection.2.1.1}
+\contentsline {section}{\numberline {2}Risk Analysis and Security Measures}{17}{section.2}
+\contentsline {subsection}{\numberline {2.1}Assets}{17}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}\textbf {Physical Assets}}{17}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}\textbf {Logical Assets}}{17}{subsubsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.3}\textbf {Persons}}{18}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.3}\textbf {Persons}}{19}{subsubsection.2.1.3}
 \contentsline {subsubsection}{\numberline {2.1.4}\textbf {Intangible Goods}}{19}{subsubsection.2.1.4}
-\contentsline {subsection}{\numberline {2.2}Threat Sources}{19}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Threat Sources}{20}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{20}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Risk Evaluation}{21}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{21}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{22}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{23}{subsubsection.2.4.2}
 \contentsline {subsubsection}{\numberline {2.4.3}Persons}{24}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{24}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{25}{subsubsection.2.4.4}
 \contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{25}{subsubsection.2.4.5}
