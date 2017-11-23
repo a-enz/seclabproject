@@ -36,7 +36,7 @@
 \contentsline {subsection}{\numberline {2.3}Risks Definitions}{20}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Risk Evaluation}{21}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Physical Assets}{21}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{22}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Persons}{23}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{23}{subsubsection.2.4.4}
-\contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{24}{subsubsection.2.4.5}
+\contentsline {subsubsection}{\numberline {2.4.2}Logical Assets}{23}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Persons}{24}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Intangible Goods}{24}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.5}Risk Acceptance}{25}{subsubsection.2.4.5}

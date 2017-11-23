@@ -814,14 +814,26 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
 1 & Nature: Flooding of the server room results in total loss of all machines & Area has very low risk of flooding & {\it Low} & {\it High} & {\it Med}\\
 \hline
+1 & Employees lose or leak private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
+\hline
 \end{prettytablex}
 \end{footnotesize}
 
-\textbf{Firewall application}
-\textbf{Web application}
-\textbf{CA and Database applications}
-\textbf{MySQL server}:
-\textbf{Backup application}: TODO: Andi?
+\textbf{Firewall application}\\
+\textbf{Web application}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Hacker discovers/buys a zero-day exploit in one of the frameworks, possible compromise of web server, broken authorization, rogue certificates & Keep system up-to-date at all times.  & {\it Low} & {\it High} & {\it Med}\\
+\hline
+1 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{CA and Database applications}\\
+\textbf{MySQL server}:\\
+\textbf{Backup application}: TODO: Andi?\\
 \textbf{User keys}\\
 \textbf{Recovery public-private key pair}\\
 \textbf{Server keys and certificates}\\
