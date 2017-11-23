@@ -19,7 +19,7 @@
 \setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
 
 
-\newenvironment{prettytablex}[1]{\vspace{0.3cm}\noindent\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
+\newenvironment{prettytablex}[1]{\vspace{0.3cm}\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
 %\newenvironment{prettytable}{\prettytablex{l X}}{\endprettytablex}
 
 \newcolumntype{L}{lp{0.3\textwidth}p{0.3\textwidth}p{15pt}p{15pt}p{15pt}}
@@ -748,34 +748,60 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 \subsection{Risk Evaluation}
 
 % List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
+We now list the potential threats associated with the assets and the implemented countermeasures. To avoid repeating many times the same threat we group "shared" threats in a paragraph called \emph{Common} at the beginning of each Asset category and we just refer to it.
+TODO: running numbers!! \\
 
-Potential threats and countermeasures with the inferred risk.
-TODO: running numbers!!
-\textbf{Common}\\
+\subsubsection{Physical Assets}
+\textbf{Common}: the following threats apply to many different Physical Assets. \\
+\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Nature: Floods, lightnings, fire & Building as necessary physical countermeasures & {\it Low} & {\it Med} & {\it Low} \\
+1 & Nature: Floods, lightnings, fire & Building has necessary physical countermeasures & {\it Low} & {\it Med} & {\it Low} \\
 \hline
 2 & Hardware Failure: one or more machines down, data loss or system unresponsive/unavailable & RAID storage, contract with hardware specialist for quick substitution, failures notification system for System Administrator & {\it Low} & {\it Low} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
-\textbf{Servers} \\
-\textbf{internet Connectivity} \\
-\textbf{Internal Network} \\
+
+\textbf{Servers}: TODO: 1 and 2 from common \\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low} \\
+1 & Employee: obtains physical access to the machines and copies data directly from storage. & Physical protection of machines & {\it Low} & {\it High} & {\it Med} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\textbf{Internet Connectivity} \\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Connectivity interruption & Service Level Agreement for 99.99\% availability and compensation if it is exceeded& {\it Low} & {\it Low} & {\it Low} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\textbf{Internal Network}: TODO: 1 and 2 from common\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
 \subsubsection{Logical Assets}
 \textbf{Common}\\
+\textbf{Firewall application}
+\textbf{Web application}
+\textbf{CA and Database applications}
+\textbf{MySQL server}:
+\textbf{Backup application}: TODO: Andi?
 \textbf{User keys}\\
 \textbf{Recovery public-private key pair}\\
 \textbf{Server keys and certificates}\\
@@ -785,11 +811,40 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \textbf{Certificate revocation list}\\
 \textbf{Login data for machines user accounts}\\
 \textbf{System Administrator's private SSH key}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Skilled Hacker: steals the key &  Increase security sensibilization/awareness & {\it Low} & {\it High} & {\it Med} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 \textbf{Backup private SSH key}\\
 \textbf{CA Administrator's private key}\\
 
 \subsubsection{Persons}
+\textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Skilled Hacker: steals System Administrator &  Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med}\\
+\hline
+2 & Organizatorial Deficiencies: illness or injury impede him from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Med} & {\it Med} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 \textbf{System Administrator}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+1 & Skilled Hacker: steals System Administrator &  Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med}\\
+\hline
+2 & Organizatorial Deficiencies: illness or injury impede him from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Med} & {\it Med} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 \textbf{CA Administrator}\\
 \textbf{Employees}\\
 \textbf{Informants}\\
@@ -799,7 +854,7 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \textbf{Company reputation}\\
 \textbf{Confidentiality of informant identities}\\
 
-
+TODO: check if already present and remove
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
