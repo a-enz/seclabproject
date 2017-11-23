@@ -29,11 +29,11 @@
 \contentsline {subsubsection}{\numberline {2.1.1}\textbf {Physical Assets}}{16}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}\textbf {Logical Assets}}{17}{subsubsection.2.1.2}
 \contentsline {subsubsection}{\numberline {2.1.3}\textbf {Persons}}{18}{subsubsection.2.1.3}
-\contentsline {subsubsection}{\numberline {2.1.4}\textbf {Intangible Goods}}{18}{subsubsection.2.1.4}
-\contentsline {subsection}{\numberline {2.2}Threat Sources}{18}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Risks Definitions}{19}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{20}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.1.4}\textbf {Intangible Goods}}{19}{subsubsection.2.1.4}
+\contentsline {subsection}{\numberline {2.2}Threat Sources}{19}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Risks Definitions}{20}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Risk Evaluation}{21}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Logical Assets}{21}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Persons}{21}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Intangible Goods}{21}{subsubsection.2.4.3}
-\contentsline {subsubsection}{\numberline {2.4.4}Risk Acceptance}{22}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.2}Persons}{22}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Intangible Goods}{22}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Risk Acceptance}{23}{subsubsection.2.4.4}

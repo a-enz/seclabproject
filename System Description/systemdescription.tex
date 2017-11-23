@@ -573,27 +573,33 @@ periods of time during which there is no connection to the Internet.
 TODO: group with same properties
 \begin{itemize}
 \item \textbf{Firewall application}: pfSense application running on the Firewall machine TODO: Andi? ref
-\item \textbf{Web application}: Runs CentOS 7, nginx, uWSGI and a Django application that was developed in-house. The software is updated regularly by the system administrator or the software engineer who developed the application. 
+\item \textbf{Web application}: Runs CentOS 7, nginx, uWSGI and a Django application that was developed by a contractor. The software is updated regularly by the system administrator with occasional support of the contractor. 
 \item \textbf{CA and Database applications}: the SparkJava applications running respectively on the Core CA machine and on the Database machine TODO refs
 \item \textbf{MySQL server}:
 \item \textbf{Backup application}: TODO: Andi?
 \end{itemize}
 
 \noindent\textbf{Information}
-TODO: group with same properties, textbf
+TODO: group with same properties
 \begin{itemize}
-\item User certificates and keys: The user certificates and private keys are of twofold importance: on the one hand, they are used for secure email communication and on the other hand they can be used as client certificates/private key pairs
+\item \textbf{User certificates and keys}: The user certificates and private keys are of twofold importance: on the one hand, they are used for secure email communication and on the other hand they can be used as client certificates/private key pairs
 in SSL/TLS-based authentication. 
-\item Server keys and certificates: Core Ca, Database and Webserver
-\item Root CA key and certificate:
-\item User data: Since the users of the iMovies PKI-services are possibly involved in investigative reporting, it is of paramount importance to keep their data confidential. Any leakage of this information could
+\item \textbf{Server keys and certificates}: The integrity of the SSL certificate and confidentiality of the private key of the web server are of critical importance as with their compromise an attacker can mount a man-in-the-middle attack to obtain user credentials and
+even newly generated certificates. The private keys and certificates of the DB and CA systems on the other hand are of lesser importance, because their certificates are just a fallback in case someone manages to spoof addresses in the 
+physically secured internal network.
+\item \textbf{Root CA key and certificate}: These two assets must be protected with great care. The root CA private key can be abused to sign new certificates so it must be kept confidential. The certificate must not be tampered with,
+as it is self-signed and hence could also bind any key to the valid credentials.
+\item \textbf{User data}: Since the users of the iMovies PKI-services are possibly involved in investigative reporting, it is of paramount importance to keep their data confidential. Any leakage of this information could
 lead to precarious situations for the employees.
-\item Configuration and log files:
-\item private SSH keys:
+\item \textbf{Configuration and log files}: The configuration files must not be tampered with, as they are governing how the system works in great parts. For example, an adversary could turn off SSL on the web server, rendering it useless.
+The log files are primarily important to detect suspicious activities and could, if altered, conceal such activities. Hence integrity is needed here as well.
+\item \textbf{private SSH keys}: The system admin's SSH key must be kept confidential, as it allows remote access to all machines in the company. However, that access is confined to a low-privilege user, so without other credentials the damage
+to be done is limited. The backup services' SSH key should also be kept confiedntial as it allows root access to all machines in the company network. However in order to use it, one first has to gain access to the backup machine.
 \item \textbf{Certificate revocation list}: Contains all revoked certificates. It has to be up to date and available to the users in order for them to not engage in putative secure communication with an adversarial actor.
 Additionally it is used by the web server to check certificate-based authentication requests for validity. Furthermore its integrity has to be guaranteed.
-\item \textbf{Recovery private and public keys}: the public key is used to encrypt user private keys and has to be available to the CA application. The private key can be used to recover the private keys in case of necessity and given its importance is stored in the safe in the Administrators office that can be opened only in the presence of both the System and the CA Administrators.
-\item Login data on different machines
+\item \textbf{Recovery private and public keys}: The public key is used to encrypt user private keys and has to be available to the CA application. The private key can be used to recover the private keys in case of necessity and given its importance is stored in the safe in the Administrators office that can be opened only in the presence of both the System and the CA Administrators.
+\item \textbf{Login data on different machines}: Since the only two ways for the login data to be abused is upon physical access or SSH access, this asset is strongly tied to the system administrators SSH key and physical keys to the server room/rack.
+The compromise of the login data only is of immediate concern if it coincides with the compromise of the aforementioned keys in possession of the system administrator.
 %\item System Administrator's public and private key
 %\item CA Administrator's private and public keys
 %\item Backup private and public keys: TODO Andi?
@@ -601,7 +607,7 @@ Additionally it is used by the web server to check certificate-based authenticat
 
 \subsubsection{\textbf{Persons}}
 \begin{itemize}
-\item \textbf{System Administrator}: maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
+\item \textbf{System Administrator}: Maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
 \item \textbf{CA Administrators}: are able to verify the current state of the CA.
 \item \textbf{Employees}
 \item \textbf{Informants} that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
