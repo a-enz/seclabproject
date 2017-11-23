@@ -560,7 +560,7 @@ a3 & Astrid\\
 \item \textbf{Internet Connectivity}: The Firewall/Router machine is connected to the ISP's backbone via fiber cable. The service-level agreement with the ISP only guarantees 99.99\% availability, so there might some short
 periods of time during which there is no connection to the Internet.
 \item \textbf{Internal Network}: This consists of Ethernet cables that physically connect the machines in the rack to the firewall/router.
-\item \textbf{Firewall Machine}: TODO decide also about router
+\item \textbf{Firewall Machine}: Is located in the same locked rack as the server machines. 
 \end{itemize}
 
 %\item Server Machines: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
@@ -572,9 +572,10 @@ periods of time during which there is no connection to the Internet.
 \textbf{Software}
 TODO: group with same properties
 \begin{itemize}
-\item \textbf{Firewall application}: pfSense application running on the Firewall machine TODO: Andi? ref
-\item \textbf{Web application}: Runs CentOS 7, nginx, uWSGI and a Django application that was developed by a contractor. The software is updated regularly by the system administrator with occasional support of the contractor. 
-\item \textbf{CA and Database applications}: the SparkJava applications running respectively on the Core CA machine and on the Database machine TODO refs
+\item \textbf{Firewall application}: pfSense application running on the Firewall machine and additionally fulfills routing duties for the internal network and the DMZ. It filters traffic based on a port whitelist and redirects
+SSH and HTTPS traffic to their destination. TODO refs
+\item \textbf{Web Server}: Runs CentOS 7, nginx, uWSGI and a Django application that was developed by a contractor. The software is updated regularly by the system administrator with occasional support of the contractor. 
+\item \textbf{CA and Database applications}: The SparkJava applications running respectively on the Core CA machine and on the Database machine TODO refs
 \item \textbf{MySQL server}:
 \item \textbf{Backup application}: TODO: Andi?
 \end{itemize}
@@ -607,17 +608,23 @@ The compromise of the login data only is of immediate concern if it coincides wi
 
 \subsubsection{\textbf{Persons}}
 \begin{itemize}
-\item \textbf{System Administrator}: Maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
-\item \textbf{CA Administrators}: are able to verify the current state of the CA.
-\item \textbf{Employees}
-\item \textbf{Informants} that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
-\item \textbf{Management}
+\item \textbf{System Administrator}: Maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the
+systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components. Is the most important person from an information security
+perspective, as they hold physical and virtual keys to the system.
+\item \textbf{CA Administrators}: Are able to verify the current state of the CA. Has only limited access to system data but even this minor amount of data should be protected.
+\item \textbf{Employees}: Are the most important people in the field, but also the most vulnerable. Hence they are of great value to the company, even though they only use the system to obtain means of secure communication and
+don't have any special access to system resources.
+\item \textbf{Informants}: Are external to the company but may obtain the employees' certificates. The company also greatly depends on such people, hence proper certificate handling is suggested here.
+\item \textbf{Management}: Only makes high-level decisions and has no access to any system resources. As they have great influence over the direction technology- and fincance-wise, they are still
+an important player.
 \end{itemize}
 
 \subsubsection{\textbf{Intangible Goods}}
 \begin{itemize}
-\item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters.
-\item \textbf{Confidentiality of informant identities}: the exposure of an informant may have serious consequences for the informat, but also for iMovies. For the former it may result in monetary loss, legal consequences or even physical harm, while for the latter it will cause damage to the reputation.
+\item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters. Additionally, iMovies has an interest to guarantee employee and 
+informant safety as much as possible, since they are interested in attracting such people in the future.
+\item \textbf{Confidentiality of informant identities}: The exposure of an informant may have serious consequences for the informant, but also for iMovies. For the former it may result in monetary loss, legal consequences or even 
+physical harm, while for the latter it will cause damage to the reputation.
 \end{itemize}
 
 \subsection{Threat Sources}
