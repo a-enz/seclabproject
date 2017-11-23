@@ -494,30 +494,64 @@ files with \emph{setuid bit} set, the file is placed in a legitimate and pre-exi
 
 You may have additional sections according to your needs.
 \subsubsection{Login credentials}
-TODO: set tables width
-\begin{tabular}{| p{0.30\textwidth} | p{0.30\textwidth} | p{0.30\textwidth} |}
+
+
+%%% MACHINE LOGIN TABLE
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{| X | X | X |}
 \hline
 \multicolumn{3}{| c |}{\textbf{Machines user accounts}} \\
 \hline
 \textbf{Machine} & \textbf{User} & \textbf{Password}\\
 \hline
-Backup & TODO & TODO\\
+Backup & iadmin & greenWay\_blueish\\
 \hline
-Core CA & iadmin & TODO\\
+Backup & backup & yada(9Ruckus)\\
 \hline
-Core CA & coreca & TODO\\
+Backup & badmin & starr?Bleed6\\
 \hline
-Database & iadmin & TODO\\
+Core CA & iadmin & greenWay\_Roeschti\\
 \hline
-Database & database & TODO\\
+Core CA & coreca & quer57=Dingdong\\
 \hline
-Firewall & TODO & TODO\\
+Database & iadmin & greenWay\_Reverse8\\
 \hline
-Webserver CA & TODO & TODO\\
+Database & database & /setPlant\&\\
 \hline
-\end{tabular}
+Firewall & admin & 89steep\&Sheep\\
+\hline
+Webserver CA & iadmin & greenWay\_Outer66\\
+\hline
+Webserver CA & webserver & \_web17server\_\\
+\hline
+\end{tabularx}
 
-\begin{tabular}{| p{0.5\textwidth} | p{0.5\textwidth} |}
+\label{pwd_machine_users}
+\end{table}
+
+
+%%% SSH PRIVATE KEY TABLE
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
+\hline
+\multicolumn{2}{| c |}{\textbf{SSH Private Key}} \\
+\hline
+\textbf{Owner} & \textbf{Password}\\
+\hline
+System Administrator & PaperW8Less\\
+\hline
+\end{tabularx}
+\label{pwd_ssh_key}
+\end{table}
+
+
+
+%%% MQSQL DB USERS TABLE
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
 \hline
 \multicolumn{2}{| c |}{\textbf{MySQL Database users}} \\
 \hline
@@ -527,9 +561,16 @@ root & reallySecurePwd1!\\
 \hline
 dbuser & securePwd17!\\
 \hline
-\end{tabular}
+\end{tabularx}
+\label{pwd_mysql_users}
+\end{table}
 
-\begin{tabular}{| l | l |}
+
+
+%%% IMOVIES PASSWORDS
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
 \hline
 \multicolumn{2}{| c |}{\textbf{iMovies users}} \\
 \hline
@@ -543,7 +584,10 @@ ms &MidbSvlJ\\
 \hline
 a3 & Astrid\\
 \hline
-\end{tabular}
+\end{tabularx}
+\label{pwd_imovies_db}
+\end{table}
+
 
 
 \section{Risk Analysis and Security Measures}
