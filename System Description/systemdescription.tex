@@ -116,18 +116,22 @@ The backup machine periodically pulls a backup from from firewall, web server, d
 
 
 \subsubsection{Certificate Issuing Process}
-TODO: password for encryption of PKCS\#12
 \begin{enumerate}
-\item The user logs in via a web form by entering his user ID and his password. The user ID and password are verified by consulting the information stored in the database. Alternatively, login using a valid certificate is also possible
-\item The user is shown the user information stored in the database. If required, the user may correct this information and any changes will be applied to the database
-\item A certificate is issued based on the user information stored in the database
-\item The user is offered the possibility to download the new certificate, including the corresponding private key, in PKCS\#12 format
+\item The user logs in via a web form by entering his user ID and his password. The user ID and password are verified by consulting the information stored in the database. Alternatively, login using a valid client certificate is also possible.
+Client certificates are checked against the certificate revocation list (CRL) stored on the web server.
+\item The user is shown the first name, last name und email address stored under their user ID in the database. If required, the user may correct this information and any changes will be applied to the database. The user is asked to provide
+a password with which the bundled certificate/key pair is encrypted. 
+\item A certificate is issued based on the user information stored in the database and a corresponding key is generated.
+\item The user is offered the possibility to download the new certificate/key bundle in PKCS\#12 format. After one download request, the certificate is deleted from the web server.
 \end{enumerate}
 
 \subsubsection{Certificate Revocation Process}
 \begin{enumerate}
-\item The affected user authenticates himself to the web application. Authentication can either be certificate-based client authentication over SSL/TLS (if the user still holds the certificate and the corresponding private key) or the user uses his user name and password stored in the database (if the user has lost the certificate or the corresponding private key)
-\item After successful authentication, the certificate in question (or all affected certificates of the affected user) will be revoked. Additionally, a new certificate revocation list will be generated and published on the web server and login with the revoked certificate(s) will not be possible anymore.
+\item The affected user authenticates himself to the web application. Authentication can either be certificate-based client authentication over SSL/TLS (if the user still holds a certificate and the corresponding private key) or the user
+uses his user name and password stored in the database (if the user has lost all certificate or their corresponding private keys).
+\item After successful authentication, the user can choose to revoke either a single one or all of their certificates. Both requests have to be confirmed by entering the user's password. In the case of a single certificate revocation,
+the user has to provide the serial number. Upon revocation, a new certificate revocation list will be generated and published on the web server and login with the revoked certificate(s) will not be possible anymore. If the user is currently
+authenticated with a/the revoked certificate, they will be logged out.
 \end{enumerate}
 
 \subsubsection{CA Administration Interface}
@@ -137,6 +141,8 @@ Allows the CA administrator to login with a digital certificate into a dedicated
 \item Number of revoked certificates
 \item Current serial number
 \end{itemize}
+Since the CA administrator does not necessarily  have a user ID and the DB/CA entries tied to that, they cannot access any other part of the user area
+of the website.
 
 \subsubsection{Backup}
 TODO: change in active form, move something to next point
@@ -183,13 +189,16 @@ and to the project's security requirements:
 
 \subsubsection{General}
 \begin{itemize}
-\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{5. Least Privilege}.
+\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{5. Least Privilege}. All data in transit (via SSH or HTTPS) is
+encrypted, in adherence to \emph{4. Minimum Exposure}.
 \end{itemize}
 
 \subsubsection{Database}
 \begin{itemize}
 \item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{5. Least Privilege}, \emph{8. Complete Mediation} and  \emph{d. Access control on all components}
-\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used, and ideally with client side verification to ensure that only the Webserver can send requests (\emph{Complete Mediation}). %Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API. This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
+\item The REST API is reachable only over HTTPS, in accord with \emph{1. Simplicity} and \emph{2. Open Design} since no custom protocol is used, and ideally with client side verification to ensure that only the Webserver
+can send requests (\emph{Complete Mediation}). %Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API.
+This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
 \end{itemize}
 
 \subsubsection{Core CA}
@@ -200,7 +209,7 @@ and to the project's security requirements:
 \end{itemize}
 % Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
 
-Security considerations Andreas:
+\subsubsection{Security considerations Andreas}
 \begin{itemize}
     \item The web server is the only machine in a DMZ subnet to reduce the impact of a compromised web server on the whole system. Traffic from the DMZ to the internal network has to pass the through the firewall again. This is according to the security principle \emph{No Single Point of Failure}.
     \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability of the system, but if the backup can be accessed a restore is quickly done.
@@ -225,6 +234,25 @@ Security considerations Andreas:
     \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity} of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
     \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
 \end{itemize}
+
+\subsubsection{Web Server}
+\begin{itemize}
+ \item Respecting \emph{10. Traceability}, the webserver logs user authentication, logins (users/CA admins), logouts, certificate issuance requests, certificate revocation, CRL downloads and failed login attempts. Additionally, these logs
+ as well as relevant configuration and code files are being backed up, adhering to \emph{9. No Single Point of Failure}.
+ \item All pages of the website apart from welcomes pages, which don't provide any information or functionality, are only accessible to authenticated and logged in users. This complies with principles \emph{4. Minimum Exposure}, \emph{5. Least Privilege},
+ and \emph{8. Complete Mediation}.
+ \item The web server will only connect to/be connected to via the secure technologies SSH and HTTPS, hence all data legitimately sent to and received from it is encrypted. The data stored on the web server is only accessible to authenticated
+ and authorized agents and users are never given the opportunity to directly access the underlying operating system or file system. This means that all data is duly protected in accordance with \emph{4. Minimum Exposure} and \emph{8. Complete
+ Mediation}.
+ \item Web server session management is handled by Django, a well-established web framework, which adheres to \emph{1. Simplicity} and \emph{2. Open Design}. Django's session management is based on cookies which are set to expire when the browser
+ is closed. The session representation objects are encoded in order to not have the cookies leak information and are stored in a SQLite database on the web server machine. This database is only accessible by root and webserver, the user running the
+ web server applications. No remote users have any rights on the database. This configuration follows principles \emph{4. Minimum Exposure}, \emph{5. Least Privilege} and \emph{8. Complete Mediation}
+ \item The web server is protected by a firewall that only allows traffic to the former flow over ports 22 and 443 which are internally mapped to 22 and 8100 respectively. Considering \emph{9. No Single Point of Failure}, the web server itself
+ also restricts access to ports 22 for SSH and 8100 for HTTPS. Honouring \emph{6. Minimum Trust and Maximum Trustworthiness}, the web server will connect to the DB and CA machines via HTTPS, effectively identifying them and reducing trust that
+ has to be put in the integrity of in-house machines.
+ \item Multiple forms of authentication reduce the reliance on each single one, hence offering users to login either via credentials like user ID and password or via client certificate is another realization of \emph{9. No Single Point of Failure}.
+\end{itemize}
+
 
 
 \subsection{Components}
@@ -393,8 +421,9 @@ This interface allows all outgoing IPv4 traffic. Also there is a special Lockout
 \subsubsection{Web Server}
 The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS traffic from and to the Internet as well as the HTTPS traffic from and to
 the database (DB) and core certificate authority (CA) machines in the iMovies internal network. User authentication is executed in collaboration with DB in the case of username/password authentication
-and CA in the case of client certificate based authentication. The web server acts as interface for clients to access the certificate authority functionality and allows them to make changes to first name, last name
-and email address entries in the database. The web server logs all relevant user activity such as authentication, certificate generation and revocation. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
+and CA in the case of client certificate based authentication. The web server stores an up-tp-date certificate revocation list that it uses to verify client certificates. 
+The web server acts as interface for clients to access the certificate authority functionality and allows them to make changes to first name, last name and email address entries in the database. The web server logs all relevant
+user activity such as authentication, certificate generation and revocation. The web server is run on nginx 1.12.2 which connects via uWSGI 2.0.15 (a web server gateway interface software) to the web application running
 on the web framework Django 1.11.6. The machine runs CentOS 7 and the aforementioned uWSGI and Django applications run in a Python 3.6.3 virtual environment. The firewall restricts access to the web server to ports 22 and 8100.
 Additionally, the web server itself restricts all access to ports 22, for system administrator remote maintenance and backup services, and 8100, on which the web server accepts HTTPS requests. HTTP requests are flat out rejected.
 The system has dedicated account for remote administration and running the uWSGI/Django applications, where the former is a sudoer and the latter is not. Since the web server machine is located in a locked room, only the system

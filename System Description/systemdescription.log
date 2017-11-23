@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.4)  23 NOV 2017 00:33
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.28)  22 NOV 2017 23:56
->>>>>>> report_mad
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.28)  23 NOV 2017 02:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,28 +374,17 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
 Package epstopdf Info: Source file: <res/system_arch.eps>
-<<<<<<< HEAD
-(epstopdf)                    date: 2017-11-22 23:28:59
-(epstopdf)                    size: 16863 bytes
-(epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-22 23:28:59
-=======
 (epstopdf)                    date: 2017-11-22 22:18:21
 (epstopdf)                    size: 16863 bytes
 (epstopdf)             Output file: <res/system_arch-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-11-22 22:22:23
->>>>>>> report_mad
 (epstopdf)                    size: 7415 bytes
 (epstopdf)             Command: <repstopdf --outfile=res/system_arch-eps-conver
 ted-to.pdf res/system_arch.eps>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
-<<<<<<< HEAD
-<res/system_arch-eps-converted-to.pdf, id=239, 581.17125pt x 434.62375pt>
-=======
-<res/system_arch-eps-converted-to.pdf, id=216, 581.17125pt x 434.62375pt>
->>>>>>> report_mad
+<res/system_arch-eps-converted-to.pdf, id=257, 581.17125pt x 434.62375pt>
 File: res/system_arch-eps-converted-to.pdf Graphic file (type pdf)
 
 <use res/system_arch-eps-converted-to.pdf>
@@ -408,525 +393,293 @@ e 108.
 (pdftex.def)             Requested size: 345.0pt x 258.01079pt.
  [3] [4 <./res/system_arch-eps-converted-to.pdf>]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-<<<<<<< HEAD
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 133.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
- [5] [6] [7]
-Overfull \hbox (14.77612pt too wide) in paragraph at lines 233--257
-=======
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 120.
- [3]
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no ™ in font cmr10!
- [4 <./res/system_arch-eps-converted-to.pdf>] [5] [6] [7]
-Overfull \hbox (14.77612pt too wide) in paragraph at lines 232--256
->>>>>>> report_mad
+ [5] [6] [7] [8]
+Overfull \hbox (14.77612pt too wide) in paragraph at lines 264--288
 \OT1/cmr/m/n/10 The Core CA server runs in the iMovies in-ter-nal net-work at I
 P ad-dress 192.168.50.31
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (29.80609pt too wide) in paragraph at lines 233--257
-=======
-Overfull \hbox (29.80609pt too wide) in paragraph at lines 232--256
->>>>>>> report_mad
+Overfull \hbox (29.80609pt too wide) in paragraph at lines 264--288
 [] 
  []
 
-[8]
-<<<<<<< HEAD
-Overfull \hbox (6.13518pt too wide) in paragraph at lines 274--274
-=======
-Overfull \hbox (6.13518pt too wide) in paragraph at lines 273--273
->>>>>>> report_mad
+[9]
+Overfull \hbox (6.13518pt too wide) in paragraph at lines 305--305
 []|\OT1/cmr/bx/n/10 #| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 276--276
-=======
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 275--275
->>>>>>> report_mad
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 307--307
 []|\OT1/cmr/m/n/10 1| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 276--277
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
 []|\OT1/cmr/m/n/10 lastname, first-name,
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 278--278
-=======
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 277--277
->>>>>>> report_mad
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 309--309
 []|\OT1/cmr/m/n/10 2| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 278--278
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 277--277
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 309--309
 []|\OT1/cmr/m/n/10 lastname, first-name,
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 280--280
-=======
-Overfull \hbox (1.55191pt too wide) in paragraph at lines 279--279
->>>>>>> report_mad
+Overfull \hbox (1.55191pt too wide) in paragraph at lines 311--311
 []|\OT1/cmr/m/n/10 3| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (17.72171pt too wide) in paragraph at lines 268--286
-=======
-Overfull \hbox (17.72171pt too wide) in paragraph at lines 267--285
->>>>>>> report_mad
+Overfull \hbox (17.72171pt too wide) in paragraph at lines 299--317
 \OT1/cmr/m/n/10 The Database server runs in the iMovies in-ter-nal net-work at 
 IP ad-dress 192.168.50.33
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 268--286
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 267--285
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 299--317
 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (36.20229pt too wide) in paragraph at lines 268--286
-=======
-Overfull \hbox (36.20229pt too wide) in paragraph at lines 267--285
->>>>>>> report_mad
+Overfull \hbox (36.20229pt too wide) in paragraph at lines 299--317
 [] 
  []
 
-[9] [10] [11] [12]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-<<<<<<< HEAD
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 426.
+[10] [11]
 
-Overfull \hbox (108.07552pt too wide) in paragraph at lines 432--454
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12] [13] [14]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 467.
+
+Overfull \hbox (108.07552pt too wide) in paragraph at lines 473--495
 \OT1/cmr/m/n/10 TODO: set ta-bles width [] 
  []
 
 
-Overfull \hbox (40.19998pt too wide) in paragraph at lines 455--466
+Overfull \hbox (40.19998pt too wide) in paragraph at lines 496--507
 [][] 
-=======
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 434.
-
-Overfull \hbox (3.10313pt too wide) in paragraph at lines 441--490
-[] 
  []
 
-
-Overfull \hbox (25.19998pt too wide) in paragraph at lines 441--490
-[] 
->>>>>>> report_mad
- []
-
-[13] [14] [15]
-Overfull \hbox (16.41739pt too wide) in paragraph at lines 561--562
+[15] [16] [17]
+Overfull \hbox (16.41739pt too wide) in paragraph at lines 602--603
 []\OT1/cmr/m/n/10 Organizatorial De-fi-cien-cies: lack in em-ployee train-ing, 
 poor/non-existing/non-
  []
 
 
-Overfull \hbox (1.89563pt too wide) in paragraph at lines 573--602
+Overfull \hbox (1.89563pt too wide) in paragraph at lines 614--643
  [] 
  []
 
-[16]
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 630--634
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 671--675
 
  []
 
-[17]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+[19]
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 5533) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 5533) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 5533) in paragraph at lines 691--691
 []|\OT1/cmr/m/n/8 Expert Hack-ers: mount
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 3724) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 3724) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 3724) in paragraph at lines 691--691
 \OT1/cmr/m/n/8 MitM at-tack to spy on
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 691--691
 []|\OT1/cmr/m/n/8 HTTPs con-nec-tion with
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 3039) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 3039) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 3039) in paragraph at lines 691--691
 \OT1/cmr/m/n/8 Kid-dies to launch DDoS
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 1122) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 1122) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 1122) in paragraph at lines 691--691
 \OT1/cmr/m/n/8 at-tack on Web-Server and
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 2245) in paragraph at lines 650--650
-=======
-Underfull \hbox (badness 2245) in paragraph at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 2245) in paragraph at lines 691--691
 \OT1/cmr/m/n/8 SYN cook-ies against syn
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 650--650
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 639--639
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 691--691
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in alignment at lines 650--650
-=======
-Underfull \hbox (badness 10000) in alignment at lines 639--639
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in alignment at lines 691--691
 [][][][][][] 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 643--652
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 632--641
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 684--693
 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 659--659
-=======
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 650--650
->>>>>>> report_mad
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 700--700
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 1215) in paragraph at lines 659--659
-=======
-Underfull \hbox (badness 1215) in paragraph at lines 650--650
->>>>>>> report_mad
+Underfull \hbox (badness 1215) in paragraph at lines 700--700
 []|\OT1/cmr/m/n/8 Hardware Fail-ures: cause
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 659--659
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 650--650
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 700--700
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in alignment at lines 659--659
-=======
-Underfull \hbox (badness 10000) in alignment at lines 650--650
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in alignment at lines 700--700
 [][][][][][] 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 654--661
+Underfull \hbox (badness 10000) in paragraph at lines 695--702
 
  []
 
 
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 668--668
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 645--652
-
- []
-
-[17]
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 661--661
->>>>>>> report_mad
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 709--709
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 668--668
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 661--661
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 709--709
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in alignment at lines 668--668
-=======
-Underfull \hbox (badness 10000) in alignment at lines 661--661
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in alignment at lines 709--709
 [][][][][][] 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 663--670
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 656--663
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in paragraph at lines 704--711
 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (1.45302pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (1.45302pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/n/8 Risk| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 1354) in paragraph at lines 679--679
-=======
-Underfull \hbox (badness 1354) in paragraph at lines 674--674
->>>>>>> report_mad
+Underfull \hbox (badness 1354) in paragraph at lines 720--720
 []|\OT1/cmr/m/n/8 Good Doc-u-men-ta-tion and
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (2.3445pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (2.3445pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 High| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 679--679
-=======
-Overfull \hbox (0.58893pt too wide) in paragraph at lines 674--674
->>>>>>> report_mad
+Overfull \hbox (0.58893pt too wide) in paragraph at lines 720--720
 []|\OT1/cmr/m/it/8 Med| 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in alignment at lines 679--679
-=======
-Underfull \hbox (badness 10000) in alignment at lines 674--674
->>>>>>> report_mad
+Underfull \hbox (badness 10000) in alignment at lines 720--720
 [][][][][][] 
  []
 
 
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 672--681
+Underfull \hbox (badness 10000) in paragraph at lines 713--722
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 687--696
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 728--737
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 703.
-[19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 703.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 744.
+[21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 744.
  (./systemdescription.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 703.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 703.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 744.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 744.
 Package rerunfilecheck Info: File `systemdescription.out' has not changed.
-(rerunfilecheck)             Checksum: 69185DB5FD99E028565B58A72B371A64;2582.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 703.
+(rerunfilecheck)             Checksum: DDAB9E9B8B3F68368B63508F1BAD4AD3;2813.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 744.
  ) 
 Here is how much of TeX's memory you used:
- 6487 strings out of 492995
- 95910 string characters out of 6132704
- 196993 words of memory out of 5000000
- 9862 multiletter control sequences out of 15000+600000
+ 6446 strings out of 493029
+ 94792 string characters out of 6136233
+ 194715 words of memory out of 5000000
+ 9800 multiletter control sequences out of 15000+600000
  10007 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,9n,30p,823b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on systemdescription.pdf (19 pages, 212822 bytes).
-PDF statistics:
- 420 PDF objects out of 1000 (max. 8388607)
- 382 compressed objects within 4 object streams
- 95 named destinations out of 1000 (max. 500000)
- 294 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
-Underfull \hbox (badness 10000) in paragraph at lines 667--676
-
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 682.
-[18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 682.
- (./systemdescription.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 682.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 682.
-Package rerunfilecheck Info: File `systemdescription.out' has not changed.
-(rerunfilecheck)             Checksum: 970D8EC321215E291BF1D3D0E37AF039;2320.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 682.
- ) 
-Here is how much of TeX's memory you used:
- 6423 strings out of 493029
- 94449 string characters out of 6136233
- 192715 words of memory out of 5000000
- 9793 multiletter control sequences out of 15000+600000
- 10007 words of font info for 35 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 29i,9n,30p,823b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,9n,30p,823b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -938,11 +691,10 @@ onts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts
 c/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb>
-Output written on systemdescription.pdf (18 pages, 211523 bytes).
+Output written on systemdescription.pdf (21 pages, 219575 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 262 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> report_mad
+ 448 PDF objects out of 1000 (max. 8388607)
+ 407 compressed objects within 5 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 318 words of extra memory for PDF output out of 10000 (max. 10000000)
 
