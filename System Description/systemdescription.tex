@@ -253,7 +253,7 @@ can send requests (\emph{Complete Mediation}).
     allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
     \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a
     new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in
-    a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Mimimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into 
+    a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Minimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into 
     those networks so he can work from his known environment which increases the \emph{Usability}.
     \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle 
     of \emph{Complete Mediation}.
@@ -264,11 +264,15 @@ can send requests (\emph{Complete Mediation}).
 %%% List all system components and their interfaces, subdivided, for example, into
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
+
 \subsubsection{Core Certificate Authority (CA)}
-The Core CA server runs in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
-The SparkJava application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in Json format.\\
-The following table shows the available REST calls.
+
+The Core CA server runs in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts only HTTPS connections and uses a certificate signed with the CA root key. Sadly the library doesn't yet support client side certificate verification, therefore only the server side is verified. The API offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
+The SparkJava application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in JSON format.\\
+Table \ref{ca_rest_calls} shows the available REST calls.
 \\
+\begin{table}[h]
+\centering
 \begin{tabular} {| c | l | l | l | l |}
 \hline
 \textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
@@ -286,24 +290,28 @@ The following table shows the available REST calls.
 6 & GET /ca/serial\_number & - & serialNumber\\
 \hline
 \end{tabular}
+\caption{Core CA REST API calls.}
+\label{ca_rest_calls}
+\end{table}
 \\
 \textbf{Description}:
 \begin{enumerate}
-\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12}
-\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}
-\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList}
-\item Returns the number of issued certificates in \emph{issued}
-\item Returns the number of revoked certificates in \emph{revoked}
-\item Returns the current serial number in \emph{serialNumber}
+\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12};
+\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList};
+\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList};
+\item Returns the number of issued certificates in \emph{issued};
+\item Returns the number of revoked certificates in \emph{revoked};
+\item Returns the current serial number in \emph{serialNumber}.
 \end{enumerate}
 
-TODO: hardening ()
-
 \subsubsection{Database}
-The Database server runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts HTTPS connections only from the Webserver IP address 192.168.51.14 and uses a certificate signed with the CA root key. It offers calls to handle user data.\\
-The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. The database is reachable on port 3306, but only from localhost. Any data received and sent from the application is in Json format.\\
-The following table shows the available REST calls.\\
+
+The Database server runs in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts only HTTPS connections and uses a certificate signed with the CA root key. Sadly the library doesn't yet support client side certificate verification, therefore only the server side is verified. The API offers calls to handle user data.\\
+The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. The database is reachable on port 3306, but only from localhost. Any data received and sent from the application is in JSON format.\\
+Table \ref{db_rest_calls} shows the available REST calls.\\
 \\
+\begin{table}[h!]
+\centering
 \begin{tabular} {| p{0.01\textwidth} | p{0.35\textwidth} | p{0.3\textwidth} | p{0.3\textwidth} |}
 \hline
 \textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
@@ -315,22 +323,20 @@ The following table shows the available REST calls.\\
 3 & POST /users/verify/userId & userPasswordHash & correctCredentials\\
 \hline
 \end{tabular}
+\caption{Database REST API calls.}
+\label{db_rest_calls}
+\end{table}
 \\
 \textbf{Description}:
 \begin{enumerate}
-\item Returns \emph{lastname}, \emph{firstname} and \emph{emailAddress} attributes for \emph{userId} from the database
-\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
-\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}
+\item Returns \emph{lastname}, \emph{firstname} and \emph{emailAddress} attributes for \emph{userId} from the database. To offer a minimal protection against brute force attacks on the (weak) SHA1 password hashes every call takes at least one second to process;
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress};
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}.
 \end{enumerate}
-
-%Sadly the library used to program it doesn't yet support client side verification over HTTPS, so anyone in the internal network can make requests to the REST API.
-%This could be partially limited by filtering the IP addresses to allow only the one of the Webserver, but IP addresses can be easily spoofed.
-
-TODO: hardening (1 second wait against brute force,
 
 \subsubsection{Backup}
 
-The backup machine pulls files from other machines using rsync 3.0.9 in archive mode over an ssh connection. We do full (non-incremental) backups at scheduled intervals of important system logs, applications logs, application configuration and data. Backed up machines are:
+The backup machine pulls files from other machines using rsync 3.0.9 in archive mode over an SSH connection. We do full (non-incremental) backups at scheduled intervals of important system logs, applications logs, application configuration and data. Backed up machines are:
 
 \begin{itemize}
     \item web server
@@ -338,22 +344,18 @@ The backup machine pulls files from other machines using rsync 3.0.9 in archive 
     \item core ca
     \item database
 \end{itemize}
-%%
 
-Not only the last backup is stored, we keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command.
-While the data in transit is encrypted through the use of ssh, backups on the machine are not encrypted. The machine can only be accessed physically and over ssh with the private key of the sysadmin.
+Not only the last backup is stored, we also keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command.
+While the data in transit is encrypted through the use of SSH, backups on the machine are not encrypted. The machine can only be accessed physically and over SSH with the private key of the System Administrator.
 
-Scheduling of pulling and cleaning the backups is done with cron. There are two main backup frequencies. The first one is a daily pull of seldom changing, less important files. The second one pulls every 20 minutes. Jobs are staggered so that they don't start at the same time. To be able to automate this process over ssh a passwordless private key is needed for the backup user and all machines listed above need to authorize the corresponding public key.
+Scheduling of pulling and cleaning the backups is done with \emph{cron}. There are two main backup frequencies. The first one is a daily pull of seldom changing, less important files, while the second one pulls every 20 minutes. Jobs are staggered so that they don't start at the same time. To be able to automate this process over SSH a passwordless private key is needed for the backup user and all machines listed above need to authorize the corresponding public key.
 The files and folders that need to be pulled have to be listed in configuration files on the backup machine. In general, the pull approach allows central administration of the whole backup process on a single machine.
-
-
-
 
 \subsubsection{Network Firewall/Router}
 
-This machine separates the iMovies company networks from the internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and ssh connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an ssh tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy)
+This machine separates the iMovies company networks from the Internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming webtraffic and SSH connections. We use pfsense 2.4.1 installed on FreeBSD 64-bit. Administration of pfSense is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an SSH tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy)
 
-As seen in Fig. (?? REF OVERVIEW) the Firewall has three network interfaces connecting to the internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules we set up do explicitly allow certain traffic, because the pfSense default is to reject everything.
+As seen in Fig. (?? REF OVERVIEW) the Firewall has three network interfaces connecting to the Internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules we set up do explicitly allow certain traffic, because the pfSense default is to reject everything.
 
 We use static IPs on all machines and network interfaces (see Figure ??? REF TOPO). For the sake of readability we will use the following names for the IP addresses:
 
@@ -362,7 +364,7 @@ We use static IPs on all machines and network interfaces (see Figure ??? REF TOP
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Name} & \textbf{IP} & \textbf{Description} \\ \hline
-WAN & 192.168.70.10 & Firewall interface to the internet \\ \hline
+WAN & 192.168.70.10 & Firewall interface to the Internet \\ \hline
 DMZ & 192.168.51.51 & Firewall interface to the DMZ \\ \hline
 INTERN & 192.168.50.50 & Firewall interface to the internal network \\ \hline
 WS & 192.168.51.14 & Web server \\ \hline
@@ -378,7 +380,7 @@ CA & 192.168.50.31 & Core CA server \\ \hline
 
 \textbf{WAN port routing table}
 
-The only IP exposed to the internet is that of the WAN interface. This means traffic has to be routed to the correct machine using NAT. The only traffic from the internet we we want to allow is https traffic to the web server and ssh traffic to every machine for remote administration. Table \ref{fw_inet_nat} shows the routing rules for TCP traffic depending on destination port.
+The only IP exposed to the Internet is that of the WAN interface. This means traffic has to be routed to the correct machine using NAT. The only traffic from the Internet we we want to allow is https traffic to the web server and SSH traffic to every machine for remote administration. Table \ref{fw_inet_nat} shows the routing rules for TCP traffic depending on destination port.
 
 \begin{table}[h]
 \centering
@@ -445,7 +447,7 @@ every 20 minutes and the uWSGI/Django code and configuration files daily.
 \subsection{Backdoors}
 
 \subsubsection{Easy Backdoor}
-We put the easy backdoor on the Backup machine. In certain intervals a port is opened for a short time that is directly bound to a shell. Once the attacker has access to the Backup machine he can ssh as root into all other machines from which backup data is pulled. This is possible because the backup process has root access over ssh to all machines that need to be backed up, since it needs to pull system logs readable only by root.
+We put the easy backdoor on the Backup machine. In certain intervals a port is opened for a short time that is directly bound to a shell. Once the attacker has access to the Backup machine he can SSH as root into all other machines from which backup data is pulled. This is possible because the backup process has root access over SSH to all machines that need to be backed up, since it needs to pull system logs readable only by root.
 
 \noindent We did this with netcat listening on port 9844 for 10 seconds:
 \begin{verbatim}
