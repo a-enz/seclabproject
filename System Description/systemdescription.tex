@@ -90,7 +90,7 @@ The backup machine periodically pulls a backup from from firewall, web server, d
 \begin{enumerate}
 \item The user logs in via a web form by entering his user ID and his password. The user ID and password are verified by consulting the information stored in the database. Alternatively, login using a valid client certificate is also possible.
 Client certificates are checked against the certificate revocation list (CRL) stored on the web server.
-\item The user is shown the first name, last name und email address stored under their user ID in the database. If required, the user may correct this information and any changes will be applied to the database. The user is asked to provide
+\item The user is shown the first name, last name and email address stored under their user ID in the database. If required, the user may correct this information and any changes will be applied to the database. The user is asked to provide
 a password with which the bundled certificate/key pair is encrypted. 
 \item A certificate is issued based on the user information stored in the database and a corresponding key is generated.
 \item The user is offered the possibility to download the new certificate/key bundle in PKCS\#12 format. After one download request, the certificate is deleted from the web server.
@@ -163,8 +163,8 @@ encrypted, in adherence to \emph{Minimum Exposure}.
     \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for 
     administrators thus following the \emph{Usability} principle.
     \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
-    \item The pfSense web interface is by default not accessible from the internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usablity}
-    of the web interface we allow SSH tunneling to the internal network interface for system admins. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
+    \item The pfSense web interface is by default not accessible from the Internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usability}
+    of the web interface we allow SSH tunneling to the internal network interface for system administrators. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
     \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
 \end{itemize}
 
@@ -565,7 +565,7 @@ a3 & Astrid\\
 %%  properties. For example, data objects, access restrictions,
 %%  configurations, etc.
 
-\subsubsection{\textbf{Physical Assets}}
+\subsubsection{Physical Assets}
 \begin{itemize}
 \item \textbf{Servers}: All server machines (described in Section 1.4) are positioned in a single lockable rack which resides in a locked room in the basement. Only the System Administrator has access to this room and rack.
 \item \textbf{Internet Connectivity}: The Firewall/Router machine is connected to the ISP's backbone via fiber cable. The service-level agreement with the ISP only guarantees 99.99\% availability, so there might some short
@@ -578,7 +578,7 @@ periods of time during which there is no connection to the Internet.
 %\item Core CA: physical machine hosting the CA application and the legacy database.
 %\item Backup: physical machine hosting the backup data.
 
-\subsubsection{\textbf{Logical Assets}}
+\subsubsection{Logical Assets}
 
 \textbf{Software}
 \begin{itemize}
@@ -615,7 +615,7 @@ The compromise of the login data only is of immediate concern if it coincides wi
 %\item Backup private and public keys: TODO Andi?
 \end{itemize}
 
-\subsubsection{\textbf{Persons}}
+\subsubsection{Persons}
 \begin{itemize}
 \item \textbf{System Administrator}: Maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the
 systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components. Is the most important person from an information security
@@ -628,7 +628,7 @@ don't have any special access to system resources.
 an important player.
 \end{itemize}
 
-\subsubsection{\textbf{Intangible Goods}}
+\subsubsection{Intangible Goods}
 \begin{itemize}
 \item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters. Additionally, iMovies has an interest to guarantee employee and 
 informant safety as much as possible, since they are interested in attracting such people in the future.
@@ -647,10 +647,10 @@ physical harm, while for the latter it will cause damage to the reputation.
 \item Investigation Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
 \item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
-\item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
+\item Skilled Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
 \item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
 \item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
-\item Hardware Failures: TODO
+\item Hardware Failures: Short circuit, disk failure, memory errors, system timing problems, can damage the machines or make them completely unusable, may result in server downtime 
 \end{itemize}
 
 \subsection{Risks Definitions}
@@ -723,7 +723,7 @@ TODO: running numbers!! \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Nature: Floods, lightnings, fire & Building has necessary physical countermeasures. Area has very low risk of flooding. & {\it Low} & {\it Med} & {\it Low} \\
+1 & Nature: Floods, fire results in total loss of all machines & Building has necessary physical countermeasures. Area has very low risk of flooding. & {\it Low} & {\it High} & {\it Med} \\
 \hline
 2 & Hardware Failure: one or more machines down, data loss or system unresponsive/unavailable & RAID storage, contract with hardware specialist for quick substitution, failures notification system for System Administrator & {\it Low} & {\it Low} & {\it Low} \\
 \hline
@@ -735,7 +735,7 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Employee: obtains physical access to the machines and copies data directly from storage. & Physical protection of machines & {\it Low} & {\it High} & {\it Med} \\
+3 & Employee: obtains physical access to the machines and copies data directly from storage. & Physical protection of machines & {\it Low} & {\it High} & {\it Med} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -745,17 +745,17 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Connectivity interruption & Service Level Agreement for 99.99\% availability and compensation if it is exceeded& {\it Low} & {\it Low} & {\it Low} \\
+4 & Connectivity interruption & Service Level Agreement for 99.99\% availability and compensation if it is exceeded& {\it Low} & {\it Low} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\textbf{Internal Network}: TODO: 1 and 2 from common\\
+\textbf{Internal Network}:\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low}\\
+5 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -766,52 +766,85 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Employees that misconfigure software unintentionally resulting in loss of data or system downtime. & Well-trained system administrators, restricted access.  & {\it Low} & {\it Med} & {\it Low}\\
+6 & System administrator that misconfigures software unintentionally resulting in loss of data or system downtime. & Well-trained system administrators, restricted access.  & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-2 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
+7 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-3 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
+8 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
 \hline
-4 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
+9 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
 \hline
-5 & Nature: Flooding of the server room results in total loss of all machines & Area has very low risk of flooding & {\it Low} & {\it High} & {\it Med}\\
-\hline
-6 & Employees lose or leak private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
+10 & Loss or leakage of private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\textbf{Firewall application}\\
 \textbf{Web application}\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Hacker discovers/buys a zero-day exploit in one of the frameworks, possible compromise of web server, broken authorization, rogue certificates & Keep system up-to-date at all times.  & {\it Low} & {\it High} & {\it Med}\\
+11 & Hacker discovers/buys a zero-day exploit in one of the frameworks, possible compromise of web server, broken authorization, rogue certificates & Keep system up-to-date at all times.  & {\it Low} & {\it High} & {\it Med}\\
 \hline
-2 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
+12 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-3 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
+13 & Investigated subject: resorts to Script Kiddies to launch DDoS attack on web server and cause damage, disruptions, maybe even ask money to stop & No protection & {\it Low} & {\it Med} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
-\textbf{CA and Database applications}\\
-\textbf{MySQL server}:\\
-\textbf{Backup application}: TODO: Andi?\\
-\textbf{User keys}\\
+\textbf{Firewall application}: see Commons and Web application 3\\
+
+\textbf{CA and Database applications}: see Commons\\
+\textbf{MySQL server}: see Commons\\
+\textbf{Backup application}: see Commons\\
+\textbf{User keys}: see Commons\\
 \textbf{Recovery public-private key pair}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+14 & Corrupted management/Thief steals the keys from the safe & Sensibilize administrators for these concerns, use biometrically locked safe  & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
 \textbf{Server keys and certificates}\\
-\textbf{Root CA key and certificate}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+15 & Loss of key or certificate & Copies in safe  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+16 & Key/certificate is leaked or stolen & No countermeasures implemented & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Root CA key and certificate}: see Commons\\
 \textbf{User data}\\
-\textbf{Configuration and log files}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+17 & Brute forcing of the REST API & Physically protected database that is isolated from the Internet & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Configuration and log files}: see Commons\\
 \textbf{Certificate revocation list}\\
-\textbf{Login data for machines user accounts}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+18 & Skilled Hacker manages to compromise the list or MitM between web server and Core CA & Core CA and web server communicate using HTTPS & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Login data for machines' user accounts}: see Commons\\
 \textbf{System Administrator's private SSH key}\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Skilled Hacker: steals the key &  Increase security sensibilization/awareness & {\it Low} & {\it High} & {\it Med} \\
+19 & Skilled Hacker: steals the key &  Increase security sensibilization/awareness, strong password protection, no direct access with root privileges into servers & {\it Low} & {\it High} & {\it Med} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
@@ -820,12 +853,12 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Attacker gaining access to this key can remotely connect to almost all servers over SSH without passphrase & Key only stored on backup server, to which access heavily restricted. Only system administrator with passphrase SSH key and physical access possible. & {\it Low} & {\it High} & {\it Med} \\
+20 & Attacker gaining access to this key can remotely connect to almost all servers over SSH without passphrase & Key only stored on backup server, to which access heavily restricted. Only system administrator with passphrase SSH key and physical access possible. & {\it Low} & {\it High} & {\it Med} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\textbf{CA Administrator's private key}\\
+\noindent\textbf{CA Administrator's private key}: see Commons\\
 
 \subsubsection{Persons}
 \textbf{Common}\\
@@ -833,60 +866,43 @@ No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Skilled Hacker: steals System Administrator &  Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med}\\
+21 & Organizatorial Deficiencies: illness or injury impede them from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Low} & {\it Med} & {\it Low}\\
 \hline
-2 & Organizatorial Deficiencies: illness or injury impede him from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Med} & {\it Med} & {\it Med}\\
-\hline
-\end{prettytablex}
-\end{footnotesize}
-\textbf{System Administrator}\\
-\begin{footnotesize}
-\begin{prettytablex}{L}
-No. & Threat &  Countermeasure(s) & L & I & Risk \\
-\hline
-1 & Skilled Hacker: steals System Administrator &  Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med}\\
-\hline
-2 & Organizatorial Deficiencies: illness or injury impede him from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Med} & {\it Med} & {\it Med}\\
+22 & People may be corrupted by money or blackmail to act maliciously & Well-trained personnel and good working conditions & {\it Low} & {\it Med} & {\it Low}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
-\textbf{CA Administrator}\\
-\textbf{Employees}\\
-\textbf{Informants}\\
-\textbf{Management} \\
+\textbf{System Administrator}: see Commons\\
+\textbf{CA Administrator}: see Commons\\
+\textbf{Employees}: see Commons\\
+\textbf{Informants}: see Commons\\
+\textbf{Management}: see Commons \\
 
 \subsubsection{Intangible Goods}
+\textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. of threat & Proposed additional countermeasure including expected impact  \\
+\hline
+23 & Competitor discovers identity of employee or informant and makes it public & Develop contingency response plan and make it know to the responsible people & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
 \textbf{Company reputation}\\
-\textbf{Confidentiality of informant identities}\\
-
 \begin{footnotesize}
 \begin{prettytablex}{L}
-No. & Threat &  Countermeasure(s) & L & I & Risk \\
+No. of threat & Proposed additional countermeasure including expected impact  \\
 \hline
-1 & Hardware Failures: cause damages to the hard drives and privite CA key and certificate can't be recovered. &  & {\it Low} & {\it Med} & {\it Low} \\
+24 & Data theft and publication & Encrypt data & {\it Low} & {\it High} & {\it Med}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\begin{footnotesize}
-\begin{prettytablex}{L}
-No. & Threat &  Countermeasure(s) & L & I & Risk \\
-\hline
-1 & User: exploits physical access to Backup Machine and obtains backup data. & Physical protection of System Components, Disk Encryption & {\it Low} & {\it Med} & {\it Low} \\
-\hline
-\end{prettytablex}
-\end{footnotesize}
+\textbf{Confidentiality of informant identities}: see Commons\\
 
-\begin{footnotesize}
-\begin{prettytablex}{L}
-No. & Threat &  Countermeasure(s) & L & I & Risk \\
-\hline
-1 & Expert Hacker: steals System Administrator credentials & Enforce Strong Passwords, Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med} \\
-\hline
-2 & Organizatorial Deficiencies: illness or injury impede its work and the System is left unattended in case of problems/attacks & Good Documentation and making sure that not only one person knows the system & {\it High} & {\it Med} & {\it Med} \\
-\hline
-\end{prettytablex}
-\end{footnotesize}
+
+
 
 \subsubsection{Risk Acceptance}
 
@@ -896,9 +912,27 @@ List all medium and high risks, according to the evaluation above. For each risk
 \begin{prettytablex}{p{2cm}X}
 No. of threat & Proposed additional countermeasure including expected impact  \\
 \hline
-... & ... \\
+1 & Buy insurance, lowers impact\\
 \hline
-... & ... \\
+3 & Disk encryption, lowers likelihood \\
+\hline
+9 & Accept the risk, stays the same \\
+\hline
+10 & Two-factor authentication, lowers likelihood \\
+\hline
+11 & Accept the risk, stays the same \\
+\hline
+14 & Accept the risk, stays the same \\
+\hline
+18 & verify integrity of list, lowers likelihood \\
+\hline
+19 & Accept the risk, stays the same \\
+\hline
+20 & Store key on secure hardware, lowers likelihood \\
+\hline
+23 & Accept the risk, stays the same \\
+\hline
+24 & Accept the risk, stays the same \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
