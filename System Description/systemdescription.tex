@@ -10,62 +10,47 @@
 \usepackage{color}
 \usepackage{framed}
 \usepackage{array}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{enumitem}
+\usepackage{float} % exact floater placement with H
 
 \usepackage{xifthen}
-\newboolean{showbackdoors}
-\setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
+% TODO: boolean disabled because verbatim package does not work in the backdoors section. Please uncomment backdor by hand
+% \newboolean{showbackdoors}
+% \setboolean{showbackdoors}{true}  % set to false to hide subsection on backdoors for reviewing group
 
 
-\newenvironment{prettytablex}[1]{\vspace{0.3cm}\noindent\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
+\newenvironment{prettytablex}[1]{\vspace{0.3cm}\tabularx{\linewidth}{@{\hspace{\parindent}}#1@{}}}{\endtabularx\vspace{0.3cm}}
 %\newenvironment{prettytable}{\prettytablex{l X}}{\endprettytablex}
 
 \newcolumntype{L}{lp{0.3\textwidth}p{0.3\textwidth}p{15pt}p{15pt}p{15pt}}
 
-\title{\huge\sffamily\bfseries System Description and Risk Analysis}
-\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
 \date{\today}
 
+\hypersetup{linktocpage}
+\hypersetup{
+    linktoc=all
+}
 
 \begin{document}
+
+\title{\huge\sffamily\bfseries System Description and Risk Analysis}
+%\author{B\"ahler Alessio \and Enz Andreas \and Niederberger Matthias}
+\author[1]{B\"ahler Alessio}
+\author[1]{Enz Andreas}
+\author[1]{Niederberger Matthias}
+\affil[ ]{Department of Computer Science, ETH Zurich}
+\affil[ ]{\textit {\{abaehler, aenz, niederbm\}@student.ethz.ch}}
 \maketitle
 
-%% **** please observe the page limit **** 
+%% **** please observe the page limit ****
 %% (it is not allowed to change the font size or page geometry to gain more space)
 %% comment or remove lines below before hand-in
-\begin{center}
-{\large\textcolor{red}{Page limit: 30 pages.}}
-\end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \tableofcontents
 \pagebreak
-
-\begin{framed}
-\noindent
-{\it
-Recall the following guidelines when writing your reports:
-\begin{itemize}
-\item Adhere to the given templates.
-
-\item Refer to the security principles in the book for justification.
-
-\item Use clear terminology: 
-\begin{itemize}
-\item secure = confidential + authentic. Be clear about
-which properties you are writing.
-\item Are pairwise distinct: certificate, private key, public key, archive to of certificate with private key. Please avoid mixing these up.
-\end{itemize}
-
-\item Refer to the source document of your risk definitions if appropriate.
-
-\item For the risk evaluation, formulate the threats in active, not passive, 
-voice: who (threat source) does what (threat action)? 
-
-\item Use a spell checker before hand-in!
-
-\end{itemize}
-}
-\end{framed}
 
 
 \section{System Characterization}
@@ -78,14 +63,16 @@ voice: who (threat source) does what (threat action)?
 %%% overview of the system, e.g., suitable for managers, that complements
 %%% the more technical description that follows.
 
-The aim of this system is to provide the customer company with an in-house certificate authority (CA). This CA provides
-employees with digital certificates on demand, which are used to secure email communication. 
-The System consists of three machines in a company network and external client machines that connect over the Internet. 
-Inside the company network we have Machine 1 housing the Core CA functionality and the legacy MySQL database. This means
-that the main signing key and certificate revocation list (CLR) are stored and maintained on Machine 1. %How is main key stored? Where is CLR published? 
-Machine 2 contains the web server with a firewall to shield it and the company network because any traffic from the 
-Internet will have to cross the web server machine anyway. Finally Machine 3 is used for the physical separation of the 
-backup service, with backup daemons connecting to the other two machines. 
+
+iMovies is a company that produces independent movies of various kind but with a focus on investigative reporting. This requires that information within the company and with informants is handled confidentially. Therefore email communication should be secure.
+The system described in this report implements a certificate authority (CA), that allows employees to download digital certificates created by iMovies. Those can then be used to secure their mail correspondence.
+
+The CA System is reachable from the Internet so employees can access it from anywhere and certificates can be managed through a web interface. A network firewall serves as a first layer of defense for the iMovies company networks.
+The company networks are further divided into the DMZ and the internal network. The DMZ contains only the web server that hosts the CA web application. In the internal network we have a server creating and managing certificates
+(for short: core\_ca), a dedicated database server and a backup machine. See Fig. \ref{fig:system_arch}.
+
+Web traffic is handled on the web server, which in turn gets user data and certificates from the database and core\_ca server through a REST API. Traffic from clients in the Internet to the web server/firewall is encrypted and so is also all internal network traffic.
+The backup machine periodically pulls a backup from from firewall, web server, database and core\_ca server.
 
 
 
@@ -99,13 +86,149 @@ backup service, with backup daemons connecting to the other two machines.
 
 \subsection{System Functionality}
 
-Describe the system's functions.
 
+\subsubsection{Certificate Issuing Process}
+\begin{enumerate}
+\item The user logs in via a web form by entering his user ID and his password. The user ID and password are verified by consulting the information stored in the database. Alternatively, login using a valid client certificate is also possible.
+Client certificates are checked against the certificate revocation list (CRL) stored on the web server.
+\item The user is shown the first name, last name and email address stored under their user ID in the database. If required, the user may correct this information and any changes will be applied to the database. The user is asked to provide
+a password with which the bundled certificate/key pair is encrypted. 
+\item A certificate is issued based on the user information stored in the database and a corresponding key is generated.
+\item The user is offered the possibility to download the new certificate/key bundle in PKCS\#12 format. After one download request, the certificate is deleted from the web server.
+\end{enumerate}
+
+\subsubsection{Certificate Revocation Process}
+\begin{enumerate}
+\item The affected user authenticates himself to the web application. Authentication can either be certificate-based client authentication over SSL/TLS (if the user still holds a certificate and the corresponding private key) or the user
+uses his user name and password stored in the database (if the user has lost all certificate or their corresponding private keys).
+\item After successful authentication, the user can choose to revoke either a single one or all of their certificates. Both requests have to be confirmed by entering the user's password. In the case of a single certificate revocation,
+the user has to provide the serial number. Upon revocation, a new certificate revocation list will be generated and published on the web server and login with the revoked certificate(s) will not be possible anymore. If the user is currently
+authenticated with a/the revoked certificate, they will be logged out.
+\end{enumerate}
+
+\subsubsection{CA Administration Interface}
+Allows the CA administrator to login with a digital certificate into a dedicated web page where the following data is displayed:
+\begin{itemize}
+\item Number of issued certificates
+\item Number of revoked certificates
+\item Current serial number
+\end{itemize}
+Since the CA administrator does not necessarily  have a user ID and the DB/CA entries tied to that, they cannot access any other part of the user area
+of the website.
+
+\subsubsection{Backup}
+A copy of all keys and certificates issued is stored in an archive. The archive is intended to ensure that encrypted data is still accessible even in the
+case of loss of an employee'€™s certificate or private key, or even the employee
+himself.
+
+\subsubsection{System Administration and Maintenance}
+The system provides remote administration functionality on all servers over SSH and on the firewall via HTTPS. In addition, an automated back-up solution is implemented, so that all critical system log and configuration files are regularly saved and it is possible to easily restore a machine in case of failure.
 
 \subsection{Security Design}
 
-Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
+We refer to the following security principles \cite{ASL_book}:
+\begin{enumerate}
+\setlength\itemsep{0em}
+\item Simplicity
+\item Open Design
+\item Compartmentalization
+\item Minimum Exposure
+\item Least Privilege
+\item Minimum Trust and Maximum Trustworthiness
+\item Secure, Fail-Safe Defaults
+\item Complete Mediation
+\item No Single Point of Failure
+\item Traceability
+\item Generating Secrets
+\item Usability
+\end{enumerate}
+and to the project's security requirements:
+\begin{enumerate}[label=\alph*.]
+\setlength\itemsep{0em}
+\item Access control with regard to the CA functionality and data
+\item Secrecy and integrity with respect to the private keys in the key backup
+\item Secrecy and integrity with respect to user data
+\item Access control on all components
+\end{enumerate}
 
+% Describe the system's security design, including access control, key and session management,  and security of data at rest and in transit.
+
+\subsubsection{General}
+\begin{itemize}
+\item Every process in the different machines runs with only the privileges that are needed to accomplish its task, according to \emph{Least Privilege}. All data in transit (via SSH or HTTPS) is
+encrypted, in adherence to \emph{Minimum Exposure}.
+\end{itemize}
+
+\subsubsection{Firewall}
+\begin{itemize}
+    \item We are running pfSense, a widely used and mature open source firewall solution adhering to the \emph{Open Design} security principle. Additionally pfSense comes with a good web interface for 
+    administrators thus following the \emph{Usability} principle.
+    \item The web interface can only be accessed over https following the principle of \emph{Minimum exposure}
+    \item The pfSense web interface is by default not accessible from the Internet, only entities in the internal subnet can reach it. To enable remote administration and therefore increase the \emph{Usability}
+    of the web interface we allow SSH tunneling to the internal network interface for system administrators. We ensure the \emph{Complete Mediation} principle by allowing only SSH connections using private keys.
+    \item pfSense follows a whitelist approach and the default is to block all traffic which is compliant with the \emph{Secure, Fail-Safe Defaults} principle.
+\end{itemize}
+
+\subsubsection{Database}
+\begin{itemize}
+\item The MySQL database is accessible only with username:password authentication from localhost, in accord with \emph{Least Privilege}, \emph{Complete Mediation} and  \emph{Access control on all components}
+\item The REST API is reachable only over HTTPS, in accord with \emph{Simplicity} and \emph{ Open Design} since no custom protocol is used. Ideally client side verification is used to ensure that only the Webserver
+can send requests (\emph{Complete Mediation}). 
+\end{itemize}
+
+\subsubsection{Core CA}
+\begin{itemize}
+\item Keys are generated using RSA and are 2048-bit long (\emph{Generating Secrets}).
+\item Thereafter they are deleted as soon as the password protected PKCS\#12 file is generated (\emph{Minimum Exposure}).
+\item As for \emph{Secrecy and integrity with respect to the private keys in the key backup}, a copy of the key is encrypted, using the public key of a dedicated recovery key pair, before being backed-up
+\end{itemize}
+
+\subsubsection{Backup}
+\begin{itemize}
+    \item The backup machine logs each scheduled pull and the deletion of files according to the \emph{Traceability} security principle.
+    \item Since the backup is pulled from other machines, all relevant configuration and administration can  be done easily on a single machine which follows the security principles of \emph{Usability} and \emph{Compartmentalization}.
+    \item The centralization of the backup process over SSH also adheres to the security principle of \emph{Minimum Exposure} since none of the backed up users can simply SSH into the backup machine. 
+    On the other hand we violate the \emph{No Single Point of Failure} principle, because someone with access to the backup user is automatically able to access all machines from which it pulls. We counter this
+    with the principle of \emph{Complete Mediation} and restrict access to the backup user heavily. Login at the physical machine or using SSH with the private key of a system administrator are the only ways.
+    \item Using SSH to encrypt data in transit to the backup machine adheres to security principles of \emph{Generating Secrets} and \emph{Minimum Exposure}.
+    \item We do a full backup at scheduled intervals and are keeping a history of old backups for a certain while. This is an approach compliant with the \emph{Simplicity} principle contrary to the more complicated 
+    way of doing an incremental backup. It also makes restoring easier (\emph{Usability}) and in case of a corrupted backup an older one can be used thus increasing the robustness of the system (\emph{No Single Point of Failure})
+\end{itemize}
+
+\subsubsection{Web Server}
+\begin{itemize}
+ \item Respecting \emph{Traceability}, the webserver logs user authentication, logins (users/CA admins), logouts, certificate issuance requests, certificate revocation, CRL downloads and failed login attempts. Additionally, these logs
+ as well as relevant configuration and code files are being backed up, adhering to \emph{No Single Point of Failure}.
+ \item All pages of the website apart from welcomes pages, which don't provide any information or functionality, are only accessible to authenticated and logged in users. This complies with principles \emph{Minimum Exposure}, \emph{Least Privilege},
+ and \emph{Complete Mediation}.
+ \item The web server will only connect to/be connected to via the secure technologies SSH and HTTPS, hence all data legitimately sent to and received from it is encrypted. The data stored on the web server is only accessible to authenticated
+ and authorized agents and users are never given the opportunity to directly access the underlying operating system or file system. This means that all data is duly protected in accordance with \emph{Minimum Exposure} and \emph{Complete
+ Mediation}.
+ \item Web server session management is handled by Django, a well-established web framework, which adheres to \emph{Simplicity} and \emph{Open Design}. Django's session management is based on cookies which are set to expire when the browser
+ is closed. The session representation objects are encoded in order to not have the cookies leak information and are stored in a SQLite database on the web server machine. This database is only accessible by root and webserver, the user running the
+ web server applications. No remote users have any rights on the database. This configuration follows principles \emph{Minimum Exposure}, \emph{Least Privilege} and \emph{Complete Mediation}
+ \item The web server is protected by a firewall that only allows traffic to the former flow over ports 22 and 443 which are internally mapped to 22 and 8100 respectively. Considering \emph{No Single Point of Failure}, the web server itself
+ also restricts access to ports 22 for SSH and 8100 for HTTPS. Honouring \emph{Minimum Trust and Maximum Trustworthiness}, the web server will connect to the DB and CA machines via HTTPS, effectively identifying them and reducing trust that
+ has to be put in the integrity of in-house machines.
+ \item Multiple forms of authentication reduce the reliance on each single one, hence offering users to login either via credentials like user ID and password or via client certificate is another realization of \emph{No Single Point of Failure}.
+\end{itemize}
+
+\subsubsection{Structure of the internal networks}
+\begin{itemize}
+    \item The web server is the only machine in a DMZ subnet to reduce the impact of a compromised web server on the whole system. Traffic from the DMZ to the internal network has to pass the through the firewall again.
+    This is according to the security principle \emph{No Single Point of Failure}.
+    \item Each system functionality is located on a different physical machine according the the \emph{Compartmentalization} security principle. This also somewhat adheres to the \emph{No Single Point of Failure} principle 
+    since compromise or even failure of a machine does not always impact the whole system. The backup machine could fail without impacting the operation of the rest of the system. Failure of other machines would impact availability
+    of the system, but if the backup can be accessed and a restore is quickly done.
+    \item The firewall is by design a single point of failure regarding the availability of the system, but it allows to \emph{minimize the exposure} of the system to the internet drastically. Furthermore the pfSense firewall
+    allows sophisticated logging and monitoring of incoming connections ensuring the security principle of \emph{Traceability} regarding connections through the firewall.
+    \item The DMZ and internal network should not be used by any machines except the servers, employees are not allowed to have their workstations in those networks. Should employees need a internal company network, then a
+    new subnet has to be created and connected to the firewall. At the moment this is not in the system architecture since employees should connect from the internet. The networks and servers including firewall are therefore placed in
+    a locked room where only system administrators have access. By doing this we follow the security principles of \emph{Minimum exposure} and \emph{Complete Mediation}. Inside the room a system administrator can plug his own machine into 
+    those networks so he can work from his known environment which increases the \emph{Usability}.
+    \item All machines can be remotely administered through use of SSH thus adhering to the \emph{Usability} principle. But the SSH connection is only possible with the private key of an administrator which follows the security principle 
+    of \emph{Complete Mediation}.
+\end{itemize}
 
 \subsection{Components}
 
@@ -113,46 +236,329 @@ Describe the system's security design, including access control, key and session
 %%%   categories such as platforms, applications, data records, etc. For
 %%%   each component, state its relevant properties.
 
-A short description of the components in Figure \ref{fig:system_arch}.
+\subsubsection{Core Certificate Authority (CA)}
+
+The Core CA server runs \emph{CentOS} 7, is located in the iMovies internal network at IP address 192.168.50.31 and exposes a SparkJava REST API on port 8100, which accepts only HTTPS connections and uses a certificate signed with the CA root key. Sadly the library doesn't yet support client side certificate verification, therefore only the server side is verified. Apart for port 22, which has a restricted access for system administrator remote maintenance and backup services , and the before mentioned port 8100, all other ports are closed. The API offers calls to issue and revoke certificates, as well as to get information about the state of the CA.\\
+The SparkJava application runs under user \emph{coreca} and uses \emph{openssl} commands to manage the CA state. Any data received and sent from the application is in JSON format.\\
+Table \ref{ca_rest_calls} shows the available REST calls.
+\\
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth} {| c | l | l | X |}
+\hline
+\textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
+\hline
+1 & POST /certificates/new/userId & password & pkcs12\\
+\hline
+2 & DELETE /certificates/userId/one & serialNumber & RevocationList\\
+\hline
+3 & DELETE /certificates/userId/all & - & RevocationList\\
+\hline
+4 & GET /ca/issued & - & issued\\
+\hline
+5 & GET /ca/revoked & - & revoked\\
+\hline
+6 & GET /ca/serial\_number & - & serialNumber\\
+\hline
+\end{tabularx}
+\caption{Core CA REST API calls.}
+\label{ca_rest_calls}
+\end{table}
+\\
+\textbf{Description}:
+\begin{enumerate}
+\item Creates a new private key and corresponding certificate signed with the CA root key for \emph{userId}. Both are then stored in a PKCS\#12 file that can be opened with \emph{password}. The generated private key is encrypted and saved so that it can be backed up, then all other generated data is deleted and the bytes of the PKCS\#12 file are returned in \emph{pkcs12};
+\item Revokes the certificate with \emph{serialNumber} for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList};
+\item Revokes all certificates for \emph{userId} and generates a new certificate revocation list, whose bytes are returned in \emph{certificateRevocationList};
+\item Returns the number of issued certificates in \emph{issued};
+\item Returns the number of revoked certificates in \emph{revoked};
+\item Returns the current serial number in \emph{serialNumber}.
+\end{enumerate}
+
+\subsubsection{Database}
+
+The Database server runs \emph{CentOS} 7, is located in the iMovies internal network at IP address 192.168.50.33 and exposes a SparkJava REST API on port 8100, which accepts only HTTPS connections and uses a certificate signed with the CA root key. Sadly the library doesn't yet support client side certificate verification, therefore only the server side is verified. Apart for port 22, which has a restricted access for system administrator remote maintenance and backup services , and the before mentioned port 8100, all other ports are closed. that is used for The API offers calls to handle user data.\\
+The SparkJava application runs under user \emph{database} and interacts directly with a local MySQL database, which contains only the legacy \emph{users} table. The database is reachable on port 3306, but only from localhost. Any data received and sent from the application is in JSON format.\\
+Table \ref{db_rest_calls} shows the available REST calls.\\
+\\
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth} {| p{10pt} | X | X | X |}
+\hline
+\textbf{\#} & \textbf{Method and Url} & \textbf{Parameters} & \textbf{Return}\\
+\hline
+1 & GET /users/userId & - & lastname, firstname, emailAddress\\
+\hline
+2 & POST /users/userId & lastname, firstname, emailAddress & -\\
+\hline
+3 & POST /users/verify/userId & userPasswordHash & correctCredentials\\
+\hline
+\end{tabularx}
+\caption{Database REST API calls.}
+\label{db_rest_calls}
+\end{table}
+\\
+\textbf{Description}:
+\begin{enumerate}
+\item Returns \emph{lastname}, \emph{firstname} and \emph{emailAddress} attributes for \emph{userId} from the database. To offer a minimal protection against brute force attacks on the (weak) SHA1 password hashes every call takes at least one second to process;
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress};
+\item Changes \emph{userId} attributes in the database to the given \emph{lastname}, \emph{firstname} and \emph{emailAddress}.
+\end{enumerate}
+
+\subsubsection{Backup}
+
+The backup machine pulls files from other machines using rsync 3.0.9 in archive mode over an SSH connection. We do full (non-incremental) backups at scheduled intervals of important system logs, applications logs, application configuration and data. Backed up machines are:
 
 \begin{itemize}
-    \item \textbf{Certification Manager}: Manages certificate state (creation, revocation, deletion, ...). Interfaces with the Web Server over the REST API and directly with the legacy MySQL database. It has two main subcomponents:
-    \begin{itemize}
-        \item Certification Store: A directory where keys and certificates are stored.
-        \item Certification Generator: Built with OpenSSL
-    \end{itemize}
-    \item \textbf{MySQL DB}: As provided. Interfaces with the web server over a REST API and with the Certification Manager.
-    \item \textbf{REST API}: Interface between Core CA machine and WebServer machine.
-    \item \textbf{Web Server}: Accepts web traffic filtered through a firewall. Does authorization by checking legacy database and can request certificate state changes from the Certification Manager.
-    \item \textbf{Firewall}: Filters traffic.
-    \item \textbf{Backup Manager}: Periodically stores specified data in the backup database. Interfaces with Core CA and Web Server machine.
-    \begin{itemize}
-        \item Backup Daemon: Sends data to backup machine
-    \end{itemize}
+    \item web server
+    \item firewall
+    \item core ca
+    \item database
 \end{itemize}
 
+Not only the last backup is stored, we also keep old backups. But to reduce the amount of data stored a cleanup process deletes backups after they reach a certain age. Files can be restored using rsync and reversing source and target of the backup command.
+While the data in transit is encrypted through the use of SSH, backups on the machine are not encrypted. The machine can only be accessed physically and over SSH with the private key of the System Administrator.
 
-\ifthenelse{\boolean{showbackdoors}}{
+Scheduling of pulling and cleaning the backups is done with \emph{cron}. There are two main backup frequencies. The first one is a daily pull of seldom changing, less important files, while the second one pulls every 20 minutes. Jobs are staggered so that they don't start at the same time. To be able to automate this process over SSH a passwordless private key is needed for the backup user and all machines listed above need to authorize the corresponding public key.
+The files and folders that need to be pulled have to be listed in configuration files on the backup machine. In general, the pull approach allows central administration of the whole backup process on a single machine.
+
+\subsubsection{Network Firewall/Router}
+
+This machine separates the iMovies company networks from the Internet and serves as a first line of defense. Furthermore it serves as a router, mainly for incoming web traffic and SSH connections. We use \emph{pfSense} 2.4.1 installed on \emph{FreeBSD} 64-bit. Administration of \emph{pfSense} is mostly done over a web interface, which is only reachable from the internal network. But remote administration of the web interface is possible by first creating an SSH tunnel to the internal network interface and then starting a web session over this tunnel (using for example Firefox with a SOCKS proxy).
+
+As seen in Fig. \ref{fig:system_arch} the Firewall has three network interfaces connecting to the Internet, DMZ and internal network. In the following we describe the routing (NAT) and firewall rules set up on each interface. All rules do explicitly allow certain traffic, because the \emph{pfSense} default is to reject everything.
+
+We use static IP addresses on all machines and network interfaces (see Figure \ref{fig:system_arch}). For the sake of readability we will use the following names for the IP addresses:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Name} & \textbf{IP} & \textbf{Description} \\ \hline
+WAN & 192.168.70.10 & Firewall interface to the Internet \\ \hline
+DMZ & 192.168.51.51 & Firewall interface to the DMZ \\ \hline
+INTERN & 192.168.50.50 & Firewall interface to the internal network \\ \hline
+WS & 192.168.51.14 & Web server \\ \hline
+DB & 192.168.50.33 & Database server \\ \hline
+BK & 192.168.50.32 & Backup machine \\ \hline
+CA & 192.168.50.31 & Core CA server \\ \hline
+\end{tabular}
+\caption{Names of IPs used in further explanations. See Figure \ref{fig:system_arch} for a graphical representation.}
+\label{fw_ip_names}
+\end{table}
+
+\noindent\textbf{WAN port routing table}
+
+The only IP exposed to the Internet is that of the WAN interface. This means traffic has to be routed to the correct machine using NAT. The only traffic from the Internet we want to allow is HTTPS traffic to the web server and SSH traffic to every machine for remote administration. Table \ref{fw_inet_nat} shows the routing rules for TCP traffic depending on destination port.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+\textbf{Dest. Port} & \textbf{NAT IP} & \textbf{NAT Port} \\ \hline
+443 & WS & 8100 \\ \hline
+5050 & INTERN & 22 \\ \hline
+5031 & CA & 22 \\ \hline
+5032 & BK & 22 \\ \hline
+5033 & DB & 22 \\ \hline
+5114 & WS & 22 \\ \hline
+\end{tabular}
+\caption{NAT port routing at the WAN interface.}
+\label{fw_inet_nat}
+\end{table}
+
+\emph{pfSense} automatically creates firewall rules to allow NATed traffic. The only rule we add is to allow ICMP traffic to the WAN interface from any host, so that the ping command can be used to check if the WAN interface is reachable.
+\bigbreak
+\noindent\textbf{DMZ firewall rules}
+
+Only connections from the web server to the HTTPS ports of database and core\_ca are allowed. Also enabling ICMP to be able to ping any host on the company network.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Protocol} & \textbf{Src. IP} & \textbf{Dest. IP} & \textbf{Dest. Port} & \textbf{Action} \\ \hline
+TCP & WS & DB & 8100 & Pass\\ \hline
+TCP & WS & CA & 8100 & Pass \\ \hline
+ICMP & * & * & * & Pass \\ \hline
+
+\end{tabular}
+\caption{Firewall rules at the DMZ interface}
+\label{fw_dmz}
+\end{table}
+
+
+\noindent\textbf{INTERN firewall rules}
+This interface allows all outgoing IPv4 traffic. There is also a special Lockout prevention rule in place, making sure the \emph{pfSense} web interface is always reachable from the internal network.
+
+\subsubsection{Web Server}
+The web server runs on a machine in the iMovies demilitarized zone (DMZ). It handles all the HTTP and HTTPS traffic from and to the Internet as well as the HTTPS traffic from and to
+the database (DB) and core certificate authority (CA) machines in the iMovies internal network. User authentication is executed in collaboration with DB in the case of username/password authentication
+and CA in the case of client certificate based authentication. The web server stores an up-to-date certificate revocation list that it uses to verify client certificates. and it logs all relevant user activity, such as authentication, certificate generation and revocation. By acting as the interface for clients to access the  functionality of the certificate authority it allows them to make changes to first name, last name and email address entries in the database. \\
+The web server is run on \emph{nginx} 1.12.2 which connects via \emph{uWSGI} 2.0.15 (a web server gateway interface software) to the web application running
+on the web framework \emph{Django} 1.11.6. The machine runs \emph{CentOS} 7 and the aforementioned uWSGI and Django applications run in a \emph{Python} 3.6.3 virtual environment. The firewall restricts access to the web server to ports 22 and 8100.
+Additionally, the web server itself restricts all access to ports 22, for system administrator remote maintenance and backup services, and 8100, on which the web server accepts HTTPS requests. HTTP requests are flat out rejected.
+The system has dedicated account for remote administration and running the uWSGI/Django applications, where the former is a sudoer and the latter is not. Since the web server machine is located in a locked room, only the system
+administrator, who keeps the key, has physical access to it. The machine is maintained by the system administrator on a daily basis, which includes updating the installed software and checking the logs. The backup process stores the logs
+every 20 minutes and the uWSGI/Django code and configuration files daily.
+%TODO
+
+% % Conditional removed because otherwise verbatim does not work in the backdoors section 
+% \ifthenelse{\boolean{showbackdoors}}{
 % show for handed-in version
 
 \subsection{Backdoors}
 
-Describe the implemented backdoors. 
+\subsubsection{Easy Backdoor}
+We put the easy backdoor on the Backup machine. In certain intervals of time a port is opened for a short period time. The port is directly bound to a shell and once the attacker has access to the Backup machine, he can SSH as root into all other machines from which backup data is pulled. This is possible because the backup process has root access over SSH to all machines that need to be backed up, since it needs to pull system logs that are readable only by the root user.
 
-\bigskip\noindent
-\textbf{Hide this subsection in the version handed over to the reviewing team by setting the flag \texttt{showbackdoors} at the top of this document to \texttt{false}.}
+\noindent We did this with \emph{netcat} listening on port 9844 for 10 seconds:
+\begin{verbatim}
+ncat -l 9844 -i 10 -v -e /bin/bash
+\end{verbatim}
+The interval scheduling is done with a few \emph{cronjobs} in the \emph{crontab} service of user backup. To obscure those crontab entries, all their output to stdout and stderr is sent to \emph{/dev/null}. Also the crontab calls a bash script instead of the netcat command, so that is looks a bit less suspicious. Finally, that script is hidden with a not so easy to find name ". ", which makes it more suspicious in the crontab entry but harder to find in general.
 
+The port opens every few minutes following a pattern, which repeats every 10 minutes. The pattern is 0, 1, 3, 5, 6, 8, where every number is the minute. So the port will open right away for 10 seconds, then again at minute 1, at minute 3, and so on until it restarts after 10 minutes.
+The connection is persistent if an attacker connects during the 10 seconds when the port is open.
 
-%% do not delete the three lines below
-}{ 
-% empty for reviewing group's version
-} 
+\subsubsection{Hard Backdoor}
+The hard backdoor is a two-stage process that allows any attacker to execute bash commands with root privileges on the Web server, Core CA and Database machines. The first phase consists of a hidden webpage on the Web server and a hidden
+REST call on both Core CA and Database that, when a given state is reached, allows the execution of bash commands given by the attacker. 
+
+Since these commands will be executed with the rights of the unprivileged user running the processes, 
+the second phase consists of using a specially crafted executable that is hidden in the target machine filesystem to obtain passwordless sudo privileges. The attacker can then execute any command through the hidden webpage/REST call and 
+receive its output. \\
+A more detailed explanation of the two phases:
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{res/webserver_fsm.eps}
+    \caption{FSM on web server}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{res/db_ca_fsm.eps}
+    \caption{FSM on DB and CA}
+    \label{fig:db_ca_fsm}
+  \end{minipage}
+\end{figure}
+\begin{itemize}
+\item \textbf{Phase 1}: The web server implements a finite state machine (FSM) with four states. The transitions are achieved by inserting special headers into the requests sent to the webserver. All requests have to be sent to 
+https://www.imovies.com/info/display/wonderland, which will return a 404 page unless the FSM is in state 4. In Figure \ref{fig:db_ca_fsm} the necessary headers in the form \emph{name: value} are indicated on the transition, whereas \emph{other}
+simply means any unspecified header. A header value of the form \emph{target: [ws, db, ca]} has to be included in order to indicate the target machine of the request. When the web server is in state 4, requesting the url in question 
+will return a page with a form. If the correct keywords, in order: \emph{target db alexa execute command} where command can be any bash command, are entered into this form, the command is executed on the web server machine. Any output of the command will be returned as a json string.
+With the web server in state 4, the attacker now also has the possibility to influence the FSM on the DB or CA. Via the form, two header (name/value) pairs can be included into the request from web server to the target machine. The FSM
+of these machines is shown in Figure \ref{fig:db_ca_fsm}. Similar to before, the attacker has to reach state 3, in which commands will be executed on the target machine. 
+\item \textbf{Phase 2}: the executable file \emph{/usr/lib/systemd/system-agent} has \emph{setuid bit} set and when executed with option \emph{-a} will modify \emph{/etc/sudoers} by adding a line that gives the unprivileged user on the
+machine the right to execute any command without password. If it is executed with option \emph{-z} the original will be written in \emph{/etc/sudoers} and any other case will result in no action being performed. Since there aren't many
+files with \emph{setuid bit} set, the file is placed in a legitimate and pre-existent operating system's directory and is given a misleading name and has creation date set before the start of the semester in order to make its discovery more difficult.
+\end{itemize}
+
+% % Conditional removed because otherwise verbatim does not work in the backdoors section 
+% %% do not delete the three lines below
+% }{
+% % empty for reviewing group's version
+% }
 
 \subsection{Additional Material}
 
-You may have additional sections according to your needs.
+\subsubsection{Login credentials}
 
 
+%%% MACHINE LOGIN TABLE
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{| X | X | X |}
+\hline
+\multicolumn{3}{| c |}{\textbf{Machines user accounts}} \\
+\hline
+\textbf{Machine} & \textbf{User} & \textbf{Password}\\
+\hline
+Backup & iadmin & greenWay\_blueish\\
+\hline
+Backup & backup & yada(9Ruckus)\\
+\hline
+Backup & badmin & starr?Bleed6\\
+\hline
+Core CA & iadmin & greenWay\_Roeschti\\
+\hline
+Core CA & coreca & quer57=Dingdong\\
+\hline
+Database & iadmin & greenWay\_Reverse8\\
+\hline
+Database & database & /setPlant\&\\
+\hline
+Firewall & admin & 89steep\&Sheep\\
+\hline
+Webserver CA & iadmin & greenWay\_Outer66\\
+\hline
+Webserver CA & webserver & \_web17server\_\\
+\hline
+\end{tabularx}
+
+\label{pwd_machine_users}
+\end{table}
+
+
+%%% SSH PRIVATE KEY TABLE
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
+\hline
+\multicolumn{2}{| c |}{\textbf{SSH Private Key}} \\
+\hline
+\textbf{Owner} & \textbf{Password}\\
+\hline
+System Administrator & PaperW8Less\\
+\hline
+\end{tabularx}
+\label{pwd_ssh_key}
+\end{table}
+
+
+
+%%% MQSQL DB USERS TABLE
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
+\hline
+\multicolumn{2}{| c |}{\textbf{MySQL Database users}} \\
+\hline
+\textbf{User} & \textbf{Password}\\
+\hline
+root & reallySecurePwd1!\\
+\hline
+dbuser & securePwd17!\\
+\hline
+\end{tabularx}
+\label{pwd_mysql_users}
+\end{table}
+
+
+
+%%% IMOVIES PASSWORDS
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{| X | X |}
+\hline
+\multicolumn{2}{| c |}{\textbf{iMovies users}} \\
+\hline
+\textbf{Username} & \textbf{Password}\\
+\hline
+db & D15Licz6\\
+\hline
+fu & KramBamBuli\\
+\hline
+ms &MidbSvlJ\\
+\hline
+a3 & Astrid\\
+\hline
+\end{tabularx}
+\label{pwd_imovies_db}
+\end{table}
+
+
+\clearpage
 \section{Risk Analysis and Security Measures}
 
 \subsection{Assets}
@@ -161,50 +567,75 @@ You may have additional sections according to your needs.
 %%  properties. For example, data objects, access restrictions,
 %%  configurations, etc.
 
-\textbf{Physical Assets}
+\subsubsection{Physical Assets}
 \begin{itemize}
-\item Web Server: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
-\item Core CA: physical machine hosting the CA application and the legacy database.
-\item Backup: physical machine hosting the backup data.
-\item Internet Connectivity: Modem and lines connecting the WebServer to the Internet.
-\item Internal Network: LAN via physical lines and a switching modem.
+\item \textbf{Servers}: All server machines (described in Section 1.4) are positioned in a single lockable rack which resides in a locked room in the basement. Only the System Administrator has access to this room and rack.
+\item \textbf{Internet Connectivity}: The Firewall/Router machine is connected to the ISP's backbone via fiber cable. The service-level agreement with the ISP only guarantees 99.99\% availability, so there might some short
+periods of time during which there is no connection to the Internet.
+\item \textbf{Internal Network}: This consists of Ethernet cables that physically connect the machines in the rack to the firewall/router.
+\item \textbf{Firewall Machine}: Is located in the same locked rack as the server machines. 
 \end{itemize}
 
-\noindent\textbf{Logical Assets}
+%\item Server Machines: physical machine hosting the Web Server Application. Must be available and enable secure and tamper resistant communications with the clients.
+%\item Core CA: physical machine hosting the CA application and the legacy database.
+%\item Backup: physical machine hosting the backup data.
+
+\subsubsection{Logical Assets}
+
+\textbf{Software}
 \begin{itemize}
-    \item Software
-    \begin{itemize}
-    \item Web Server Application
-        \item Core CA Application
-        \item Legacy MySQL database/application/driver?
-        \item REST API
-        \item Backup Daemon
-        \item Backup Manager
-        \item Firewall
-    \end{itemize}
-    \item Information
-    \begin{itemize}
-        \item Certificates
-        \item Keys
-        \item User data
-        \item Configuration files
-        \item Logs
-    \end{itemize}
+\item \textbf{Firewall application}: pfSense application running on the Firewall machine and additionally fulfills routing duties for the internal network and the DMZ. It filters traffic based on a port whitelist and redirects
+SSH and HTTPS traffic to their destination. TODO refs
+\item \textbf{Web Server}: Runs CentOS 7, nginx, uWSGI and a Django application that was developed by a contractor. The software is updated regularly by the system administrator with occasional support of the contractor. 
+\item \textbf{CA and Database applications}: The SparkJava applications running respectively on the Core CA machine and on the Database machine TODO refs
+\item \textbf{MySQL server}:
+\item \textbf{Backup application}: TODO: Andi?
 \end{itemize}
 
-
-\noindent\textbf{Persons}
+\noindent\textbf{Information}
 \begin{itemize}
-\item System Administrator: maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components.
-\item CA Administrators: are able to verify the current state of the CA.
-\item Users: Employees and Informants that both use the system to obtain certificates which allow them to communicate securely with the WebServer.
-\item Management
+\item \textbf{User certificates and keys}: The user certificates and private keys are of twofold importance: on the one hand, they are used for secure email communication and on the other hand they can be used as client certificates/private key pairs
+in SSL/TLS-based authentication. 
+\item \textbf{Server keys and certificates}: The integrity of the SSL certificate and confidentiality of the private key of the web server are of critical importance as with their compromise an attacker can mount a man-in-the-middle attack to obtain user credentials and
+even newly generated certificates. The private keys and certificates of the DB and CA systems on the other hand are of lesser importance, because their certificates are just a fallback in case someone manages to spoof addresses in the 
+physically secured internal network.
+\item \textbf{Root CA key and certificate}: These two assets must be protected with great care. The root CA private key can be abused to sign new certificates so it must be kept confidential. The certificate must not be tampered with,
+as it is self-signed and hence could also bind any key to the valid credentials.
+\item \textbf{User data}: Since the users of the iMovies PKI-services are possibly involved in investigative reporting, it is of paramount importance to keep their data confidential. Any leakage of this information could
+lead to precarious situations for the employees.
+\item \textbf{Configuration and log files}: The configuration files must not be tampered with, as they are governing how the system works in great parts. For example, an adversary could turn off SSL on the web server, rendering it useless.
+The log files are primarily important to detect suspicious activities and could, if altered, conceal such activities. Hence integrity is needed here as well.
+\item \textbf{private SSH keys}: The system admin's SSH key must be kept confidential, as it allows remote access to all machines in the company. However, that access is confined to a low-privilege user, so without other credentials the damage
+to be done is limited. The backup services' SSH key should also be kept confiedntial as it allows root access to all machines in the company network. However in order to use it, one first has to gain access to the backup machine.
+\item \textbf{Certificate revocation list}: Contains all revoked certificates. It has to be up to date and available to the users in order for them to not engage in putative secure communication with an adversarial actor.
+Additionally it is used by the web server to check certificate-based authentication requests for validity. Furthermore its integrity has to be guaranteed.
+\item \textbf{Recovery private and public keys}: The public key is used to encrypt user private keys and has to be available to the CA application. The private key can be used to recover the private keys in case of necessity and given its importance is stored in the safe in the Administrators office that can be opened only in the presence of both the System and the CA Administrators.
+\item \textbf{Login data on different machines}: Since the only two ways for the login data to be abused is upon physical access or SSH access, this asset is strongly tied to the system administrators SSH key and physical keys to the server room/rack.
+The compromise of the login data only is of immediate concern if it coincides with the compromise of the aforementioned keys in possession of the system administrator.
+%\item System Administrator's public and private key
+%\item CA Administrator's private and public keys
+%\item Backup private and public keys: TODO Andi?
 \end{itemize}
 
-\noindent\textbf{Intangible Goods}
+\subsubsection{Persons}
 \begin{itemize}
-\item Company Reputation
-\item Confidentiality of informant identities.
+\item \textbf{System Administrator}: Maintains the system by applying software updates, controlling system logs to search malicious behaviours that could lead to security issues and ensuring that the machines hosting the
+systems components are working properly. He therefore has access to sensitive data, in the form of a remote connection well as physical access to all components. Is the most important person from an information security
+perspective, as they hold physical and virtual keys to the system.
+\item \textbf{CA Administrators}: Are able to verify the current state of the CA. Has only limited access to system data but even this minor amount of data should be protected.
+\item \textbf{Employees}: Are the most important people in the field, but also the most vulnerable. Hence they are of great value to the company, even though they only use the system to obtain means of secure communication and
+don't have any special access to system resources.
+\item \textbf{Informants}: Are external to the company but may obtain the employees' certificates. The company also greatly depends on such people, hence proper certificate handling is suggested here.
+\item \textbf{Management}: Only makes high-level decisions and has no access to any system resources. As they have great influence over the direction technology- and fincance-wise, they are still
+an important player.
+\end{itemize}
+
+\subsubsection{Intangible Goods}
+\begin{itemize}
+\item \textbf{Company reputation}: iMovies is known for the quality and reliability of its investigative reports, as well as for the professionality of its reporters. Additionally, iMovies has an interest to guarantee employee and 
+informant safety as much as possible, since they are interested in attracting such people in the future.
+\item \textbf{Confidentiality of informant identities}: The exposure of an informant may have serious consequences for the informant, but also for iMovies. For the former it may result in monetary loss, legal consequences or even 
+physical harm, while for the latter it will cause damage to the reputation.
 \end{itemize}
 
 \subsection{Threat Sources}
@@ -215,13 +646,13 @@ You may have additional sections according to your needs.
 \item Nature: Floods, lightning strikes, earthquakes can damage the physical infrastructure.
 \item Users: Employees (includes also cleaning personnel etc.) and informants can act maliciously or be careless/poorly trained.
 \item Competitors: may be interested in obtaining confidential information to gain an advantage, blackmail or cause harm by publishing it. May resort to Skilled Hackers to achieve their goals.
-\item "Victims": subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
+\item Investigation Subjects: subjects of investigative reports that were publicly exposed and may want to get revenge by causing any kind of damage. May resort to Skilled Hackers to achieve their goals.
 \item Organized Crime: can directly or indirectly be "Victim", could be interested in blackmailing the Company to gain money or just to obtain important information that can be sold on the black market/used for other illegal activities.
 \item Malware: may be non-directional or self-spreading and have different goals, e.g. Ransomware, Trojans.
-\item Expert Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
+\item Skilled Hackers: A skilled hacker has expert knowledge for some systems. He can write his own code and may use unknown or unpublished vulnerabilities (from book). May itself be a "Victim" or act for monetary interests.
 \item Script Kiddies: This type of adversary has basic computer knowledge and uses mainly known vulnerabilities for which exploits are available on the Internet. However, he might write scripts to automate tasks or use tools to automatically create malware. His main motivations are challenge, glory and destruction (from book).
 \item Organizatorial Deficiencies: lack in employee training, poor/non-existing/non-enforced security measures, such as unsanitized user input, can weaken the overall security of the system.
-\item Hardware Failures
+\item Hardware Failures: Short circuit, disk failure, memory errors, system timing problems, can damage the machines or make them completely unusable, may result in server downtime 
 \end{itemize}
 
 \subsection{Risks Definitions}
@@ -281,71 +712,242 @@ Low   & The event (1) may result in a loss of some tangible assets or resources 
 \end{tabular}
 \end{center}
 
-
-
 \subsection{Risk Evaluation}
 
 % List all potential threats and the corresponding countermeasures. Estimate the risk based on the information about the threat, the threat sources and the corresponding countermeasure. Adhere to the risk definitions you have given above. As a sanity check, there should be at least one high-risk entry.
+We now list the potential threats associated with the assets and the implemented countermeasures. To avoid repeating many times the same threat we group "shared" threats in a paragraph called \emph{Common} at the beginning of each Asset category and we just refer to it.
+TODO: running numbers!! \\
 
-Potential threats and countermeasures with the inferred risk.
-
-
-\subsubsection{{\it Evaluation Web Server}}
-
+\subsubsection{Physical Assets}
+\textbf{Common}: the following threats apply to many different Physical Assets. \\
+\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Expert Hackers: mount MitM attack to spy on and tamper with communications between Clients and WebServer. This allows the hackers to learn in particular a user's password and private keys. & HTTPs connection with Server side authentication & {\it Med} & {\it High} & {\it Med} \\
+1 & Nature: Floods, fire results in total loss of all machines & Building has necessary physical countermeasures. Area has very low risk of flooding. & {\it Low} & {\it High} & {\it Med} \\
 \hline
-2 & Victim: resorts to Script Kiddies to launch DDoS attack on WebServer and cause damage, disruptions, maybe even ask money to stop & Simple DDoS protection like SYN cookies against syn flood & {\it High} & {\it High} & {\it High} \\
+2 & Hardware Failure: one or more machines down, data loss or system unresponsive/unavailable & RAID storage, contract with hardware specialist for quick substitution, failures notification system for System Administrator & {\it Low} & {\it Low} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\subsubsection{{\it Evaluation Core CA}}
-
+\textbf{Servers}:\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Hardware Failures: cause damages to the hard drives and privite CA key and certificate can't be recovered. &  & {\it Low} & {\it Med} & {\it Low} \\
+3 & Employee: obtains physical access to the machines and copies data directly from storage. & Physical protection of machines & {\it Low} & {\it High} & {\it Med} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\subsubsection{{\it Evaluation Backup}}
-
+\textbf{Internet Connectivity} \\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & User: exploits physical access to Backup Machine and obtains backup data. & Physical protection of System Components, Disk Encryption & {\it Low} & {\it Med} & {\it Low} \\
+4 & Connectivity interruption & Service Level Agreement for 99.99\% availability and compensation if it is exceeded& {\it Low} & {\it Low} & {\it Low} \\
 \hline
 \end{prettytablex}
 \end{footnotesize}
 
-\subsubsection{{\it Evaluation System Administrator}}
-
+\textbf{Internal Network}:\\
 \begin{footnotesize}
 \begin{prettytablex}{L}
 No. & Threat &  Countermeasure(s) & L & I & Risk \\
 \hline
-1 & Expert Hacker: steals System Administrator credentials & Enforce Strong Passwords, Increase security sensibilization/awareness & {\it Med} & {\it High} & {\it Med} \\
-\hline
-2 & Organizatorial Deficiencies: illness or injury impede its work and the System is left unattended in case of problems/attacks & Good Documentation and making sure that not only one person knows the system & {\it High} & {\it Med} & {\it Med} \\
+5 & Employee: wiretapping & Physical protection, data encryption with SSH and HTTPS & {\it Low} & {\it Low} & {\it Low}\\
 \hline
 \end{prettytablex}
 \end{footnotesize}
+
+\subsubsection{Logical Assets}
+\textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+6 & System administrator that misconfigures software unintentionally resulting in loss of data or system downtime. & Well-trained system administrators, restricted access.  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+7 & Script kiddie gains access to a server, potentially uses it for his own needs, modifies relevant software. & Servers are properly maintained, only accessible from the internet through one or two layers of a firewall.  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+8 & A skilled hacker gains access to the server through a software vulnerability, either in the operating system or an application. Installs root-kit, loss of confidential data. & System administrator trained to notice irregularities on the servers. Machines are hardened, regularly updated and not directly accessible from the internet. & {\it Low} & {\it High} & {\it Low}\\
+\hline
+9 & Malware spreads over the internet possibly affects system files, could restrict usability of system, loss of data. & Servers are properly maintained and security patches installed, only accessible from the internet through one or two layers of a firewall. Important data backed up & {\it Med} & {\it High} & {\it Med}\\
+\hline
+10 & Loss or leakage of private keys or credentials, may result in impersonation, illegal remote access and/or privilege escalation & Well-trained employees & {\it Med} & {\it Med} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\textbf{Web application}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+11 & Hacker discovers/buys a zero-day exploit in one of the frameworks, possible compromise of web server, broken authorization, rogue certificates & Keep system up-to-date at all times.  & {\it Low} & {\it High} & {\it Med}\\
+\hline
+12 & Administrator forgets to renew SSL certificate, website no longer trustworthy, certificate issuance and revoking halts  & Well-trained system administrators  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+13 & Investigated subject: resorts to Script Kiddies to launch DDoS attack on web server and cause damage, disruptions, maybe even ask money to stop & No protection & {\it Low} & {\it Med} & {\it Low} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Firewall application}: see Commons and Web application 3\\
+
+\textbf{CA and Database applications}: see Commons\\
+\textbf{MySQL server}: see Commons\\
+\textbf{Backup application}: see Commons\\
+\textbf{User keys}: see Commons\\
+\textbf{Recovery public-private key pair}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+14 & Corrupted management/Thief steals the keys from the safe & Sensibilize administrators for these concerns, use biometrically locked safe  & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Server keys and certificates}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+15 & Loss of key or certificate & Copies in safe  & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+16 & Key/certificate is leaked or stolen & No countermeasures implemented & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Root CA key and certificate}: see Commons\\
+\textbf{User data}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+17 & Brute forcing of the REST API & Physically protected database that is isolated from the Internet & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Configuration and log files}: see Commons\\
+\textbf{Certificate revocation list}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+18 & Skilled Hacker manages to compromise the list or MitM between web server and Core CA & Core CA and web server communicate using HTTPS & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Login data for machines' user accounts}: see Commons\\
+\textbf{System Administrator's private SSH key}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+19 & Skilled Hacker: steals the key &  Increase security sensibilization/awareness, strong password protection, no direct access with root privileges into servers & {\it Low} & {\it High} & {\it Med} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{Backup private SSH key}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+20 & Attacker gaining access to this key can remotely connect to almost all servers over SSH without passphrase & Key only stored on backup server, to which access heavily restricted. Only system administrator with passphrase SSH key and physical access possible. & {\it Low} & {\it High} & {\it Med} \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\noindent\textbf{CA Administrator's private key}: see Commons\\
+
+\subsubsection{Persons}
+\textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. & Threat &  Countermeasure(s) & L & I & Risk \\
+\hline
+21 & Organizatorial Deficiencies: illness or injury impede them from working and the System is left unattended in case of problems/attacks & more System Administrators & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+22 & People may be corrupted by money or blackmail to act maliciously & Well-trained personnel and good working conditions & {\it Low} & {\it Med} & {\it Low}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+\textbf{System Administrator}: see Commons\\
+\textbf{CA Administrator}: see Commons\\
+\textbf{Employees}: see Commons\\
+\textbf{Informants}: see Commons\\
+\textbf{Management}: see Commons \\
+
+\subsubsection{Intangible Goods}
+\textbf{Common}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. of threat & Proposed additional countermeasure including expected impact  \\
+\hline
+23 & Competitor discovers identity of employee or informant and makes it public & Develop contingency response plan and make it know to the responsible people & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\textbf{Company reputation}\\
+\begin{footnotesize}
+\begin{prettytablex}{L}
+No. of threat & Proposed additional countermeasure including expected impact  \\
+\hline
+24 & Data theft and publication & Encrypt data & {\it Low} & {\it High} & {\it Med}\\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
+\textbf{Confidentiality of informant identities}: see Commons\\
+
+
+
+
+\subsubsection{Risk Acceptance}
+
+List all medium and high risks, according to the evaluation above. For each risk, propose additional countermeasures that could be implemented to further reduce the risks.
+
+\begin{footnotesize}
+\begin{prettytablex}{p{2cm}X}
+No. of threat & Proposed additional countermeasure including expected impact  \\
+\hline
+1 & Buy insurance, lowers impact\\
+\hline
+3 & Disk encryption, lowers likelihood \\
+\hline
+9 & Accept the risk, stays the same \\
+\hline
+10 & Two-factor authentication, lowers likelihood \\
+\hline
+11 & Accept the risk, stays the same \\
+\hline
+14 & Accept the risk, stays the same \\
+\hline
+18 & verify integrity of list, lowers likelihood \\
+\hline
+19 & Accept the risk, stays the same \\
+\hline
+20 & Store key on secure hardware, lowers likelihood \\
+\hline
+23 & Accept the risk, stays the same \\
+\hline
+24 & Accept the risk, stays the same \\
+\hline
+\end{prettytablex}
+\end{footnotesize}
+
 
 \begin{thebibliography}{---}
 \bibitem[1]{CompSec} Computer Security: Principles and Practice. William Stallings and Laurie Brown, Prentice Hall, 2008
-\bibitem[2]{ASL_book} Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schlï¿½pfer, Springer, 2011
+\bibitem[2]{ASL_book} Applied Information Security: A Hands-on Approach, David Basin, Patrick Schaller and Michael Schl\"apfer, Springer, 2011
 \end{thebibliography}
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../../book"
-%%% End: 
+%%% End:
